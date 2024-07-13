@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import ButtonPrimary from "./components/ButtonPrimary";
+import { ButtonSecondary } from "./components/ButtonSecondary";
+import {
+  Book,
+  Bookmark,
+  Gear,
+  Prof,
+  Signal,
+  Student,
+} from "./assets/icons/index";
+import { DISABLEDGRAY } from "./GLOBALS";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="">
+      <main className="flex flex-row ">
+        <section className="basis-1/6 min-h-dvh max-w-md  min-w-md flex flex-col justify-between  p-4 ">
+          <ul className="flex flex-col gap-3 my-11">
+            <li>
+              <ButtonSecondary text="تسيير المسجلين" state="active">
+                <Student />
+              </ButtonSecondary>
+            </li>
+            <li>
+              <ButtonSecondary text="تسيير الأساتذة" state="clear">
+                <Prof fill={DISABLEDGRAY} />
+              </ButtonSecondary>
+            </li>
+            <li>
+              <ButtonSecondary text="تسيير الأفواج" state="clear">
+                <Book fill={DISABLEDGRAY} />
+              </ButtonSecondary>
+            </li>
+            <li>
+              <ButtonSecondary text="تسيير الأفواج الخاصة" state="clear">
+                <Bookmark fill={DISABLEDGRAY} />
+              </ButtonSecondary>
+            </li>
+            <li>
+              <ButtonSecondary text="الإعدادات" state="clear">
+                <Gear fill={DISABLEDGRAY} />
+              </ButtonSecondary>
+            </li>{" "}
+          </ul>
+          <ButtonPrimary text="تسجيل الحضور" active>
+            <Signal />
+          </ButtonPrimary>
+        </section>
+
+        <section>table</section>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
