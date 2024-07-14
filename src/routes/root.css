@@ -1,0 +1,3 @@
+.navbar--ul a:not(.active) .nav--button:hover svg path   {
+    fill: #334155 !important; 
+}
