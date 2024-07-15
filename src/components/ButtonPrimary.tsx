@@ -30,8 +30,10 @@ export default function ButtonPrimary({
         "bg-white transition hover:bg-light border border-solid border-light text-blueDark font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2"
       }
     >
-      {children}
-      <h2 className="text-xl text-blueDark">{text}</h2>
+      <div className="flex items-center justify-center min-w-3 ">
+        {children}
+      </div>
+      <h2 className="text-blueDark">{text}</h2>
     </button>
   );
 }

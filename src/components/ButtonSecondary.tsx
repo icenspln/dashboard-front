@@ -13,37 +13,15 @@ export default function ButtonSecondary({
   isActive,
 }: ButtonSecondaryType) {
   function returnStyles(isActive: boolean) {
-    return `nav--button min-w-[183px] w-full ${isActive ? "bg-grayBlue text-blue" : "bg-white hover:bg-light   text-disabledGray hover:text-darkGray"} font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2`;
+    return `nav--button min-w-[183px] w-full ${isActive ? "bg-grayBlue text-blue" : "bg-white hover:bg-light   text-disabledGray hover:text-darkGray"} font-medium flex flex-row items-center justify-start rounded-lg gap-3 px-3 py-2`;
   }
 
-  // switch (state) {
-  //   case "active":
   return (
-    <button
-      className={returnStyles(isActive)}
-      // className={
-      //   "bg-grayBlue min-w-[183px]  w-full  font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2"
-      // }
-    >
-      {children}
-      <h2 className="text-lg text-inherit">{text}</h2>
+    <button className={returnStyles(isActive)}>
+      <div className="flex items-center justify-center min-w-3 basis-1/4">
+        {children}
+      </div>
+      <h2 className="text-inherit basis-3/4 text-start">{text}</h2>
     </button>
   );
-  //     break;
-  //   case "clear":
-  //     return (
-  //       <button
-  //         id="nav--button"
-  //         className={
-  //           "bg-white hover:bg-light  transition text-disabledGray hover:text-darkGray min-w-[183px] w-full  font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2"
-  //         }
-  //       >
-  //         {children}
-  //         <h2 className="text-lg transition text-inherit hover:text-inherit">
-  //           {text}
-  //         </h2>
-  //       </button>
-  //     );
-  //     break;
-  // }
 }

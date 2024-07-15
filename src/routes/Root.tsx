@@ -9,9 +9,9 @@ export default function Root() {
   return (
     <>
       <div className="">
-        <main className="navbar  flex flex-row ">
-          <section className=" fixed top-0 right-0 h-screen w-60 navbar--section basis-1/6 min-h-dvh max-w-md  min-w-md flex flex-col justify-between  p-4 ">
-            <ul className="navbar--ul flex flex-col gap-3 my-11">
+        <main className="navbar flex">
+          <section className="navbar--section fixed w-[240px] top-0 right-0 h-screen   min-h-dvh max-w-md  min-w-md flex flex-col justify-between  p-3 ">
+            <ul className="navbar--ul flex flex-col gap-3 my-11 ">
               <li>
                 <NavLink to={`/`}>
                   {({ isActive }) => (
@@ -81,7 +81,7 @@ export default function Root() {
               <Signal />
             </ButtonPrimary>
           </section>
-          <section className="mr-60 w-full">
+          <section className="mr-[240px] w-full">
             <Outlet />
           </section>
         </main>
