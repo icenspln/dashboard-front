@@ -13,6 +13,7 @@ export default {
         darkGray: "#334155",
         mainBg: "#F8FAFC",
         textGray: "#94A3B8",
+        Black: "#111111",
       },
     },
   },

@@ -14,12 +14,18 @@ export default function ButtonPrimary({
   if (active) {
     return (
       <button
-        className={
-          "bg-blue transition hover:bg-blueHovered font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2"
-        }
+        className={`bg-blue transition hover:bg-blueHovered font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2 w-full`}
       >
-        {children}
-        <h2 className="text-xl  text-white">{text}</h2>
+        {children && (
+          <div className="flex items-center justify-center min-w-3 ">
+            {children}
+          </div>
+        )}
+        <h2
+          className={`text-xl  text-white  ${!children ? "w-full text-center" : "text-center"}`}
+        >
+          {text}
+        </h2>
       </button>
     );
   }
@@ -30,9 +36,11 @@ export default function ButtonPrimary({
         "bg-white transition hover:bg-light border border-solid border-light text-blueDark font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2"
       }
     >
-      <div className="flex items-center justify-center min-w-3 ">
-        {children}
-      </div>
+      {children && (
+        <div className="flex items-center justify-center min-w-3 ">
+          {children}
+        </div>
+      )}
       <h2 className="text-blueDark">{text}</h2>
     </button>
   );

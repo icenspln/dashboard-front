@@ -10,6 +10,7 @@ import {
 import Root from "./routes/Root.tsx";
 import StudentManagement from "./routes/student-management/StudentManagement.tsx";
 import ProfManagement from "./routes/prof-management/ProfManagement.tsx";
+import StudentRegister from "./routes/student-management/students-register/StudentRegister.tsx";
 
 const router = createBrowserRouter(
   [
@@ -27,7 +28,7 @@ const router = createBrowserRouter(
         },
         {
           path: "/studentmanagement/new",
-          element: <span>new student</span>,
+          element: <StudentRegister />,
         },
         {
           path: "/profmanagement",

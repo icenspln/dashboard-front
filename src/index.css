@@ -12,13 +12,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-small {
+button h1,
+button h2,
+button h3,
+button h4,
+button h5,
+button h6 {
   line-height: 1.3rem !important;
 }
