@@ -9,8 +9,8 @@ export default function Root() {
   return (
     <>
       <div className="">
-        <main className="navbar flex flex-row ">
-          <section className="navbar--section basis-1/6 min-h-dvh max-w-md  min-w-md flex flex-col justify-between  p-4 ">
+        <main className="navbar  flex flex-row ">
+          <section className=" fixed top-0 right-0 h-screen w-60 navbar--section basis-1/6 min-h-dvh max-w-md  min-w-md flex flex-col justify-between  p-4 ">
             <ul className="navbar--ul flex flex-col gap-3 my-11">
               <li>
                 <NavLink to={`/`}>
@@ -81,7 +81,9 @@ export default function Root() {
               <Signal />
             </ButtonPrimary>
           </section>
-          <Outlet />
+          <section className="mr-60 w-full">
+            <Outlet />
+          </section>
         </main>
       </div>
     </>

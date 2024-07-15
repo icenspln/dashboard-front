@@ -11,6 +11,8 @@ export default {
         grayBlue: "#F1F5F9",
         disabledGray: "#CBD5E1",
         darkGray: "#334155",
+        mainBg: "#F8FAFC",
+        textGray: "#94A3B8",
       },
     },
   },
