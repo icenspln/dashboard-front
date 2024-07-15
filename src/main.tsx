@@ -7,22 +7,29 @@ import Root from "./routes/Root.tsx";
 import StudentManagement from "./routes/student-management/StudentManagement.tsx";
 import ProfManagement from "./routes/prof-management/ProfManagement.tsx";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [
-      {
-        path: "/",
-        element: <StudentManagement />,
-      },
-      {
-        path: "/profmanagement",
-        element: <ProfManagement />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Root />,
+      children: [
+        {
+          path: "/studentmanagement",
+          element: <StudentManagement />,
+        },
+        {
+          path: "/studentmanagement/new",
+          element: <span>new student</span>,
+        },
+        {
+          path: "/profmanagement",
+          element: <ProfManagement />,
+        },
+      ],
+    },
+  ],
+  {}
+);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
