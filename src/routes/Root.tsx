@@ -11,7 +11,7 @@ export default function Root() {
       <div className="">
         <main className="navbar flex">
           <section className="navbar--section fixed w-[240px] top-0 right-0 h-screen   min-h-dvh max-w-md  min-w-md flex flex-col justify-between  p-3 ">
-            <ul className="navbar--ul flex flex-col gap-3 my-11 ">
+            <ul className="navbar--ul flex flex-col gap-3 mt-[56px] ">
               <li>
                 <NavLink to={`/`}>
                   {({ isActive }) => (
