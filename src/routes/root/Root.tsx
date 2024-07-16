@@ -1,8 +1,15 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { Book, Bookmark, Gear, Prof, Signal, Student } from "../assets/icons";
-import ButtonPrimary from "../components/ButtonPrimary";
-import ButtonSecondary from "../components/ButtonSecondary";
-import { BLUE, DISABLEDGRAY } from "../GLOBALS";
+import {
+  Book,
+  Bookmark,
+  Gear,
+  Prof,
+  Signal,
+  Student,
+} from "../../assets/icons";
+import ButtonPrimary from "../../components/ButtonPrimary";
+import ButtonSecondary from "../../components/ButtonSecondary";
+import { BLUE, DISABLEDGRAY } from "../../GLOBALS";
 import "./root.css";
 
 export default function Root() {

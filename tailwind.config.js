@@ -13,6 +13,8 @@ export default {
         darkGray: "#334155",
         mainBg: "#F8FAFC",
         textGray: "#94A3B8",
+        textGray2: "#64748B",
+        overlay: "rgba(0, 0, 0, 0.8)",
         Black: "#111111",
       },
     },

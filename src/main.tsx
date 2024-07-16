@@ -7,7 +7,7 @@ import {
   redirect,
   RouterProvider,
 } from "react-router-dom";
-import Root from "./routes/Root.tsx";
+import Root from "./routes/root/Root.tsx";
 import StudentManagement from "./routes/student-management/StudentManagement.tsx";
 import ProfManagement from "./routes/prof-management/ProfManagement.tsx";
 import StudentRegister from "./routes/student-management/students-register/StudentRegister.tsx";
