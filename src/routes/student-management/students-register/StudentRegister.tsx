@@ -1,6 +1,3 @@
-import { Check } from "../../../assets/icons/Check";
-import { Card } from "../../../components/Card";
-import { Overlay } from "../../../components/Overlay";
 import StudentRegisterForm from "./student-register-form/StudentRegisterForm";
 
 export default function StudentRegister() {

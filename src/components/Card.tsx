@@ -18,7 +18,7 @@ export function Card({
   textButtonSecondary,
 }: CardType) {
   return (
-    <article className="flex flex-col gap-1 items-center h-[435px] w-[391px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white py-[20px] py-[27px] rounded-3xl">
+    <article className="flex flex-col gap-1 items-center h-[435px] w-[391px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white px-[20px] py-[27px] rounded-3xl">
       <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
         {textHeader}
       </h2>

@@ -1,6 +1,6 @@
 import ButtonPrimary from "../../../../components/ButtonPrimary";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { StudentRegisterFormType } from "./_models";
+import { StudentRegisterFormType } from "../core/_models";
 
 export default function StudentRegisterForm() {
   const {
