@@ -17,7 +17,7 @@ export function StudentsTable() {
   });
 
   return (
-    <div className="">
+    <div className="overflow-auto">
       <table className="w-full bg-white ">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => {

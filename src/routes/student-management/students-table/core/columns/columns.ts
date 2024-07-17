@@ -28,4 +28,20 @@ export const defaultColumns = [
     header: "السنة",
     cell: (info) => info.getValue(),
   }),
+  columnHelper.accessor("level", {
+    header: "رقم الهاتف",
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("level", {
+    header: "تاريخ التسجيل",
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("level", {
+    header: "عدد الأفواج الكلية",
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("level", {
+    header: "عدد الأفواج الحالية",
+    cell: (info) => info.getValue(),
+  }),
 ];
