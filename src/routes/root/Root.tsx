@@ -48,7 +48,7 @@ export default function Root() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={`/groups`}>
+                <NavLink to={`/groupmanagement`}>
                   {({ isActive }) => (
                     <>
                       <ButtonSecondary text="تسيير الأفواج" isActive={isActive}>
@@ -59,7 +59,7 @@ export default function Root() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={`/specialgroups`}>
+                <NavLink to={`/particulargroupmanagement`}>
                   {({ isActive }) => (
                     <>
                       <ButtonSecondary
