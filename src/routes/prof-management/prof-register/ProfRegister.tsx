@@ -1,9 +1,6 @@
-import { CardEmpty } from "../../../components/CardEmpty";
-import { Overlay } from "../../../components/Overlay";
-import StudentRegisterForm from "./student-register-form/StudentRegisterForm";
-import { motion } from "framer-motion";
+import ProfRegisterForm from "./prof-register-form/ProfRegisterForm";
 
-export default function StudentRegister() {
+export default function ProfRegister() {
   return (
     <section className="w-full min-h-screen p-4 bg-mainBg">
       <div className="  mb-6">
@@ -11,7 +8,7 @@ export default function StudentRegister() {
       </div>
       <div>
         {/* form */}
-        <StudentRegisterForm />
+        <ProfRegisterForm />
         {/* <article className="flex flex-col gap-1 items-center h-[435px] w-[391px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white px-[20px] py-[27px] rounded-3xl">
             <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
               تسجيل البطاقة الذكية

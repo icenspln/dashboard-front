@@ -11,6 +11,7 @@ import Root from "./routes/root/Root.tsx";
 import StudentManagement from "./routes/student-management/StudentManagement.tsx";
 import ProfManagement from "./routes/prof-management/ProfManagement.tsx";
 import StudentRegister from "./routes/student-management/students-register/StudentRegister.tsx";
+import ProfRegister from "./routes/prof-management/prof-register/ProfRegister.tsx";
 
 const router = createBrowserRouter(
   [
@@ -33,6 +34,10 @@ const router = createBrowserRouter(
         {
           path: "/profmanagement",
           element: <ProfManagement />,
+        },
+        {
+          path: "/profmanagement/new",
+          element: <ProfRegister />,
         },
       ],
     },
