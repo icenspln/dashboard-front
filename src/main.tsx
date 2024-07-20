@@ -14,7 +14,7 @@ import GroupManagement from "./routes/group-management/GroupManagement.tsx";
 import ParticularGroupManagement from "./routes/particular-group-management/ParticularGroupManagement.tsx";
 
 import StudentRegister from "./routes/student-management/students-register/StudentRegister.tsx";
-import ProfRegister from "./routes/prof-management/profs-register/ProfRegister.tsx";
+import ProfRegister from "./routes/prof-management/prof-register/ProfRegister.tsx";
 import GroupRegister from "./routes/group-management/groups-register/GroupRegister.tsx";
 import ParticularGroupRegister from "./routes/particular-group-management/particular-groups-register/ParticularGroupRegister.tsx";
 
