@@ -10,9 +10,7 @@ export default function StudentManagement() {
           <ButtonPrimary text="تسجيل جديد" active />
         </Link>
       </nav>
-      <div>
-        <StudentsTable />
-      </div>
+      <StudentsTable />
     </section>
   );
 }

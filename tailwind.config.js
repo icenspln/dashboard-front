@@ -17,6 +17,9 @@ export default {
         overlay: "rgba(0, 0, 0, 0.8)",
         Black: "#111111",
       },
+      width: {
+        outlet: "calc(100dvw - 240px)",
+      },
     },
   },
   plugins: [],

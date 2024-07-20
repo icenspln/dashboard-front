@@ -6,10 +6,11 @@ import {
 import { defaultColumns } from "./core/columns/columns";
 import data from "./core/data.json";
 import { Student } from "./core/_models";
-
-
+import { motion } from "framer-motion";
+import { useRef } from "react";
 
 export function StudentsTable() {
+  const constraintsRef = useRef(null);
   const studentData: Student[] = data;
 
   const table = useReactTable({
@@ -19,19 +20,28 @@ export function StudentsTable() {
   });
 
   return (
-    <div className="">
-      <table className="w-full bg-white ">
+    <div
+      ref={constraintsRef}
+      className="overflow-x-clip border border-[#E2E8F0] rounded-xl"
+    >
+      <motion.table
+        drag={"x"}
+        dragConstraints={constraintsRef}
+        dragElastic={0}
+        dragMomentum={false}
+        className="max-w-full bg-white rounded-xl"
+      >
         <thead>
           {table.getHeaderGroups().map((headerGroup) => {
             return (
-              <tr className="border border-b-light" key={headerGroup.id}>
+              <tr className="border-b border-b-light" key={headerGroup.id}>
                 {headerGroup.headers.map(
                   (
                     header // map over the headerGroup headers array
                   ) => (
                     <th
                       key={header.id}
-                      className="text-textGray text-start p-3 font-normal"
+                      className="text-textGray text-start p-3 font-normal min-w-[180px]"
                       colSpan={header.colSpan}
                     >
                       {flexRender(
@@ -47,7 +57,7 @@ export function StudentsTable() {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr className="border border-b-light" key={row.id}>
+            <tr className="border border-b-light last:border-none" key={row.id}>
               {row.getAllCells().map((cell) => {
                 return (
                   <td
@@ -61,7 +71,7 @@ export function StudentsTable() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </motion.table>
     </div>
   );
 }

@@ -1,9 +1,12 @@
 .navbar--ul a:not(.active) .nav--button:hover svg path {
   fill: #334155 !important;
 }
-table {
+/* table {
   border-collapse: collapse;
   border-radius: 12px;
-  border-style: hidden; /* hide standard table (collapsed) border */
-  box-shadow: 0 0 0 1px #cbd5e1; /* this draws the table border  */
+  border-style: hidden; 
+  box-shadow: 0 0 0 1px #cbd5e1; 
+} */
+.outlet {
+  max-width: calc(100% - 240px);
 }

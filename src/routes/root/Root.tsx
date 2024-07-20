@@ -88,7 +88,7 @@ export default function Root() {
               <Signal />
             </ButtonPrimary>
           </section>
-          <section className="mr-[240px] w-full">
+          <section className="mr-[240px] outlet">
             <Outlet />
           </section>
         </main>
