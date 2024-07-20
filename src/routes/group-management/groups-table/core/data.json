@@ -6,7 +6,9 @@
     "classRoom": "1",
     "scanningCardId": "1",
     "institution": "primarySchool",
-    "level": 1
+    "level": 1,
+    "moduleName":"التاريخ",
+    "professor":"jhon doe"
   },
   {
     "groupId": 2,
@@ -15,16 +17,20 @@
     "classRoom": "1",
     "scanningCardId": "1",
     "institution": "primarySchool",
-    "level": 1
+    "level": 1,
+    "moduleName":"التاريخ",
+    "professor":"jhon doe"
   },
   {
     "groupId": 3,
     "day": "السبت",
     "time": "18:00",
-    "classRoom": "1",
+    "classRoom": "3",
     "scanningCardId": "1",
     "institution": "primarySchool",
-    "level": 1
+    "level": 1,
+    "moduleName":"التاريخ",
+    "professor":"jhon doe"
   },
   {
     "groupId": 4,
@@ -33,25 +39,31 @@
     "classRoom": "1",
     "scanningCardId": "1",
     "institution": "primarySchool",
-    "level": 1
+    "level": 1,
+    "moduleName":"التاريخ",
+    "professor":"jhon doe"
   },
   {
     "groupId": 5,
-    "day": "السبت",
+    "day": "الأحد",
     "time": "18:00",
     "classRoom": "1",
     "scanningCardId": "1",
     "institution": "primarySchool",
-    "level": 1
+    "level": 1,
+    "moduleName":"التاريخ",
+    "professor":"jhon doe"
   },
   {
     "groupId": 6,
-    "day": "السبت",
+    "day": "الخميس",
     "time": "18:00",
     "classRoom": "1",
     "scanningCardId": "1",
     "institution": "primarySchool",
-    "level": 1
+    "level": 1,
+    "moduleName":"التاريخ",
+    "professor":"jhon doe"
   },
   {
     "groupId": 7,
@@ -60,16 +72,20 @@
     "classRoom": "1",
     "scanningCardId": "1",
     "institution": "primarySchool",
-    "level": 1
+    "level": 1,
+    "moduleName":"التاريخ",
+    "professor":"jhon doe"
   },
   {
     "groupId": 8,
-    "day": "السبت",
+    "day": "الثلاثاء",
     "time": "18:00",
     "classRoom": "1",
     "scanningCardId": "1",
     "institution": "primarySchool",
-    "level": 1
+    "level": 1,
+    "moduleName":"التاريخ",
+    "professor":"jhon doe"
   },
   {
     "groupId": 9,
@@ -78,16 +94,20 @@
     "classRoom": "1",
     "scanningCardId": "1",
     "institution": "primarySchool",
-    "level": 1
+    "level": 1,
+    "moduleName":"التاريخ",
+    "professor":"jhon doe"
   },
   {
     "groupId": 10,
-    "day": "السبت",
+    "day": "الإثنين",
     "time": "18:00",
     "classRoom": "1",
     "scanningCardId": "1",
-    "institution": "primarySchool",
-    "level": 1
+    "institution": "ثانوي",
+    "level": 1,
+    "moduleName":"التاريخ",
+    "professor":"jhon doe"
   }
   
 ]

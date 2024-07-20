@@ -6,4 +6,6 @@ export type Group = {
   scanningCardId: string;
   institution: string |"primarySchool" | "middleSchool" | "highSchool";
   level: number;
+  moduleName:string;
+  professor:string;
 };
