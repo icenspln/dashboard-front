@@ -8,4 +8,6 @@ export type Student = {
   scanningCardId: string;
   institution: string |"primarySchool" | "middleSchool" | "highSchool";
   level: number;
+  paid:any;
+  toBePaid:any;
 };

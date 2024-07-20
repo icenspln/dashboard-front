@@ -7,6 +7,8 @@ import { defaultColumns } from "./core/columns/columns";
 import data from "./core/data.json";
 import { Student } from "./core/_models";
 
+
+
 export function StudentsTable() {
   const studentData: Student[] = data;
 
@@ -17,7 +19,7 @@ export function StudentsTable() {
   });
 
   return (
-    <div className="overflow-auto">
+    <div className="">
       <table className="w-full bg-white ">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => {
