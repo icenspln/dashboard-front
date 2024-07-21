@@ -1,15 +1,15 @@
 import ButtonPrimary from "../../../../components/ButtonPrimary";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ProfRegisterFormType } from "../core/_models";
+import { TeacherRegisterFormType } from "../core/_models";
 
-export default function ProfRegisterForm() {
+export default function TeacherRegisterForm() {
   const {
     register,
     handleSubmit,
     // formState: { errors },
-  } = useForm<ProfRegisterFormType>();
+  } = useForm<TeacherRegisterFormType>();
 
-  const onSubmit: SubmitHandler<ProfRegisterFormType> = (data) =>
+  const onSubmit: SubmitHandler<TeacherRegisterFormType> = (data) =>
     console.log("submintingg..", data);
 
   return (

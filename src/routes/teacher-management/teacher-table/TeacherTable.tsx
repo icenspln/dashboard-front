@@ -4,32 +4,58 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { defaultColumns } from "./core/columns/columns";
-import data from "./core/data.json";
-import { Prof } from "./core/_models";
+import { Teacher } from "./core/_models";
+import { useMemo, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getTeachers } from "./core/_requests";
+import { motion } from "framer-motion";
 
-export function ProfTable() {
-  const profData: Prof[] = data;
+export function TeacherTable() {
+  const constraintsRef = useRef(null);
+  const [teachers, setTeachers] = useState<Teacher[]>([]);
 
+  //query functions
+  const { data, isLoading } = useQuery({
+    queryKey: ["getStudents"],
+    queryFn: getTeachers,
+  });
+
+  useMemo(() => {
+    if (data && !isLoading) {
+      setTeachers(data.data);
+    }
+  }, [data, isLoading]);
+
+  // table functions
   const table = useReactTable({
     columns: defaultColumns,
-    data: profData,
+    data: teachers,
     getCoreRowModel: getCoreRowModel(),
   });
 
   return (
-    <div className="">
-      <table className="w-full bg-white ">
+    <div
+      ref={constraintsRef}
+      className="overflow-x-clip border border-[#E2E8F0] rounded-xl"
+    >
+      <motion.table
+        drag={"x"}
+        dragConstraints={constraintsRef}
+        dragElastic={0}
+        dragMomentum={false}
+        className="max-w-full bg-white rounded-xl"
+      >
         <thead>
           {table.getHeaderGroups().map((headerGroup) => {
             return (
-              <tr className="border border-b-light" key={headerGroup.id}>
+              <tr className="border-b border-b-light" key={headerGroup.id}>
                 {headerGroup.headers.map(
                   (
                     header // map over the headerGroup headers array
                   ) => (
                     <th
                       key={header.id}
-                      className="text-textGray text-start p-3 font-normal"
+                      className="text-textGray text-start p-3 font-normal w-full min-w-[180px]"
                       colSpan={header.colSpan}
                     >
                       {flexRender(
@@ -45,11 +71,14 @@ export function ProfTable() {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr className="border border-b-light" key={row.id}>
+            <tr
+              className="border-b border-b-light last:border-none"
+              key={row.id}
+            >
               {row.getAllCells().map((cell) => {
                 return (
                   <td
-                    className="text-darkGray text-start p-3 font-normal"
+                    className="text-darkGray text-start p-3 font-normal w-full min-w-[180px]"
                     key={cell.id}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -59,7 +88,7 @@ export function ProfTable() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </motion.table>
     </div>
   );
 }

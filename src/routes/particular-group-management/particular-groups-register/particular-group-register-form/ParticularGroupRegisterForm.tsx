@@ -1,7 +1,7 @@
 import ButtonPrimary from "../../../../components/ButtonPrimary";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ParticularGroupRegisterFormType } from "../core/_models";
-import data from "../../../prof-management/prof-table/core/data.json";
+// import data from "../../../prof-management/prof-table/core/data.json";
 
 export default function StudentRegisterForm() {
   const {
@@ -16,7 +16,7 @@ export default function StudentRegisterForm() {
   return (
     <>
       <form action="" onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex items-center gap-7 mb-7">
+        <div className="flex items-center gap-7 mb-7">
           <article className="flex flex-col gap-2 w-full">
             <label htmlFor="firstName" className="text-blueDark">
               اليوم-(يعاد كل أسبوع)
@@ -34,7 +34,6 @@ export default function StudentRegisterForm() {
               <option value="5">الأربعاء</option>
               <option value="6">الخميس</option>
               <option value="7">الجمعة</option>
-              
             </select>
           </article>
           <article className="flex flex-col gap-2 w-full">
@@ -61,12 +60,11 @@ export default function StudentRegisterForm() {
               name=""
               id=""
             >
-              {data.map((professor) => (
-          <option key={professor.profId} value={professor.profId}>
-            {professor.firstName} {professor.lastName}
-          </option>
-        ))}
-              
+              {/* {data.map((professor) => (
+                <option key={professor.profId} value={professor.profId}>
+                  {professor.firstName} {professor.lastName}
+                </option>
+              ))} */}
             </select>
           </article>
           <article className="flex flex-col gap-2 w-full">
@@ -83,7 +81,7 @@ export default function StudentRegisterForm() {
         </div>
 
         <div className="flex items-center gap-7 mb-7">
-        <article className="flex flex-col gap-2 w-full">
+          <article className="flex flex-col gap-2 w-full">
             <label className="text-blueDark" htmlFor="level">
               السنة
             </label>
@@ -129,7 +127,7 @@ export default function StudentRegisterForm() {
             />
           </article>
           <article className="flex flex-col gap-2 w-full">
-          <label className="text-blueDark" htmlFor="level">
+            <label className="text-blueDark" htmlFor="level">
               القاعة
             </label>
             <input

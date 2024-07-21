@@ -15,8 +15,8 @@ export function StudentsTable() {
   const [students, setStudents] = useState<Student[]>([]);
 
   //query functions
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["getStudents"],
+  const { data, isLoading } = useQuery({
+    queryKey: ["getTeachers"],
     queryFn: getStudents,
   });
 

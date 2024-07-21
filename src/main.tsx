@@ -9,16 +9,15 @@ import {
 } from "react-router-dom";
 import Root from "./routes/root/Root.tsx";
 import StudentManagement from "./routes/student-management/StudentManagement.tsx";
-import ProfManagement from "./routes/prof-management/ProfManagement.js";
 import GroupManagement from "./routes/group-management/GroupManagement.tsx";
 import ParticularGroupManagement from "./routes/particular-group-management/ParticularGroupManagement.tsx";
-
 import StudentRegister from "./routes/student-management/students-register/StudentRegister.tsx";
-import ProfRegister from "./routes/prof-management/prof-register/ProfRegister.tsx";
 import GroupRegister from "./routes/group-management/groups-register/GroupRegister.tsx";
 import ParticularGroupRegister from "./routes/particular-group-management/particular-groups-register/ParticularGroupRegister.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import TeacherManagement from "./routes/teacher-management/TeacherManagement.js";
+import TeacherRegister from "./routes/teacher-management/teacher-register/TeacherRegister.tsx";
 
 const queryClient = new QueryClient();
 
@@ -41,12 +40,12 @@ const router = createBrowserRouter(
           element: <StudentRegister />,
         },
         {
-          path: "/profmanagement",
-          element: <ProfManagement />,
+          path: "/teachermanagement",
+          element: <TeacherManagement />,
         },
         {
-          path: "/profmanagement/new",
-          element: <ProfRegister />,
+          path: "/teachermanagement/new",
+          element: <TeacherRegister />,
         },
         {
           path: "/groupmanagement",

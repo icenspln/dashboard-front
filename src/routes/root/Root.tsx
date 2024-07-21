@@ -34,7 +34,7 @@ export default function Root() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={`/profmanagement`}>
+                <NavLink to={`/teachermanagement`}>
                   {({ isActive }) => (
                     <>
                       <ButtonSecondary

@@ -1,4 +1,4 @@
-export type ProfRegisterFormType = {
+export type TeacherRegisterFormType = {
   firstName: string;
   lastName: string;
   phoneNumber?: string;
