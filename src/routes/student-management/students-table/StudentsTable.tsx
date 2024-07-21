@@ -4,18 +4,32 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { defaultColumns } from "./core/columns/columns";
-import data from "./core/data.json";
 import { Student } from "./core/_models";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useMemo, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getStudents } from "./core/_requests";
 
 export function StudentsTable() {
   const constraintsRef = useRef(null);
-  const studentData: Student[] = data;
+  const [students, setStudents] = useState<Student[]>([]);
 
+  //query functions
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["getStudents"],
+    queryFn: getStudents,
+  });
+
+  useMemo(() => {
+    if (data && !isLoading) {
+      setStudents(data.data);
+    }
+  }, [data, isLoading]);
+
+  // table functions
   const table = useReactTable({
     columns: defaultColumns,
-    data: studentData,
+    data: students,
     getCoreRowModel: getCoreRowModel(),
   });
 
@@ -41,7 +55,7 @@ export function StudentsTable() {
                   ) => (
                     <th
                       key={header.id}
-                      className="text-textGray text-start p-3 font-normal min-w-[180px]"
+                      className="text-textGray text-start p-3 font-normal w-full min-w-[180px]"
                       colSpan={header.colSpan}
                     >
                       {flexRender(
@@ -57,11 +71,14 @@ export function StudentsTable() {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr className="border border-b-light last:border-none" key={row.id}>
+            <tr
+              className="border-b border-b-light last:border-none"
+              key={row.id}
+            >
               {row.getAllCells().map((cell) => {
                 return (
                   <td
-                    className="text-darkGray text-start p-3 font-normal"
+                    className="text-darkGray text-start p-3 font-normal w-full min-w-[180px]"
                     key={cell.id}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

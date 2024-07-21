@@ -17,6 +17,10 @@ import StudentRegister from "./routes/student-management/students-register/Stude
 import ProfRegister from "./routes/prof-management/prof-register/ProfRegister.tsx";
 import GroupRegister from "./routes/group-management/groups-register/GroupRegister.tsx";
 import ParticularGroupRegister from "./routes/particular-group-management/particular-groups-register/ParticularGroupRegister.tsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
   [
@@ -68,6 +72,13 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools
+        position="bottom"
+        buttonPosition="bottom-left"
+        initialIsOpen={false}
+      />
+    </QueryClientProvider>
   </React.StrictMode>
 );

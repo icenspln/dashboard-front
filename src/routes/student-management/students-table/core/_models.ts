@@ -1,13 +1,14 @@
 export type Student = {
+  _id?: string;
   studentId: number;
   firstName: string;
   lastName: string;
-  birthDate: string |Date;
+  birthDate: string | Date;
   phoneNumber?: string;
   gardianPhoneNumber: string;
   scanningCardId: string;
-  institution: string |"primarySchool" | "middleSchool" | "highSchool";
+  institution: string | "primarySchool" | "middleSchool" | "highSchool";
   level: number;
-  paid:any;
-  toBePaid:any;
+  __v?: number;
+  groups: any[];
 };

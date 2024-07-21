@@ -1,6 +1,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { Group } from "../_models";
-import SettingPopupMenu from "../../../../../components/ButtonSettings";
+import SettingsCell from "./SettingsCell";
 
 const columnHelper = createColumnHelper<Group>();
 
@@ -51,16 +51,6 @@ export const defaultColumns = [
   }),
   columnHelper.accessor("level", {
     header: "الإعدادات",
-    cell: () => {
-      const options = [
-        { label: 'تعديل المعلومات', action: () => {} },
-        { label: 'حذف الفوج', action: () => {} },
-        { label: 'إضافة حصة إضافية', action: () => {} },
-        { label: 'رؤية قائمة الحضور', action: () => {} },
-        { label: 'رؤية قائمة المسجلين', action: () => {} },
-      ];
-
-      return <SettingPopupMenu options={options} />;
-    },
+    cell: () => <SettingsCell />,
   }),
 ];

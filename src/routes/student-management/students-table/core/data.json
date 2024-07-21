@@ -9,9 +9,9 @@
     "scanningCardId": "1",
     "institution": "primarySchool",
     "level": 1,
-    "paid":"500",
-    "toBePaid":"1000"
-    
+    "paid": "500",
+    "groups": [""],
+    "toBePaid": "1000"
   },
   {
     "studentId": 2,
@@ -23,9 +23,9 @@
     "scanningCardId": "1",
     "institution": "primarySchool",
     "level": 3,
-    "paid":"2500",
-    "toBePaid":"3000"
-    
+    "paid": "2500",
+    "groups": [""],
+    "toBePaid": "3000"
   },
   {
     "studentId": 3,
@@ -37,243 +37,8 @@
     "scanningCardId": "1",
     "institution": "phd",
     "level": 2,
-    "paid":"2500",
-    "toBePaid":"2000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"500",
-    "toBePaid":"1000"
-  },
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"1000",
-    "toBePaid":"100"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
-  },
-  {
-    "studentId": 3,
-    "firstName": "johnathan",
-    "lastName": "the third",
-    "birthDate": "12/12/2200",
-    "phoneNumber": "0541313131",
-    "gardianPhoneNumber": "0541313131",
-    "scanningCardId": "1",
-    "institution": "phd",
-    "level": 2,
-    "paid":"2500",
-    "toBePaid":"1000"
+    "paid": "2500",
+    "groups": [""],
+    "toBePaid": "2000"
   }
 ]

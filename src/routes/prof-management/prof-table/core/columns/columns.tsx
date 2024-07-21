@@ -1,6 +1,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { Prof } from "../_models";
-import SettingPopupMenu from "../../../../../components/ButtonSettings";
+import SettingsCell from "./SettingsCell";
 
 const columnHelper = createColumnHelper<Prof>();
 
@@ -55,15 +55,6 @@ export const defaultColumns = [
   }),
   columnHelper.display({
     header: "الإعدادات",
-    cell: () => {
-      const options = [
-        { label: 'تعديل المعلومات', action: () => {} },
-        { label: 'حذف من القائمة', action: () => {} },
-        { label: 'تحميل قسيمة الدفع للشهر', action: () => {} },
-      
-      ];
-
-      return <SettingPopupMenu options={options} />;
-    },
+    cell: () => <SettingsCell />,
   }),
 ];

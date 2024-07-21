@@ -1,7 +1,7 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { ParticularGroup } from "../_models";
-import SettingPopupMenu from "../../../../../components/ButtonSettings";
 import { Link } from "react-router-dom";
+import SettingsCell from "./SettingsCell";
 
 const columnHelper = createColumnHelper<ParticularGroup>();
 
@@ -46,22 +46,8 @@ export const defaultColumns = [
     header: "عدد المسجلين",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.display( {
+  columnHelper.display({
     header: "الإعدادت",
-    cell: () =>{
-      
-      const options = [
-        {label :'تعديل المعلومات', action: () => {} },
-        {label :'حذف المعلومات', action: () => {} },
-        {label :'رؤية قائمة الحضور', 
-          action: () => {
-            <Link to={'PresenceListmanagement'}></Link>
-          }
-         },
-        {label :'رؤية قائمة المسجلين', action: () => {} }
-
-      ];
-      return <SettingPopupMenu options={options} />
-    }
+    cell: () => <SettingsCell />,
   }),
 ];
