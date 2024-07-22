@@ -4,35 +4,56 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { defaultColumns } from "./core/columns/columns";
-import data from "./core/data.json";
-import { ParticularGroup } from "./core/_models";
-
-
-
+import { motion } from "framer-motion";
+import { useRef } from "react";
+// import { useMemo, useRef, useState } from "react";
+// import { useQuery } from "@tanstack/react-query";
 
 export function ParticularGroupsTable() {
-  const particularGroupData: ParticularGroup[] = data;
+  const constraintsRef = useRef(null);
+  // const [groups, setGroups] = useState<Group[]>([]);
 
+  //query functions
+  // const { data, isLoading } = useQuery({
+  //   queryKey: ["getParticularGroups"],
+  //   queryFn: getParticularGroups,
+  // });
+
+  // useMemo(() => {
+  //   if (data && !isLoading) {
+  //     setGroups(data.data);
+  //   }
+  // }, [data, isLoading]);
+
+  // table functions
   const table = useReactTable({
     columns: defaultColumns,
-    data: particularGroupData,
+    data: [],
     getCoreRowModel: getCoreRowModel(),
   });
-
   return (
-    <div className="">
-      <table className="w-full bg-white ">
+    <div
+      ref={constraintsRef}
+      className="overflow-x-clip border border-[#E2E8F0] rounded-xl"
+    >
+      <motion.table
+        drag={"x"}
+        dragConstraints={constraintsRef}
+        dragElastic={0}
+        dragMomentum={false}
+        className="max-w-full bg-white rounded-xl"
+      >
         <thead>
           {table.getHeaderGroups().map((headerGroup) => {
             return (
-              <tr className="border border-b-light" key={headerGroup.id}>
+              <tr className="border-b border-b-light" key={headerGroup.id}>
                 {headerGroup.headers.map(
                   (
                     header // map over the headerGroup headers array
                   ) => (
                     <th
                       key={header.id}
-                      className="text-textGray text-start p-3 font-normal"
+                      className="text-textGray text-start p-3 font-normal w-full min-w-[180px]"
                       colSpan={header.colSpan}
                     >
                       {flexRender(
@@ -48,11 +69,14 @@ export function ParticularGroupsTable() {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr className="border border-b-light" key={row.id}>
+            <tr
+              className="border-b border-b-light last:border-none"
+              key={row.id}
+            >
               {row.getAllCells().map((cell) => {
                 return (
                   <td
-                    className="text-darkGray text-start p-3 font-normal"
+                    className="text-darkGray text-start p-3 font-normal w-full min-w-[180px]"
                     key={cell.id}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -62,7 +86,7 @@ export function ParticularGroupsTable() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </motion.table>
     </div>
   );
 }

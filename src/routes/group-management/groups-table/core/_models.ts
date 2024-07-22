@@ -1,11 +1,15 @@
 export type Group = {
   groupId: number;
-  day: string;
-  time: string;
-  classRoom: string;
-  scanningCardId: string;
-  institution: string |"primarySchool" | "middleSchool" | "highSchool";
+  dayOfWeek: string;
+  timing: {
+    hour: number;
+    minute: number;
+  };
+  responsibleTeacher: string;
+  module: string;
+  institution: string | "primarySchool" | "middleSchool" | "highSchool";
   level: number;
-  moduleName:string;
-  professor:string;
+  pricing: number;
+  roomNumber: number;
+  maxNumberOfStudents: number;
 };
