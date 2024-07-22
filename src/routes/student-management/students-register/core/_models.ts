@@ -3,7 +3,7 @@ export type StudentRegisterFormType = {
   lastName: string;
   birthDate: string | Date;
   phoneNumber?: string;
-  gardianPhoneNumber: string;
+  guardianPhoneNumber: string;
   scanningCardId: string;
   institution: string | "primarySchool" | "middleSchool" | "highSchool";
   level: number;

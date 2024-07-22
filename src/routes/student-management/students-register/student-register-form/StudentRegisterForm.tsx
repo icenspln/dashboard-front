@@ -1,6 +1,8 @@
 import ButtonPrimary from "../../../../components/ButtonPrimary";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { StudentRegisterFormType } from "../core/_models";
+import { studentRegister } from "../core/_requests";
+import { useMutation } from "@tanstack/react-query";
 
 export default function StudentRegisterForm() {
   const {
@@ -9,8 +11,21 @@ export default function StudentRegisterForm() {
     // formState: { errors },
   } = useForm<StudentRegisterFormType>();
 
-  const onSubmit: SubmitHandler<StudentRegisterFormType> = (data) =>
-    console.log("submintingg..", data);
+  const onSubmit: SubmitHandler<StudentRegisterFormType> = (data) => {
+    mutation.mutate({ ...data, scanningCardId: "1234" });
+  };
+
+  const mutation = useMutation({
+    mutationFn: studentRegister,
+    onSuccess: () => {
+      // Invalidate and refetch
+      // queryClient.invalidateQueries({ queryKey: ["todos"] });
+      alert("success");
+    },
+    onError: () => {
+      alert("error");
+    },
+  });
 
   return (
     <>
@@ -57,7 +72,7 @@ export default function StudentRegisterForm() {
               رقم هاتف ولي الأمر
             </label>
             <input
-              {...register("gardianPhoneNumber")}
+              {...register("guardianPhoneNumber")}
               type="text"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               placeholder="0555 55 55 55"
@@ -87,9 +102,9 @@ export default function StudentRegisterForm() {
               name=""
               id=""
             >
-              <option value="الإبتدائي">الإبتدائي</option>
-              <option value="المتوسط">المتوسط</option>
-              <option value="الثانوي">الثانوي</option>
+              <option value="primarySchool">الإبتدائي</option>
+              <option value="middleSchool">المتوسط</option>
+              <option value="highSchool">الثانوي</option>
             </select>
           </article>
         </div>
