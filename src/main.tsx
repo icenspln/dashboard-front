@@ -18,6 +18,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import TeacherManagement from "./routes/teacher-management/TeacherManagement.js";
 import TeacherRegister from "./routes/teacher-management/teacher-register/TeacherRegister.tsx";
+import PresenceListsManagement from "./routes/presence-management/PresenceManagement.tsx";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +63,10 @@ const router = createBrowserRouter(
         {
           path: "/particulargroupmanagement/new",
           element: <ParticularGroupRegister />,
+        },
+        {
+          path: "/presencemanagement",
+          element: <PresenceListsManagement />,
         },
       ],
     },

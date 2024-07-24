@@ -2,6 +2,7 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import DotsSvg from "../../../../../assets/icons/DotsSvg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 //importing the overlays
 import DeleteGroupOverlay from "./overlays/deleteGroup";
 import AddNewSessionOverlay from "./overlays/addNewSession";
@@ -10,11 +11,12 @@ import RegistredStudentsOverlay from "./overlays/registredStudentsList";
 export default function SettingsCell() {
 
   const [activeOverlay, setActiveOverlay] = useState<string | null>(null)
+  const navigate = useNavigate()
   const options = [
     { label: "تعديل المعلومات", action: () => {} },
     { label: "حذف الفوج", action: () => setActiveOverlay("deleteGroup") },
     { label: "إضافة حصة إضافية", action: () =>  setActiveOverlay("addNewSession")},
-    { label: "رؤية قائمة الحضور", action: () => {} },
+    { label: "رؤية قائمة الحضور", action: () => navigate("/presencemanagement") },
     { label: "رؤية قائمة المسجلين", action: () => setActiveOverlay("registredStudents") },
   ];
   const closeOverlay = () => setActiveOverlay(null);
