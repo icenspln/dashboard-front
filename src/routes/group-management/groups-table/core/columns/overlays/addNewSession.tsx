@@ -21,7 +21,7 @@ const AddNewSessionOverlay: React.FC<AddNewSessionOverlayProps> = ({ onClose }) 
         <input type="time" />
         </span>
         <span className='flex justify-center'>
-          <ConfirmButton text="تسجيل التغييرات" color='bg-blue'/>
+          <ConfirmButton text="تسجيل التغييرات" color='bg-blue' textColor='text-white'/>
         </span>
         </div>
       </>
