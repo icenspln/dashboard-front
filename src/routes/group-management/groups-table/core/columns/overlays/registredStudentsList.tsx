@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Overlay } from '../../../../../../components/Overlay';
+import ConfirmButton from './confirmButton';
 
 interface RegistredStudentsOverlayProps {
   onClose: () => void;
@@ -10,8 +11,14 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({ onC
   return (
     <Overlay onClose={onClose}>
       <>
-        <h1 className="text-2xl">حذف من القائمة</h1>
-        <p>This is the delete from list overlay content.</p>
+      <div className=' w-[553px] min-h-[324px] flex flex-col items-center gap-[15px]'>
+        <h1 className="text-2xl">قائمة المسجلين</h1>
+        <p>الرياضيات|السنة الأولى|علي رياد|الأحد-15:00</p>
+        </div>
+        <span className='flex justify-center gap-[12px]'>
+        <ConfirmButton text='تسجيل التغييرات' color='bg-blue' textColor='text-white'/>
+        <ConfirmButton text='إضافة طلب جديد' color='bg-grayBlue' textColor='text-blue'/>
+        </span>
       </>
     </Overlay>
   );
