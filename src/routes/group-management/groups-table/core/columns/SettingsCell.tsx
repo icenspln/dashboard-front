@@ -1,32 +1,29 @@
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import DotsSvg from "../../../../../assets/icons/DotsSvg";
+import { useState } from "react";
+//importing the overlays
+import DeleteGroupOverlay from "./overlays/deleteGroup";
+import AddNewSessionOverlay from "./overlays/addNewSession";
+import RegistredStudentsOverlay from "./overlays/registredStudentsList";
 
 export default function SettingsCell() {
+
+  const [activeOverlay, setActiveOverlay] = useState<string | null>(null)
   const options = [
     { label: "تعديل المعلومات", action: () => {} },
-    { label: "حذف من القائمة", action: () => {} },
-    { label: "رؤية الأفواج الحالية", action: () => {} },
-    { label: "تغيير الفوج", action: () => {} },
+    { label: "حذف الفوج", action: () => setActiveOverlay("deleteGroup") },
+    { label: "إضافة حصة إضافية", action: () =>  setActiveOverlay("addNewSession")},
+    { label: "رؤية قائمة الحضور", action: () => {} },
+    { label: "رؤية قائمة المسجلين", action: () => setActiveOverlay("registredStudents") },
   ];
+  const closeOverlay = () => setActiveOverlay(null);
   return (
     <div>
       <Popup
         trigger={
           <button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-              />
-            </svg>
+            <DotsSvg/>
           </button>
         }
         arrow={false}
@@ -43,7 +40,11 @@ export default function SettingsCell() {
             </button>
           ))}
         </div>
+        {activeOverlay === "deleteGroup" && <DeleteGroupOverlay onClose={closeOverlay} />}
+        {activeOverlay === "addNewSession" && <AddNewSessionOverlay onClose={closeOverlay} />}
+        {activeOverlay === "registredStudents" && <RegistredStudentsOverlay onClose={closeOverlay} />}
       </Popup>
+     
     </div>
   );
 }

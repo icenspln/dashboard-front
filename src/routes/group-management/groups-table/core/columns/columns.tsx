@@ -9,15 +9,15 @@ export const defaultColumns = [
     header: "الرقم",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("day", {
+  columnHelper.accessor("dayOfWeek", {
     header: "اليوم",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("time", {
+  columnHelper.accessor("timing", {
     header: "الوقت",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("classRoom", {
+  columnHelper.accessor("roomNumber", {
     header: "القاعة",
     cell: (info) => info.getValue(),
   }),
@@ -29,11 +29,11 @@ export const defaultColumns = [
     header: "السنة",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("moduleName", {
+  columnHelper.accessor("module", {
     header: "المادة",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("professor", {
+  columnHelper.accessor("responsibleTeacher", {
     header: "الأستاذ",
     cell: (info) => info.getValue(),
   }),

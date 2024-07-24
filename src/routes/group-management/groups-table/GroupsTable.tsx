@@ -9,27 +9,29 @@ import { Group } from "./core/_models";
 import { useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getGroups } from "./core/_requests";
-
+import data from "../groups-table/core/data.json"
 export function GroupsTable() {
   const constraintsRef = useRef(null);
-  const [groups, setGroups] = useState<Group[]>([]);
-
-  //query functions
-  const { data, isLoading } = useQuery({
-    queryKey: ["getGroups"],
-    queryFn: getGroups,
-  });
-
-  useMemo(() => {
-    if (data && !isLoading) {
-      setGroups(data.data);
-    }
-  }, [data, isLoading]);
+  const groupsData : Group = data
+ // const [groups, setGroups] = useState<Group[]>([]);
+//
+ // //query functions
+ // const { data, isLoading } = useQuery({
+ //   queryKey: ["getGroups"],
+ //   queryFn: getGroups,
+ // });
+//
+ // useMemo(() => {
+ //   if (data && !isLoading) {
+ //     setGroups(data.data);
+ //   }
+ // }, [data, isLoading]);
 
   // table functions
   const table = useReactTable({
     columns: defaultColumns,
-    data: groups,
+    //data: groups,
+    data : groupsData,
     getCoreRowModel: getCoreRowModel(),
   });
   return (
