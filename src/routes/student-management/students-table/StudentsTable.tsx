@@ -9,27 +9,30 @@ import { motion } from "framer-motion";
 import { useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getStudents } from "./core/_requests";
+import  data from "../students-table/core/data.json"
 
 export function StudentsTable() {
   const constraintsRef = useRef(null);
-  const [students, setStudents] = useState<Student[]>([]);
-
-  //query functions
-  const { data, isLoading } = useQuery({
-    queryKey: ["getTeachers"],
-    queryFn: getStudents,
-  });
-
-  useMemo(() => {
-    if (data && !isLoading) {
-      setStudents(data.data);
-    }
-  }, [data, isLoading]);
+  //const [students, setStudents] = useState<Student[]>([]);
+  const studentData :Student[]= data
+//
+  ////query functions
+  //const { data, isLoading } = useQuery({
+  //  queryKey: ["getTeachers"],
+  //  queryFn: getStudents,
+  //});
+//
+  //useMemo(() => {
+  //  if (data && !isLoading) {
+  //    setStudents(data.data);
+  //  }
+  //}, [data, isLoading]);
 
   // table functions
   const table = useReactTable({
     columns: defaultColumns,
-    data: students,
+   // data: students,
+    data:studentData,
     getCoreRowModel: getCoreRowModel(),
   });
 
