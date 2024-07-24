@@ -1,11 +1,8 @@
 export type PresenceList = {
-  profId: number;
-  firstName: string;
-  lastName: string;
-  moduleName: string ;
-  phoneNumber?: string;
-  gardianPhoneNumber: string;
-  scanningCardId: string;
-  institution: string |"primarySchool" | "middleSchool" | "highSchool";
-  level: number;
+  groupId: number;
+  //firstName: string;
+ // lastName: string;
+  studentName: string;
+  dayOfWeek: string;
+  pricing:string;
 };
