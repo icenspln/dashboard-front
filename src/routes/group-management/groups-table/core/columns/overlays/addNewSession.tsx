@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Overlay } from '../../../../../../components/Overlay';
-import ConfirmButton from './confirmButton';
+import ConfirmButton from './Popup-menu-component/confirmButton';
 
 interface AddNewSessionOverlayProps {
   onClose: () => void;
