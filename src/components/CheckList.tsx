@@ -28,13 +28,13 @@ const Checklist: React.FC<ChecklistProps> = ({ items, onSelectionChange }) => {
   };
 
   return (
-    <div className="relative w-[517px]">
+    <div className="relative w-[376px]">
         
       <button
         onClick={toggleOpen}
-        className="flex items-center justify-between w-[517px] text-right py-2 px-4 rounded-md border border-gray-300  hover:bg-gray-200"
+        className="flex items-center justify-between text-right w-[376px] py-2 px-4 rounded-md border border-gray-300  hover:bg-gray-200"
       >
-        {selectedItem ? selectedItem.label : "الفوج الحالي"}
+        {selectedItem ? selectedItem.label : ""}
         <ChevronDownSvg/>
       </button>
       
