@@ -19,6 +19,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import TeacherManagement from "./routes/teacher-management/TeacherManagement.js";
 import TeacherRegister from "./routes/teacher-management/teacher-register/TeacherRegister.tsx";
 import PresenceListsManagement from "./routes/presence-management/PresenceManagement.tsx";
+import PaymentManagement from "./routes/teacher-payment-management/PaymentManagement.tsx";
 
 const queryClient = new QueryClient();
 
@@ -67,6 +68,10 @@ const router = createBrowserRouter(
         {
           path: "/presencemanagement",
           element: <PresenceListsManagement />,
+        },
+        {
+          path: "/paymentmanagement",
+          element: <PaymentManagement />,
         },
       ],
     },
