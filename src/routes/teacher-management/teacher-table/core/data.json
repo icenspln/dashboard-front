@@ -1,0 +1,16 @@
+[
+    {
+       
+        "teacherId": 1,
+        "firstName": "علي",
+        "lastName":"بونوار",
+        "birthDate": "" ,
+        "phoneNumber": "0552 331 225",
+        "domain": "الرياضيات",
+        "institution": "ثانوي",
+        "level": "primarySchool" 
+       
+        
+        
+    }
+]
