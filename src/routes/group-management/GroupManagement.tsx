@@ -66,7 +66,7 @@ export default function GroupManagement() {
         <FilterButton  label="المادة" options={ModuleSelectionOptions} />
         <FilterButton  label="المستوى" options={institutionFilterOptions} />
         <FilterButton  label="السنة" options={levelFilterOptions} />
-        <FilterButton  label="البوم" options={DaysSelectionOptions} />
+        <FilterButton  label="اليوم" options={DaysSelectionOptions} />
         <ColumnSelection options={ColumnSelectionOptions} />
       </div>
       <nav className="flex items-center gap-[12px]">
