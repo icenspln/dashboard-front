@@ -84,9 +84,11 @@ export default function Root() {
                 </NavLink>
               </li>
             </ul>
+            <NavLink to={`/attendancemanagement`}>
             <ButtonPrimary text="تسجيل الحضور" active>
               <Signal />
             </ButtonPrimary>
+            </NavLink>
           </section>
           <section className="mr-[240px] outlet">
             <Outlet />

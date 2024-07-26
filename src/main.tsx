@@ -20,6 +20,8 @@ import TeacherManagement from "./routes/teacher-management/TeacherManagement.js"
 import TeacherRegister from "./routes/teacher-management/teacher-register/TeacherRegister.tsx";
 import PresenceListsManagement from "./routes/presence-management/PresenceManagement.tsx";
 import PaymentManagement from "./routes/teacher-payment-management/PaymentManagement.tsx";
+import AttendanceManagement from "./routes/attendance-register/AttendanceManagement.tsx";
+import  TablesContainer  from "./routes/attendance-register/Attendance-table/tablesContainer.tsx";
 
 const queryClient = new QueryClient();
 
@@ -73,6 +75,16 @@ const router = createBrowserRouter(
           path: "/paymentmanagement",
           element: <PaymentManagement />,
         },
+        {
+          path: "/attendancemanagement",
+          element: <AttendanceManagement />,
+        },
+        {
+          path: "/test",
+          element: <TablesContainer />,
+        },
+        
+        
       ],
     },
   ],
