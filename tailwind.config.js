@@ -17,6 +17,20 @@ export default {
         overlay: "rgba(0, 0, 0, 0.8)",
         Black: "#111111",
       },
+      keyframes: {
+        growShrink: {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.2)' },
+        },
+        upDown: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-80px)' },
+        },
+      },
+      animation: {
+        growShrink: 'growShrink 2s ease-in-out infinite',
+        upDown: 'upDown 1.5s ease-in-out infinite',
+      },
       width: {
         outlet: "calc(100dvw - 240px)",
       },
