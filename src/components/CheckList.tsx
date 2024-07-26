@@ -43,7 +43,7 @@ const Checklist: React.FC<ChecklistProps> = ({ items, onSelectionChange }) => {
           {items.map((item) => (
             <label
               key={item.id}
-              className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer text-base"
             >
                 <span>{item.label}</span>
               <input
