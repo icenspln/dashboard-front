@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PencilSvg from "../../../../../assets/icons/PencilSvg";
+import PencilSvg from "../../../../../../../assets/icons/PencilSvg";
 
 //Edit cell button
 export function PricingButton({ getValue, row, column, table }) {
@@ -34,7 +34,7 @@ export function PricingButton({ getValue, row, column, table }) {
             onChange={(e) => setValue(e.target.value)}
             onBlur={confirmEdit}
             autoFocus
-            className="border border-gray rounded  w-[57px] h-[20px]"
+            className="border border-gray rounded outline-gray-300  w-[57px] h-[20px]"
           />
           <button
             className="w-1/2 bg-blue rounded 
