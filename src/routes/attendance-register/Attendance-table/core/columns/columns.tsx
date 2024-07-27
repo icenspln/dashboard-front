@@ -2,7 +2,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { Student } from "../_models";
 import BirthDateCell from "./BirthDateCell";
 import InstitutionCell from "./InstitutionCell";
-import SettingsCell from "./SettingsCell";
+import { PricingButton } from "./overlays/Popup-menu-component/PricingButtonEdit";
 
 const columnHelper = createColumnHelper<Student>();
 
@@ -32,18 +32,20 @@ export const studentInfoColumns = [
     // cell: (info) => info.getValue(),
   }),
 ];
+
+
 export const studentPaymentColumns = [
   columnHelper.accessor("level", {
     header: "الثمن الذي تم دفعه",
-    cell: (info) => info?.getValue(),
+    cell:  PricingButton ,
   }),
  
-  columnHelper.accessor("institution", {
+  columnHelper.accessor("level", {
     header: "الثمن الذي يجب دفعه",
-    cell: (info) => <InstitutionCell value={info?.getValue()} />,
+    cell: PricingButton,
   }),
   
-  columnHelper.accessor("phoneNumber", {
+  columnHelper.accessor("level", {
     header: "المجموع",
     cell: (info) => info?.getValue(),
   })
