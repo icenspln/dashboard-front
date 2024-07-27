@@ -37,31 +37,45 @@ import {
     });
   
     return (
-      <div className="max-w-4xl w-[637px] mt-10  border border-gray-200 rounded-lg shadow-sm">
-      <div className="border rounded-lg shadow-md overflow-hidden">
-        {table.getHeaderGroups().map((headerGroup) => (
-          <div key={headerGroup.id} className="bg-gray-100 p-4">
-            {headerGroup.headers.map((header, index) => (
-              <div key={header.id} className={`text-center ${index !== 0 ? 'border-l border-gray-300' : ''} p-2`}>
-                {flexRender(
-                  header.column.columnDef.header,
-                  header.getContext()
-                )}
-              </div>
+        <div className="max-w-4xl w-[637px] mt-10  border border-gray-200 rounded-lg shadow-sm">
+        <table className=" w-[633px] rounded-lg  bg-white">
+          <thead  className="">
+            <tr className="h-[61px]  px-4 py-2 border-b text-center text-blue ">
+              {table.getRowModel().rows.map((row) => (
+                <th key={row.id}>
+                    
+                  {flexRender(
+                    row.getVisibleCells()[0].column.columnDef.cell,
+                    row.getVisibleCells()[0].getContext()
+                  )}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id} className="text-center">
+                {row.getVisibleCells().slice(1).map((cell) => (
+                  <td key={cell.id} className="px-4 py-2 border-b">
+                    <div className="text-gray-500">
+                      {flexRender(
+                        cell.column.columnDef.header,
+                        cell.getContext()
+                      )}
+                    </div>
+                    <div>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </div>
+                  </td>
+                ))}
+              </tr>
             ))}
-          </div>
-        ))}
-        {table.getRowModel().rows.map((row) => (
-          <div key={row.id} className="grid grid-cols-5 divide-x divide-gray-300 py-2">
-            {row.getVisibleCells().map((cell) => (
-              <div key={cell.id} className="text-center p-2">
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </div>
-            ))}
-          </div>
-        ))}
+          </tbody>
+        </table>
       </div>
-    </div>
       
     );
   }
