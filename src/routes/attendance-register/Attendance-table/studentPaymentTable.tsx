@@ -26,7 +26,7 @@ import {
       <div className="border rounded-lg shadow-md overflow-hidden">
         <div className="bg-gray-100">
           {table.getHeaderGroups().map((headerGroup) => (
-            <div key={headerGroup.id} className="grid grid-cols-3 divide-x divide-gray-300">
+            <div key={headerGroup.id} className="grid grid-cols-3 divide-x divide-gray-300 text-gray-400">
               {headerGroup.headers.map((header) => (
                 <div key={header.id} className="text-center py-2">
                   {flexRender(
