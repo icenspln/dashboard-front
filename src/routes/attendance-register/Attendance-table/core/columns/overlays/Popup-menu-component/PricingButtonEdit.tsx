@@ -16,7 +16,7 @@ export function PricingButton({ getValue, row, column, table }) {
     table.options.meta?.updateData(row.index, column.id, value);
   };
   return (
-    <div className="flex items-center gap-[10px] space-x-2 w-[180px] h-[24px] ">
+    <div className="flex items-center gap-[10px] space-x-2  h-[24px] ">
       {!isEditing && (
         <div className="">
           <button
@@ -37,7 +37,7 @@ export function PricingButton({ getValue, row, column, table }) {
             className="border border-gray rounded outline-gray-300  w-[57px] h-[20px]"
           />
           <button
-            className="w-1/2 bg-blue rounded 
+            className="w-[57px] bg-blue rounded 
             hover:bg-blue Hovered hover:bg-blue transition-all duration-300 text-white"
             onClick={confirmEdit}
           >
