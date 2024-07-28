@@ -37,7 +37,7 @@ export function PricingButton({ getValue, row, column, table }) {
             className="border border-gray rounded outline-gray-300  w-[57px] h-[20px]"
           />
           <button
-            className="w-[57px] bg-blue rounded 
+            className="w-[57px] h-[20px] bg-blue rounded text-sm
             hover:bg-blue Hovered hover:bg-blue transition-all duration-300 text-white"
             onClick={confirmEdit}
           >
