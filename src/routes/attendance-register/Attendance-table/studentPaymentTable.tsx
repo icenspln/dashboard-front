@@ -22,8 +22,8 @@ import {
     });
   
     return (
-      <div className="max-w-4xl w-[637px] mt-10  border border-gray-200 rounded-lg shadow-sm">
-      <div className="border rounded-lg shadow-md overflow-hidden">
+      <div className="max-w-4xl w-[637px] h-[151px] mt-10  border border-gray-200 rounded-lg ">
+      <div className="border rounded-lg  overflow-hidden">
         <div className="bg-gray-100 ">
           {table.getHeaderGroups().map((headerGroup) => (
             <div key={headerGroup.id} className="grid grid-cols-3 divide-x divide-gray-300 text-gray-400">

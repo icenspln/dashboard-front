@@ -37,7 +37,7 @@ import {
     });
   
     return (
-        <div className="max-w-4xl w-[637px] mt-10  border border-gray-200 rounded-lg shadow-sm">
+        <div className="max-w-4xl w-[637px] h-[133px] mt-10  border border-gray-200 rounded-lg shadow-sm">
         <table className=" w-[633px] rounded-lg  bg-white">
           <thead  className="">
             <tr className="h-[61px]  px-4 py-2 border-b text-center text-blue ">
