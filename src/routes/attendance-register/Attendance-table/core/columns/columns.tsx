@@ -8,10 +8,7 @@ const columnHelper = createColumnHelper<Student>();
 
 export const studentInfoColumns = [
  
-  columnHelper.accessor("firstName", {
-    header: "الإسم",
-    cell: (info) => info?.getValue(),
-  }),
+  
   columnHelper.accessor("level", {
     header: "السنة",
     cell: (info) => info?.getValue(),

@@ -37,45 +37,29 @@ import {
     });
   
     return (
-        <div className="max-w-4xl w-[637px] h-[133px] mt-10  border border-gray-200 rounded-lg shadow-sm">
-        <table className=" w-[633px] rounded-lg  bg-white">
-          <thead  className="">
-            <tr className="h-[61px]  px-4 py-2 border-b text-center text-blue ">
-              {table.getRowModel().rows.map((row) => (
-                <th key={row.id}>
-                    
-                  {flexRender(
-                    row.getVisibleCells()[0].column.columnDef.cell,
-                    row.getVisibleCells()[0].getContext()
-                  )}
-                </th>
+      <div className="max-w-4xl w-[637px] mt-10 border border-gray-200 rounded-lg shadow-sm">
+      <div className="bg-gray-100 p-4 text-center text-blue text-2xl">
+        {data[0].firstName}
+      </div>
+      <table className="w-[633px] rounded-lg bg-white">
+        <tbody>
+          {table.getRowModel().rows.map((row) => (
+            <tr key={row.id} className="text-center">
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id} className="px-4 py-2 border-b">
+                  <div className="text-gray-500">
+                    {cell.column.columnDef.header as string}
+                  </div>
+                  <div>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </div>
+                </td>
               ))}
             </tr>
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className="text-center">
-                {row.getVisibleCells().slice(1).map((cell) => (
-                  <td key={cell.id} className="px-4 py-2 border-b">
-                    <div className="text-gray-500">
-                      {flexRender(
-                        cell.column.columnDef.header,
-                        cell.getContext()
-                      )}
-                    </div>
-                    <div>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </div>
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
+    </div>
       
     );
   }
