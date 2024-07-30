@@ -24,12 +24,12 @@ export default {
         },
         upDown: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-80px)' },
+          '30%': { transform: 'translateY(-80px)' },
         },
       },
       animation: {
         growShrink: 'growShrink 2s ease-in-out infinite',
-        upDown: 'upDown 1.5s ease-in-out infinite',
+        upDown: 'upDown 3s ease-in-out infinite',
       },
       width: {
         outlet: "calc(100dvw - 240px)",
