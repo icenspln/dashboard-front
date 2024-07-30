@@ -5,7 +5,8 @@ import DotsSvg from "../../../../../assets/icons/DotsSvg";
 import DeleteFromListOverlay from "./overlays/deleteFromList";
 import ChangeGroupOverlay from "./overlays/changeGroup";
 import RegistredStudentsOverlay from "./overlays/registredStudentsList";
-import ConfirmButton from "./overlays/Popup-menu-component/confirmButton";
+import ChangeStudentCardOverlay from "./overlays/changeStudentCard";
+
 
 export default function SettingsCell() {
   const [activeOverlay, setActiveOverlay] = useState<string | null>(null)
@@ -15,6 +16,7 @@ export default function SettingsCell() {
     { label: "حذف من القائمة", action: () => setActiveOverlay("deleteFromList") },
     { label: "رؤية الأفواج الحالية", action: () =>  setActiveOverlay("registredStudentsList")},
     { label: "تغيير الفوج", action: () => setActiveOverlay("changeGroup") },
+    { label: "تغيير البطاقة", action: () => setActiveOverlay("changeCard") },
     
   ];
   const closeOverlay = () => setActiveOverlay(null);
@@ -43,6 +45,7 @@ export default function SettingsCell() {
         {activeOverlay === "deleteFromList" && <DeleteFromListOverlay onClose={closeOverlay} />}
         {activeOverlay === "registredStudentsList" && <RegistredStudentsOverlay onClose={closeOverlay} />}
         {activeOverlay === "changeGroup" && <ChangeGroupOverlay onClose={closeOverlay} />}
+        {activeOverlay === "changeCard" && <ChangeStudentCardOverlay onClose={closeOverlay} />}
       </Popup>
      
     </div>
