@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
-import PencilSvg from "../../../../../assets/icons/PencilSvg";
+import PencilSvg from "../../../../../../assets/icons/PencilSvg";
 
+type PricingButtonProps = {
+  getValue :any;
+  row:any;
+  column:any;
+  table:any;
+
+}
 //Edit cell button
-export function PricingButton({ getValue, row, column, table }) {
+export function PricingButton({ getValue, row, column, table }:PricingButtonProps) {
   const initialValue = getValue();
   const [value, setValue] = useState(initialValue);
   const [isEditing, setIsEditing] = useState(false);

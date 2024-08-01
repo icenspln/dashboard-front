@@ -7,13 +7,10 @@ import { ChangedGroupButton, DeleteFromGroupButton } from "./changeGroupButton";
 const columnHelper = createColumnHelper<PresenceList>();
 
 export const defaultColumns = [
-  columnHelper.accessor("groupId", {
-    header: "الرقم",
-    cell: (info) => info.getValue(),
-  }),
+ 
  
   columnHelper.accessor("studentName", {
-    header: "الطالب",
+    header: "الفوج",
     cell: (info) => info.getValue(),
   }),
  
