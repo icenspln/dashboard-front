@@ -4,16 +4,19 @@ type ButtonPrimary = {
   active?: boolean; // active is primary and false is clear (white)
   text: string;
   children?: ReactElement<any, any>;
+  props: any;
 };
 
 export default function ButtonPrimary({
   children,
   active,
   text,
+  props,
 }: ButtonPrimary) {
   if (active) {
     return (
       <button
+        {...props}
         className={`min-w-[140px] bg-blue transition hover:bg-blueHovered font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2 w-full`}
       >
         {children && (
@@ -32,6 +35,7 @@ export default function ButtonPrimary({
 
   return (
     <button
+      {...props}
       className={
         "min-w-[140px] bg-white transition hover:bg-light border border-solid border-light text-blueDark font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2"
       }

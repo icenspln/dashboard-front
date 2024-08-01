@@ -14,7 +14,10 @@ export const StudentRegisterSchema = object({
     .max(10, "الرقم غير صحيح"),
   scanningCardId: string().required(),
   institution: string().required(),
-  level: number().required(),
+  level: number()
+    .required("الحقل اجباري")
+    .nonNullable()
+    .typeError("الحقل اجباري"),
   speciality: string().nullable(),
 }).required();
 

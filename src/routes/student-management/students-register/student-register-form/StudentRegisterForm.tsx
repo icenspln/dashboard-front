@@ -1,4 +1,3 @@
-import ButtonPrimary from "../../../../components/ButtonPrimary";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   speciality,
@@ -8,19 +7,22 @@ import {
 import { studentRegister } from "../core/_requests";
 import { useMutation } from "@tanstack/react-query";
 import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
+import { useContext } from "react";
+import { RegistrationContext } from "../core/RegistrationContext";
 
 export default function StudentRegisterForm() {
+  const { setScreen } = useContext(RegistrationContext);
   const {
     register,
     watch,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<StudentRegisterFormType>({
     resolver: yupResolver(StudentRegisterSchema),
     defaultValues: {
-      scanningCardId: "test123444",
+      scanningCardId: "test1211p2",
       institution: "primarySchool",
-      level: 1,
     },
   });
   const onSubmit: SubmitHandler<StudentRegisterFormType> = (data) => {
@@ -32,10 +34,10 @@ export default function StudentRegisterForm() {
     onSuccess: () => {
       // Invalidate and refetch
       // queryClient.invalidateQueries({ queryKey: ["todos"] });
-      alert("success");
+      setScreen(true);
     },
     onError: () => {
-      alert("error");
+      toast.error("هناك خطأ ما");
     },
   });
 
@@ -182,6 +184,7 @@ export default function StudentRegisterForm() {
               {...register("level")}
               className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
             >
+              <option>السنة</option>
               <option value={1}>الأولى</option>
               <option value={2}>الثانية</option>
               <option value={3}>الثالثة</option>
@@ -219,7 +222,13 @@ export default function StudentRegisterForm() {
         </div>
 
         <div className="flex items-center justify-start gap-7 w-[140px] ">
-          <ButtonPrimary text="تسجيل" active />
+          <button
+            disabled={isSubmitting}
+            type="submit"
+            className={`min-w-[140px] bg-blue transition hover:bg-blueHovered font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2 w-full`}
+          >
+            <h2 className={`text-xl  text-white text-center mx-auto`}>تسجيل</h2>
+          </button>
         </div>
       </form>
     </>

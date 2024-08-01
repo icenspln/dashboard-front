@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -21,7 +22,7 @@ import TeacherRegister from "./routes/teacher-management/teacher-register/Teache
 import PresenceListsManagement from "./routes/presence-management/PresenceManagement.tsx";
 import PaymentManagement from "./routes/teacher-payment-management/PaymentManagement.tsx";
 import AttendanceManagement from "./routes/attendance-register/AttendanceManagement.tsx";
-import  TablesContainer  from "./routes/attendance-register/Attendance-table/tablesContainer.tsx";
+import TablesContainer from "./routes/attendance-register/Attendance-table/tablesContainer.tsx";
 import SeetingManagement from "./routes/settings/SettingManagement.tsx";
 
 const queryClient = new QueryClient();
@@ -88,8 +89,6 @@ const router = createBrowserRouter(
           path: "/test",
           element: <TablesContainer />,
         },
-        
-        
       ],
     },
   ],
@@ -105,6 +104,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         buttonPosition="bottom-left"
         initialIsOpen={false}
       />
+      <Toaster />
     </QueryClientProvider>
   </React.StrictMode>
 );
