@@ -14,22 +14,23 @@ export default {
         mainBg: "#F8FAFC",
         textGray: "#94A3B8",
         textGray2: "#64748B",
-        overlay: "rgba(0, 0, 0, 0.8)",
+        overlay: "rgba(0, 0, 0, 0.6)",
         Black: "#111111",
+        redish: "#F25959",
       },
       keyframes: {
         growShrink: {
-          '0%, 100%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(1.2)' },
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.2)" },
         },
         upDown: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '30%': { transform: 'translateY(-80px)' },
+          "0%, 100%": { transform: "translateY(0)" },
+          "30%": { transform: "translateY(-80px)" },
         },
       },
       animation: {
-        growShrink: 'growShrink 2s ease-in-out infinite',
-        upDown: 'upDown 3s ease-in-out infinite',
+        growShrink: "growShrink 2s ease-in-out infinite",
+        upDown: "upDown 3s ease-in-out infinite",
       },
       width: {
         outlet: "calc(100dvw - 240px)",

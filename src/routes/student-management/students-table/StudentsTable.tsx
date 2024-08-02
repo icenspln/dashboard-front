@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getStudents } from "./core/_requests";
+import { StudentDeleteModal } from "./student-delete-modal/StudentDeleteModal";
 
 export function StudentsTable() {
   const constraintsRef = useRef(null);
@@ -16,7 +17,7 @@ export function StudentsTable() {
 
   //query functions
   const { data, isLoading } = useQuery({
-    queryKey: ["getTeachers"],
+    queryKey: ["getStudents"],
     queryFn: getStudents,
   });
 
@@ -89,6 +90,7 @@ export function StudentsTable() {
           ))}
         </tbody>
       </motion.table>
+      <StudentDeleteModal />
     </div>
   );
 }
