@@ -1,36 +1,33 @@
-import { object, string, number, date } from "yup";
+import { object, string, number } from "yup";
 
 export const StudentRegisterSchema = object({
-  firstName: string().required("الحقل اجباري").max(20, "الاسم غبر صحيح"),
-  lastName: string().required("الحقل اجباري").max(20, "اللقب غبر صحيح"),
-  birthDate: date().typeError("الحقل اجباري").required("الحقل اجباري"),
+  firstName: string().required("الحقل اجباري").max(20, "الحقل طويل جدا"),
+  lastName: string().required("الحقل اجباري").max(20, "الحقل طويل جدا"),
+  birthDate: string().required("الحقل اجباري"),
+  // typeError("الحقل اجباري")
   phoneNumber: string()
     .required("الحقل اجباري")
     .matches(/^\d+$/, "الرقم غير صحيح")
-    .max(10, "الرقم غير صحيح"),
+    .min(10, "الرقم غير صحيح"),
   guardianPhoneNumber: string()
     .required("الحقل اجباري")
     .matches(/^\d*$/, "الرقم غير صحيح")
-    .max(10, "الرقم غير صحيح"),
-  scanningCardId: string().required(),
-  institution: string().required(),
-  level: number()
-    .required("الحقل اجباري")
-    .nonNullable()
-    .typeError("الحقل اجباري"),
-  speciality: string().nullable(),
-}).required();
+    .min(10, "الرقم غير صحيح"),
+  institution: string().required("الحقل اجباري"),
+  level: number().required("الحقل اجباري").positive("الحقل اجباري"),
+  speciality: string(),
+});
 
 export type StudentRegisterFormType = {
   firstName: string;
   lastName: string;
-  birthDate: Date;
+  birthDate: string;
   phoneNumber: string;
   guardianPhoneNumber: string;
-  scanningCardId: string;
+  // scanningCardId: string;
   institution: string | "primarySchool" | "middleSchool" | "highSchool";
   level: number;
-  speciality?: string | null;
+  speciality?: string;
 };
 
 export const speciality = {

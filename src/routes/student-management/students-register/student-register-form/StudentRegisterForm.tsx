@@ -20,11 +20,9 @@ export default function StudentRegisterForm() {
     formState: { errors, isSubmitting },
   } = useForm<StudentRegisterFormType>({
     resolver: yupResolver(StudentRegisterSchema),
-    defaultValues: {
-      scanningCardId: "test1211p2",
-      institution: "primarySchool",
-    },
   });
+
+  console.log(watch());
   const onSubmit: SubmitHandler<StudentRegisterFormType> = (data) => {
     mutation.mutate({ ...data });
   };
@@ -45,6 +43,7 @@ export default function StudentRegisterForm() {
     if (watch("institution") == "highSchool" && watch("level") == 1) {
       return (
         <>
+          <option value={``}>اختر الشعبة</option>
           <option value={speciality.level1[0]}>{speciality.level1[0]}</option>
           <option value={speciality.level1[1]}>{speciality.level1[1]}</option>
         </>
@@ -53,6 +52,7 @@ export default function StudentRegisterForm() {
     if (watch("institution") == "highSchool" && watch("level") != 1) {
       return (
         <>
+          <option value={``}>اختر الشعبة</option>
           <option value={speciality.level2[0]}>{speciality.level2[0]}</option>
           <option value={speciality.level2[1]}>{speciality.level2[1]}</option>
           <option value={speciality.level2[2]}>{speciality.level2[2]}</option>
@@ -104,13 +104,7 @@ export default function StudentRegisterForm() {
               رقم الهاتف
             </label>
             <input
-              {...register("phoneNumber", {
-                required: {
-                  value: true,
-                  message: "الحقل الزامي",
-                },
-                maxLength: { value: 10, message: "الحقل غير صحيح" },
-              })}
+              {...register("phoneNumber")}
               type="text"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               placeholder="0555555555"
@@ -120,17 +114,11 @@ export default function StudentRegisterForm() {
             )}
           </article>
           <article className="flex flex-col gap-2 w-full min-h-[96px]">
-            <label htmlFor="gardianPhoneNumber" className="text-blueDark">
+            <label htmlFor="guardianPhoneNumber" className="text-blueDark">
               رقم هاتف ولي الأمر
             </label>
             <input
-              {...register("guardianPhoneNumber", {
-                required: {
-                  value: true,
-                  message: "الحقل الزامي",
-                },
-                maxLength: { value: 10, message: "الحقل غير صحيح" },
-              })}
+              {...register("guardianPhoneNumber")}
               type="text"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               placeholder="0555555555"
@@ -165,6 +153,7 @@ export default function StudentRegisterForm() {
               {...register("institution")}
               className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
             >
+              <option value={``}>اختر المؤسسة</option>
               <option value="primarySchool">الإبتدائي</option>
               <option value="middleSchool">المتوسط</option>
               <option value="highSchool">الثانوي</option>
@@ -184,7 +173,7 @@ export default function StudentRegisterForm() {
               {...register("level")}
               className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
             >
-              <option>السنة</option>
+              <option value={-1}>اختر السنة</option>
               <option value={1}>الأولى</option>
               <option value={2}>الثانية</option>
               <option value={3}>الثالثة</option>
@@ -200,7 +189,7 @@ export default function StudentRegisterForm() {
             )}
           </article>
 
-          {watch("institution") == "highSchool" && (
+          {watch("institution") == "highSchool" && watch("level") != -1 && (
             <>
               <article className="flex flex-col gap-2 w-full min-h-[96px]">
                 <label className="text-blueDark" htmlFor="speciality">
@@ -213,8 +202,10 @@ export default function StudentRegisterForm() {
                   {/* {watch("level") == 1 ? <></> : <></>} */}
                   {displaySpeciality()}
                 </select>
-                {errors.level && (
-                  <span className="text-red-500">{errors.level.message}</span>
+                {errors.speciality && (
+                  <span className="text-red-500">
+                    {errors.speciality.message}
+                  </span>
                 )}
               </article>
             </>

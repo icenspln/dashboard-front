@@ -1,12 +1,4 @@
-import { useContext, useState } from "react";
-import { Check } from "../../../assets/icons/Check";
-import { Card } from "../../../components/Card";
-import { CardEmpty } from "../../../components/CardEmpty";
-import { Overlay } from "../../../components/Overlay";
-import {
-  RegistrationContext,
-  RegistrationContextProvider,
-} from "./core/RegistrationContext";
+import { RegistrationContextProvider } from "./core/RegistrationContext";
 import StudentRegisterForm from "./student-register-form/StudentRegisterForm";
 import StudentCard from "./student-card/StudentCard";
 
