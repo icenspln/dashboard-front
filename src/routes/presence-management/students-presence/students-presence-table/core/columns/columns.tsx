@@ -9,7 +9,7 @@ const columnHelper = createColumnHelper<PresenceList>();
 export const defaultColumns = [
  
  
-  columnHelper.accessor("studentName", {
+  columnHelper.accessor("group", {
     header: "الفوج",
     cell: (info) => info.getValue(),
   }),
@@ -29,6 +29,10 @@ export const defaultColumns = [
   columnHelper.accessor("dayOfWeek", {
     header: "11/08/2024",
     cell: ChangedGroupButton,
+  }),
+  columnHelper.accessor("dayOfWeek", {
+    header: "11/08/2024",
+    cell: DeleteFromGroupButton,
   }),
   columnHelper.accessor("dayOfWeek", {
     header: "11/08/2024",
