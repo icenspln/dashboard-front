@@ -61,7 +61,7 @@ export default function TeacherManagement() {
       </div>
       <nav className="flex items-center gap-[12px]">
         <ExcelSvg/>
-        <Link to={`/studentmanagement/new`}>
+        <Link to={`/teachermanagement/new`}>
           <ButtonPrimary text="تسجيل جديد" active />
         </Link>
       </nav>
