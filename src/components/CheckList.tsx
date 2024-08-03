@@ -39,11 +39,11 @@ const Checklist: React.FC<ChecklistProps> = ({ items, onSelectionChange }) => {
       </button>
       
       {isOpen && (
-        <div className="absolute w-full mt-1 bg-white rounded border border-gray-300 shadow-lg z-10">
+        <div className="absolute w-full mt-1 bg-white rounded border border-gray-300 shadow-lg z-10 max-h-[250px] overflow-y-scroll">
           {items.map((item) => (
             <label
               key={item.id}
-              className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer text-base"
+              className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer text-base "
             >
                 <span>{item.label}</span>
               <input
