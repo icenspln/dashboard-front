@@ -1,5 +1,5 @@
+import ButtonPrimary from "../../../components/ButtonPrimary";
 
-import ExcelSvg from "../../../assets/icons/ExcelSvg";
 import { StudentsPresenceListsTable } from "./students-presence-table/StudentsPresenceTable";
 import { FilterButton } from "../../../components/ButtonFilter";
 
@@ -38,8 +38,8 @@ export default function StudentsPresenceListsManagement() {
         
       </div>
       <nav className="flex items-center gap-[12px]">
-        <ExcelSvg/>
        
+       <ButtonPrimary text="تحميل قسيمة الدفع" active/>
       </nav>
       </div>
       <div>
