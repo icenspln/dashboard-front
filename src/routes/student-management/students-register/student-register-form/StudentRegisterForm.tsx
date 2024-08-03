@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { StudentRegisterFormType } from "../core/_models";
 import { studentRegister } from "../core/_requests";
 import { useMutation } from "@tanstack/react-query";
+import { Card } from "../../../../components/Card";
 
 export default function StudentRegisterForm() {
   const {
@@ -58,40 +59,29 @@ export default function StudentRegisterForm() {
         <div className="flex items-center gap-7 mb-7">
           <article className="flex flex-col gap-2 w-full">
             <label htmlFor="phoneNumber" className="text-blueDark">
-              رقم الهاتف
+              تاريخ الميلاد
+            </label>
+            <input
+              {...register("phoneNumber")}
+              type="date"
+              className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
+              placeholder="JJ/MM/AAAA"
+            />
+          </article>
+          <article className="flex flex-col gap-2 w-full">
+            <label htmlFor="gardianPhoneNumber" className="text-blueDark">
+              رقم هاتف  
             </label>
             <input
               {...register("phoneNumber")}
               type="text"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              placeholder="0555 55 55 55"
-            />
-          </article>
-          <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="gardianPhoneNumber" className="text-blueDark">
-              رقم هاتف ولي الأمر
-            </label>
-            <input
-              {...register("guardianPhoneNumber")}
-              type="text"
-              className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              placeholder="0555 55 55 55"
+              placeholder=" 00 01 02 0550"
             />
           </article>
         </div>
 
         <div className="flex items-center gap-7 mb-7">
-          <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="birthDate" className="text-blueDark">
-              تاريخ الميلاد
-            </label>
-            <input
-              {...register("birthDate")}
-              type="date"
-              className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              // defaultValue="JJ / MM / AAAA"
-            />
-          </article>
           <article className="flex flex-col gap-2 w-full">
             <label htmlFor="institution" className="text-blueDark">
               المستوى
@@ -107,9 +97,6 @@ export default function StudentRegisterForm() {
               <option value="highSchool">الثانوي</option>
             </select>
           </article>
-        </div>
-
-        <div className="flex items-center gap-7 mb-7 ">
           <article className="flex flex-col gap-2 w-full">
             <label className="text-blueDark" htmlFor="level">
               السنة
@@ -125,11 +112,11 @@ export default function StudentRegisterForm() {
               <option value="3">الثالثة</option>
             </select>
           </article>
-          <article className="flex flex-col gap-2 w-full"></article>
         </div>
 
         <div className="flex items-center justify-start gap-7 mb-7 w-[140px] ">
           <ButtonPrimary text="تسجيل" active />
+          
         </div>
       </form>
     </>
