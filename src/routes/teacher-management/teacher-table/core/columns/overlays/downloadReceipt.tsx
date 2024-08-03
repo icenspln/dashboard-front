@@ -5,10 +5,10 @@ import ConfirmButton from './Popup-menu-component/confirmButton';
 import PasswordInput from './Popup-menu-component/passwordInputField';
 import Checklist from '../../../../../../components/CheckList';
 import { useNavigate } from 'react-router-dom';
+import GetMonthYear from '../../../../../../components/GetMonths';
 
-const chooseMonthOption = [
-  {id:1,label : "11|24"}
-]
+const chooseMonthOption = GetMonthYear(2022)
+
 interface DownloadReceiptOverlayProps {
   onClose: () => void;
 }
