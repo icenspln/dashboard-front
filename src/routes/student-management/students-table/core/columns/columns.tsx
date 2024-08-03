@@ -3,6 +3,7 @@ import { Student } from "../_models";
 import BirthDateCell from "./BirthDateCell";
 import InstitutionCell from "./InstitutionCell";
 import SettingsCell from "./SettingsCell";
+import { PricingButton } from "./PricingButtonEdit";
 
 const columnHelper = createColumnHelper<Student>();
 
@@ -37,9 +38,26 @@ export const defaultColumns = [
     cell: (info) => info?.getValue(),
   }),
   columnHelper.accessor("groups", {
-    header: "الأفواج",
+    header: "تاريخ التسجيل",
     cell: (info) => info?.getValue().length,
   }),
+  columnHelper.accessor("groups", {
+    header: "عدد الأفواج الكلية",
+    cell: (info) => info?.getValue().length,
+  }),
+  columnHelper.accessor("groups", {
+    header: "عدد الأفواج الحالية",
+    cell: (info) => info?.getValue().length,
+  }),
+  columnHelper.accessor("pricing", {
+    header: "الثمن الذي تم دفعه",
+    cell:  PricingButton
+  }),
+  columnHelper.accessor("groups", {
+    header: "المجموع",
+    cell: (info) => info?.getValue().length,
+  }),
+  
 
   columnHelper.display({
     header: "الإعدادات",

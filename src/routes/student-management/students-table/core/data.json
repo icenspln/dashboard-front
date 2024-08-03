@@ -10,7 +10,8 @@
         "scanningCardId": "string",
         "institution": "primarySchool" ,
         "level": 1,
-        "groups": [5]
+        "groups": [5],
+        "pricing":200
         
         
     }
