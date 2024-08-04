@@ -1,8 +1,10 @@
 import PasswordInput from "./passwordInputField";
 import ConfirmButton from "./confirmButton";
-import UploadIconSvg from "../../assets/icons/UploadIconSvg";
+import LogoUpload from "./handleLogoUpload";
+import { useState } from "react";
 
 export default function SeetingManagement(){
+    const [logoUrl, setLogoUrl] = useState<string | null>(null);
     return(
         <div className="w-full min-h-screen p-4 bg-mainBg">
             <div>
@@ -37,13 +39,8 @@ export default function SeetingManagement(){
             </div>
             <div>
                 <h1 className="text-xl font-bold mt-10">اختيار ايقونة الموقع</h1>
-                <div className=" flex items-center gap-[15px] w-[300px] h-[140px] border-2 border-dashed rounded mt-3 ">
-                    
-                        <span className="mr-3"><UploadIconSvg/></span>
-                        <p className="text-xl text-gray-400 ">ضع الايقونة هنا أو اضغط لاختيارها</p>
-                    
-                    
-                </div>
+                <LogoUpload  />
+                
             </div>
             
 
