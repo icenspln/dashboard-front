@@ -26,10 +26,17 @@ export default {
           '0%, 100%': { transform: 'translateY(0)' },
           '30%': { transform: 'translateY(-80px)' },
         },
+        spinLeftRight: {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(45deg)' },
+          '50%': { transform: 'rotate(0deg)' },
+          '75%': { transform: 'rotate(-45deg)' },
+        },
       },
       animation: {
         growShrink: 'growShrink 2s ease-in-out infinite',
         upDown: 'upDown 3s ease-in-out infinite',
+        spinLeftRight: 'spinLeftRight 2s ease-in-out infinite',
       },
       width: {
         outlet: "calc(100dvw - 240px)",
