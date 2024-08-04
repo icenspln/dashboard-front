@@ -8,10 +8,17 @@ import { useMutation } from "@tanstack/react-query";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { studentUpdate } from "../core/_requests";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import queryString from "query-string";
+import { UpdateContext } from "../core/UpdateContext";
+import { useContext } from "react";
 
 export default function StudentUpdateForm() {
-  // const { setScreen } = useContext(RegistrationContext);
+  const { setSuccessModal } = useContext(UpdateContext);
+  const params = useParams();
+  const location = useLocation();
+  const id = params.id!;
+  const parsedParams = queryString.parse(location.search);
   const {
     register,
     watch,
@@ -19,11 +26,11 @@ export default function StudentUpdateForm() {
     formState: { errors, isSubmitting },
   } = useForm<StudentUpdateFormType>({
     resolver: yupResolver(StudentUpdateSchema),
+    defaultValues: {
+      ...parsedParams,
+      // birthDate: new Date(parsedParams.birthDate as any).toLocaleDateString(),
+    },
   });
-
-  const params = useParams();
-
-  const id = params.id!;
 
   const onSubmit: SubmitHandler<StudentUpdateFormType> = (data) => {
     mutation.mutateAsync({ id, data });
@@ -34,7 +41,7 @@ export default function StudentUpdateForm() {
       return studentUpdate(id, data);
     },
     onSuccess: () => {
-      alert("sucess");
+      setSuccessModal(true);
     },
     onError: () => {
       toast.error("هناك خطأ ما");
@@ -140,6 +147,7 @@ export default function StudentUpdateForm() {
             </label>
             <input
               {...register("birthDate")}
+              id="bithDate"
               type="date"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray "
             />

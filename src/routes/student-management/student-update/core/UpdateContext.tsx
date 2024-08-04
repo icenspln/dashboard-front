@@ -1,21 +1,24 @@
-import {
-  createContext,
-  Dispatch,
-  ReactElement,
-  SetStateAction,
-  useState,
-} from "react";
+import { createContext, ReactElement, useState } from "react";
 
-type UpdateContextProps = {};
+type UpdateContextProps = {
+  successModal: boolean;
+  setSuccessModal: (a: boolean) => void;
+};
 
-export const UpdateContext = createContext<UpdateContextProps>({});
+export const UpdateContext = createContext<UpdateContextProps>({
+  successModal: false,
+  setSuccessModal: () => {},
+});
 
 export function UpdateContextProvider({
   children,
 }: {
   children: ReactElement<any>;
 }) {
-  // const [screen, setScreen] = useState(false);
-
-  return <UpdateContext.Provider value={{}}>{children}</UpdateContext.Provider>;
+  const [successModal, setSuccessModal] = useState(false);
+  return (
+    <UpdateContext.Provider value={{ successModal, setSuccessModal }}>
+      {children}
+    </UpdateContext.Provider>
+  );
 }

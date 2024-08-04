@@ -41,8 +41,12 @@ export const defaultColumns = [
     cell: (info) => info?.getValue().length,
   }),
 
-  columnHelper.accessor("_id", {
-    header: "الإعدادات",
-    cell: (info) => <SettingsCell _id={info.getValue()} />,
+  // columnHelper.accessor("_id", {
+  //   header: "الإعدادات",
+  //   cell: (info) => <SettingsCell row={info.row.getAllCells()} />,
+  // }),
+  columnHelper.display({
+    id: "action",
+    cell: (props) => <SettingsCell row={props.row.original} />,
   }),
 ];
