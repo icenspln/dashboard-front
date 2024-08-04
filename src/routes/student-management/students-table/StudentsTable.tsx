@@ -90,7 +90,7 @@ export function StudentsTable() {
           ))}
         </tbody>
       </motion.table>
-      <StudentDeleteModal />
+      {/* <StudentDeleteModal /> */}
     </div>
   );
 }

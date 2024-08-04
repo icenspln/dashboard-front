@@ -40,10 +40,10 @@ export default function StudentCard() {
 
                   <Link
                     to={`/studentmanagement`}
-                    className="w-[60%] flex justify-center items-center"
+                    className="w-[70%] flex justify-center items-center"
                   >
                     <ButtonRoundedPrimary
-                      active
+                      color="blue"
                       text={`العودة إلى قائمة المسجلين`}
                     />
                   </Link>
