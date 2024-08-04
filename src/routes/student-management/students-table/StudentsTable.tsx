@@ -3,15 +3,21 @@ import {
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { defaultColumns } from "./core/columns/columns";
 import { Student } from "./core/_models";
 import { motion } from "framer-motion";
-import { useMemo, useRef, useState } from "react";
+import { useContext, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getStudents } from "./core/_requests";
-import { StudentDeleteModal } from "./student-delete-modal/StudentDeleteModal";
+import {
+  StudentsTableContext,
+  StudentsTableContextProvider,
+} from "./core/StudentsTableContext";
+import { defaultColumns } from "./columns/columns";
 
-export function StudentsTable() {
+function StudentsTable() {
+  const { updateModal, setUpdateModal } = useContext(StudentsTableContext);
+  console.log(updateModal);
+
   const constraintsRef = useRef(null);
   const [students, setStudents] = useState<Student[]>([]);
 
@@ -92,5 +98,13 @@ export function StudentsTable() {
       </motion.table>
       {/* <StudentDeleteModal /> */}
     </div>
+  );
+}
+
+export function StudentTableWrapper() {
+  return (
+    <StudentsTableContextProvider>
+      <StudentsTable />;
+    </StudentsTableContextProvider>
   );
 }

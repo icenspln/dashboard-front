@@ -1,16 +1,11 @@
-import DotsSvg from "../../../../../assets/icons/DotsSvg";
+// import DotsSvg from "../../../../../assets/icons/DotsSvg";
 import { useState } from "react";
+import DotsSvg from "../../../../assets/icons/DotsSvg";
+import { Link } from "react-router-dom";
 
-export default function SettingsCell() {
+export default function SettingsCell({ _id }: { _id: string }) {
   const [settings, setSettings] = useState(false);
 
-  const options = [
-    { label: "تعديل المعلومات" },
-    { label: "رؤية الأفواج الحالية" },
-    { label: "تغيير الفوج" },
-    { label: "تغيير البطاقة" },
-    { label: "حذف من القائمة" },
-  ];
   return (
     <div>
       <div>
@@ -25,11 +20,14 @@ export default function SettingsCell() {
             <>
               <article className="absolute bg-white rounded z-10 shadow-lg p-3">
                 <ul className="flex flex-col gap-3 ">
-                  {options.map((option, index) => (
-                    <li key={index} className="w-full cursor-pointer">
-                      {option.label}
-                    </li>
-                  ))}
+                  <li>
+                    <Link to={`/studentmanagement/edit/${_id}`}>
+                      تعديل المعلومات
+                    </Link>
+                  </li>
+                  <li>رؤية الأفواج الحالية</li>
+                  <li>تغيير الفوج</li>
+                  <li>تغيير البطاقة</li>
                 </ul>
               </article>
             </>

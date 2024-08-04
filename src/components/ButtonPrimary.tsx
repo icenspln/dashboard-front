@@ -4,7 +4,7 @@ type ButtonPrimary = {
   active?: boolean; // active is primary and false is clear (white)
   text: string;
   children?: ReactElement<any, any>;
-  props: any;
+  props?: any;
 };
 
 export default function ButtonPrimary({

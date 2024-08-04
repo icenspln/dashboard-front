@@ -1,8 +1,8 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import { Student } from "../_models";
 import BirthDateCell from "./BirthDateCell";
 import InstitutionCell from "./InstitutionCell";
 import SettingsCell from "./SettingsCell";
+import { Student } from "../core/_models";
 
 const columnHelper = createColumnHelper<Student>();
 
@@ -41,8 +41,8 @@ export const defaultColumns = [
     cell: (info) => info?.getValue().length,
   }),
 
-  columnHelper.display({
+  columnHelper.accessor("_id", {
     header: "الإعدادات",
-    cell: () => <SettingsCell />,
+    cell: (info) => <SettingsCell _id={info.getValue()} />,
   }),
 ];

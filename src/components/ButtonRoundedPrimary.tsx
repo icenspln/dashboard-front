@@ -40,7 +40,7 @@ export default function ButtonRoundedPrimary({
   const { bgColor, textColor, hoverBgColor } = returnColor(color);
   return (
     <button
-      className={`min-w-[140px] rounded-full  bg-${bgColor} transition  hover:bg-${hoverBgColor} font-medium flex flex-row items-center   gap-3 px-4 py-2 `}
+      className={`min-w-[140px] rounded-full  bg-${bgColor}  transition  hover:bg-${hoverBgColor} font-medium flex flex-row items-center   gap-3 px-4 py-2 `}
     >
       {children && (
         <div className="flex items-center justify-center min-w-3 ">
