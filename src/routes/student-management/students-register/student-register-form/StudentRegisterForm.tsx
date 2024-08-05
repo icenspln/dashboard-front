@@ -44,8 +44,6 @@ export default function StudentRegisterForm() {
   const mutation = useMutation({
     mutationFn: studentRegister,
     onSuccess: () => {
-      // Invalidate and refetch
-      // queryClient.invalidateQueries({ queryKey: ["todos"] });
       setScreen(true);
     },
     onError: () => {
@@ -128,7 +126,7 @@ export default function StudentRegisterForm() {
             </label>
             <input
               {...register("phoneNumber")}
-              type="date"
+              type="text"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               placeholder="0555555555"
             />
@@ -141,7 +139,7 @@ export default function StudentRegisterForm() {
               رقم هاتف ولي الأمر
             </label>
             <input
-              {...register("phoneNumber")}
+              {...register("guardianPhoneNumber")}
               type="text"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               placeholder="0555555555"

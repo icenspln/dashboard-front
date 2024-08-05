@@ -50,7 +50,7 @@ export const defaultColumns = [
   }),
   columnHelper.accessor("pricing", {
     header: "الثمن الذي تم دفعه",
-    cell: PricingButton,
+    // cell: PricingButton,
   }),
   columnHelper.accessor("groups", {
     header: "المجموع",
