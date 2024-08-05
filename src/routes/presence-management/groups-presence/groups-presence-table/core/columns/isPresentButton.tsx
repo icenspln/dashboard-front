@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import HandCursorSvg from '../../../../../../assets/icons/HandCursorSvg';
 
-const PresentButton = () => {
+const StudentPresentButton = () => {
   const [isPresent, setIsPresent] = useState(true);
 
   const handleClick = () => {
@@ -25,4 +25,15 @@ const PresentButton = () => {
   );
 };
 
-export default PresentButton;
+const TeacherPresentButton = () =>{
+  return(
+    <button
+     className=" bg-red-100 text-red-500 py-2 px-2 rounded-full flex justify-between items-center max-w-full w-[180px] h-[26px]"
+    >
+        أستاذ غائب
+     
+      
+    </button>
+  )
+}
+export  {StudentPresentButton, TeacherPresentButton};
