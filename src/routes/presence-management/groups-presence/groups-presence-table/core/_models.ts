@@ -5,4 +5,5 @@ export type PresenceList = {
   studentName: string;
   dayOfWeek: string;
   pricing:string;
+  phoneNumber:string;
 };
