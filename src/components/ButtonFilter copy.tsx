@@ -28,7 +28,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   }, [selectedOptions]);
 
   const toggleOpen = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
   const handleOptionClick = (option: FilterOption) => {
@@ -48,7 +48,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
     <div className="relative">
       <button
         onClick={toggleOpen}
-        className="flex items-center gap-[8px] w-[116px] h-[32px] px-4 py-2 border border-dashed border-gray-300 rounded-md shadow-sm hover:bg-gray-100"
+        className=" bg-white flex items-center gap-[8px] w-[116px] h-[32px] px-4 py-2 border border-dashed border-gray-300 rounded-md shadow-sm hover:bg-gray-100"
       >
         <PlusSvg />
         <span className="text-gray-700">{label}</span>
@@ -59,8 +59,8 @@ const FilterButton: React.FC<FilterButtonProps> = ({
           {options.map((option) => (
             <label
               key={option.id}
-              className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
               htmlFor="checkbox"
+              className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
               onClick={() => handleOptionClick(option)}
             >
               <span>{option.label}</span>
@@ -127,12 +127,10 @@ const ColumnSelection: React.FC<ColumnSelectionProps> = ({
               key={option.id}
               className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
               onClick={() => handleOptionClick(option)}
-              htmlFor="checkbox"
             >
               <span>{option.label}</span>
               <input
                 type="checkbox"
-                name="checkbox"
                 checked={
                   selectedOptions.find((opt) => opt.id === option.id) !==
                   undefined

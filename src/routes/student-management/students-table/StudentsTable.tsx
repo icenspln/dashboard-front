@@ -5,27 +5,35 @@ import {
 } from "@tanstack/react-table";
 import { Student } from "./core/_models";
 import { motion } from "framer-motion";
-import { useContext, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getStudents } from "./core/_requests";
-import {
-  StudentsTableContext,
-  StudentsTableContextProvider,
-} from "./core/StudentsTableContext";
+import { StudentsTableContext } from "./core/StudentsTableContext";
 import { defaultColumns } from "./columns/columns";
 
 function StudentsTable() {
-  const { updateModal, setUpdateModal } = useContext(StudentsTableContext);
-  console.log(updateModal);
+  const { updateModal, institutionFilter, searchBarFilter } =
+    useContext(StudentsTableContext);
+  const [filter, setFilter] = useState("");
 
   const constraintsRef = useRef(null);
   const [students, setStudents] = useState<Student[]>([]);
 
   //query functions
-  const { data, isLoading } = useQuery({
+
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["getStudents"],
-    queryFn: getStudents,
+    queryFn: () => getStudents(filter),
   });
+
+  useEffect(() => {
+    let url = "institution=";
+    url += institutionFilter.join(",") + `&`;
+    url += `search=${searchBarFilter}&`;
+    console.log(`fiinal url`, url);
+    setFilter(url);
+    refetch();
+  }, [institutionFilter, searchBarFilter]);
 
   useMemo(() => {
     if (data && !isLoading) {
@@ -102,9 +110,5 @@ function StudentsTable() {
 }
 
 export function StudentTableWrapper() {
-  return (
-    <StudentsTableContextProvider>
-      <StudentsTable />;
-    </StudentsTableContextProvider>
-  );
+  return <StudentsTable />;
 }
