@@ -18,34 +18,31 @@ export const defaultColumns = [
     header: "اللقب",
     cell: (info) => info.getValue(),
   }),
-  // columnHelper.accessor("domain", {
-  //   header: "المادة",
-  //   cell: (info) => info.getValue(),
-  // }),
-  // columnHelper.accessor("institution", {
-  //   header: "المستوى",
-  //   cell: (info) => info.getValue(),
-  // }),
-  // columnHelper.accessor("level", {
-  //   header: "السنة",
-  //   cell: (info) => info.getValue(),
-  // }),
-  // columnHelper.accessor("level", {
-  //   header: "رقم الهاتف",
-  //   cell: (info) => info.getValue(),
-  // }),
-  columnHelper.accessor("birthDate", {
-    header: "تاريخ الميلاد",
-    cell: (info) => <BirthDateCell value={info.getValue()} />,
-  }),
-  // columnHelper.accessor("level", {
-  //   header: "عدد الأفواج الكلية",
-  //   cell: (info) => info.getValue(),
-  // }),
-  // columnHelper.accessor("level", {
-  //   header: "عدد الأفواج الحالية",
-  //   cell: (info) => info.getValue(),
-  // }),
+   columnHelper.accessor("domain", {
+     header: "المادة",
+     cell: (info) => info.getValue(),
+   }),
+   columnHelper.accessor("institution", {
+     header: "المستوى",
+     cell: (info) => info.getValue(),
+   }),
+   columnHelper.accessor("level", {
+     header: "تاريخ التسجيل",
+     cell: (info) => info.getValue(),
+   }),
+   columnHelper.accessor("phoneNumber", {
+     header: "رقم الهاتف",
+     cell: (info) => info.getValue(),
+   }),
+  
+   columnHelper.accessor("level", {
+     header: "عدد الأفواج الكلية",
+     cell: (info) => info.getValue(),
+   }),
+   columnHelper.accessor("level", {
+     header: "عدد الأفواج الحالية",
+     cell: (info) => info.getValue(),
+   }),
   // columnHelper.accessor("level", {
   //   header: "الرواتب المدفوعة",
   //   cell: (info) => info.getValue(),

@@ -11,4 +11,5 @@ export type Student = {
   level: number;
   __v?: number;
   groups: any[];
+  pricing:string
 };

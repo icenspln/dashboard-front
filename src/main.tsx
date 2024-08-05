@@ -19,13 +19,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import TeacherManagement from "./routes/teacher-management/TeacherManagement.js";
 import TeacherRegister from "./routes/teacher-management/teacher-register/TeacherRegister.tsx";
-import PresenceListsManagement from "./routes/presence-management/PresenceManagement.tsx";
+import GroupsPresenceListsManagement from "./routes/presence-management/groups-presence/GroupsPresenceManagement.tsx";
+import StudentsPresenceListsManagement from "./routes/presence-management/students-presence/StudentsPresenceManagement.tsx";
 import PaymentManagement from "./routes/teacher-payment-management/PaymentManagement.tsx";
 import AttendanceManagement from "./routes/attendance-register/AttendanceManagement.tsx";
 import TablesContainer from "./routes/attendance-register/Attendance-table/tablesContainer.tsx";
 import SeetingManagement from "./routes/settings/SettingManagement.tsx";
 import { StudentUpdateWrapper } from "./routes/student-management/student-update/StudentUpdate.tsx";
 
+import LoadingScreen from "./components/LoadingScreen.tsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
@@ -75,8 +77,12 @@ const router = createBrowserRouter(
           element: <ParticularGroupRegister />,
         },
         {
-          path: "/presencemanagement",
-          element: <PresenceListsManagement />,
+          path: "/groupspresencemanagement",
+          element: <GroupsPresenceListsManagement />,
+        },
+        {
+          path: "/studentspresencemanagement",
+          element: <StudentsPresenceListsManagement />,
         },
         {
           path: "/paymentmanagement",
@@ -111,5 +117,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       />
       <Toaster />
     </QueryClientProvider>
+    <LoadingScreen />
   </React.StrictMode>
 );

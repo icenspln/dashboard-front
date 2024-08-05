@@ -52,15 +52,15 @@ export default function TeacherManagement() {
       <div className="flex justify-between items-center mb-4">
         <div className=" flex gap-[12px]">
           <SearchBar />
-          {/* <FilterButton label="المادة" options={ModuleSelectionOptions} />
+          <FilterButton label="المادة" options={ModuleSelectionOptions} />
           <FilterButton label="المستوى" options={institutionFilterOptions} />
-          <FilterButton label="السنة" options={levelFilterOptions} /> */}
+          <FilterButton label="السنة" options={levelFilterOptions} />
 
-          {/* <ColumnSelection options={ColumnSelectionOptions} /> */}
+          <ColumnSelection options={ColumnSelectionOptions} />
         </div>
         <nav className="flex items-center gap-[12px]">
           <ExcelSvg />
-          <Link to={`/studentmanagement/new`}>
+          <Link to={`/teachermanagement/new`}>
             <ButtonPrimary text="تسجيل جديد" active />
           </Link>
         </nav>

@@ -87,19 +87,7 @@ export default function TeacherRegisterForm() {
           </article>
 
           <article className="flex flex-col gap-2 w-full">
-            <label className="text-blueDark" htmlFor="level">
-              السنة
-            </label>
-            <select
-              {...register("level")}
-              className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              name=""
-              id=""
-            >
-              <option value="1">الأولى</option>
-              <option value="2">الثانية</option>
-              <option value="3">الثالثة</option>
-            </select>
+           
           </article>
         </div>
 

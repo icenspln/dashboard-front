@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import HandCursorSvg from '../../../../../assets/icons/HandCursorSvg';
+import HandCursorSvg from '../../../../../../assets/icons/HandCursorSvg';
 
 const PresentButton = () => {
   const [isPresent, setIsPresent] = useState(true);

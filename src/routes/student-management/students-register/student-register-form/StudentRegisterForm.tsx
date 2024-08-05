@@ -128,7 +128,7 @@ export default function StudentRegisterForm() {
             </label>
             <input
               {...register("phoneNumber")}
-              type="text"
+              type="date"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               placeholder="0555555555"
             />
@@ -141,7 +141,7 @@ export default function StudentRegisterForm() {
               رقم هاتف ولي الأمر
             </label>
             <input
-              {...register("guardianPhoneNumber")}
+              {...register("phoneNumber")}
               type="text"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               placeholder="0555555555"

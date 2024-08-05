@@ -4,13 +4,13 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { defaultColumns } from "./core/columns/columns";
-import data from "./core/data.json";
+import data from "../../data.json"
 import { PresenceList } from "./core/_models";
 
 
 
 
-export function PresenceListsTable() {
+export function GroupsPresenceListsTable() {
   const PresenceListData: PresenceList[] = data;
 
   const table = useReactTable({
