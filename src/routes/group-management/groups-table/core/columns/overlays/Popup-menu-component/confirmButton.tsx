@@ -16,7 +16,7 @@ export default function ConfirmButton ({
    }:ConfirmButtonType)  {
   return (
     <button
-      className={`${textColor} py-2 px-4 rounded-full ${color} hover:bg-opacity-80 transition-colors duration-300`}
+      className={`${textColor} min-w-[151px] min-h-[38px] py-2 px-4 rounded-full ${color} hover:bg-opacity-80 transition-colors duration-300`}
       onClick={onClick}
     >
       {text}
