@@ -17,6 +17,7 @@ export default {
         overlay: "rgba(0, 0, 0, 0.6)",
         Black: "#111111",
         redish: "#F25959",
+        warning: "#ffc107",
       },
       keyframes: {
         growShrink: {

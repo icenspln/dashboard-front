@@ -4,14 +4,16 @@ import {
   StudentRegisterFormType,
   StudentRegisterSchema,
 } from "../core/_models";
-import { studentRegister } from "../core/_requests";
+import { studentPhoneNumberCheck, studentRegister } from "../core/_requests";
 import { useMutation } from "@tanstack/react-query";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RegistrationContext } from "../core/RegistrationContext";
 
 export default function StudentRegisterForm() {
+  const [phoneNumberWarning, setPhoneNumberWarning] = useState(false);
+
   const { setScreen } = useContext(RegistrationContext);
   const {
     register,
@@ -22,10 +24,22 @@ export default function StudentRegisterForm() {
     resolver: yupResolver(StudentRegisterSchema),
   });
 
-  console.log(watch());
   const onSubmit: SubmitHandler<StudentRegisterFormType> = (data) => {
     mutation.mutate({ ...data });
   };
+
+  const phoneNumberCheckMutation = useMutation({
+    mutationFn: (phone: string) => studentPhoneNumberCheck(phone),
+    onSuccess: (res) => {
+      if (res.exists) {
+        setPhoneNumberWarning(true);
+        toast("الرقم مستخدم مسبقا ⚠️", { duration: 5000 });
+      }
+      if (!res.exists) {
+        setPhoneNumberWarning(false);
+      }
+    },
+  });
 
   const mutation = useMutation({
     mutationFn: studentRegister,
@@ -63,6 +77,12 @@ export default function StudentRegisterForm() {
       );
     }
   };
+
+  useEffect(() => {
+    if (watch("phoneNumber").length >= 10) {
+      phoneNumberCheckMutation.mutateAsync(watch("phoneNumber"));
+    }
+  }, [watch("phoneNumber")]);
 
   return (
     <>
@@ -102,6 +122,9 @@ export default function StudentRegisterForm() {
           <article className="flex flex-col gap-2 w-full min-h-[96px]">
             <label htmlFor="phoneNumber" className="text-blueDark">
               رقم الهاتف
+              {phoneNumberWarning && (
+                <span className="mx-2 text-warning">الرقم مستخدم مسبقا ⚠️</span>
+              )}
             </label>
             <input
               {...register("phoneNumber")}

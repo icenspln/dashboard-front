@@ -1,6 +1,11 @@
-import { RegistrationContextProvider } from "./core/RegistrationContext";
+import {
+  RegistrationContext,
+  RegistrationContextProvider,
+} from "./core/RegistrationContext";
 import StudentRegisterForm from "./student-register-form/StudentRegisterForm";
 import StudentCard from "./student-card/StudentCard";
+import { StudentPhoneCheck } from "./student-phone-check/StudentPhoneCheck";
+import { useContext } from "react";
 
 export default function StudentRegister() {
   return (
@@ -16,10 +21,12 @@ export default function StudentRegister() {
 }
 
 function StudentRegisterContent() {
+  const { phoneCheckModal } = useContext(RegistrationContext);
   return (
     <div>
       <StudentRegisterForm />
       <StudentCard />
+      {phoneCheckModal && <StudentPhoneCheck />}
     </div>
   );
 }
