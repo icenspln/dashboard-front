@@ -1,8 +1,8 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { PresenceList } from "../_models";
-import {StudentPresentButton, TeacherPresentButton} from "./isPresentButton";
-import { PricingButton } from "./PricingButtonEdit";
-import { ChangedGroupButton, DeleteFromGroupButton } from "./changeGroupButton";
+import {StudentPresentButton, TeacherPresentButton} from "../../../../../../components/isPresentButton";
+import { PricingButton } from "../../../../../../components/PricingButtonEdit";
+import { ChangedGroupButton, DeleteFromGroupButton } from "../../../../../../components/changeGroupButton";
 
 const columnHelper = createColumnHelper<PresenceList>();
 

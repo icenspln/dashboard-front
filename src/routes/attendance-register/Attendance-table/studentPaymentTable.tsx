@@ -5,7 +5,7 @@ import {
   } from "@tanstack/react-table";
   import { studentPaymentColumns } from "./core/columns/columns";
   import { Student } from "./core/_models";
-  import ConfirmButton from "./core/columns/overlays/Popup-menu-component/confirmButton";
+  import ConfirmButton from "../../../components/confirmButton";
   import  data from "../Attendance-table/core/data.json" 
   
   export function StudentPaymentTable() {

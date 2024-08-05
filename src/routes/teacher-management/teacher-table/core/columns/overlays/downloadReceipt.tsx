@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react';
 import { Overlay } from '../../../../../../components/Overlay';
-import ConfirmButton from './Popup-menu-component/confirmButton';
+import ConfirmButton from '../../../../../../components/confirmButton';
 import PasswordInput from './Popup-menu-component/passwordInputField';
 import Checklist from '../../../../../../components/CheckList';
 import { useNavigate } from 'react-router-dom';

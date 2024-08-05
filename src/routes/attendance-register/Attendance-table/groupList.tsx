@@ -1,5 +1,5 @@
 import SettingsCell from "./core/columns/SettingsCell"
-import PresentButton from "./core/columns/overlays/Popup-menu-component/isPresentButton"
+import PresentButton from "../../../components/isPresentButton"
 
 export default function GroupList(){
     return(

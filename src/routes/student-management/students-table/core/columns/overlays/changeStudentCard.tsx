@@ -1,7 +1,7 @@
-import React from "react";
+
 import { Overlay } from "../../../../../../components/Overlay";
 import SuccessSignSvg from "../../../../../../assets/icons/SuccessSignSvg";
-import ConfirmButton from "./Popup-menu-component/confirmButton";
+import ConfirmButton from "../../../../../../components/confirmButton";
 
 interface ChangeStudentCardOverlayProps {
     onClose : () => void

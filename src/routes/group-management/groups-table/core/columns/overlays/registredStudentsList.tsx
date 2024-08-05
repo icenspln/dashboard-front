@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Overlay } from '../../../../../../components/Overlay';
-import ConfirmButton from './Popup-menu-component/confirmButton';
+import ConfirmButton from '../../../../../../components/confirmButton';
 import SelectGroup from './Popup-menu-component/PresentStudentsList'; // responsible for showing the registred students in the group
 interface RegistredStudentsOverlayProps {
   onClose: () => void;

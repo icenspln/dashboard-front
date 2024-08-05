@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Overlay } from '../../../../../../components/Overlay';
-import ConfirmButton from './Popup-menu-component/confirmButton';
+import ConfirmButton from '../../../../../../components/confirmButton';
 import Checklist from '../../../../../../components/CheckList';
 
 interface ChangeGroupOverlayProps {

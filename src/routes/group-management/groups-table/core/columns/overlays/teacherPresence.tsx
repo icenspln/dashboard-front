@@ -1,6 +1,6 @@
 import { Overlay } from "../../../../../../components/Overlay"
-import ConfirmButton from "./Popup-menu-component/confirmButton"
-import PresentButton from "./Popup-menu-component/isPresentButton"
+import ConfirmButton from "../../../../../../components/confirmButton"
+import {StudentPresentButton} from "../../../../../../components/isPresentButton"
 
 interface TeacherPresenceProps {
     onClose : () => void
@@ -33,7 +33,7 @@ export default function TeacherPresence({onClose}:TeacherPresenceProps){
                     
                       <span className="">{group.label} </span>
                       <span>
-                        <PresentButton />
+                        <StudentPresentButton />
                       </span>
                     
                   </li>

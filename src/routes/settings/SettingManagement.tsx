@@ -1,5 +1,5 @@
 import PasswordInput from "./passwordInputField";
-import ConfirmButton from "./confirmButton";
+import ConfirmButton from "../../components/confirmButton";
 import LogoUpload from "./handleLogoUpload";
 import { useState } from "react";
 

@@ -3,7 +3,7 @@ import { Student } from "../_models";
 import BirthDateCell from "./BirthDateCell";
 import InstitutionCell from "./InstitutionCell";
 import SettingsCell from "./SettingsCell";
-import { PricingButton } from "./PricingButtonEdit";
+import { PricingButton } from "../../../../../components/PricingButtonEdit";
 
 const columnHelper = createColumnHelper<Student>();
 
