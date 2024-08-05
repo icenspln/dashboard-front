@@ -8,8 +8,9 @@ export type Student = {
   gardianPhoneNumber: string;
   scanningCardId: string;
   institution: string | "primarySchool" | "middleSchool" | "highSchool";
+  createdAt: Date;
   level: number;
   __v?: number;
   groups: any[];
-  pricing:string
+  pricing: string;
 };

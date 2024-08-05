@@ -36,18 +36,15 @@ export const defaultColumns = [
     header: "رقم الهاتف",
     cell: (info) => info?.getValue(),
   }),
-  columnHelper.accessor("groups", {
+  columnHelper.accessor("createdAt", {
     header: "تاريخ التسجيل",
-    cell: (info) => info?.getValue().length,
+    cell: (info) => new Date(info.getValue()).toLocaleDateString(),
   }),
   columnHelper.accessor("groups", {
-    header: "عدد الأفواج الكلية",
+    header: "عدد الأفواج ",
     cell: (info) => info?.getValue().length,
   }),
-  columnHelper.accessor("groups", {
-    header: "عدد الأفواج الحالية",
-    cell: (info) => info?.getValue().length,
-  }),
+
   columnHelper.accessor("pricing", {
     header: "الثمن الذي تم دفعه",
     // cell: PricingButton,
