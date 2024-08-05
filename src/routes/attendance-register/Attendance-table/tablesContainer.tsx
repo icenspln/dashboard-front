@@ -1,4 +1,4 @@
-import CardAnimationSvg from "../../../assets/icons/CardAnimationSvg";
+
 import { StudentInfoTable } from "./studentInfoTable";
 import { StudentPaymentTable } from "./studentPaymentTable";
 import GroupList from "./groupList";

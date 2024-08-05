@@ -5,7 +5,7 @@ import DotsSvg from "../../../../../assets/icons/DotsSvg";
 import DeleteFromListOverlay from "./overlays/deleteFromList";
 import ChangeGroupOverlay from "./overlays/changeGroup";
 
-import ConfirmButton from "../../../../../components/confirmButton";
+
 
 export default function SettingsCell() {
   const [activeOverlay, setActiveOverlay] = useState<string | null>(null)

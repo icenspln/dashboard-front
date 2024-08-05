@@ -1,5 +1,5 @@
 import SettingsCell from "./core/columns/SettingsCell"
-import PresentButton from "../../../components/isPresentButton"
+import {StudentPresentButton} from "../../../components/isPresentButton"
 
 export default function GroupList(){
     return(
@@ -12,7 +12,7 @@ export default function GroupList(){
                         <span className="w-[68px] h-[20px] text-sm text-center border rounded-full">2000 دج</span>
                     </div>
                     <div className="flex gap-[8px]">
-                        <PresentButton/>
+                        <StudentPresentButton/>
                         <SettingsCell/>
                     </div>
                 </div>
@@ -25,7 +25,7 @@ export default function GroupList(){
                         <span className="w-[68px] h-[20px] text-sm text-center border rounded-full">2000 دج</span>
                     </div>
                     <div className="flex gap-[8px]">
-                        <PresentButton/>
+                        <StudentPresentButton/>
                         <SettingsCell/>
                     </div>
                 </div>
