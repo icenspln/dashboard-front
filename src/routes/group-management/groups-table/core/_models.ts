@@ -6,7 +6,6 @@ export type Teacher = {
   birthDate: string;
   phoneNumber: string;
   teacherId: number;
-  __v: number;
 };
 
 
@@ -26,3 +25,22 @@ export type Group = {
   maxNumberOfStudents: number;
   currentNumberOfStudents:number;
 };
+
+export interface FilterOption {
+  id: string;
+  label: string;
+}
+
+
+export const institutionFilterOptions = [
+  { id: "primarySchool", label: "الإبتدائي" },
+  { id: "middleSchool", label: "المتوسط" },
+  { id: "highSchool", label: "الثانوي" },
+];
+export const levelFilterOption = [
+  { id: "1", label: "الأولى" },
+  { id: "2", label: "الثانية" },
+  { id: "3", label: "الثالثة" },
+  { id: "4", label: "الرابعة" },
+  { id: "5", label: "الخامسة" },
+];

@@ -5,20 +5,32 @@ import PlusSvg from "../assets/icons/PlusSvg";
 import ColumnsSelectionSvg from "../assets/icons/ColumnsSelectionSvg";
 
 interface FilterOption {
-  id: number;
+  id: string | number;
   label: string;
 }
 
 interface FilterButtonProps {
   label: string;
   options: FilterOption[];
+  filterKey?: string;
   onSelect?: (option: FilterOption) => void;
+  setFilterState?: (state: any) => void;
+  useEffectCallback?: (
+    selectedOptions: FilterOption[],
+    setFilterState?: (state: any) => void,
+    filterKey?: string
+  ) => void;
+
 }
 
 const FilterButton: React.FC<FilterButtonProps> = ({
   label,
   options,
   onSelect,
+  filterKey,
+  useEffectCallback,
+  setFilterState,
+
 }) => {
   const [selectedOptions, setSelectedOptions] = useState<FilterOption[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +38,23 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
+
+  console.log("selected options : +",selectedOptions)
+  // useEffect(() => {
+  //   if (useEffectCallback) {
+  //     useEffectCallback(selectedOptions, setFilterState, filterKey);
+  //   }
+  // }, [selectedOptions, setFilterState, filterKey, useEffectCallback]);
+
+
+  useEffect(() => {
+    const selectedOptionIds = selectedOptions.map((option: any) => option.id);
+    setFilterState((prev: any) => ({
+      ...prev,
+      [filterKey]: selectedOptionIds,
+    }));
+  }, [filterKey, selectedOptions, setFilterState]);
+
 
   const handleOptionClick = (option: FilterOption) => {
     let updatedOptions = [...selectedOptions];
@@ -78,10 +107,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   );
 };
 //column selection
-interface FilterOption {
-  id: number;
-  label: string;
-}
+
 
 interface ColumnSelectionProps {
   options: FilterOption[];

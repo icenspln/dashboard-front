@@ -8,6 +8,7 @@ type GroupsTableContext = {
     searchBar: string;
     institution: string[];
     modules: string[];
+    dayOfWeek: string[];
   };
   setFilterState: Dispatch<SetStateAction<any>>;
   filter: string;
@@ -22,6 +23,7 @@ export const GroupsTableContext = createContext({
     institution: [""],
     level: [],
     modules: [],
+    dayOfWeek:[],
   },
   setFilterState: (a: any) => a,
   filter: "",
@@ -36,18 +38,24 @@ export function GroupsTableContextProvider({ children }: { children: any }) {
     institution: [""],
     level: [],
     modules:[],
+    dayOfWeek:[],
   });
 
   useEffect(() => {
+    console.log("modules", filterState.modules)
+    console.log("dayofweek", filterState.dayOfWeek)
     let institution = `institution=${filterState.institution.join(",")}`;
     let search = `search=${filterState.searchBar}`;
     let level = `level=${filterState.level.join(",")}`;
-    let modules = `level=${filterState.modules.join(",")}`;
+    let modules = `modules=${filterState.modules.join(",")}`;
+    let dayOfWeek = `dayOfWeek=${filterState.dayOfWeek.join(",")}`;
     let url = "";
     if (filterState.searchBar != "") url += search;
     if (filterState.institution.length > 0) url += "&" + institution;
     if (filterState.level.length > 0) url += "&" + level;
     if (filterState.modules.length > 0) url += "&" + modules;
+    if (filterState.dayOfWeek.length > 0) url += "&" + dayOfWeek;
+    console.log("url : ",url)
     setFilter(url);
     console.log("triggered", url);
   }, [filterState]);

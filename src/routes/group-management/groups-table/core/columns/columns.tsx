@@ -1,6 +1,8 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { Group } from "../_models";
 import SettingsCell from "./SettingsCell";
+import InstitutionCell from "./InstitutionCell";
+import DayCell from "./DayCell";
 
 const columnHelper = createColumnHelper<Group>();
 
@@ -11,11 +13,16 @@ export const defaultColumns = [
   }),
   columnHelper.accessor("dayOfWeek", {
     header: "اليوم",
-    cell: (info) => info.getValue(),
+    cell: (info) => <DayCell value={info?.getValue()} />,
   }),
   columnHelper.accessor("timing", {
     header: "الوقت",
-    cell: (info) => info.getValue(),
+    cell: (info) => {
+      const timing = info.getValue();
+      const formattedTime = `${timing.hour.toString().padStart(2, "0")}:${timing.minute.toString().padStart(2, "0")}`;
+      return formattedTime;
+    },
+    // cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("roomNumber", {
     header: "القاعة",
@@ -23,7 +30,7 @@ export const defaultColumns = [
   }),
   columnHelper.accessor("institution", {
     header: "المستوى",
-    cell: (info) => info.getValue(),
+    cell: (info) => <InstitutionCell value={info?.getValue()} />,
   }),
   columnHelper.accessor("level", {
     header: "السنة",
@@ -35,7 +42,11 @@ export const defaultColumns = [
   }),
   columnHelper.accessor("responsibleTeacher", {
     header: "الأستاذ",
-    cell: (info) => info.getValue(),
+    cell: (info) => {
+      const teacher = info.getValue();
+      return `${teacher.firstName} ${teacher.lastName}`;
+    },
+    // cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("currentNumberOfStudents", {
     header: "عدد المسجلين",

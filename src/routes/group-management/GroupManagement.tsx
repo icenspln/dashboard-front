@@ -5,6 +5,7 @@ import SearchBar from "../../components/SearchBar";
 import { FilterButton, ColumnSelection } from "../../components/ButtonFilter";
 import ExcelSvg from "../../assets/icons/ExcelSvg";
 import { GroupsTableContextProvider } from "./groups-table/core/GroupsTableContext";
+import { GroupTableForm } from "./groups-table/group-table-form/GroupTableForm";
 
 const ModuleSelectionOptions = [
   { id: 1, label: "الرياضيات" },
@@ -61,12 +62,14 @@ export default function GroupManagement() {
     <section className="w-full min-h-screen p-4 bg-mainBg">
       <div className="flex justify-between items-center mb-4">
         <div className=" flex gap-[12px]">
-          <SearchBar />
+         <GroupTableForm />
+
+          {/* <SearchBar />
           {/* <FilterButton label="المادة" options={ModuleSelectionOptions} />
           <FilterButton label="المستوى" options={institutionFilterOptions} />
           <FilterButton label="السنة" options={levelFilterOptions} />
           <FilterButton label="اليوم" options={DaysSelectionOptions} />
-          <ColumnSelection options={ColumnSelectionOptions} /> */}
+          <ColumnSelection options={ColumnSelectionOptions} />   */}
         </div>
         <nav className="flex items-center gap-[12px]">
           <ExcelSvg />

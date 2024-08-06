@@ -3,7 +3,7 @@ export type GroupRegisterFormType = {
   time: string;
   professor:string;
   moduleName: string;
-  scanningCardId: string;
+  scanningCardId: string; // to delete 
   institution: string | "primarySchool" | "middleSchool" | "highSchool";
   level: number;
   price:number;
