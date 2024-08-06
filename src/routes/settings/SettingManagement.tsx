@@ -9,18 +9,23 @@ export default function SeetingManagement(){
         <div className="w-full min-h-screen p-4 bg-mainBg">
             <div>
                 <h1 className="text-xl font-bold">تغيير كلمة المرور الأساسية</h1>
-                <div className="flex w-full gap-[12px] justify-between pt-3">
-                    <div className="flex flex-col w-full gap-[12px] ">
+                <div className="flex flex-col w-full gap-[12px] justify-between pt-3">
+                    <div className="flex flex-col w-[525px] gap-[12px] ">
                         <h1>كلمة المرور القديمة</h1>
                         <PasswordInput placeHolder="أدخل كلمة المرور القدية"/>
                         
-                            <ConfirmButton text="حفظ التغييرات"  className="text-white rounded-md w-[140px]"/>
+                           
                         
                     </div>
-                    <div className="flex flex-col w-full gap-[12px]">
+                    <div className="flex flex-col w-[525px]  gap-[12px]">
                         <h1>كلمة المرور الجديدة</h1>
                         <PasswordInput placeHolder="ادخل كلمة المرور الجديدة"/>
                     </div>
+                    <div className="flex flex-col w-[525px]  gap-[12px]">
+                        <h1>تأكيد كلمة المرور الجديدة</h1>
+                        <PasswordInput placeHolder="ادخل كلمة المرور الجديدة"/>
+                    </div>
+                    <ConfirmButton text="حفظ التغييرات"  className="text-white rounded-md w-[140px]"/>
                 </div>
             </div>
 
