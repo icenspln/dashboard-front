@@ -45,20 +45,21 @@ export const defaultColumns = [
     cell: (info) => info?.getValue().length,
   }),
 
-  columnHelper.accessor("pricing", {
-    header: "الثمن الذي تم دفعه",
-    // cell: PricingButton,
-  }),
-  columnHelper.accessor("groups", {
-    header: "المجموع",
-    cell: (info) => info?.getValue().length,
-  }),
+  // columnHelper.accessor("pricing", {
+  //   header: "الثمن الذي تم دفعه",
+  //   // cell: PricingButton,
+  // }),
+  // columnHelper.accessor("groups", {
+  //   header: "المجموع",
+  //   cell: (info) => info?.getValue().length,
+  // }),
 
   // columnHelper.accessor("_id", {
   //   header: "الإعدادات",
   //   cell: (info) => <SettingsCell row={info.row.getAllCells()} />,
   // }),
   columnHelper.display({
+    header: "الإعدادات",
     id: "action",
     cell: (props) => <SettingsCell row={props.row.original} />,
   }),

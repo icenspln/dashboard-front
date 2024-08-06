@@ -23,10 +23,6 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   const [selectedOptions, setSelectedOptions] = useState<FilterOption[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    console.log(selectedOptions);
-  }, [selectedOptions]);
-
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
