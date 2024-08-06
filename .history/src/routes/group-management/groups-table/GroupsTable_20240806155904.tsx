@@ -6,66 +6,36 @@ import {
 import { defaultColumns } from "./core/columns/columns";
 import { motion } from "framer-motion";
 import { Group } from "./core/_models";
-import { useMemo, useRef, useState , useContext } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getGroups } from "./core/_requests";
 import data from "../groups-table/core/data.json"
-import { GroupsTableContext } from "./core/GroupsTableContext";
+import { GroupsTableContext } from "./core/GroupTableContext";
 
 export function GroupsTable() {
-
-  const { filter } = useContext(GroupsTableContext);
   const constraintsRef = useRef(null);
-  const [groups, setGroups] = useState<Group[]>([]);
-
-  //query functions
-  const { data, isLoading } = useQuery({
-    queryKey: ["getGroups", filter],
-    queryFn: () => getGroups(filter),
-    // enabled: filt
-  });
-
-  useMemo(() => {
-    if (data && !isLoading) {
-      setGroups(data.data);
-    }
-  }, [data, isLoading]);
+  const groupsData : Group = data
+//  const [groups, setGroups] = useState<Group[]>([]);
+//
+ // //query functions
+ // const { data, isLoading } = useQuery({
+ //   queryKey: ["getGroups"],
+ //   queryFn: getGroups,
+ // });
+//
+ // useMemo(() => {
+ //   if (data && !isLoading) {
+ //     setGroups(data.data);
+ //   }
+ // }, [data, isLoading]);
 
   // table functions
-
-  console.log(groups);
-
-    const groupsData : Group = data
-
   const table = useReactTable({
     columns: defaultColumns,
-    // data: groups,
-    data:groups,
+    //data: groups,
+    data : groupsData,
     getCoreRowModel: getCoreRowModel(),
   });
-//   const constraintsRef = useRef(null);
-//   const groupsData : Group = data
-// //  const [groups, setGroups] = useState<Group[]>([]);
-// //
-//  // //query functions
-//  // const { data, isLoading } = useQuery({
-//  //   queryKey: ["getGroups"],
-//  //   queryFn: getGroups,
-//  // });
-// //
-//  // useMemo(() => {
-//  //   if (data && !isLoading) {
-//  //     setGroups(data.data);
-//  //   }
-//  // }, [data, isLoading]);
-
-//   // table functions
-//   const table = useReactTable({
-//     columns: defaultColumns,
-//     //data: groups,
-//     data : groupsData,
-//     getCoreRowModel: getCoreRowModel(),
-//   });
   return (
     <div
       ref={constraintsRef}

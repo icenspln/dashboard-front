@@ -16,31 +16,25 @@ export function GroupsTable() {
 
   const { filter } = useContext(GroupsTableContext);
   const constraintsRef = useRef(null);
-  const [groups, setGroups] = useState<Group[]>([]);
+  const [students, setStudents] = useState<Group[]>([]);
 
   //query functions
   const { data, isLoading } = useQuery({
-    queryKey: ["getGroups", filter],
+    queryKey: ["getStudents", filter],
     queryFn: () => getGroups(filter),
     // enabled: filt
   });
 
   useMemo(() => {
     if (data && !isLoading) {
-      setGroups(data.data);
+      setStudents(data.data);
     }
   }, [data, isLoading]);
 
   // table functions
-
-  console.log(groups);
-
-    const groupsData : Group = data
-
   const table = useReactTable({
     columns: defaultColumns,
-    // data: groups,
-    data:groups,
+    data: students,
     getCoreRowModel: getCoreRowModel(),
   });
 //   const constraintsRef = useRef(null);

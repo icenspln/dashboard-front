@@ -33,8 +33,6 @@ export function GroupsTable() {
 
   // table functions
 
-  console.log(groups);
-
     const groupsData : Group = data
 
   const table = useReactTable({

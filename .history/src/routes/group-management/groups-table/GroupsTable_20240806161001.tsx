@@ -33,14 +33,12 @@ export function GroupsTable() {
 
   // table functions
 
-  console.log(groups);
-
     const groupsData : Group = data
 
   const table = useReactTable({
     columns: defaultColumns,
     // data: groups,
-    data:groups,
+    data:groupsData,
     getCoreRowModel: getCoreRowModel(),
   });
 //   const constraintsRef = useRef(null);

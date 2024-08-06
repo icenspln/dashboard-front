@@ -37,25 +37,20 @@ export const defaultColumns = [
     header: "الأستاذ",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("currentNumberOfStudents", {
+  columnHelper.accessor("level", {
     header: "عدد المسجلين",
     cell: (info) => info.getValue(),
   }),
-  // columnHelper.accessor("level", {
-  //   header: "تاريخ البداية",
-  //   cell: (info) => info.getValue(),
-  // }),
-  // columnHelper.accessor("level", {
-  //   header: "عدد الحصص الكلية",
-  //   cell: (info) => info.getValue(),
-  // }),
-  columnHelper.display({
-    header: "الإعدادات",
-    id: "action",
-    cell: (props) => <SettingsCell row={props.row.original} />,
+  columnHelper.accessor("level", {
+    header: "تاريخ البداية",
+    cell: (info) => info.getValue(),
   }),
-  // columnHelper.accessor("level", {
-  //   header: "الإعدادات",
-  //   cell: () => <SettingsCell />,
-  // }),
+  columnHelper.accessor("level", {
+    header: "عدد الحصص الكلية",
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("level", {
+    header: "الإعدادات",
+    cell: () => <SettingsCell />,
+  }),
 ];

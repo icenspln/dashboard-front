@@ -4,7 +4,7 @@ import { GroupsTable } from "./groups-table/GroupsTable";
 import SearchBar from "../../components/SearchBar";
 import { FilterButton, ColumnSelection } from "../../components/ButtonFilter";
 import ExcelSvg from "../../assets/icons/ExcelSvg";
-import { GroupsTableContextProvider } from "./groups-table/core/GroupsTableContext";
+import { GroupsTableContextProvider } from "./students-table/core/GroupsTableContext";
 
 const ModuleSelectionOptions = [
   { id: 1, label: "الرياضيات" },
@@ -57,7 +57,7 @@ const ColumnSelectionOptions = [
 
 export default function GroupManagement() {
   return (
-<GroupsTableContextProvider>
+
     <section className="w-full min-h-screen p-4 bg-mainBg">
       <div className="flex justify-between items-center mb-4">
         <div className=" flex gap-[12px]">
@@ -77,6 +77,5 @@ export default function GroupManagement() {
       </div>
       <GroupsTable />
     </section>
-    </GroupsTableContextProvider>
   );
 }

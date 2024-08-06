@@ -20,7 +20,7 @@ export function GroupsTable() {
 
   //query functions
   const { data, isLoading } = useQuery({
-    queryKey: ["getGroups", filter],
+    queryKey: ["getStudents", filter],
     queryFn: () => getGroups(filter),
     // enabled: filt
   });
@@ -32,15 +32,9 @@ export function GroupsTable() {
   }, [data, isLoading]);
 
   // table functions
-
-  console.log(groups);
-
-    const groupsData : Group = data
-
   const table = useReactTable({
     columns: defaultColumns,
-    // data: groups,
-    data:groups,
+    data: groups,
     getCoreRowModel: getCoreRowModel(),
   });
 //   const constraintsRef = useRef(null);

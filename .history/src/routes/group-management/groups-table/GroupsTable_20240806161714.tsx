@@ -33,8 +33,6 @@ export function GroupsTable() {
 
   // table functions
 
-  console.log(groups);
-
     const groupsData : Group = data
 
   const table = useReactTable({
@@ -102,7 +100,7 @@ export function GroupsTable() {
             );
           })}
         </thead>
-        <tbody>
+        {/* <tbody>
           {table.getRowModel().rows.map((row) => (
             <tr
               className="border-b border-b-light last:border-none"
@@ -120,7 +118,7 @@ export function GroupsTable() {
               })}
             </tr>
           ))}
-        </tbody>
+        </tbody> */}
       </motion.table>
     </div>
   );
