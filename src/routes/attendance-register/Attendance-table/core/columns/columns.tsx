@@ -40,6 +40,10 @@ export const studentPaymentColumns = [
     header: "الثمن الذي يجب دفعه",
     cell: PricingButton,
   }),
+  columnHelper.accessor("level", {
+    header: "الديون",
+    cell: PricingButton,
+  }),
   
   columnHelper.accessor("level", {
     header: "المجموع",

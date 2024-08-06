@@ -22,11 +22,11 @@ import {
     });
   
     return (
-      <div className="max-w-4xl w-[637px] mt-10 border border-[#E2E8F0] rounded-xl ">
+      <div className=" w-[637px] mt-10 border border-[#E2E8F0] rounded-xl ">
       <div className=" rounded-xl  overflow-hidden">
         <div className="bg-gray-100 ">
           {table.getHeaderGroups().map((headerGroup) => (
-            <div key={headerGroup.id} className="grid grid-cols-3  text-gray-400">
+            <div key={headerGroup.id} className="grid grid-cols-4  text-gray-400">
               {headerGroup.headers.map((header) => (
                 <div key={header.id} className="text-center py-2">
                   {flexRender(
@@ -38,7 +38,7 @@ import {
             </div>
           ))}
           {table.getRowModel().rows.map((row) => (
-            <div key={row.id} className="grid grid-cols-3  py-2">
+            <div key={row.id} className="grid grid-cols-4  py-2">
               {row.getVisibleCells().map((cell) => (
                 <div key={cell.id} className="text-center  flex justify-center align-center">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
