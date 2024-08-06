@@ -3,20 +3,18 @@
 
 type ConfirmButtonType = {
   text: string;
-  textColor:string;
-  color?: string;
+  className?:string;
   onClick?:() =>void;
   
 }
 export default function ConfirmButton ({ 
   text,
-  textColor ='text-white',
-   color,
-    onClick,
+  onClick,
+  className = '',
    }:ConfirmButtonType)  {
   return (
     <button
-      className={`${textColor} py-2 px-4 rounded-full ${color} hover:bg-opacity-80 transition-colors duration-300 min-w-[157px] h-[38px] `}
+      className={`  py-2 px-4 rounded-full  bg-blue hover:bg-opacity-80 transition-colors duration-300 w-[157px] h-[38px] ${className}`}
       onClick={onClick}
     >
       {text}
