@@ -24,8 +24,8 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({ onC
 
         
         <span className='flex justify-center gap-[12px]'>
-        <ConfirmButton text='تسجيل التغييرات' color='bg-blue' textColor='text-white'/>
-        <ConfirmButton text='إضافة طالب جديد' color='bg-grayBlue' textColor='text-blue'/>
+        <ConfirmButton text='تسجيل التغييرات'className='text-white hover:bg-grayBlue hover:text-blue hover:outline-blue' />
+        <ConfirmButton text='إضافة طالب جديد' className='text-blue bg-gray-100 hover:bg-blue hover:text-white'/>
         </span>
       </>
     </Overlay>

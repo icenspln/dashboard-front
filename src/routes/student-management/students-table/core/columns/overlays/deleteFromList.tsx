@@ -15,7 +15,7 @@ const DeleteFromListOverlay: React.FC<DeleteFromListOverlayProps> = ({ onClose }
         <h1 className="text-xl "> هل أنت متأكد من أنك تريد حذف هذا المستخدم </h1>
         <p className='text-gray-500'>لا يمكنك استعادة حساب هذا المستخدم بعد الحذف</p>
         <span className='flex justify-center '>
-            <ConfirmButton text="تأكيد الحذف" color="bg-red-400" textColor='text-white'/>
+            <ConfirmButton text="تأكيد الحذف" className="text-white bg-red-400 w-[127px]" />
         </span>
         </div>
         

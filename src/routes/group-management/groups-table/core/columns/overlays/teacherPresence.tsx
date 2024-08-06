@@ -44,8 +44,8 @@ export default function TeacherPresence({onClose}:TeacherPresenceProps){
           <span className="flex justify-center">
               <ConfirmButton
                 text="تسجيل التغييرات"
-                textColor="text-white"
-                color="bg-blue"
+                className="text-white"
+                
               />
           </span>
         </>

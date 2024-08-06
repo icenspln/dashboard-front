@@ -16,7 +16,7 @@ export default function ChangeStudentCardOverlay({onClose}:ChangeStudentCardOver
                     <p className="text-gray-400 mt-3">يمكن اللآن الطالب الدخول للمؤسسة</p>
                 </span>
                 <SuccessSignSvg/>
-                <ConfirmButton text="العودة الى قائمة المسجلين" color="bg-blue" textColor="text-white"/>
+                <ConfirmButton text="العودة إلى قائمة المسجلين" className="text-white"/>
             </div>
             </>
         </Overlay>

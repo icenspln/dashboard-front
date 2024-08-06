@@ -56,7 +56,7 @@ import {
             placeholder="2000 دج"
             
           />
-          <ConfirmButton text="تسجيل دفع جديد" color="bg-blue" textColor="text-white"/>
+          <ConfirmButton text="تسجيل دفع جديد" className="min-w-[157px] text-white"/>
         </div>
       </div>
     </div>

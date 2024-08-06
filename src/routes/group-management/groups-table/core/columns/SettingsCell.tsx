@@ -16,7 +16,7 @@ export default function SettingsCell() {
   const options = [
     { label: "تعديل المعلومات", action: () => {} },
     { label: "حذف الفوج", action: () => setActiveOverlay("deleteGroup") },
-    { label: "إضافة حصة إضافية", action: () =>  setActiveOverlay("addNewSession")},
+    { label: "إدراج حصة إضافية", action: () =>  setActiveOverlay("addNewSession")},
     { label: "رؤية قائمة الحضور", action: () => navigate("/groupspresencemanagement") },
     { label: "رؤية قائمة المسجلين", action: () => setActiveOverlay("registredStudents") },
     { label: "حضور / غياب الأستاذ", action: () => setActiveOverlay("teacherPresence") },
