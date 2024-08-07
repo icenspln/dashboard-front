@@ -1,0 +1,28 @@
+[
+    {
+       
+        "groupId": 1,
+        "studentName":"أحمد الشقيري",
+        "pricing": "200",
+        "dayOfWeek": "الإثنين",
+        "date": "2024/09/18",
+        "time": "13:00",
+        "phoneNumber":"85 45 32 550"
+        
+        
+        
+        
+    },
+    {
+       
+        "groupId": 2,
+        "studentName":"أحمد الشقيري",
+        "pricing": "200",
+        "dayOfWeek": "السبت",
+        "date": "2024/09/18",
+        "time": "13:00",
+        "phoneNumber":"85 45 32 550"
+        
+    }
+  
+]
