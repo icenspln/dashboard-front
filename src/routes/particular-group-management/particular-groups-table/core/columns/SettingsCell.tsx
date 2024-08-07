@@ -1,13 +1,20 @@
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import DeleteParticularGroupOverlay from "./overlays/deleteParticularGroup";
+import RegistredStudentsOverlay from "./overlays/registredStudentsList";
 
 export default function SettingsCell() {
+  const [activeOverlay, SetActiveOverlay] =useState< string | null>(null)
+  const navigate = useNavigate()
   const options = [
     { label: "تعديل المعلومات", action: () => {} },
-    { label: "حذف من القائمة", action: () => {} },
-    { label: "رؤية الأفواج الحالية", action: () => {} },
-    { label: "تغيير الفوج", action: () => {} },
+    { label: "حذف الفوج", action: () => SetActiveOverlay("deleteParticularGroup") },
+    { label: "رؤية قائمة الحضور", action: () => {} },
+    { label: "رؤية قائمة المسجلين", action: () => SetActiveOverlay("registredStudentsList") },
   ];
+  const closeOverlay = () => SetActiveOverlay(null)
   return (
     <div>
       <Popup
@@ -43,6 +50,8 @@ export default function SettingsCell() {
             </button>
           ))}
         </div>
+        {activeOverlay === "deleteParticularGroup" && <DeleteParticularGroupOverlay onClose={closeOverlay}/>}
+        {activeOverlay === "registredStudentsList" && <RegistredStudentsOverlay onClose={closeOverlay}/>}
       </Popup>
     </div>
   );
