@@ -7,6 +7,7 @@ import {
   Signal,
   Student,
 } from "../../assets/icons";
+import BriefCase from "../../assets/icons/BriefCaseSvg";
 import ButtonPrimary from "../../components/ButtonPrimary";
 import ButtonSecondary from "../../components/ButtonSecondary";
 import { BLUE, DISABLEDGRAY } from "../../GLOBALS";
@@ -66,6 +67,20 @@ export default function Root() {
                         isActive={isActive}
                       >
                         <Bookmark fill={isActive ? BLUE : DISABLEDGRAY} />
+                      </ButtonSecondary>
+                    </>
+                  )}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={`/employeemanagement`}>
+                  {({ isActive }) => (
+                    <>
+                      <ButtonSecondary
+                        text="تسيير حضور العمال"
+                        isActive={isActive}
+                      >
+                        <BriefCase fill={isActive ? BLUE : DISABLEDGRAY} />
                       </ButtonSecondary>
                     </>
                   )}
