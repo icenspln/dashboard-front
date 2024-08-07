@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getStudents } from "./core/_requests";
 import { StudentsTableContext } from "./core/StudentsTableContext";
 import { defaultColumns } from "./columns/columns";
+import { StudentGroupModal } from "./student-group-modal/StudentGroupModal";
 
 function StudentsTable() {
   const { filter } = useContext(StudentsTableContext);
@@ -92,7 +93,7 @@ function StudentsTable() {
           ))}
         </tbody>
       </motion.table>
-      {/* <StudentDeleteModal /> */}
+      <StudentGroupModal />
     </div>
   );
 }

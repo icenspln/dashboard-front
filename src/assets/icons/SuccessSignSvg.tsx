@@ -17,7 +17,7 @@ export default function SuccessSignSvg() {
       <path
         d="M80 114C88.6667 124.167 98.5 132.5 98.5 132.5C98.5 132.5 121.167 109.667 142 89"
         stroke="white"
-        stroke-width="12"
+        strokeWidth="12"
         strokeLinecap="round"
       />
       <defs>

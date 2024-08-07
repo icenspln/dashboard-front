@@ -10,7 +10,7 @@ export default function DeleteSvg() {
       <path
         d="M1 1.55286L7.89429 8.44715"
         stroke="#F25959"
-        stroke-width="2"
+        strokeWidth="2"
         strokeLinecap="round"
       />
       <path

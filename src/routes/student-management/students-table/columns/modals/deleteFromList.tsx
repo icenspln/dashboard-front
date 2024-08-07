@@ -1,6 +1,6 @@
 import React from "react";
-import { Overlay } from "../../../../../../components/Overlay";
 import ConfirmButton from "./Popup-menu-component/confirmButton";
+import { Overlay } from "../../../../../components/Overlay";
 
 interface DeleteFromListOverlayProps {
   onClose: () => void;
