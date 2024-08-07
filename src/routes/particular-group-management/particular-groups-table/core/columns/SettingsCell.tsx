@@ -11,7 +11,7 @@ export default function SettingsCell() {
   const options = [
     { label: "تعديل المعلومات", action: () => {} },
     { label: "حذف الفوج", action: () => SetActiveOverlay("deleteParticularGroup") },
-    { label: "رؤية قائمة الحضور", action: () => {} },
+    { label: "رؤية قائمة الحضور", action: () => navigate('/particulargroupspresencemanagement') },
     { label: "رؤية قائمة المسجلين", action: () => SetActiveOverlay("registredStudentsList") },
   ];
   const closeOverlay = () => SetActiveOverlay(null)
