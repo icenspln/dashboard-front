@@ -18,8 +18,35 @@ export default function StudentRegisterForm() {
       <form action="" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex items-center gap-7 mb-7">
           <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="firstName" className="text-blueDark">
-              اليوم-(يعاد كل أسبوع)
+            <label htmlFor="" className="text-blueDark">
+            اسم الحصة
+            </label>
+            <input
+              {...register("moduleName")}
+              className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
+              placeholder="ادخل اسم الحصة"
+              name=""
+              id=""
+            />
+             
+           
+          </article>
+          <article className="flex flex-col gap-2 w-full">
+            <label htmlFor="" className="text-blueDark">
+              القاعة
+            </label>
+            <input
+              {...register("classRoom")}
+              type="text"
+              className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
+              placeholder="1"
+            />
+          </article>
+        </div>
+        <div className="flex items-center gap-7 mb-7">
+          <article className="flex flex-col gap-2 w-full">
+            <label htmlFor="">
+              اليوم
             </label>
             <select
               {...register("day")}
@@ -36,13 +63,14 @@ export default function StudentRegisterForm() {
               <option value="7">الجمعة</option>
             </select>
           </article>
+
           <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="lastName" className="text-blueDark">
+            <label htmlFor="">
               الوقت
             </label>
             <input
               {...register("time")}
-              type="text"
+              type="time"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               placeholder="08:00"
             />
@@ -51,7 +79,7 @@ export default function StudentRegisterForm() {
 
         <div className="flex items-center gap-7 mb-7">
           <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="phoneNumber" className="text-blueDark">
+            <label htmlFor="" className="text-blueDark">
               الأستاذ
             </label>
             <select
@@ -71,34 +99,27 @@ export default function StudentRegisterForm() {
             <label htmlFor="moduleName" className="text-blueDark">
               المادة
             </label>
-            <input
+            <select
               {...register("moduleName")}
-              type="text"
-              className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              placeholder=""
-            />
+              className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
+              name=""
+              id=""
+            >
+              <option value="1">الرياضيات</option>
+              <option value="2">اللغة العربية</option>
+              <option value="3">اللغة الفرنسية</option>
+              <option value="4">اللغة الإنجليزية</option>
+              <option value="5">التربية المدنية</option>
+              <option value="6">التربية الإسلامية</option>
+              <option value="7">التربية العلمية</option>
+              <option value="8">التاريخ و الجغرافيا</option>
+            </select>
           </article>
         </div>
 
         <div className="flex items-center gap-7 mb-7">
           <article className="flex flex-col gap-2 w-full">
             <label className="text-blueDark" htmlFor="level">
-              السنة
-            </label>
-            <select
-              {...register("level")}
-              className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              name=""
-              id=""
-            >
-              <option value="1">الأولى</option>
-              <option value="2">الثانية</option>
-              <option value="3">الثالثة</option>
-              <option value="4">الرابعة</option>
-            </select>
-          </article>
-          <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="institution" className="text-blueDark">
               المستوى
             </label>
             <select
@@ -112,9 +133,37 @@ export default function StudentRegisterForm() {
               <option value="الثانوي">الثانوي</option>
             </select>
           </article>
+          <article className="flex flex-col gap-2 w-full">
+            <label htmlFor="institution" className="text-blueDark">
+              السنة
+            </label>
+           
+            <select
+              {...register("level")}
+              className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
+              name=""
+              id=""
+            >
+              <option value="1">الأولى</option>
+              <option value="2">الثانية</option>
+              <option value="3">الثالثة</option>
+              <option value="4">الرابعة</option>
+            </select>
+          </article>
         </div>
 
         <div className="flex items-center gap-7 mb-7 ">
+          <article className="flex flex-col gap-2 w-full">
+            <label className="text-blueDark" htmlFor="level">
+              عدد الحصص
+            </label>
+            <input
+              {...register("price")}
+              type="text"
+              className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
+              placeholder="1"
+            />
+          </article>
           <article className="flex flex-col gap-2 w-full">
             <label className="text-blueDark" htmlFor="level">
               الثمن
@@ -123,18 +172,7 @@ export default function StudentRegisterForm() {
               {...register("price")}
               type="text"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              placeholder="2000"
-            />
-          </article>
-          <article className="flex flex-col gap-2 w-full">
-            <label className="text-blueDark" htmlFor="level">
-              القاعة
-            </label>
-            <input
-              {...register("classRoom")}
-              type="text"
-              className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              placeholder="1"
+              placeholder="2000 دج"
             />
           </article>
         </div>
