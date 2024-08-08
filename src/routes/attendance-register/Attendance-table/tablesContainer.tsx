@@ -17,7 +17,7 @@ export default function TablesContainer(){
         <CardlessRegister />
       </div>
     </div>
-    <div >
+    <div className="w-full">
       <Notifications />
     </div>
   </div>
