@@ -1,7 +1,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { Teacher } from "../_models";
 import SettingsCell from "./SettingsCell";
-import BirthDateCell from "./BirthDateCell";
 
 const columnHelper = createColumnHelper<Teacher>();
 
@@ -18,39 +17,23 @@ export const defaultColumns = [
     header: "اللقب",
     cell: (info) => info.getValue(),
   }),
-   columnHelper.accessor("domain", {
-     header: "المادة",
-     cell: (info) => info.getValue(),
-   }),
-   columnHelper.accessor("institution", {
-     header: "المستوى",
-     cell: (info) => info.getValue(),
-   }),
-   columnHelper.accessor("level", {
-     header: "تاريخ التسجيل",
-     cell: (info) => info.getValue(),
-   }),
-   columnHelper.accessor("phoneNumber", {
-     header: "رقم الهاتف",
-     cell: (info) => info.getValue(),
-   }),
-  
-   columnHelper.accessor("level", {
-     header: "عدد الأفواج الكلية",
-     cell: (info) => info.getValue(),
-   }),
-   columnHelper.accessor("level", {
-     header: "عدد الأفواج الحالية",
-     cell: (info) => info.getValue(),
-   }),
-  // columnHelper.accessor("level", {
-  //   header: "الرواتب المدفوعة",
-  //   cell: (info) => info.getValue(),
-  // }),
-  // columnHelper.accessor("level", {
-  //   header: "راتب الشهر الحالي",
-  //   cell: (info) => info.getValue(),
-  // }),
+  columnHelper.accessor("birthDate", {
+    header: "تاريخ الميلاد",
+    cell: (info) => new Date(info.getValue()).toLocaleDateString(),
+  }),
+  columnHelper.accessor("phoneNumber", {
+    header: "رقم الهاتف",
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("modules", {
+    header: "المادة",
+    cell: (info) => `${info.getValue().join(",")}`,
+  }),
+
+  columnHelper.accessor("numberOfGroups", {
+    header: "عدد الأفواج الكلية",
+    cell: (info) => info.getValue(),
+  }),
   columnHelper.display({
     header: "الإعدادات",
     cell: () => <SettingsCell />,
