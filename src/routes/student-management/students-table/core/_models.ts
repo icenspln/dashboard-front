@@ -1,3 +1,5 @@
+import { Group } from "../student-group-modal/core/_model";
+
 export type Student = {
   _id: string;
   studentId: number;
@@ -11,7 +13,7 @@ export type Student = {
   createdAt: Date;
   level: number;
   __v?: number;
-  groups: any[];
+  groups: Group[];
   pricing: string;
 };
 

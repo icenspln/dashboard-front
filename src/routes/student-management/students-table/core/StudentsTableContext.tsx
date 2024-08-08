@@ -1,51 +1,68 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { createContext } from "react";
 import { Student } from "./_models";
 
+export type StudentState = Student | null;
+
 type StudentsTableContext = {
-  updateModal: boolean;
-  setUpdateModal: Dispatch<SetStateAction<boolean>>;
   filterState: {
     searchBar: string;
     institution: string[];
+    level: string[];
   };
-  setFilterState: Dispatch<SetStateAction<any>>;
+  setFilterState: Dispatch<
+    SetStateAction<{
+      searchBar: string;
+      institution: string[];
+      level: string[];
+    }>
+  >;
   filter: string;
-  setFilter: Dispatch<SetStateAction<any>>;
+  setFilter: Dispatch<SetStateAction<string>>;
   groupModal: boolean;
-  setGroupModal: Dispatch<SetStateAction<any>>;
-  selectedStudent: Student | undefined;
-  setSelectedStudent: Dispatch<SetStateAction<any>>;
+  setGroupModal: Dispatch<SetStateAction<boolean>>;
+  selectedStudent: StudentState;
+  setSelectedStudent: Dispatch<SetStateAction<StudentState>>;
 };
 
-export const StudentsTableContext = createContext({
-  updateModal: false,
-  setUpdateModal: (a: any) => a,
+export const StudentsTableContext = createContext<StudentsTableContext>({
   filterState: {
     searchBar: "",
     institution: [""],
     level: [],
   },
-  setFilterState: (a: any) => a,
+  setFilterState: () => {}, // Correctly typed empty function
   filter: "",
-  setFilter: (a: any) => a,
+  setFilter: () => {}, // Correctly typed empty function
   groupModal: false,
-  setGroupModal: (a: any) => a,
-  selectedStudent: undefined,
-  setSelectedStudent: (a: any) => a,
+  setGroupModal: () => {}, // Correctly typed empty function
+  selectedStudent: null,
+  setSelectedStudent: () => {}, // Correctly typed empty function
 });
 
-export function StudentsTableContextProvider({ children }: { children: any }) {
-  const [updateModal, setUpdateModal] = useState(false);
-  const [filter, setFilter] = useState("");
-  const [filterState, setFilterState] = useState({
+export function StudentsTableContextProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const [filter, setFilter] = useState<string>("");
+  const [filterState, setFilterState] = useState<{
+    searchBar: string;
+    institution: string[];
+    level: string[];
+  }>({
     searchBar: "",
     institution: [""],
     level: [],
   });
 
-  const [selectedStudent, setSelectedStudent] = useState();
-  const [groupModal, setGroupModal] = useState(false);
+  const [groupModal, setGroupModal] = useState<boolean>(false);
 
   useEffect(() => {
     let institution = `institution=${filterState.institution.join(",")}`;
@@ -56,20 +73,20 @@ export function StudentsTableContextProvider({ children }: { children: any }) {
     if (filterState.institution.length > 0) url += "&" + institution;
     if (filterState.level.length > 0) url += "&" + level;
     setFilter(url);
-    console.log("triggered", url);
   }, [filterState]);
+
+  const [selectedStudent, setSelectedStudent] = useState<StudentState>(null);
+
   return (
     <StudentsTableContext.Provider
       value={{
-        updateModal,
-        setUpdateModal,
         filterState,
         setFilterState,
-        filter,
         setFilter,
+        filter,
+        groupModal,
         selectedStudent,
         setSelectedStudent,
-        groupModal,
         setGroupModal,
       }}
     >

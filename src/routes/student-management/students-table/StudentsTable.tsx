@@ -13,13 +13,7 @@ import { defaultColumns } from "./columns/columns";
 import { StudentGroupModal } from "./student-group-modal/StudentGroupModal";
 
 function StudentsTable() {
-  const {
-    filter,
-    setGroupModal,
-    groupModal,
-    setSelectedStudent,
-    selectedStudent,
-  } = useContext(StudentsTableContext);
+  const { filter, groupModal } = useContext(StudentsTableContext);
   const constraintsRef = useRef(null);
   const [students, setStudents] = useState<Student[]>([]);
 
@@ -27,6 +21,7 @@ function StudentsTable() {
   const { data, isLoading } = useQuery({
     queryKey: ["getStudents", filter],
     queryFn: () => getStudents(filter),
+
     // enabled: filt
   });
 

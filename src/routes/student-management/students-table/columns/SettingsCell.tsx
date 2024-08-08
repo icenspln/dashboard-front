@@ -10,7 +10,7 @@ export default function SettingsCell({ row }: { row: any }) {
   const { setSelectedStudent, setGroupModal } =
     useContext(StudentsTableContext);
 
-  const changeGroup = () => {
+  const setStudent = () => {
     setSelectedStudent(row);
     setGroupModal(true);
   };
@@ -36,7 +36,9 @@ export default function SettingsCell({ row }: { row: any }) {
                     </Link>
                   </li>
                   <li>رؤية الأفواج الحالية</li>
-                  <li onClick={changeGroup}>تغيير الفوج</li>
+                  <li className="cursor-pointer" onClick={setStudent}>
+                    تغيير الفوج
+                  </li>
                   <li>تغيير البطاقة</li>
                 </ul>
               </article>
