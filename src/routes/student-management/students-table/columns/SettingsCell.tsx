@@ -25,24 +25,27 @@ export default function SettingsCell({ row }: { row: any }) {
             <DotsSvg />
           </button>
           {settings && (
-            <>
-              <article className="absolute bg-white rounded z-10 shadow-lg p-3">
-                <ul className="flex flex-col gap-3 ">
-                  <li>
-                    <Link
-                      to={`/studentmanagement/edit/${row._id}?firstName=${row.firstName}&lastName=${row.lastName}&phoneNumber=${row.phoneNumber}&guardianPhoneNumber=${row.guardianPhoneNumber}&birthDate=${row.birthDate}&institution=${row.institution}&level=${row.level}&speciality=${row.speciality}`}
-                    >
-                      تعديل المعلومات
-                    </Link>
-                  </li>
-                  <li>رؤية الأفواج الحالية</li>
-                  <li className="cursor-pointer" onClick={setStudent}>
-                    تغيير الفوج
-                  </li>
-                  <li>تغيير البطاقة</li>
-                </ul>
+            <div className="">
+              <article className="grid gap-1 absolute bg-white rounded z-10 shadow-lg p-1 text-lg">
+                <Link
+                  to={`/studentmanagement/edit/${row._id}?firstName=${row.firstName}&lastName=${row.lastName}&phoneNumber=${row.phoneNumber}&guardianPhoneNumber=${row.guardianPhoneNumber}&birthDate=${row.birthDate}&institution=${row.institution}&level=${row.level}&speciality=${row.speciality}`}
+                >
+                  <button className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded hover:bg-gray-200">
+                    تعديل المعلومات
+                  </button>
+                </Link>
+                <button className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded hover:bg-gray-200">
+                  رؤية الأفواج الحالية
+                </button>
+
+                <button
+                  onClick={setStudent}
+                  className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
+                >
+                  تغيير الفوج
+                </button>
               </article>
-            </>
+            </div>
           )}
         </div>
       </div>
