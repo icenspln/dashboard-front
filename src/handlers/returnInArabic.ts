@@ -1,3 +1,5 @@
+import { Group } from "../routes/group-management/groups-table/core/_models";
+
 export function returnInstitutionInAR(inst: string) {
   switch (inst) {
     case "primarySchoo":
@@ -28,4 +30,15 @@ export function returnLevelInAR(level: number) {
       return "الخامسة";
       break;
   }
+}
+
+export function returnGroupLabel({
+  module,
+  institution,
+  level,
+  responsibleTeacher,
+  dayOfWeek,
+  timing,
+}: Group) {
+  return `${module} | ${institution} ${level} | ${responsibleTeacher.firstName + " " + responsibleTeacher.lastName} | ${dayOfWeek} - ${timing.hour}:${timing.minute}`;
 }

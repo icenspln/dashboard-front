@@ -1,3 +1,5 @@
+import { Teacher } from "../../../../teacher-management/teacher-table/core/_models";
+
 export type Group = {
   __v: number;
   _id: string;
@@ -10,7 +12,7 @@ export type Group = {
   maxNumberOfStudents: 20;
   module: string;
   pricing: number;
-  responsibleTeacher: any;
+  responsibleTeacher: Teacher;
   roomNumber: number;
   timing: { hour: number; minute: number; _id: string };
 };

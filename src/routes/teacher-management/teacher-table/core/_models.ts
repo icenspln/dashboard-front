@@ -5,8 +5,7 @@ export type Teacher = {
   lastName: string;
   birthDate: Date;
   phoneNumber: string;
-  domain?: string;
-  institution?: string;
-  level?: number;
+  domain?: string[];
+  numberOfGroups: number;
   __v: 0;
 };

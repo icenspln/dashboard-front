@@ -1,3 +1,5 @@
+import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
+
 export type Group = {
   groupId: number;
   dayOfWeek: string;
@@ -5,7 +7,7 @@ export type Group = {
     hour: number;
     minute: number;
   };
-  responsibleTeacher: string;
+  responsibleTeacher: Teacher;
   module: string;
   institution: string | "primarySchool" | "middleSchool" | "highSchool";
   level: number;

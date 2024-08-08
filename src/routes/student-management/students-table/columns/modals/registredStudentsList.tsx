@@ -1,29 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ConfirmButton from "./Popup-menu-component/confirmButton";
 import SelectGroup from "./Popup-menu-component/PresentStudentsList";
 import { Overlay } from "../../../../../components/Overlay";
 import Select from "react-select";
-import { useQuery } from "@tanstack/react-query";
-import { getGroups } from "../../student-group-modal/core/_requests";
-import { Group } from "../../student-group-modal/core/_model";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
-  returnInstitutionInAR,
-  returnLevelInAR,
-} from "../../../../../handlers/returnInArabic";
+  assignStudentToGroup,
+  getGroups,
+} from "../../student-group-modal/core/_requests";
+import { Group } from "../../student-group-modal/core/_model";
+import { returnGroupLabel } from "../../../../../handlers/returnInArabic";
+import toast from "react-hot-toast";
+import { StudentsTableContext } from "../../core/StudentsTableContext";
 
 interface RegistredStudentsOverlayProps {
   onClose: () => void;
 }
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
-
 const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
   onClose,
 }) => {
+  const { setGroupModal, setSelectedStudent } =
+    useContext(StudentsTableContext);
   const [reactSelectOptions, setReactSelectOptions] = useState<
     {
       value: string;
@@ -37,17 +35,40 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
   });
 
   useEffect(() => {
-    if (data) {
+    if (data && !error && !isPending) {
       const arr = data.map((group) => {
         return {
-          value: `group.groupId`,
-          label: `${group.module}, ${group.level}, ${group.institution}, ${group.responsibleTeacher.firstName + " " + group.responsibleTeacher.lastName}`,
+          value: `${group._id}`,
+          label: `${returnGroupLabel(group)}`,
         };
       });
       setReactSelectOptions(arr);
     }
-  }, [data]);
+    if (error) setReactSelectOptions([{ label: "خطأ", value: "" }]);
+  }, [data, isPending, error]);
 
+  const onSubmitGroups = () => {
+    const group = reactSelectOptions[0];
+    mutation.mutate({
+      groupId: group.value,
+      studentId: "66b260ca961cd35fbe4c4080",
+    });
+  };
+
+  const mutation = useMutation({
+    mutationFn: ({ groupId, studentId }: any) =>
+      assignStudentToGroup(groupId, studentId),
+    onSuccess: () => {
+      toast.success("تم تسجيل الطالب بنجاح");
+      setGroupModal(false);
+      setSelectedStudent(undefined);
+    },
+    onError: () => {
+      toast.error("حدث خطأ ما");
+      setGroupModal(false);
+      setSelectedStudent(undefined);
+    },
+  });
   return (
     <Overlay onClose={onClose}>
       <>
@@ -63,27 +84,28 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
                     id={i}
                     key={i}
                     onDelete={() => {}}
-                    label={`${group.module} | ${returnLevelInAR(group.level)} ${returnInstitutionInAR(group.institution)} | ${group.responsibleTeacher.firstName + " " + group.responsibleTeacher.lastName} | ${group.dayOfWeek}-${group.timing.hour}`}
+                    label={returnGroupLabel(group)}
                   />
                 ))}
               </>
             )}
+            {error && <span>خطأ</span>}
           </div>
         </div>
 
         <div className="my-10">
-          <Select className="" isMulti options={reactSelectOptions} />
+          <Select
+            className="max-w-[553px]"
+            isMulti
+            options={reactSelectOptions}
+          />
         </div>
         <span className="flex justify-center gap-[12px]">
           <ConfirmButton
             text="تسجيل التغييرات"
             color="bg-blue"
             textColor="text-white"
-          />
-          <ConfirmButton
-            text="إضافة طالب جديد"
-            color="bg-grayBlue"
-            textColor="text-blue"
+            onClick={onSubmitGroups}
           />
         </span>
       </>

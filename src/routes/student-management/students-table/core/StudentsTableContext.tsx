@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { createContext } from "react";
+import { Student } from "./_models";
 
 type StudentsTableContext = {
   updateModal: boolean;
@@ -11,6 +12,10 @@ type StudentsTableContext = {
   setFilterState: Dispatch<SetStateAction<any>>;
   filter: string;
   setFilter: Dispatch<SetStateAction<any>>;
+  groupModal: boolean;
+  setGroupModal: Dispatch<SetStateAction<any>>;
+  selectedStudent: Student | undefined;
+  setSelectedStudent: Dispatch<SetStateAction<any>>;
 };
 
 export const StudentsTableContext = createContext({
@@ -24,6 +29,10 @@ export const StudentsTableContext = createContext({
   setFilterState: (a: any) => a,
   filter: "",
   setFilter: (a: any) => a,
+  groupModal: false,
+  setGroupModal: (a: any) => a,
+  selectedStudent: undefined,
+  setSelectedStudent: (a: any) => a,
 });
 
 export function StudentsTableContextProvider({ children }: { children: any }) {
@@ -34,6 +43,9 @@ export function StudentsTableContextProvider({ children }: { children: any }) {
     institution: [""],
     level: [],
   });
+
+  const [selectedStudent, setSelectedStudent] = useState();
+  const [groupModal, setGroupModal] = useState(false);
 
   useEffect(() => {
     let institution = `institution=${filterState.institution.join(",")}`;
@@ -55,6 +67,10 @@ export function StudentsTableContextProvider({ children }: { children: any }) {
         setFilterState,
         filter,
         setFilter,
+        selectedStudent,
+        setSelectedStudent,
+        groupModal,
+        setGroupModal,
       }}
     >
       {children}

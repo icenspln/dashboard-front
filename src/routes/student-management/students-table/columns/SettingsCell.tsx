@@ -1,33 +1,19 @@
 // import DotsSvg from "../../../../../assets/icons/DotsSvg";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DotsSvg from "../../../../assets/icons/DotsSvg";
 import { Link } from "react-router-dom";
+import { StudentsTableContext } from "../core/StudentsTableContext";
 
 export default function SettingsCell({ row }: { row: any }) {
   const [settings, setSettings] = useState(false);
 
-  //   __v: 0
-  // ​
-  // _id: "66afc285202b2643cff292f4"
-  // ​
-  // birthDate: "2024-08-14T00:00:00.000Z"
-  // ​
-  // firstName: "anoterh"
-  // ​
-  // ​
-  // guardianPhoneNumber: "43242343243"
-  // ​
-  // institution: "highSchool"
-  // ​
-  // lastName: "tes"
-  // ​
-  // level: 2
-  // ​
-  // phoneNumber: "43242343243"
-  // ​
-  // speciality: "تسيير و اقتصاد"
-  // ​
+  const { setSelectedStudent, setGroupModal } =
+    useContext(StudentsTableContext);
 
+  const changeGroup = () => {
+    setSelectedStudent(row);
+    setGroupModal(true);
+  };
   return (
     <div>
       <div>
@@ -50,7 +36,7 @@ export default function SettingsCell({ row }: { row: any }) {
                     </Link>
                   </li>
                   <li>رؤية الأفواج الحالية</li>
-                  <li>تغيير الفوج</li>
+                  <li onClick={changeGroup}>تغيير الفوج</li>
                   <li>تغيير البطاقة</li>
                 </ul>
               </article>
