@@ -6,6 +6,7 @@ import Select from "react-select";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   assignStudentToGroup,
+  deleteStudentFromGroup,
   getGroups,
 } from "../../student-group-modal/core/_requests";
 import { Group } from "../../student-group-modal/core/_model";
@@ -63,6 +64,7 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
     });
   };
 
+  //mutation for signing up a student for a group
   const mutation = useMutation({
     mutationFn: ({ groupId, studentId }: any) =>
       assignStudentToGroup(groupId, studentId),
@@ -77,6 +79,25 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
       queryClient.invalidateQueries({ queryKey: ["getStudents"] });
     },
   });
+
+  //mutation for removing a student for a group
+
+  const removeMutation = useMutation({
+    mutationFn: ({ groupId, studentId }: any) =>
+      deleteStudentFromGroup(groupId, studentId),
+    onSuccess: () => {
+      toast.success("تمت إزالة الطالب بنجاح");
+      queryClient.invalidateQueries({ queryKey: ["getStudents"] });
+    },
+    onError: () => {
+      toast.error("حدث خطأ ما");
+      queryClient.invalidateQueries({ queryKey: ["getStudents"] });
+    },
+  });
+  console.log("selectedStudent", selectedStudent);
+  const deleteGroup = (groupId: string, studentId: string) => {
+    removeMutation.mutate({ groupId, studentId });
+  };
   return (
     <Overlay onClose={onClose} isVisible>
       <>
@@ -91,7 +112,7 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
                   <SelectGroup
                     id={i}
                     key={i}
-                    onDelete={() => {}}
+                    onDelete={() => deleteGroup(group._id, selectedStudent._id)}
                     label={returnGroupLabel(group)}
                   />
                 ))}
