@@ -32,7 +32,7 @@ export default function Notifications() {
   };
 
   return (
-    <div className="w-[387px] h-[618px] border border-gray-200 rounded-lg shadow-sm p-4 flex flex-col justify-between">
+    <div className="h-[671px] border border-gray-200 rounded-lg shadow-sm p-4 flex flex-col justify-between">
       <div className="flex flex-col gap-2 overflow-y-auto h-[530px] ">
         {notifications.map((notification) => (
           <div key={notification.id}>
@@ -50,7 +50,7 @@ export default function Notifications() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="outline-none rounded-full w-[332px] h-[41px] p-2 border border-gray-300"
+          className="outline-none rounded-full w-full h-[41px] p-2 border border-gray-300"
         />
         <button onClick={handleSend}>
           <SendMessageSvg />
