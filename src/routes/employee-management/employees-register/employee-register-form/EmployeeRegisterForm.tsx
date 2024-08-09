@@ -57,20 +57,10 @@ export default function EmployeeRegisterForm() {
         </div>
 
         <div className="flex items-center gap-7 mb-7">
-          <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="phoneNumber" className="text-blueDark">
-              تاريخ الميلاد
-            </label>
-            <input
-              {...register("phoneNumber")}
-              type="date"
-              className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              placeholder="JJ/MM/AAAA"
-            />
-          </article>
+        
           <article className="flex flex-col gap-2 w-full">
             <label htmlFor="gardianPhoneNumber" className="text-blueDark">
-              رقم هاتف  
+              رقم الهاتف  
             </label>
             <input
               {...register("phoneNumber")}
@@ -79,40 +69,20 @@ export default function EmployeeRegisterForm() {
               placeholder=" 00 01 02 0550"
             />
           </article>
+          <article className="flex flex-col gap-2 w-full">
+            <label htmlFor="gardianPhoneNumber" className="text-blueDark">
+               الوظيفة  
+            </label>
+            <input
+              {...register("phoneNumber")}
+              type="text"
+              className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
+              placeholder="يرجى ادخال الوظيفة"
+            />
+          </article>
         </div>
 
-        <div className="flex items-center gap-7 mb-7">
-          <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="institution" className="text-blueDark">
-              المستوى
-            </label>
-            <select
-              {...register("institution")}
-              className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              name=""
-              id=""
-            >
-              <option value="primarySchool">الإبتدائي</option>
-              <option value="middleSchool">المتوسط</option>
-              <option value="highSchool">الثانوي</option>
-            </select>
-          </article>
-          <article className="flex flex-col gap-2 w-full">
-            <label className="text-blueDark" htmlFor="level">
-              السنة
-            </label>
-            <select
-              {...register("level")}
-              className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              name=""
-              id=""
-            >
-              <option value="1">الأولى</option>
-              <option value="2">الثانية</option>
-              <option value="3">الثالثة</option>
-            </select>
-          </article>
-        </div>
+      
 
         <div className="flex items-center justify-start gap-7 mb-7 w-[140px] ">
           <ButtonPrimary text="تسجيل" active />
