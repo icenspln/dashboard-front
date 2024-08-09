@@ -2,7 +2,7 @@ export type Employee = {
   _id?: string; 
  
   firstName: string;
-  //lastName: string;
+  lastName: string;
   position:string;
   phoneNumber?: string;
   scanningCardId: string;
