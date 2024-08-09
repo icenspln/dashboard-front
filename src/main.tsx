@@ -23,6 +23,7 @@ import EmployeeRegister from "./routes/employee-management/employees-register/Em
 import ParticularGroupsPresenceListsManagement from "./routes/presence-management/particular-groups-presence/ParticularGroupsPresenceManagement.tsx";
 import GroupsPresenceListsManagement from "./routes/presence-management/groups-presence/GroupsPresenceManagement.tsx";
 import StudentsPresenceListsManagement from "./routes/presence-management/students-presence/StudentsPresenceManagement.tsx";
+import EmployeePresenceListsManagement from "./routes/presence-management/employee-presence/EmployeesPresenceManagement.tsx";
 import PaymentManagement from "./routes/teacher-payment-management/PaymentManagement.tsx";
 import AttendanceManagement from "./routes/attendance-register/AttendanceManagement.tsx";
 import  TablesContainer  from "./routes/attendance-register/Attendance-table/tablesContainer.tsx";
@@ -91,6 +92,10 @@ const router = createBrowserRouter(
         {
           path: "/studentspresencemanagement",
           element: <StudentsPresenceListsManagement />,
+        },
+        {
+          path: "/employeepresencemanagement",
+          element: <EmployeePresenceListsManagement />,
         },
         {
           path: "/paymentmanagement",
