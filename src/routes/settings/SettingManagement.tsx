@@ -2,11 +2,39 @@ import PasswordInput from "./passwordInputField";
 import ConfirmButton from "../../components/confirmButton";
 import LogoUpload from "./handleLogoUpload";
 import { useState } from "react";
+import { Overlay } from "../../components/Overlay";
 
 export default function SeetingManagement(){
+    const [overlayVisible, setOverlayVisible] = useState(true)
     const [logoUrl, setLogoUrl] = useState<string | null>(null);
+
+    const handleOverlayClose = () => {
+        setOverlayVisible(false);
+    };
+
     return(
+        
         <div className="w-full min-h-screen p-4 bg-mainBg">
+              {overlayVisible && (
+                <Overlay onClose={handleOverlayClose}>
+                    <div className="flex flex-col items-center w-[511px]">
+                        <span className="text-center">
+                            <h1 className="text-lg font-bold ">ادخل كلمة المرور</h1>
+                            <p className="text-gray-400 mt-3">يرجى ادخال كلمة المرور للوصول إلى الإعدادات</p>
+                        </span>
+                        <span className="flex items-center w-[525px]  gap-[12px] mt-3">
+                            <PasswordInput placeHolder="أدخل كلمة المرور" />
+                            <ConfirmButton
+                                text="التالي"
+                                className=" text-white rounded-full w-[140px]"
+                                onClick={handleOverlayClose}
+                            />
+                        </span>
+                    </div>
+                </Overlay>
+            )}
+            {!overlayVisible && (
+            <>
             <div>
                 <h1 className="text-xl font-bold">تغيير كلمة المرور الأساسية</h1>
                 <div className="flex flex-col w-full gap-[12px] justify-between pt-3">
@@ -54,9 +82,9 @@ export default function SeetingManagement(){
                     </div>
                 </div>
             </div>
-            
-            
-
+        
+            </>
+        )}
         </div>
     )
 }
