@@ -17,6 +17,7 @@ export default function SettingsCell() {
     { label: "رؤية الأفواج الحالية", action: () =>  setActiveOverlay("registredStudentsList")},
     { label: "تغيير الفوج", action: () => setActiveOverlay("changeGroup") },
     { label: "تغيير البطاقة", action: () => setActiveOverlay("changeCard") },
+    { label: "رؤية تواريخ الدفع", action: () => navigate("/studentspaymenthistory") },
     { label: "رؤية تواريخ الحضور والغياب", action: () => navigate("/studentspresencemanagement") },
     
   ];
