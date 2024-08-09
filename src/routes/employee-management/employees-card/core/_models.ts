@@ -1,6 +1,6 @@
 export type Employee = {
   _id?: string; 
-  date:string
+ 
   firstName: string;
   //lastName: string;
   position:string;
