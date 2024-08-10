@@ -5,20 +5,22 @@ import {
 } from "@tanstack/react-table";
 import { defaultColumns } from "./core/columns/columns";
 import { Teacher } from "./core/_models";
-import { useMemo, useRef, useState } from "react";
+import { useContext, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getTeachers } from "./core/_requests";
 import { motion } from "framer-motion";
+import { TeachersTableContext } from "./core/TeacherTableContext";
 
 export function TeacherTable() {
   const constraintsRef = useRef(null);
   const [teachers, setTeachers] = useState<Teacher[]>([]);
+  const { filter } = useContext(TeachersTableContext);
   // const teacherData: Teacher[] = data;
 
   //query functions
   const { data, isLoading } = useQuery({
-    queryKey: ["getTeachers"],
-    queryFn: getTeachers,
+    queryKey: ["getTeachers", filter],
+    queryFn: () => getTeachers(filter),
   });
 
   useMemo(() => {
