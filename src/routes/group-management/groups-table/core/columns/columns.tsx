@@ -1,6 +1,10 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { Group } from "../_models";
 import SettingsCell from "./SettingsCell";
+import {
+  returnInstitutionInAR,
+  returnLevelInAR,
+} from "../../../../../handlers/returnInArabic";
 
 const columnHelper = createColumnHelper<Group>();
 
@@ -15,7 +19,7 @@ export const defaultColumns = [
   }),
   columnHelper.accessor("timing", {
     header: "الوقت",
-    cell: (info) => info.getValue(),
+    cell: (info) => `${info.getValue().hour}:${info.getValue().minute}`,
   }),
   columnHelper.accessor("roomNumber", {
     header: "القاعة",
@@ -23,11 +27,11 @@ export const defaultColumns = [
   }),
   columnHelper.accessor("institution", {
     header: "المستوى",
-    cell: (info) => info.getValue(),
+    cell: (info) => returnInstitutionInAR(info.getValue()),
   }),
   columnHelper.accessor("level", {
     header: "السنة",
-    cell: (info) => info.getValue(),
+    cell: (info) => returnLevelInAR(info.getValue()),
   }),
   columnHelper.accessor("module", {
     header: "المادة",
@@ -35,20 +39,13 @@ export const defaultColumns = [
   }),
   columnHelper.accessor("responsibleTeacher", {
     header: "الأستاذ",
-    cell: (info) => info.getValue(),
+    cell: (info) => `${info.getValue().firstName}  ${info.getValue().lastName}`,
   }),
-  columnHelper.accessor("level", {
+  columnHelper.accessor("currentNumberOfStudents", {
     header: "عدد المسجلين",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("level", {
-    header: "تاريخ البداية",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("level", {
-    header: "عدد الحصص الكلية",
-    cell: (info) => info.getValue(),
-  }),
+
   columnHelper.accessor("level", {
     header: "الإعدادات",
     cell: () => <SettingsCell />,

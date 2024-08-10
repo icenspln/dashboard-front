@@ -1,3 +1,4 @@
+import { Student } from "../../../student-management/students-table/core/_models";
 import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
 
 export type Group = {
@@ -6,6 +7,7 @@ export type Group = {
   timing: {
     hour: number;
     minute: number;
+    _id: string;
   };
   responsibleTeacher: Teacher;
   module: string;
@@ -14,4 +16,8 @@ export type Group = {
   pricing: number;
   roomNumber: number;
   maxNumberOfStudents: number;
+  currentNumberOfStudents: number;
+  additionalStudyDays: string[];
+  __v: number;
+  students: Student[];
 };
