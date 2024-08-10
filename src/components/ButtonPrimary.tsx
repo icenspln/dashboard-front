@@ -7,6 +7,7 @@ type ButtonPrimary = {
   onClick?: any;
   props?: any;
   type?: string;
+  disabled?: boolean;
 };
 
 export default function ButtonPrimary({
@@ -16,10 +17,12 @@ export default function ButtonPrimary({
   props,
   onClick,
   type = "button",
+  disabled,
 }: ButtonPrimary) {
   if (active) {
     return (
       <button
+        disabled={disabled}
         {...props}
         className={`min-w-[140px] bg-blue transition hover:bg-blueHovered font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2 w-full`}
         onClick={onClick}
@@ -42,6 +45,7 @@ export default function ButtonPrimary({
   return (
     <button
       {...props}
+      disabled={disabled}
       onClick={onClick}
       className={
         "min-w-[140px] bg-white transition hover:bg-light border border-solid border-light text-blueDark font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2"

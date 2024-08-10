@@ -21,7 +21,7 @@ export default function GroupManagement() {
           </div>
           <nav className="flex items-center gap-[12px]">
             <ExcelSvg />
-            <Link to={`/studentmanagement/new`}>
+            <Link to={`/groupmanagement/new`}>
               <ButtonPrimary text="إضافة فوج جديد" active />
             </Link>
           </nav>

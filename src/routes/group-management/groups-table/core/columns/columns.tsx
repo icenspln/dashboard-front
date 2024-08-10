@@ -46,7 +46,7 @@ export const defaultColumns = [
     cell: (info) => info.getValue(),
   }),
 
-  columnHelper.accessor("level", {
+  columnHelper.display({
     header: "الإعدادات",
     cell: () => <SettingsCell />,
   }),

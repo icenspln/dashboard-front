@@ -1,15 +1,19 @@
+import { RegistrationContextProvider } from "./core/RegistrationContext";
+import GroupCard from "./group-card/GroupCard";
 import GroupRegisterForm from "./group-register-form/GroupRegisterForm";
 
 export default function GroupRegister() {
   return (
-    <section className="w-full min-h-screen p-4 bg-mainBg">
-      <div className="  mb-6">
-        <h1 className="text-2xl font-medium">تسجيل جديد | تعديل المعلومات</h1>
-      </div>
-      <div>
-        {/* form */}
-        <GroupRegisterForm />
-        {/* <Overlay>
+    <RegistrationContextProvider>
+      <section className="w-full min-h-screen p-4 bg-mainBg">
+        <div className="  mb-6">
+          <h1 className="text-2xl font-medium">تسجيل جديد | تعديل المعلومات</h1>
+        </div>
+        <div>
+          {/* form */}
+          <GroupRegisterForm />
+          <GroupCard />
+          {/* <Overlay>
           <Card
             textHeader="تسجيل البطاقة الذكية"
             textParagraph="يرجى تمرير البطاقة الذكية على الآلة لإنهاء تسجيل التلميذ"
@@ -26,7 +30,8 @@ export default function GroupRegister() {
             </>
           </Card>
         </Overlay> */}
-      </div>
-    </section>
+        </div>
+      </section>
+    </RegistrationContextProvider>
   );
 }
