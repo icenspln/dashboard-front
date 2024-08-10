@@ -30,6 +30,8 @@ import AttendanceManagement from "./routes/attendance-register/AttendanceManagem
 import  TablesContainer  from "./routes/attendance-register/Attendance-table/tablesContainer.tsx";
 import SeetingManagement from "./routes/settings/SettingManagement.tsx";
 import LoadingScreen from "./components/LoadingScreen.tsx";
+import  {PdfViewTest}  from "./routes/monthly-salary-statement/MonthlySalaryStatement.tsx";
+
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
@@ -117,6 +119,10 @@ const router = createBrowserRouter(
         {
           path: "/test",
           element: <TablesContainer />,
+        },
+        {
+          path: "/monthlysalarystatement",
+          element: <PdfViewTest />,
         },
         
         
