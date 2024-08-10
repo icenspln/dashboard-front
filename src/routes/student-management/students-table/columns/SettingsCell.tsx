@@ -34,10 +34,6 @@ export default function SettingsCell({ row }: { row: any }) {
                     تعديل المعلومات
                   </button>
                 </Link>
-                <button className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded hover:bg-gray-200">
-                  رؤية الأفواج الحالية
-                </button>
-
                 <button
                   onClick={setStudent}
                   className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded hover:bg-gray-200"

@@ -87,10 +87,12 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
       deleteStudentFromGroup(groupId, studentId),
     onSuccess: () => {
       toast.success("تمت إزالة الطالب بنجاح");
+      onClose();
       queryClient.invalidateQueries({ queryKey: ["getStudents"] });
     },
     onError: () => {
       toast.error("حدث خطأ ما");
+      onClose();
       queryClient.invalidateQueries({ queryKey: ["getStudents"] });
     },
   });
