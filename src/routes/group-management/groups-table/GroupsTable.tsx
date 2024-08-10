@@ -6,18 +6,20 @@ import {
 import { defaultColumns } from "./core/columns/columns";
 import { motion } from "framer-motion";
 import { Group } from "./core/_models";
-import { useMemo, useRef, useState } from "react";
+import { useContext, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getGroups } from "./core/_requests";
+import { GroupsTableContext } from "./core/GroupsTableContext";
 
 export function GroupsTable() {
   const constraintsRef = useRef(null);
   const [groups, setGroups] = useState<Group[]>([]);
+  const { filter } = useContext(GroupsTableContext);
 
   //query functions
   const { data, isLoading } = useQuery({
-    queryKey: ["getGroups"],
-    queryFn: () => getGroups(""),
+    queryKey: ["getGroups", filter],
+    queryFn: () => getGroups(filter),
   });
 
   useMemo(() => {
