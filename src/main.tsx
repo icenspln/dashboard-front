@@ -28,6 +28,7 @@ import SeetingManagement from "./routes/settings/SettingManagement.tsx";
 import { StudentUpdateWrapper } from "./routes/student-management/student-update/StudentUpdate.tsx";
 
 import LoadingScreen from "./components/LoadingScreen.tsx";
+import { TeacherUpdateWrapper } from "./routes/teacher-management/teacher-update/TeacherUpdate.tsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
@@ -59,6 +60,10 @@ const router = createBrowserRouter(
         {
           path: "/teachermanagement/new",
           element: <TeacherRegister />,
+        },
+        {
+          path: "/teachermanagement/edit/:id",
+          element: <TeacherUpdateWrapper />,
         },
         {
           path: "/groupmanagement",

@@ -36,6 +36,6 @@ export const defaultColumns = [
   }),
   columnHelper.display({
     header: "الإعدادات",
-    cell: () => <SettingsCell />,
+    cell: (props) => <SettingsCell row={props.row.original} />,
   }),
 ];
