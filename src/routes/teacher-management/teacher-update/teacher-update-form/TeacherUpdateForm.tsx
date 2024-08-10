@@ -26,7 +26,8 @@ export default function TeacherUpdateForm() {
     defaultValues: {
       ...parsedParams,
       //  @ts-ignore
-      modules: parsedParams.modules?.split(","),
+      modules: [],
+      birthDate: undefined,
       // birthDate: new Date(parsedParams.birthDate as any).toLocaleDateString(),
     },
   });

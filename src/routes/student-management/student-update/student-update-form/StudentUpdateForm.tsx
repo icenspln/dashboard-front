@@ -28,7 +28,7 @@ export default function StudentUpdateForm() {
     resolver: yupResolver(StudentUpdateSchema),
     defaultValues: {
       ...parsedParams,
-      // birthDate: new Date(parsedParams.birthDate as any).toLocaleDateString(),
+      birthDate: undefined,
     },
   });
 
