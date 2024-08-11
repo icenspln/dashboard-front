@@ -1,4 +1,4 @@
-import CardAnimationSvg from "../../../assets/icons/CardAnimationSvg";
+
 import { StudentInfoTable } from "./studentInfoTable";
 import { StudentPaymentTable } from "./studentPaymentTable";
 import GroupList from "./groupList";
@@ -17,7 +17,7 @@ export default function TablesContainer(){
         <CardlessRegister />
       </div>
     </div>
-    <div >
+    <div className="w-full">
       <Notifications />
     </div>
   </div>

@@ -8,9 +8,11 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 // import { useMemo, useRef, useState } from "react";
 // import { useQuery } from "@tanstack/react-query";
-
+import data from "./core/data.json"
+import { ParticularGroup } from "./core/_models";
 export function ParticularGroupsTable() {
   const constraintsRef = useRef(null);
+  const particularGroupData : ParticularGroup = data
   // const [groups, setGroups] = useState<Group[]>([]);
 
   //query functions
@@ -28,7 +30,7 @@ export function ParticularGroupsTable() {
   // table functions
   const table = useReactTable({
     columns: defaultColumns,
-    data: [],
+    data: particularGroupData,
     getCoreRowModel: getCoreRowModel(),
   });
   return (

@@ -4,7 +4,7 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { defaultColumns } from "./core/columns/columns";
-import data from "../../data.json"
+import data from "../data.json"
 import { PresenceList } from "./core/_models";
 import { motion } from "framer-motion";
 import { useRef } from "react";

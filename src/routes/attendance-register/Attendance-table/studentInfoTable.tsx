@@ -37,16 +37,23 @@ import {
     });
   
     return (
-      <div className="max-w-4xl w-[637px] mt-10 border border-gray-200 rounded-lg shadow-sm">
-      <div className="bg-gray-100 p-4 text-center text-blue text-2xl">
+      <div 
+      ref={constraintsRef}
+      className=" max-w-4xl w-[637px] mt-10 border border-[#E2E8F0] rounded-xl"
+      >
+      <div className="bg-gray-100 p-4  text-center text-blue text-2xl border-b rounded-t-xl ">
         {data[0].firstName}
       </div>
-      <table className="w-[633px] rounded-lg bg-white">
+      <motion.table
+      
+       className="w-[633px]  rounded-b-xl bg-white"
+       >
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="text-center">
+            <tr key={row.id} 
+            className="text-center">
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="px-4 py-2 border-b">
+                <td key={cell.id} className="px-4 py-2 ">
                   <div className="text-gray-500">
                     {cell.column.columnDef.header as string}
                   </div>
@@ -58,7 +65,7 @@ import {
             </tr>
           ))}
         </tbody>
-      </table>
+      </motion.table>
     </div>
       
     );

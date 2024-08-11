@@ -1,8 +1,8 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { PresenceList } from "../_models";
-import PresentButton from "./isPresentButton";
-import { PricingButton } from "./PricingButtonEdit";
-import { ChangedGroupButton, DeleteFromGroupButton } from "./changeGroupButton";
+import { StudentPresentButton } from "../../../../../../components/isPresentButton";
+import { PricingButton } from "../../../../../../components/PricingButtonEdit";
+import { ChangedGroupButton, DeleteFromGroupButton } from "../../../../../../components/changeGroupButton";
 
 const columnHelper = createColumnHelper<PresenceList>();
 
@@ -20,11 +20,11 @@ export const defaultColumns = [
   }),
   columnHelper.accessor("dayOfWeek", {
     header: "11/08/2024",
-    cell: PresentButton,
+    cell: StudentPresentButton,
   }),
   columnHelper.accessor("dayOfWeek", {
     header: "11/08/2024",
-    cell: PresentButton,
+    cell: StudentPresentButton,
   }),
   columnHelper.accessor("dayOfWeek", {
     header: "11/08/2024",

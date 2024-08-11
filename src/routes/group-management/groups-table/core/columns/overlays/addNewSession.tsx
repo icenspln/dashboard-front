@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Overlay } from '../../../../../../components/Overlay';
-import ConfirmButton from './Popup-menu-component/confirmButton';
+import ConfirmButton from '../../../../../../components/confirmButton';
 
 interface AddNewSessionOverlayProps {
   onClose: () => void;
@@ -21,7 +21,7 @@ const AddNewSessionOverlay: React.FC<AddNewSessionOverlayProps> = ({ onClose }) 
         <input type="time" />
         </span>
         <span className='flex justify-center'>
-          <ConfirmButton text="تسجيل التغييرات" color='bg-blue' textColor='text-white'/>
+          <ConfirmButton text="تسجيل التغييرات"  className='text-white'/>
         </span>
         </div>
       </>

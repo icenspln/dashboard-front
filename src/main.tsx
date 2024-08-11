@@ -19,15 +19,22 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import TeacherManagement from "./routes/teacher-management/TeacherManagement.js";
 import TeacherRegister from "./routes/teacher-management/teacher-register/TeacherRegister.tsx";
+import EmployeeManagement from "./routes/employee-management/EmployeeManagement.tsx";
+import EmployeeRegister from "./routes/employee-management/employees-register/EmployeeRegister.tsx";
+import ParticularGroupsPresenceListsManagement from "./routes/presence-management/particular-groups-presence/ParticularGroupsPresenceManagement.tsx";
 import GroupsPresenceListsManagement from "./routes/presence-management/groups-presence/GroupsPresenceManagement.tsx";
 import StudentsPresenceListsManagement from "./routes/presence-management/students-presence/StudentsPresenceManagement.tsx";
+import EmployeePresenceListsManagement from "./routes/presence-management/employee-presence/EmployeesPresenceManagement.tsx";
 import PaymentManagement from "./routes/teacher-payment-management/PaymentManagement.tsx";
+import StudentPaymentHistory from "./routes/student-payment-history/StudentPaymentHistory.tsx";
 import AttendanceManagement from "./routes/attendance-register/AttendanceManagement.tsx";
 import TablesContainer from "./routes/attendance-register/Attendance-table/tablesContainer.tsx";
 import SeetingManagement from "./routes/settings/SettingManagement.tsx";
 import { StudentUpdateWrapper } from "./routes/student-management/student-update/StudentUpdate.tsx";
 
 import LoadingScreen from "./components/LoadingScreen.tsx";
+import { PdfViewTest } from "./routes/monthly-salary-statement/MonthlySalaryStatement.tsx";
+
 import { TeacherUpdateWrapper } from "./routes/teacher-management/teacher-update/TeacherUpdate.tsx";
 import { GroupUpdateWrapper } from "./routes/group-management/group-update/GroupUpdate.tsx";
 const queryClient = new QueryClient();
@@ -87,6 +94,18 @@ const router = createBrowserRouter(
           element: <ParticularGroupRegister />,
         },
         {
+          path: "/employeemanagement",
+          element: <EmployeeManagement />,
+        },
+        {
+          path: "/employeemanagement/new",
+          element: <EmployeeRegister />,
+        },
+        {
+          path: "/particulargroupspresencemanagement",
+          element: <ParticularGroupsPresenceListsManagement />,
+        },
+        {
           path: "/groupspresencemanagement",
           element: <GroupsPresenceListsManagement />,
         },
@@ -95,8 +114,16 @@ const router = createBrowserRouter(
           element: <StudentsPresenceListsManagement />,
         },
         {
+          path: "/employeepresencemanagement",
+          element: <EmployeePresenceListsManagement />,
+        },
+        {
           path: "/paymentmanagement",
           element: <PaymentManagement />,
+        },
+        {
+          path: "/studentspaymenthistory",
+          element: <StudentPaymentHistory />,
         },
         {
           path: "/settings",
@@ -109,6 +136,10 @@ const router = createBrowserRouter(
         {
           path: "/test",
           element: <TablesContainer />,
+        },
+        {
+          path: "/monthlysalarystatement",
+          element: <PdfViewTest />,
         },
       ],
     },

@@ -2,6 +2,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import BirthDateCell from "./BirthDateCell";
 import InstitutionCell from "./InstitutionCell";
 import SettingsCell from "./SettingsCell";
+import { PricingButton } from "../../../../../components/PricingButtonEdit";
 import { Student } from "../core/_models";
 
 const columnHelper = createColumnHelper<Student>();

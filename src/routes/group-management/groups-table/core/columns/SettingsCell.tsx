@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import DeleteGroupOverlay from "./overlays/deleteGroup";
 import AddNewSessionOverlay from "./overlays/addNewSession";
 import RegistredStudentsOverlay from "./overlays/registredStudentsList";
+import TeacherPresence from "./overlays/teacherPresence";
 
 export default function SettingsCell({ row }: { row: any }) {
   const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
@@ -20,6 +21,24 @@ export default function SettingsCell({ row }: { row: any }) {
         );
       },
     },
+    { label: "حذف الفوج", action: () => setActiveOverlay("deleteGroup") },
+    {
+      label: "إدراج حصة إضافية",
+      action: () => setActiveOverlay("addNewSession"),
+    },
+    {
+      label: "رؤية قائمة الحضور",
+      action: () => navigate("/groupspresencemanagement"),
+    },
+    {
+      label: "رؤية قائمة المسجلين",
+      action: () => setActiveOverlay("registredStudents"),
+    },
+    {
+      label: "حضور / غياب الأستاذ",
+      action: () => setActiveOverlay("teacherPresence"),
+    },
+
     {
       label: "إضافة حصة إضافية",
       action: () => setActiveOverlay("addNewSession"),
@@ -64,6 +83,18 @@ export default function SettingsCell({ row }: { row: any }) {
         )}
         {activeOverlay === "registredStudents" && (
           <RegistredStudentsOverlay onClose={closeOverlay} />
+        )}
+        {activeOverlay === "deleteGroup" && (
+          <DeleteGroupOverlay onClose={closeOverlay} />
+        )}
+        {activeOverlay === "addNewSession" && (
+          <AddNewSessionOverlay onClose={closeOverlay} />
+        )}
+        {activeOverlay === "registredStudents" && (
+          <RegistredStudentsOverlay onClose={closeOverlay} />
+        )}
+        {activeOverlay === "teacherPresence" && (
+          <TeacherPresence onClose={closeOverlay} />
         )}
       </Popup>
     </div>

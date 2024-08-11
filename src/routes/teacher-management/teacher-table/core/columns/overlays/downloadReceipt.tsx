@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react';
 import { Overlay } from '../../../../../../components/Overlay';
-import ConfirmButton from './Popup-menu-component/confirmButton';
+import ConfirmButton from '../../../../../../components/confirmButton';
 import PasswordInput from './Popup-menu-component/passwordInputField';
 import Checklist from '../../../../../../components/CheckList';
 import { useNavigate } from 'react-router-dom';
@@ -38,8 +38,8 @@ const DownloadReceiptOverlay: React.FC<DownloadReceiptOverlayProps> = ({ onClose
               </div>
               <ConfirmButton
                 text='التالي'
-                color='bg-blue'
-                textColor='text-white'
+                
+                className='text-white w-[91px]'
                 onClick={handleConfirmClick}
               />
             </div>
@@ -54,8 +54,8 @@ const DownloadReceiptOverlay: React.FC<DownloadReceiptOverlayProps> = ({ onClose
               </div>
               <ConfirmButton
                 text='التالي'
-                color='bg-blue'
-                textColor='text-white'
+                
+                className='text-white w-[90px]'
                 onClick={handleConfirmClick}
               />
             </div>

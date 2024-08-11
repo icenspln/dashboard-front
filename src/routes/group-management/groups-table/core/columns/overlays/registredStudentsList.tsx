@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Overlay } from '../../../../../../components/Overlay';
-import ConfirmButton from './Popup-menu-component/confirmButton';
+import ConfirmButton from '../../../../../../components/confirmButton';
 import SelectGroup from './Popup-menu-component/PresentStudentsList'; // responsible for showing the registred students in the group
 interface RegistredStudentsOverlayProps {
   onClose: () => void;
@@ -23,8 +23,8 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({ onC
         </span>
         </div>
         <span className='flex justify-center gap-[12px]'>
-        <ConfirmButton text='تسجيل التغييرات' color='bg-blue' textColor='text-white'/>
-        <ConfirmButton text='إضافة طالب جديد' color='bg-grayBlue' textColor='text-blue'/>
+        <ConfirmButton text='تسجيل التغييرات'  className='text-white bg-blue hover:bg-grayBlue hover:text-blue '/>
+        <ConfirmButton text='إضافة طالب جديد'  className='text-blue bg-grayBlue hover:bg-blue hover:text-white'/>
         </span>
       </>
     </Overlay>
