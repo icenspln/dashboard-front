@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     table: {
         display: "flex",
         width: "48%",
-        borderStyle: "solid",
-        borderWidth: 1,
+        
+      
         borderRightWidth: 0,
         borderBottomWidth: 0,
         marginBottom: 10,
@@ -32,11 +32,10 @@ const styles = StyleSheet.create({
 
 function generateTables(data: SalaryStatement[]) {
     const tables = [];
-    const rowsPerTable = 2; // Adjust as needed
-    const numTables = Math.ceil(data.length / rowsPerTable);
+    const rowsPerTable = 24; // Adjust the number of rows per table as needed
 
-    for (let i = 0; i < numTables; i++) {
-        const tableData = data.slice(i * rowsPerTable, (i + 1) * rowsPerTable);
+    for (let i = 0; i < data.length; i += rowsPerTable) {
+        const tableData = data.slice(i, i + rowsPerTable);
         tables.push(
             <View style={styles.table} key={i}>
                 <TableHeader />
@@ -48,7 +47,8 @@ function generateTables(data: SalaryStatement[]) {
     return tables;
 }
 
-export default function SalaryStatementTable () {
+
+export default function SalaryStatementTable() {
     const salaryStatementData: SalaryStatement[] = data;
 
     return (
@@ -56,6 +56,6 @@ export default function SalaryStatementTable () {
             {generateTables(salaryStatementData)}
         </View>
     );
-};
+}
 
 
