@@ -12,13 +12,13 @@ Font.register({
 const styles = StyleSheet.create({
     page: {
         flexDirection: 'column',
-        
         fontFamily: 'Amiri',
     },
     section: {
         margin: 10,
         padding: 10,
         flexGrow: 1,  
+        textAlign: "center"
     },
     header: {
         margin:5,
@@ -28,6 +28,15 @@ const styles = StyleSheet.create({
     headerText: {
         fontSize: 16, 
         fontWeight: 'bold',
+    },
+    subHeader: {
+        flexDirection: 'row-reverse',
+        justifyContent:'space-around',
+        
+        
+    },
+    subHeaderText:{
+        textAlign:'center'
     }
 });
 
@@ -39,10 +48,18 @@ export function MonthlySalaryStatement(){
                 <View>
                     <Text style={styles.header}>كشف الراتب لشهر ديسمبر</Text>
                 </View>
+                <View style={styles.subHeader}>
+                    <Text style={styles.subHeaderText}>:الأستاذ</Text>
+                    <Text style={styles.subHeaderText}>:المادة</Text>
+                    <Text style={styles.subHeaderText}>:السنة</Text>
+                </View>
+                
                 <View style={styles.section}>
                     <SalaryStatementTable />
                     
-                    
+                </View>
+                <View>
+                    <Text></Text>
                 </View>
             </Page>
         </Document>
