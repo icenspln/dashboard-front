@@ -29,6 +29,7 @@ import { StudentUpdateWrapper } from "./routes/student-management/student-update
 
 import LoadingScreen from "./components/LoadingScreen.tsx";
 import { TeacherUpdateWrapper } from "./routes/teacher-management/teacher-update/TeacherUpdate.tsx";
+import { GroupUpdateWrapper } from "./routes/group-management/group-update/GroupUpdate.tsx";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
@@ -72,6 +73,10 @@ const router = createBrowserRouter(
         {
           path: "/groupmanagement/new",
           element: <GroupRegister />,
+        },
+        {
+          path: "/groupmanagement/edit/:id",
+          element: <GroupUpdateWrapper />,
         },
         {
           path: "/particulargroupmanagement",

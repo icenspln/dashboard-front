@@ -1,50 +1,77 @@
-import ButtonPrimary from "../../../../components/ButtonPrimary";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { GroupRegisterFormType, TypeRegisterSchema } from "../core/_models";
-import { useContext, useEffect, useState } from "react";
-import { RegistrationContext } from "../core/RegistrationContext";
+import { GroupUpdateFormType, GroupUpdateSchema } from "../core/_models";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getTeachers, groupRegister } from "../core/_requests";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
+import { getTeachers, groupUpdate } from "../core/_requests";
+import { useLocation, useParams } from "react-router-dom";
+import queryString from "query-string";
+import { UpdateContext } from "../core/UpdateContext";
+import { useContext, useEffect, useState } from "react";
 import Select from "react-select";
 import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
+import ButtonPrimary from "../../../../components/ButtonPrimary";
 
-export default function GroupRegisterForm() {
+export default function GroupUpdateForm() {
   const [reactSelectOptions, setReactSelectOptions] = useState();
-  const [selectedTeacher, setSelectedTeacher] = useState<{
-    value: string;
-    label: string;
-  }>();
-  const { setScreen } = useContext(RegistrationContext);
+
+  const { setSuccessModal } = useContext(UpdateContext);
+  const params = useParams();
+  const location = useLocation();
+  const id = params.id!;
+  const parsedParams: any = queryString.parse(location.search);
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors, isSubmitting },
-  } = useForm<GroupRegisterFormType>({
-    resolver: yupResolver(TypeRegisterSchema),
+  } = useForm<GroupUpdateFormType>({
+    resolver: yupResolver(GroupUpdateSchema),
+    defaultValues: {
+      ...parsedParams,
+    },
+  });
+  const [selectedTeacher, setSelectedTeacher] = useState<{
+    value: string;
+    label: string;
+  }>({
+    label: parsedParams.responsibleTeacherLabel,
+    value: parsedParams.responsibleTeacherValue,
   });
 
-  const onSubmit: SubmitHandler<GroupRegisterFormType> = (data) => {
+  // useEffect(() => {
+  //   setSelectedTeacher({
+  //     label: parsedParams.responsibleTeacherLabel,
+  //     value: parsedParams.responsibleTeacherValue,
+  //   });
+  // }, []);
+  const onSubmit: SubmitHandler<GroupUpdateFormType> = (data) => {
     const [hour, minute] = data.timing.split(":");
     const responsibleTeacher = data.responsibleTeacher.value;
 
     const finalData = {
-      ...data,
+      dayOfWeek: data.dayOfWeek,
       timing: {
         hour: hour.padStart(2, "0"),
         minute: minute.padStart(2, "0"),
       },
       responsibleTeacher,
+      module: data.module,
+      institution: data.institution,
+      level: data.level,
+      pricing: data.pricing,
+      roomNumber: data.roomNumber,
+      maxNumberOfStudents: data.maxNumberOfStudents,
     };
-    mutation.mutateAsync(finalData);
+    mutation.mutateAsync({ id, finalData });
   };
 
   const mutation = useMutation({
-    mutationFn: (data: any) => groupRegister(data),
+    mutationFn: ({ id, finalData }: { id: string; finalData: any }) => {
+      return groupUpdate(id, finalData);
+    },
     onSuccess: () => {
-      setScreen(true);
+      setSuccessModal(true);
     },
     onError: () => {
       toast.error("هناك خطأ ما");
@@ -73,7 +100,6 @@ export default function GroupRegisterForm() {
   useEffect(() => {
     if (selectedTeacher) setValue("responsibleTeacher", selectedTeacher);
   }, [selectedTeacher]);
-
   return (
     <>
       <form action="" onSubmit={handleSubmit(onSubmit)}>

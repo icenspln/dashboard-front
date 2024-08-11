@@ -73,7 +73,6 @@ export function GroupsTableContextProvider({
     dayOfWeek: [],
   });
 
-  console.log(filterState);
   const [groupModal, setGroupModal] = useState<boolean>(false);
 
   useEffect(() => {

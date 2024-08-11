@@ -8,16 +8,30 @@ import DeleteGroupOverlay from "./overlays/deleteGroup";
 import AddNewSessionOverlay from "./overlays/addNewSession";
 import RegistredStudentsOverlay from "./overlays/registredStudentsList";
 
-export default function SettingsCell() {
-
-  const [activeOverlay, setActiveOverlay] = useState<string | null>(null)
-  const navigate = useNavigate()
+export default function SettingsCell({ row }: { row: any }) {
+  const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
+  const navigate = useNavigate();
   const options = [
-    { label: "تعديل المعلومات", action: () => {} },
-    { label: "حذف الفوج", action: () => setActiveOverlay("deleteGroup") },
-    { label: "إضافة حصة إضافية", action: () =>  setActiveOverlay("addNewSession")},
-    { label: "رؤية قائمة الحضور", action: () => navigate("/groupspresencemanagement") },
-    { label: "رؤية قائمة المسجلين", action: () => setActiveOverlay("registredStudents") },
+    {
+      label: "تعديل المعلومات",
+      action: () => {
+        navigate(
+          `/groupmanagement/edit/${row._id}?dayOfWeek=${row.dayOfWeek}&timing=${row.timing.hour.toString().padStart(2, "0")}:${row.timing.minute.toString().padStart(2, "0")}&responsibleTeacherLabel=${row.responsibleTeacher.firstName + " " + row.responsibleTeacher.lastName}&responsibleTeacherValue=${row.responsibleTeacher._id}&module=${row.module}&institution=${row.institution}&level=${row.level}&pricing=${row.pricing}&roomNumber=${row.roomNumber}&maxNumberOfStudents=${row.maxNumberOfStudents}`
+        );
+      },
+    },
+    {
+      label: "إضافة حصة إضافية",
+      action: () => setActiveOverlay("addNewSession"),
+    },
+    {
+      label: "رؤية قائمة الحضور",
+      action: () => navigate("/groupspresencemanagement"),
+    },
+    {
+      label: "رؤية قائمة المسجلين",
+      action: () => setActiveOverlay("registredStudents"),
+    },
   ];
   const closeOverlay = () => setActiveOverlay(null);
   return (
@@ -25,7 +39,7 @@ export default function SettingsCell() {
       <Popup
         trigger={
           <button>
-            <DotsSvg/>
+            <DotsSvg />
           </button>
         }
         arrow={false}
@@ -42,11 +56,16 @@ export default function SettingsCell() {
             </button>
           ))}
         </div>
-        {activeOverlay === "deleteGroup" && <DeleteGroupOverlay onClose={closeOverlay} />}
-        {activeOverlay === "addNewSession" && <AddNewSessionOverlay onClose={closeOverlay} />}
-        {activeOverlay === "registredStudents" && <RegistredStudentsOverlay onClose={closeOverlay} />}
+        {activeOverlay === "deleteGroup" && (
+          <DeleteGroupOverlay onClose={closeOverlay} />
+        )}
+        {activeOverlay === "addNewSession" && (
+          <AddNewSessionOverlay onClose={closeOverlay} />
+        )}
+        {activeOverlay === "registredStudents" && (
+          <RegistredStudentsOverlay onClose={closeOverlay} />
+        )}
       </Popup>
-     
     </div>
   );
 }

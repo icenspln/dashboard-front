@@ -19,7 +19,8 @@ export const defaultColumns = [
   }),
   columnHelper.accessor("timing", {
     header: "الوقت",
-    cell: (info) => `${info.getValue().hour}:${info.getValue().minute}`,
+    cell: (info) =>
+      `${info.getValue().hour.toString().padStart(2, "0")}:${info.getValue().minute.toString().padStart(2, "0")}`,
   }),
   columnHelper.accessor("roomNumber", {
     header: "القاعة",
@@ -37,10 +38,10 @@ export const defaultColumns = [
     header: "المادة",
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("responsibleTeacher", {
-    header: "الأستاذ",
-    cell: (info) => `${info.getValue().firstName}  ${info.getValue().lastName}`,
-  }),
+  // columnHelper.accessor("responsibleTeacher", {
+  //   header: "الأستاذ",
+  //   cell: (info) => `${info.getValue().firstName}  ${info.getValue().lastName}`,
+  // }),
   columnHelper.accessor("currentNumberOfStudents", {
     header: "عدد المسجلين",
     cell: (info) => info.getValue(),
@@ -48,6 +49,6 @@ export const defaultColumns = [
 
   columnHelper.display({
     header: "الإعدادات",
-    cell: () => <SettingsCell />,
+    cell: (props) => <SettingsCell row={props.row.original} />,
   }),
 ];
