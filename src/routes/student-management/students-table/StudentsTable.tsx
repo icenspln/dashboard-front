@@ -11,9 +11,11 @@ import { getStudents } from "./core/_requests";
 import { StudentsTableContext } from "./core/StudentsTableContext";
 import { defaultColumns } from "./columns/columns";
 import { StudentGroupModal } from "./student-group-modal/StudentGroupModal";
+import StudentCardEdit from "./student-edit-Card/StudentCard";
 
 function StudentsTable() {
-  const { filter, groupModal } = useContext(StudentsTableContext);
+  const { filter, groupModal, editCardModal } =
+    useContext(StudentsTableContext);
   const constraintsRef = useRef(null);
   const [students, setStudents] = useState<Student[]>([]);
 
@@ -95,6 +97,7 @@ function StudentsTable() {
         </tbody>
       </motion.table>
       {groupModal && <StudentGroupModal />}
+      {editCardModal && <StudentCardEdit />}
     </div>
   );
 }

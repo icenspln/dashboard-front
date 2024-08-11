@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Overlay } from "../../../../components/Overlay";
-import { RegistrationContext } from "../core/RegistrationContext";
 import { Check } from "../../../../assets/icons/Check";
 import { Link } from "react-router-dom";
 import ButtonRoundedPrimary from "../../../../components/ButtonRoundedPrimary";
@@ -8,19 +7,24 @@ import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import CardAnimationSvg from "../../../../assets/icons/CardAnimationSvg";
 import WrongCardSvg from "../../../../assets/icons/WrongCardSvg";
+import { StudentsTableContext } from "../core/StudentsTableContext";
 
-export default function StudentCard() {
-  const { screen } = useContext(RegistrationContext);
-
+export default function StudentCardEdit() {
   const [modal, setModal] = useState(1);
-
-  if (screen)
+  const { editCardModal, setEditCardModal } = useContext(StudentsTableContext);
+  if (editCardModal)
     return (
       <>
         <Overlay>
           <article className="overflow-hidden h-[435px] w-[391px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white px-[20px] py-[27px] rounded-3xl">
             <AnimatePresence mode="wait">
-              {modal == 1 && <CardModal setModal={setModal} />}
+              {modal == 1 && (
+                <CardModal
+                  setModal={setModal}
+                  editCardModal={editCardModal}
+                  setEditCardModal={setEditCardModal}
+                />
+              )}
 
               {modal == 2 && (
                 <motion.div
@@ -58,14 +62,22 @@ export default function StudentCard() {
     );
 }
 
-const CardModal = ({ setModal }: { setModal: any }) => {
+const CardModal = ({
+  setModal,
+  editCardModal,
+  setEditCardModal,
+}: {
+  setModal: any;
+  editCardModal: any;
+  setEditCardModal: any;
+}) => {
   const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
       setIsPending(false);
     }, 2000);
-  }, []);
+  }, [isPending]);
 
   return (
     <AnimatePresence>
@@ -83,14 +95,17 @@ const CardModal = ({ setModal }: { setModal: any }) => {
           </h2>
 
           <p className="w-full text- text-textGray2 text-center ">
-            يرجى تمرير البطاقة الذكية على الآلة لإنهاء تسجيل التلميذ
+            يرجى تمرير البطاقة الذكية على الآلة
           </p>
           <div className="my-auto basis-1">
             <CardAnimationSvg height="250" />
           </div>
           <div className="my-3">
-            <button onClick={() => setModal(2)} className="text-blue underline">
-              تخطي هذه المرحلة و التسجيل بدون بطاقة
+            <button
+              onClick={() => setEditCardModal(false)}
+              className="text-blue underline"
+            >
+              الغاء
             </button>
           </div>
         </motion.div>
@@ -123,10 +138,10 @@ const CardModal = ({ setModal }: { setModal: any }) => {
             </div>
             <div className="my-3">
               <button
-                onClick={() => setModal(2)}
+                onClick={() => setEditCardModal(false)}
                 className="text-blue underline"
               >
-                تخطي هذه المرحلة و التسجيل بدون بطاقة
+                الغاء
               </button>
             </div>
           </motion.div>

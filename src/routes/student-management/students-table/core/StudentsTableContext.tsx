@@ -29,6 +29,8 @@ type StudentsTableContext = {
   setGroupModal: Dispatch<SetStateAction<boolean>>;
   selectedStudent: StudentState;
   setSelectedStudent: Dispatch<SetStateAction<StudentState>>;
+  editCardModal: boolean;
+  setEditCardModal: Dispatch<SetStateAction<boolean>>;
 };
 
 export const StudentsTableContext = createContext<StudentsTableContext>({
@@ -44,6 +46,8 @@ export const StudentsTableContext = createContext<StudentsTableContext>({
   setGroupModal: () => {}, // Correctly typed empty function
   selectedStudent: null,
   setSelectedStudent: () => {}, // Correctly typed empty function
+  editCardModal: false,
+  setEditCardModal: () => {},
 });
 
 export function StudentsTableContextProvider({
@@ -51,6 +55,7 @@ export function StudentsTableContextProvider({
 }: {
   children: ReactNode;
 }) {
+  const [editCardModal, setEditCardModal] = useState<boolean>(false);
   const [filter, setFilter] = useState<string>("");
   const [filterState, setFilterState] = useState<{
     searchBar: string;
@@ -88,6 +93,8 @@ export function StudentsTableContextProvider({
         selectedStudent,
         setSelectedStudent,
         setGroupModal,
+        editCardModal,
+        setEditCardModal,
       }}
     >
       {children}

@@ -7,7 +7,7 @@ import { StudentsTableContext } from "../core/StudentsTableContext";
 export default function SettingsCell({ row }: { row: any }) {
   const [settings, setSettings] = useState(false);
 
-  const { setSelectedStudent, setGroupModal } =
+  const { setSelectedStudent, setGroupModal, setEditCardModal } =
     useContext(StudentsTableContext);
 
   const setStudent = () => {
@@ -39,6 +39,12 @@ export default function SettingsCell({ row }: { row: any }) {
                   className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
                 >
                   تغيير الفوج
+                </button>
+                <button
+                  onClick={() => setEditCardModal(true)}
+                  className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
+                >
+                  تغيير البطاقة
                 </button>
               </article>
             </div>
