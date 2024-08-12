@@ -22,12 +22,11 @@ export const RegistredStudentsOverlay: React.FC<
   RegistredStudentsOverlayProps
 > = ({ onClose }) => {
   const queryClient = useQueryClient();
-  const { selectedGroup } = useContext(GroupsTableContext);
+  const { selectedGroup, setSelectedGroup } = useContext(GroupsTableContext);
   const [selectedOption, setSelectedOption] = useState<{
     label: string;
     value: string;
   }>();
-  console.log("selectedGroup", selectedGroup);
   const [reactSelectOptions, setReactSelectOptions] = useState<
     {
       value: string;
@@ -42,7 +41,7 @@ export const RegistredStudentsOverlay: React.FC<
 
   useEffect(() => {
     if (data && !error && !isPending) {
-      const excludeSet = selectedGroup?.students.map((grp) => grp._id);
+      const excludeSet = selectedGroup?.students.map((std) => std._id);
       const filteredSet = data.filter(
         (item) => !excludeSet?.includes(item._id)
       );
@@ -53,6 +52,7 @@ export const RegistredStudentsOverlay: React.FC<
         };
       });
       setReactSelectOptions(arr);
+      setSelectedOption(undefined);
     }
     if (error) setReactSelectOptions([{ label: "خطأ", value: "" }]);
   }, [data, isPending, error, selectedGroup]);
@@ -69,14 +69,15 @@ export const RegistredStudentsOverlay: React.FC<
   const mutation = useMutation({
     mutationFn: ({ groupId, studentId }: any) =>
       assignStudentToGroup(groupId, studentId),
-    onSuccess: () => {
+    onSuccess: (res) => {
       toast.success("تم تسجيل الطالب بنجاح");
       // onClose();
       queryClient.invalidateQueries({ queryKey: ["getGroups"] });
+      setSelectedGroup(res);
     },
     onError: () => {
       toast.error("حدث خطأ ما");
-      onClose();
+      // onClose();
       queryClient.invalidateQueries({ queryKey: ["getGroups"] });
     },
   });
@@ -86,14 +87,15 @@ export const RegistredStudentsOverlay: React.FC<
   const removeMutation = useMutation({
     mutationFn: ({ groupId, studentId }: any) =>
       deleteStudentFromGroup(groupId, studentId),
-    onSuccess: () => {
+    onSuccess: (res) => {
       toast.success("تمت إزالة الطالب بنجاح");
-      onClose();
+      // onClose();
       queryClient.invalidateQueries({ queryKey: ["getGroups"] });
+      setSelectedGroup(res);
     },
     onError: () => {
       toast.error("حدث خطأ ما");
-      onClose();
+      // onClose();
       queryClient.invalidateQueries({ queryKey: ["getGroups"] });
     },
   });
@@ -133,7 +135,8 @@ export const RegistredStudentsOverlay: React.FC<
           <Select
             className="max-w-[553px]"
             options={reactSelectOptions}
-            // defaultValue={SelectedOption}
+            defaultValue={selectedOption}
+            isClearable
             onChange={setSelectedOption as any}
           />
         </div>

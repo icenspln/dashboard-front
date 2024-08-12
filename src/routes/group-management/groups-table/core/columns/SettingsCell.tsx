@@ -19,6 +19,9 @@ export default function SettingsCell({ row }: { row: any }) {
     setGroupModal(true);
     setSelectedGroup(row);
   };
+  // useEffect(() => {
+  //   assignStudentToGroup();
+  // }, [triggerNewData]);
 
   const options = [
     {

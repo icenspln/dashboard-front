@@ -33,6 +33,8 @@ type GroupsTableContext = {
   setGroupModal: Dispatch<SetStateAction<boolean>>;
   selectedGroup: GroupState;
   setSelectedGroup: Dispatch<SetStateAction<GroupState>>;
+  triggerNewData: boolean;
+  setTriggerNewData: Dispatch<SetStateAction<boolean>>;
 };
 
 export const GroupsTableContext = createContext<GroupsTableContext>({
@@ -50,6 +52,8 @@ export const GroupsTableContext = createContext<GroupsTableContext>({
   setGroupModal: () => {}, // Correctly typed empty function
   selectedGroup: null,
   setSelectedGroup: () => {}, // Correctly typed empty function
+  triggerNewData: false,
+  setTriggerNewData: () => {},
 });
 
 export function GroupsTableContextProvider({
@@ -92,9 +96,12 @@ export function GroupsTableContextProvider({
   }, [filterState]);
 
   const [selectedGroup, setSelectedGroup] = useState<GroupState>(null);
+  const [triggerNewData, setTriggerNewData] = useState(false);
   return (
     <GroupsTableContext.Provider
       value={{
+        triggerNewData,
+        setTriggerNewData,
         filterState,
         setFilterState,
         setFilter,
