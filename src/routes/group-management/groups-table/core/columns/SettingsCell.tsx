@@ -12,12 +12,17 @@ import { RegistredStudentsOverlay } from "./overlays/registredStudentsList";
 
 export default function SettingsCell({ row }: { row: any }) {
   const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
-  const { setGroupModal, setSelectedGroup } = useContext(GroupsTableContext);
+  const { setGroupModal, setSelectedGroup, setAdditionalDayModal } =
+    useContext(GroupsTableContext);
   const navigate = useNavigate();
 
   const assignStudentToGroup = () => {
     setGroupModal(true);
     setSelectedGroup(row);
+  };
+  const groupAddAdditionalDays = () => {
+    setSelectedGroup(row);
+    setAdditionalDayModal(true);
   };
   // useEffect(() => {
   //   assignStudentToGroup();
@@ -49,7 +54,7 @@ export default function SettingsCell({ row }: { row: any }) {
 
     {
       label: "إضافة حصة إضافية",
-      action: () => setActiveOverlay("addNewSession"),
+      action: () => groupAddAdditionalDays(),
     },
   ];
   const closeOverlay = () => setActiveOverlay(null);

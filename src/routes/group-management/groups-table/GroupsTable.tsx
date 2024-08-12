@@ -11,11 +11,13 @@ import { useQuery } from "@tanstack/react-query";
 import { getGroups } from "./core/_requests";
 import { GroupsTableContext } from "./core/GroupsTableContext";
 import { GroupAddStudentModal } from "./group-add-studen-modal/GroupAddStudentModal";
+import { GroupAddAdditionalDays } from "./group-add-additional-days/GroupAddAdditionalDays";
 
 export function GroupsTable() {
   const constraintsRef = useRef(null);
   const [groups, setGroups] = useState<Group[]>([]);
-  const { filter, groupModal } = useContext(GroupsTableContext);
+  const { filter, groupModal, additionalDayModal } =
+    useContext(GroupsTableContext);
 
   //query functions
   const { data, isLoading } = useQuery({
@@ -93,6 +95,7 @@ export function GroupsTable() {
         </tbody>
       </motion.table>
       {groupModal && <GroupAddStudentModal />}
+      {additionalDayModal && <GroupAddAdditionalDays />}
     </div>
   );
 }

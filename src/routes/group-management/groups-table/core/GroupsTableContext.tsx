@@ -35,6 +35,8 @@ type GroupsTableContext = {
   setSelectedGroup: Dispatch<SetStateAction<GroupState>>;
   triggerNewData: boolean;
   setTriggerNewData: Dispatch<SetStateAction<boolean>>;
+  additionalDayModal: boolean;
+  setAdditionalDayModal: Dispatch<SetStateAction<boolean>>;
 };
 
 export const GroupsTableContext = createContext<GroupsTableContext>({
@@ -54,6 +56,8 @@ export const GroupsTableContext = createContext<GroupsTableContext>({
   setSelectedGroup: () => {}, // Correctly typed empty function
   triggerNewData: false,
   setTriggerNewData: () => {},
+  additionalDayModal: false,
+  setAdditionalDayModal: () => {},
 });
 
 export function GroupsTableContextProvider({
@@ -62,6 +66,7 @@ export function GroupsTableContextProvider({
   children: ReactNode;
 }) {
   const [filter, setFilter] = useState<string>("");
+  const [additionalDayModal, setAdditionalDayModal] = useState<boolean>(false);
 
   const [filterState, setFilterState] = useState<{
     searchBar: string;
@@ -100,6 +105,8 @@ export function GroupsTableContextProvider({
   return (
     <GroupsTableContext.Provider
       value={{
+        additionalDayModal,
+        setAdditionalDayModal,
         triggerNewData,
         setTriggerNewData,
         filterState,
