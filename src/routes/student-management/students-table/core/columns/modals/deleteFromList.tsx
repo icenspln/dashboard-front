@@ -1,6 +1,6 @@
 import React from "react";
 import ConfirmButton from "./Popup-menu-component/confirmButton";
-import { Overlay } from "../../../../../components/Overlay";
+import { Overlay } from "../../../../../../components/Overlay";
 
 interface DeleteFromListOverlayProps {
   onClose: () => void;
@@ -19,9 +19,9 @@ const DeleteFromListOverlay: React.FC<DeleteFromListOverlayProps> = () => {
           </p>
           <span className="flex justify-center ">
             <ConfirmButton
-              text="تأكيد الحذف"
-              color="bg-red-400"
-              textColor="text-white"
+            // text="تأكيد الحذف"
+            // color="bg-red-400"
+            // textColor="text-white"
             />
           </span>
         </div>

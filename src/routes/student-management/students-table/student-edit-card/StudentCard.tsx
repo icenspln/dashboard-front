@@ -14,51 +14,49 @@ export default function StudentCardEdit() {
   const { editCardModal, setEditCardModal } = useContext(StudentsTableContext);
   if (editCardModal)
     return (
-      <>
-        <Overlay>
-          <article className="overflow-hidden h-[435px] w-[391px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white px-[20px] py-[27px] rounded-3xl">
-            <AnimatePresence mode="wait">
-              {modal == 1 && (
-                <CardModal
-                  setModal={setModal}
-                  editCardModal={editCardModal}
-                  setEditCardModal={setEditCardModal}
-                />
-              )}
+      <Overlay>
+        <article className="overflow-hidden h-[435px] w-[391px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-white px-[20px] py-[27px] rounded-3xl">
+          <AnimatePresence mode="wait">
+            {modal == 1 && (
+              <CardModal
+                setModal={setModal}
+                editCardModal={editCardModal}
+                setEditCardModal={setEditCardModal}
+              />
+            )}
 
-              {modal == 2 && (
-                <motion.div
-                  transition={{ duration: 0.2, type: "just" }}
-                  initial={{ x: 400 }}
-                  animate={{ x: 0 }}
-                  key={2}
-                  className="flex flex-col gap-1 items-center h-full"
+            {modal == 2 && (
+              <motion.div
+                transition={{ duration: 0.2, type: "just" }}
+                initial={{ x: 400 }}
+                animate={{ x: 0 }}
+                key={2}
+                className="flex flex-col gap-1 items-center h-full"
+              >
+                <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
+                  تم تسجيل الطالب بنجاح
+                </h2>
+                <p className="w-full text- text-textGray2 text-center ">
+                  يمكن الآن للطالب الدخول للمؤسسة
+                </p>
+                <div className="my-auto">
+                  <Check />
+                </div>
+
+                <Link
+                  to={`/studentmanagement`}
+                  className="w-[70%] flex justify-center items-center"
                 >
-                  <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
-                    تم تسجيل الطالب بنجاح
-                  </h2>
-                  <p className="w-full text- text-textGray2 text-center ">
-                    يمكن الآن للطالب الدخول للمؤسسة
-                  </p>
-                  <div className="my-auto">
-                    <Check />
-                  </div>
-
-                  <Link
-                    to={`/studentmanagement`}
-                    className="w-[70%] flex justify-center items-center"
-                  >
-                    <ButtonRoundedPrimary
-                      color="blue"
-                      text={`العودة إلى قائمة المسجلين`}
-                    />
-                  </Link>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </article>
-        </Overlay>
-      </>
+                  <ButtonRoundedPrimary
+                    color="blue"
+                    text={`العودة إلى قائمة المسجلين`}
+                  />
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </article>
+      </Overlay>
     );
 }
 

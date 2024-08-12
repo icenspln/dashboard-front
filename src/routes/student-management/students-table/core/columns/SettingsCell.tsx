@@ -1,27 +1,48 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Popup from "reactjs-popup";
 import DotsSvg from "../../../../../assets/icons/DotsSvg";
 import { useNavigate } from "react-router-dom";
-import DeleteFromListOverlay from "./overlays/deleteFromList";
-import ChangeGroupOverlay from "./overlays/changeGroup";
-import RegistredStudentsOverlay from "./overlays/registredStudentsList";
-import ChangeStudentCardOverlay from "./overlays/changeStudentCard";
+import DeleteFromListOverlay from "./modals/deleteFromList";
+import ChangeGroupOverlay from "./modals/changeGroup";
+import RegistredStudentsOverlay from "./modals/registredStudentsList";
+import ChangeStudentCardOverlay from "./modals/changeStudentCard";
+import { StudentsTableContext } from "../StudentsTableContext";
 
-export default function SettingsCell() {
+export default function SettingsCell({ row }: { row: any }) {
+  const { setSelectedStudent, setGroupModal, setEditCardModal } =
+    useContext(StudentsTableContext);
+
+  const setStudent = () => {
+    setSelectedStudent(row);
+    setGroupModal(true);
+  };
+
   const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
   const navigate = useNavigate();
   const options = [
-    { label: "تعديل المعلومات", action: () => {} },
     {
-      label: "حذف من القائمة",
-      action: () => setActiveOverlay("deleteFromList"),
+      label: "تعديل المعلومات",
+      action: () => {
+        navigate(
+          `/studentmanagement/edit/${row._id}?firstName=${row.firstName}&lastName=${row.lastName}&phoneNumber=${row.phoneNumber}&guardianPhoneNumber=${row.guardianPhoneNumber}&birthDate=${row.birthDate}&institution=${row.institution}&level=${row.level}&speciality=${row.speciality}`
+        );
+      },
     },
     {
       label: "رؤية الأفواج الحالية",
-      action: () => setActiveOverlay("registredStudentsList"),
+      action: () => {
+        // setActiveOverlay("registredStudentsList");
+        setStudent();
+      },
     },
     { label: "تغيير الفوج", action: () => setActiveOverlay("changeGroup") },
-    { label: "تغيير البطاقة", action: () => setActiveOverlay("changeCard") },
+    {
+      label: "تغيير البطاقة",
+      action: () => {
+        setEditCardModal(true);
+        // setActiveOverlay("changeCard")}
+      },
+    },
     {
       label: "رؤية تواريخ الدفع",
       action: () => navigate("/studentspaymenthistory"),
@@ -31,7 +52,9 @@ export default function SettingsCell() {
       action: () => navigate("/studentspresencemanagement"),
     },
   ];
+
   const closeOverlay = () => setActiveOverlay(null);
+
   return (
     <div>
       <Popup

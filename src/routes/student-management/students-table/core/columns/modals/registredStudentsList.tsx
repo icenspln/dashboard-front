@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import SelectGroup from "./Popup-menu-component/PresentStudentsList";
-import { Overlay } from "../../../../../components/Overlay";
+import { Overlay } from "../../../../../../components/Overlay";
 import Select from "react-select";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   assignStudentToGroup,
   deleteStudentFromGroup,
   getGroups,
-} from "../../student-group-modal/core/_requests";
-import { Group } from "../../student-group-modal/core/_model";
+} from "../../../student-group-modal/core/_requests";
+import { Group } from "../../../student-group-modal/core/_model";
 import toast from "react-hot-toast";
-import { StudentsTableContext } from "../../core/StudentsTableContext";
-import ButtonRoundedPrimary from "../../../../../components/ButtonRoundedPrimary";
-import { returnGroupLabel } from "../../../../../handlers/returnInArabic";
+import { StudentsTableContext } from "../../../core/StudentsTableContext";
+import ButtonRoundedPrimary from "../../../../../../components/ButtonRoundedPrimary";
+import { returnGroupLabel } from "../../../../../../handlers/returnInArabic";
 
 interface RegistredStudentsOverlayProps {
   onClose: () => void;

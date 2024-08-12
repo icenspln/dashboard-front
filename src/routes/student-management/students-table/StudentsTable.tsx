@@ -9,9 +9,9 @@ import { useContext, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getStudents } from "./core/_requests";
 import { StudentsTableContext } from "./core/StudentsTableContext";
-import { defaultColumns } from "./columns/columns";
 import { StudentGroupModal } from "./student-group-modal/StudentGroupModal";
-import StudentCardEdit from "./student-edit-Card/StudentCard";
+import StudentCardEdit from "./student-edit-card/StudentCard";
+import { defaultColumns } from "./core/columns/columns";
 
 function StudentsTable() {
   const { filter, groupModal, editCardModal } =
