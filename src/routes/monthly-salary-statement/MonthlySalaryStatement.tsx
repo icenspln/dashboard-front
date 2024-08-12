@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SalaryStatementTable from "./MonthlySalaryStatementTable";
 import { Document, Page, Text, View, StyleSheet, Font } from '@react-pdf/renderer';
-import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import {  PDFViewer } from '@react-pdf/renderer';
 
 Font.register({
     family: 'Amiri',
@@ -15,18 +15,18 @@ const styles = StyleSheet.create({
         fontFamily: 'Amiri',
     },
     section: {
-        margin: 10,
-        padding: 10,
+        margin: 3,
+        padding: 3,
         flexGrow: 1,  
         textAlign: "center"
     },
     header: {
-        margin:5,
-        height: 50, 
+        margin:3,
+        height: 40, 
         textAlign: 'center',
     },
     headerText: {
-        fontSize: 16, 
+        fontSize: 14, 
         fontWeight: 'bold',
     },
     subHeader: {
@@ -36,6 +36,27 @@ const styles = StyleSheet.create({
         
     },
     subHeaderText:{
+        textAlign:'center'
+    },
+    monthlyPaymentContainer:{
+        display:'flex',
+        
+        marginLeft:10,
+        marginBottom:10
+    },
+    monthlyPaymentText:{
+        fontSize:14,
+        marginLeft:10,
+        marginBottom:5,
+        
+        
+        
+    },
+    monthlyPaymentCell:{
+        width: 70, 
+        border: "1px solid",
+        borderWidth: 1.5,
+        fontSize:14,
         textAlign:'center'
     }
 });
@@ -58,8 +79,12 @@ export function MonthlySalaryStatement(){
                     <SalaryStatementTable />
                     
                 </View>
-                <View>
-                    <Text></Text>
+                <View style={styles.monthlyPaymentContainer}>
+                    <Text style={styles.monthlyPaymentText}>الدفع الشهري</Text>
+                    <View style={styles.monthlyPaymentCell}>
+                        <Text>2500دج</Text>
+
+                    </View>
                 </View>
             </Page>
         </Document>
