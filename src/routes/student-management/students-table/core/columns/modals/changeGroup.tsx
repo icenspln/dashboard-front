@@ -1,7 +1,7 @@
 import React from "react";
 import ConfirmButton from "./Popup-menu-component/confirmButton";
-import { Overlay } from "../../../../../components/Overlay";
-import Checklist from "../../../../../components/CheckList";
+import { Overlay } from "../../../../../../components/Overlay";
+import Checklist from "../../../../../../components/CheckList";
 
 interface ChangeGroupOverlayProps {
   onClose: () => void;
@@ -32,9 +32,9 @@ const ChangeGroupOverlay: React.FC<ChangeGroupOverlayProps> = ({ onClose }) => {
           </span>
           <span className="flex justify-center">
             <ConfirmButton
-              text="تسجيل التغييرات"
-              color="bg-blue"
-              textColor="text-white"
+            // text="تسجيل التغييرات"
+            // color="bg-blue"
+            // textColor="text-white"
             />
           </span>
         </div>

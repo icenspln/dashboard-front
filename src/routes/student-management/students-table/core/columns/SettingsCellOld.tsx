@@ -1,8 +1,8 @@
 // import DotsSvg from "../../../../../assets/icons/DotsSvg";
 import { useContext, useState } from "react";
-import DotsSvg from "../../../../assets/icons/DotsSvg";
+import DotsSvg from "../../../../../assets/icons/DotsSvg";
 import { Link } from "react-router-dom";
-import { StudentsTableContext } from "../core/StudentsTableContext";
+import { StudentsTableContext } from "../StudentsTableContext";
 
 export default function SettingsCell({ row }: { row: any }) {
   const [settings, setSettings] = useState(false);

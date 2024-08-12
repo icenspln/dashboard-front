@@ -1,5 +1,5 @@
-import SuccessSignSvg from "../../../../../assets/icons/SuccessSignSvg";
-import { Overlay } from "../../../../../components/Overlay";
+import SuccessSignSvg from "../../../../../../assets/icons/SuccessSignSvg";
+import { Overlay } from "../../../../../../components/Overlay";
 import ConfirmButton from "./Popup-menu-component/confirmButton";
 
 interface ChangeStudentCardOverlayProps {
@@ -20,9 +20,9 @@ export default function ChangeStudentCardOverlay({
           </span>
           <SuccessSignSvg />
           <ConfirmButton
-            text="العودة الى قائمة المسجلين"
-            color="bg-blue"
-            textColor="text-white"
+          // text="العودة الى قائمة المسجلين"
+          // color="bg-blue"
+          // textColor="text-white"
           />
         </div>
       </>

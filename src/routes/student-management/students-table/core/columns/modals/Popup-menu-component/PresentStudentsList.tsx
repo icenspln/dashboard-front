@@ -1,5 +1,5 @@
 import React from "react";
-import DeleteSvg from "../../../../../../assets/icons/DeleteSvg";
+import DeleteSvg from "../../../../../../../assets/icons/DeleteSvg";
 
 interface SelectGroupProps {
   id: number;

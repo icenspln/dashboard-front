@@ -2,8 +2,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import BirthDateCell from "./BirthDateCell";
 import InstitutionCell from "./InstitutionCell";
 import SettingsCell from "./SettingsCell";
-import { PricingButton } from "../../../../../components/PricingButtonEdit";
-import { Student } from "../core/_models";
+import { Student } from "../_models";
 
 const columnHelper = createColumnHelper<Student>();
 
@@ -63,5 +62,6 @@ export const defaultColumns = [
     header: "الإعدادات",
     id: "action",
     cell: (props) => <SettingsCell row={props.row.original} />,
+    // cell: (props) => <SettingsCell />,
   }),
 ];
