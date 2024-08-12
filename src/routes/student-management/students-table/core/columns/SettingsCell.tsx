@@ -49,7 +49,7 @@ export default function SettingsCell({ row }: { row: any }) {
     },
     {
       label: "رؤية تواريخ الحضور والغياب",
-      action: () => navigate("/studentspresencemanagement"),
+      action: () => navigate(`/studentspresencemanagement/${row._id}`),
     },
   ];
 

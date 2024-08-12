@@ -7,7 +7,7 @@ export type Student = {
   lastName: string;
   birthDate: string | Date;
   phoneNumber?: string;
-  gardianPhoneNumber: string;
+  guardianPhoneNumber: string;
   scanningCardId: string;
   institution: string | "primarySchool" | "middleSchool" | "highSchool";
   createdAt: Date;

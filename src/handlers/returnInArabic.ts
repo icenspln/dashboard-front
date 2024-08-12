@@ -45,3 +45,42 @@ export function returnGroupLabel({
 export function returnStudentLabel(firstName: string, lastName: string) {
   return `${firstName} ${lastName}`;
 }
+
+export function returnDayInAR(dayInEnglish: string) {
+  switch (dayInEnglish) {
+    case "Saturday":
+      return "السبت";
+      break;
+    case "Sunday":
+      return "الأحد";
+      break;
+    case "Monday":
+      return "الإثنين";
+      break;
+    case "Tuesday":
+      return "الثلاثاء";
+      break;
+    case "Wednesday":
+      return "الأربعاء";
+      break;
+    case "Thursday":
+      return "الخميس";
+      break;
+    case "Friday":
+      return "الجمعة";
+      break;
+  }
+}
+
+export function returnTimeString({
+  hour,
+  minute,
+}: {
+  hour: number | string;
+  minute: number | string;
+  _id?: number | string;
+}) {
+  const h = hour.toString().padStart(2, "0");
+  const m = minute.toString().padStart(2, "0");
+  return `${h}:${m}`;
+}

@@ -112,7 +112,7 @@ const router = createBrowserRouter(
           element: <GroupsPresenceListsManagement />,
         },
         {
-          path: "/studentspresencemanagement",
+          path: "/studentspresencemanagement/:id",
           element: <StudentsPresenceListsManagement />,
         },
         {

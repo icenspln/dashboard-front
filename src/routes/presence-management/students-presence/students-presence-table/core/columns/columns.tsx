@@ -1,42 +1,32 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import { PresenceList } from "../_models";
+import {
+  AttendanceForStudentGroupType,
+  AttendanceForStudentType,
+} from "../_models";
 import { StudentPresentButton } from "../../../../../../components/isPresentButton";
 import { PricingButton } from "../../../../../../components/PricingButtonEdit";
-import { ChangedGroupButton, DeleteFromGroupButton } from "../../../../../../components/changeGroupButton";
+import {
+  ChangedGroupButton,
+  DeleteFromGroupButton,
+} from "../../../../../../components/changeGroupButton";
 
-const columnHelper = createColumnHelper<PresenceList>();
+const columnHelper = createColumnHelper<AttendanceForStudentGroupType>();
 
 export const defaultColumns = [
- 
- 
-  columnHelper.accessor("group", {
+  columnHelper.accessor("group.groupId", {
     header: "الفوج",
     cell: (info) => info.getValue(),
   }),
- 
-  columnHelper.accessor("pricing", {
+  columnHelper.accessor("group.pricing", {
     header: "ثمن الدفع الشهري",
-    cell: PricingButton,
+    cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("dayOfWeek", {
+  // columnHelper.accessor("groups.alldays", {
+  //   header: "11/08/2024",
+  //   cell: (info) => info.getValue(),
+  // }),
+  columnHelper.accessor("attendance", {
     header: "11/08/2024",
-    cell: StudentPresentButton,
+    // cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor("dayOfWeek", {
-    header: "11/08/2024",
-    cell: StudentPresentButton,
-  }),
-  columnHelper.accessor("dayOfWeek", {
-    header: "11/08/2024",
-    cell: ChangedGroupButton,
-  }),
-  columnHelper.accessor("dayOfWeek", {
-    header: "11/08/2024",
-    cell: DeleteFromGroupButton,
-  }),
-  columnHelper.accessor("dayOfWeek", {
-    header: "11/08/2024",
-    cell: DeleteFromGroupButton,
-  }),
-
 ];

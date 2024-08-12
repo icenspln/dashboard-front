@@ -4,72 +4,90 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { defaultColumns } from "./core/columns/columns";
-import data from "../data.json"
-import { PresenceList } from "./core/_models";
 import { motion } from "framer-motion";
-import { useRef } from "react";
-
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getAttendanceForStudent } from "./core/_requests";
+import { useParams } from "react-router-dom";
+import { AttendanceForStudentGroupType } from "./core/_models";
+import {
+  returnDayInAR,
+  returnGroupLabel,
+  returnInstitutionInAR,
+  returnLevelInAR,
+  returnTimeString,
+} from "../../../../handlers/returnInArabic";
 
 export function StudentsPresenceListsTable() {
-  const constraintsRef = useRef(null)
-  const PresenceListData: PresenceList[] = data;
+  const constraintsRef = useRef(null);
+  const { id } = useParams();
+  const [groups, setGroups] = useState<AttendanceForStudentGroupType[]>([]);
 
-  const table = useReactTable({
-    columns: defaultColumns,
-    data: PresenceListData,
-    getCoreRowModel: getCoreRowModel(),
+  console.log(groups);
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["getAttendanceForStudent"],
+    queryFn: () => getAttendanceForStudent(id!),
   });
 
+  useMemo(() => {
+    if (data) {
+      setGroups(data.groups);
+    }
+  }, [data, isLoading, error]);
+
   return (
-    <div   ref={constraintsRef}
-      >
-       
-  {data.map((group, index) => (
-    <div key={index} className="mb-4  overflow-x-clip border  rounded-xl "> 
-      
-      
-      <motion.table
-        drag={"x"}
-        dragConstraints={constraintsRef}
-        dragElastic={0}
-        dragMomentum={false}
-        className="max-w-full rounded-xl"
-      >
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr className="   border-b-light " key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th
-                  key={header.id}
-                  className="text-textGray text-start p-3 font-normal "
-                  colSpan={header.colSpan}
-                >
-                  {flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows
-            .filter((row) => row.original.groupId === group.groupId) 
-            .map((row) => (
-              <tr className="border  border-b-light " key={row.id}>
-                {row.getAllCells().map((cell) => (
-                  <td className={`text-darkGray text-start p-3 font-normal w-full min-w-[220px] ${cell.column.columnDef || ''}`} key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+    <div ref={constraintsRef}>
+      {groups.map((grp, i) => (
+        <div
+          key={i}
+          className="mb-4 overflow-x-clip border border-light rounded-xl w-full"
+        >
+          <motion.table
+            drag={"x"}
+            dragConstraints={constraintsRef}
+            dragElastic={0}
+            dragMomentum={false}
+            className="w-full rounded-xl "
+          >
+            <thead>
+              <tr className="flex items-center justify-start gap-7 w-full text-textGray font-medium border-b border-light ">
+                {grp.group.groupId && (
+                  <th className="p-2 w-[200px] text-start">الفوج</th>
+                )}
+                {grp.group.pricing && (
+                  <th className="p-2 w-[200px] text-start">ثمن الدفع الشهري</th>
+                )}
+                {grp.attendance.map((att, i) => (
+                  <th className=" w-[200px] p-2 text-start" key={i}>
+                    {new Date(att.date).toLocaleDateString()}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="flex items-center justify-start gap-7 w-full text-darkGray">
+                {grp.group.groupId && (
+                  <td className="w-[200px] p-2 text-start flex gap-1">
+                    <span>{returnLevelInAR(grp.group.level)}</span>
+                    <span>{returnInstitutionInAR(grp.group.institution)}|</span>
+                    <span>{returnDayInAR(grp.group.dayOfWeek)}|</span>
+                    <span>{returnTimeString(grp.group.timing)}</span>
+                  </td>
+                )}
+                <td className="w-[200px] p-2 text-start">
+                  {grp.group.pricing}
+                </td>
+                {grp.attendance.map((att) => (
+                  <td className="w-[200px] p-2 text-start" key={att.status}>
+                    {att.status}
                   </td>
                 ))}
               </tr>
-            ))}
-        </tbody>
-        </motion.table>
-      
-      
+            </tbody>
+          </motion.table>
+        </div>
+      ))}
     </div>
-    
-  ))}
-</div>
-
   );
 }
