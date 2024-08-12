@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import ConfirmButton from "./Popup-menu-component/confirmButton";
 import SelectGroup from "./Popup-menu-component/PresentStudentsList";
 import { Overlay } from "../../../../../components/Overlay";
 import Select from "react-select";
@@ -10,9 +9,10 @@ import {
   getGroups,
 } from "../../student-group-modal/core/_requests";
 import { Group } from "../../student-group-modal/core/_model";
-import { returnGroupLabel } from "../../../../../handlers/returnInArabic";
 import toast from "react-hot-toast";
 import { StudentsTableContext } from "../../core/StudentsTableContext";
+import ButtonRoundedPrimary from "../../../../../components/ButtonRoundedPrimary";
+import { returnGroupLabel } from "../../../../../handlers/returnInArabic";
 
 interface RegistredStudentsOverlayProps {
   onClose: () => void;
@@ -39,22 +39,20 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
     queryFn: () => getGroups(),
   });
 
+  const [groups, setGroups] = useState<Group[]>([]);
+
   useEffect(() => {
     if (data && !error && !isPending) {
-      const excludeSet = selectedStudent?.groups.map((grp) => grp._id);
-      const filteredSet = data.filter(
-        (item) => !excludeSet?.includes(item._id)
-      );
-      const arr = filteredSet.map((group) => {
+      const arr = data.map((group) => {
         return {
           value: `${group._id}`,
-          label: `${returnGroupLabel(group)}`,
+          label: `${returnGroupLabel(group as any)}`,
         };
       });
       setReactSelectOptions(arr);
     }
     if (error) setReactSelectOptions([{ label: "خطأ", value: "" }]);
-  }, [data, isPending, error, selectedStudent]);
+  }, [data, isPending, error, selectedStudent, groups]);
 
   const onSubmitGroups = () => {
     const group = selectedOption;
@@ -68,14 +66,20 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
   const mutation = useMutation({
     mutationFn: ({ groupId, studentId }: any) =>
       assignStudentToGroup(groupId, studentId),
-    onSuccess: () => {
+    onSuccess: (res) => {
       toast.success("تم تسجيل الطالب بنجاح");
-      onClose();
+      // onClose();
       queryClient.invalidateQueries({ queryKey: ["getStudents"] });
+      setGroups((prev) => [...prev, res]);
     },
-    onError: () => {
-      toast.error("حدث خطأ ما");
-      onClose();
+    onError: (err: any) => {
+      const message = err.response.data.message;
+      if (message == "Student already in the group") {
+        toast.error("الطالب مسجل في الفوج مسبقا");
+      } else {
+        toast.error("حدث خطأ ما");
+      }
+      // onClose();
       queryClient.invalidateQueries({ queryKey: ["getStudents"] });
     },
   });
@@ -85,21 +89,26 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
   const removeMutation = useMutation({
     mutationFn: ({ groupId, studentId }: any) =>
       deleteStudentFromGroup(groupId, studentId),
-    onSuccess: () => {
+    onSuccess: (res) => {
+      console.log(res);
       toast.success("تمت إزالة الطالب بنجاح");
-      onClose();
+      // onClose();
       queryClient.invalidateQueries({ queryKey: ["getStudents"] });
+      setGroups((prev) => [...prev].filter((grp) => grp._id != res._id));
     },
     onError: () => {
       toast.error("حدث خطأ ما");
-      onClose();
+      // onClose();
       queryClient.invalidateQueries({ queryKey: ["getStudents"] });
     },
   });
-  console.log("selectedStudent", selectedStudent);
   const deleteGroup = (groupId: string, studentId: string) => {
     removeMutation.mutate({ groupId, studentId });
   };
+
+  useEffect(() => {
+    setGroups(selectedStudent?.groups || []);
+  }, [selectedStudent]);
   return (
     <Overlay onClose={onClose} isVisible>
       <>
@@ -108,14 +117,14 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
           <p>يرجى اختيار الفوج الذي تريد اضافة التلميذ اليه</p>
 
           <div className="flex w-full flex-col gap-[12px]">
-            {selectedStudent && (
+            {groups && selectedStudent && (
               <>
-                {selectedStudent.groups.map((group, i) => (
+                {groups.map((group, i) => (
                   <SelectGroup
                     id={i}
                     key={i}
                     onDelete={() => deleteGroup(group._id, selectedStudent._id)}
-                    label={returnGroupLabel(group)}
+                    label={returnGroupLabel(group as any)}
                   />
                 ))}
               </>
@@ -133,10 +142,8 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
           />
         </div>
         <span className="flex justify-center gap-[12px]">
-          <ConfirmButton
+          <ButtonRoundedPrimary
             text="تسجيل التغييرات"
-            color="bg-blue"
-            textColor="text-white"
             onClick={onSubmitGroups}
           />
         </span>
