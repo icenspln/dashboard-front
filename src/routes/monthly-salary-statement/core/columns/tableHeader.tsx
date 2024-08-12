@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     tableCellHeader: {
-        fontSize: 10,
+        fontSize: 8,
         fontWeight: 'bold',
         fontFamily: 'Amiri',
         paddingVertical: 1,

@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         
     },
     tableCell: {
-        fontSize: 10,
+        fontSize: 6,
         fontFamily: 'Amiri',
         paddingVertical: 1,
         paddingHorizontal: 2,
