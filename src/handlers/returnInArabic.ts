@@ -42,3 +42,6 @@ export function returnGroupLabel({
 }: Group) {
   return `${module} | ${institution} ${level} | ${responsibleTeacher.firstName + " " + responsibleTeacher.lastName} | ${dayOfWeek} - ${timing.hour}:${timing.minute}`;
 }
+export function returnStudentLabel(firstName: string, lastName: string) {
+  return `${firstName} ${lastName}`;
+}

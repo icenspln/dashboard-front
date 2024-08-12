@@ -1,17 +1,25 @@
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import DotsSvg from "../../../../../assets/icons/DotsSvg";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 //importing the overlays
 import DeleteGroupOverlay from "./overlays/deleteGroup";
 import AddNewSessionOverlay from "./overlays/addNewSession";
-import RegistredStudentsOverlay from "./overlays/registredStudentsList";
 import TeacherPresence from "./overlays/teacherPresence";
+import { GroupsTableContext } from "../GroupsTableContext";
+import { RegistredStudentsOverlay } from "./overlays/registredStudentsList";
 
 export default function SettingsCell({ row }: { row: any }) {
   const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
+  const { setGroupModal, setSelectedGroup } = useContext(GroupsTableContext);
   const navigate = useNavigate();
+
+  const assignStudentToGroup = () => {
+    setGroupModal(true);
+    setSelectedGroup(row);
+  };
+
   const options = [
     {
       label: "تعديل المعلومات",
@@ -23,16 +31,13 @@ export default function SettingsCell({ row }: { row: any }) {
     },
     { label: "حذف الفوج", action: () => setActiveOverlay("deleteGroup") },
     {
-      label: "إدراج حصة إضافية",
-      action: () => setActiveOverlay("addNewSession"),
-    },
-    {
       label: "رؤية قائمة الحضور",
       action: () => navigate("/groupspresencemanagement"),
     },
     {
       label: "رؤية قائمة المسجلين",
-      action: () => setActiveOverlay("registredStudents"),
+      action: () => assignStudentToGroup(),
+      // action: () => setActiveOverlay("registredStudents"),
     },
     {
       label: "حضور / غياب الأستاذ",
@@ -42,14 +47,6 @@ export default function SettingsCell({ row }: { row: any }) {
     {
       label: "إضافة حصة إضافية",
       action: () => setActiveOverlay("addNewSession"),
-    },
-    {
-      label: "رؤية قائمة الحضور",
-      action: () => navigate("/groupspresencemanagement"),
-    },
-    {
-      label: "رؤية قائمة المسجلين",
-      action: () => setActiveOverlay("registredStudents"),
     },
   ];
   const closeOverlay = () => setActiveOverlay(null);

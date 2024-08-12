@@ -2,6 +2,7 @@ import { Student } from "../../../student-management/students-table/core/_models
 import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
 
 export type Group = {
+  _id: string;
   groupId: number;
   dayOfWeek: string;
   timing: {

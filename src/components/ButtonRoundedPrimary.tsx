@@ -5,12 +5,14 @@ type ButtonRoundedPrimary = {
   text: string;
   children?: ReactElement<any, any>;
   color?: "warning" | "blue" | "danger" | "dead";
+  onClick?: any;
 };
 
 export default function ButtonRoundedPrimary({
   children,
   text,
   color,
+  onClick,
 }: ButtonRoundedPrimary) {
   // const returnColor = (color: string) => {
   //   let bgColor;
@@ -62,6 +64,7 @@ export default function ButtonRoundedPrimary({
       return (
         <>
           <button
+            onClick={onClick}
             className={`min-w-[140px] rounded-full   bg-blue  transition  hover:bg-blueHovered font-medium flex flex-row items-center   gap-3 px-4 py-2 `}
           >
             {children && (
@@ -82,6 +85,7 @@ export default function ButtonRoundedPrimary({
       return (
         <>
           <button
+            onClick={onClick}
             className={`min-w-[140px] rounded-full   bg-redish  transition   font-medium flex flex-row items-center   gap-3 px-4 py-2 `}
           >
             {children && (
@@ -102,6 +106,7 @@ export default function ButtonRoundedPrimary({
       return (
         <>
           <button
+            onClick={onClick}
             className={`min-w-[140px] rounded-full   bg-white  transition   font-medium flex flex-row items-center   gap-3 px-4 py-2 `}
           >
             {children && (
@@ -122,6 +127,7 @@ export default function ButtonRoundedPrimary({
       return (
         <>
           <button
+            onClick={onClick}
             className={`min-w-[140px] rounded-full   bg-warning  transition  font-medium flex flex-row items-center   gap-3 px-4 py-2 `}
           >
             {children && (
@@ -142,6 +148,7 @@ export default function ButtonRoundedPrimary({
       return (
         <>
           <button
+            onClick={onClick}
             className={`min-w-[140px] rounded-full   bg-blue  transition  hover:bg-blueHovered font-medium flex flex-row items-center   gap-3 px-4 py-2 `}
           >
             {children && (
