@@ -26,6 +26,9 @@ import AttendanceManagement from "./routes/attendance-register/AttendanceManagem
 import TablesContainer from "./routes/attendance-register/Attendance-table/tablesContainer.tsx";
 import SeetingManagement from "./routes/settings/SettingManagement.tsx";
 import { StudentUpdateWrapper } from "./routes/student-management/student-update/StudentUpdate.tsx";
+import EmployeeManagement from "./routes/employee-management/EmployeeManagement.tsx";
+import EmployeeRegister from "./routes/employee-management/employees-register/EmployeeRegister.tsx";
+import EmployeePresenceListsManagement from "./routes/presence-management/employee-presence/EmployeesPresenceManagement.tsx";
 
 import LoadingScreen from "./components/LoadingScreen.tsx";
 const queryClient = new QueryClient();
@@ -97,8 +100,20 @@ const router = createBrowserRouter(
           element: <AttendanceManagement />,
         },
         {
+          path: "/employeemanagement",
+          element: <EmployeeManagement />,
+        },
+        {
+          path: "/employeemanagement/new",
+          element: <EmployeeRegister />,
+        },
+        {
           path: "/test",
           element: <TablesContainer />,
+        },
+        {
+          path: "/employeepresencemanagement/:id",
+          element: <EmployeePresenceListsManagement />,
         },
       ],
     },
