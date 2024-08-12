@@ -6,8 +6,6 @@ import {
   returnLevelInAR,
 } from "../../../../../handlers/returnInArabic";
 
-
-
 const columnHelper = createColumnHelper<Group>();
 
 export const defaultColumns = [

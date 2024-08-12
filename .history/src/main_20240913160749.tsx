@@ -37,8 +37,6 @@ import { PdfViewTest } from "./routes/monthly-salary-statement/MonthlySalaryStat
 
 import { TeacherUpdateWrapper } from "./routes/teacher-management/teacher-update/TeacherUpdate.tsx";
 import { GroupUpdateWrapper } from "./routes/group-management/group-update/GroupUpdate.tsx";
-import { SettingsProvider } from "./routes/settings/core/SettingsContext";
-
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
@@ -151,17 +149,15 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <SettingsProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools
-          position="bottom"
-          buttonPosition="bottom-left"
-          initialIsOpen={false}
-        />
-        <Toaster />
-      </QueryClientProvider>
-      <LoadingScreen />
-    </SettingsProvider>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools
+        position="bottom"
+        buttonPosition="bottom-left"
+        initialIsOpen={false}
+      />
+      <Toaster />
+    </QueryClientProvider>
+    <LoadingScreen />
   </React.StrictMode>
 );

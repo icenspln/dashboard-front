@@ -6,6 +6,7 @@ import {
   returnLevelInAR,
 } from "../../../../../handlers/returnInArabic";
 
+import DayCell from "./DayCell";
 
 
 const columnHelper = createColumnHelper<Group>();
@@ -17,7 +18,7 @@ export const defaultColumns = [
   }),
   columnHelper.accessor("dayOfWeek", {
     header: "اليوم",
-    cell: (info) => info.getValue(),
+    cell: (info) => <DayCell value={info.getValue()} />,
   }),
   columnHelper.accessor("timing", {
     header: "الوقت",

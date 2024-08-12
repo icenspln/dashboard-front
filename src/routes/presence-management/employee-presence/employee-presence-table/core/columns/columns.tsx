@@ -1,26 +1,20 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import { PresenceList } from "../_models";
+import { format } from "date-fns";
+import { AttendanceRecord } from "../_models";
 
-
-
-const columnHelper = createColumnHelper<PresenceList>();
+const columnHelper = createColumnHelper<AttendanceRecord>();
 
 export const defaultColumns = [
- 
- 
   columnHelper.accessor("employeeId", {
     header: "الرقم",
-    cell: (info) => info.getValue(),
+    cell: (info) => info.row.index + 1, // Auto-increment using row index
   }),
- 
   columnHelper.accessor("date", {
     header: "اليوم",
-    cell: (info) => info.getValue(),
+    cell: (info) => format(new Date(info.getValue()), "yyyy / MM / dd"), // Format date
   }),
-  columnHelper.accessor("time", {
+  columnHelper.accessor("date", {
     header: "الوقت",
-    cell: (info) => info.getValue(),
+    cell: (info) => format(new Date(info.getValue()), "HH:mm"), // Extract time
   }),
- 
-
 ];

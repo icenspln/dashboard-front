@@ -6,6 +6,7 @@ import {
   returnLevelInAR,
 } from "../../../../../handlers/returnInArabic";
 
+import DayCell from "./DayCell";
 
 
 const columnHelper = createColumnHelper<Group>();
