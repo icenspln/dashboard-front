@@ -10,7 +10,13 @@ import toast from "react-hot-toast";
 import { useContext, useEffect, useState } from "react";
 import { RegistrationContext } from "../core/RegistrationContext";
 
-export default function EmployeeRegisterForm() {
+interface EmployeeRegisterFormProps {
+  setEmployeeId: (id: string) => void;
+}
+
+export default function EmployeeRegisterForm({
+  setEmployeeId,
+}: EmployeeRegisterFormProps) {
   const { setScreen } = useContext(RegistrationContext);
   const {
     register,
@@ -26,7 +32,8 @@ export default function EmployeeRegisterForm() {
 
   const mutation = useMutation({
     mutationFn: employeeRegister,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      setEmployeeId(data._id);
       setScreen(true);
     },
     onError: () => {
@@ -72,7 +79,6 @@ export default function EmployeeRegisterForm() {
           <article className="flex flex-col gap-2 w-full min-h-[96px]">
             <label htmlFor="phoneNumber" className="text-blueDark">
               رقم الهاتف
-              
             </label>
             <input
               {...register("phoneNumber")}

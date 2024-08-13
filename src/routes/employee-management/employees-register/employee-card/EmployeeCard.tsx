@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Overlay } from "../../../../components/Overlay";
 import { RegistrationContext } from "../core/RegistrationContext";
 import { Check } from "../../../../assets/icons/Check";
@@ -6,11 +6,53 @@ import { Link } from "react-router-dom";
 import ButtonRoundedPrimary from "../../../../components/ButtonRoundedPrimary";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
+import { updateCard } from "../core/_requests"; // Import the updateCard function
+import SerialPort from "serialport"; // Import the serialport package
 
-export default function EmployeeCard() {
-  const { screen } = useContext(RegistrationContext);
+interface EmployeeCardProps {
+    employeeId: string;
+  }
+  
+  export default function EmployeeCard({ employeeId }: EmployeeCardProps) {
+    const { screen } = useContext(RegistrationContext);
 
-  const [modal, setModal] = useState(1);
+  const [modal, setModal] = useState<number>(1);
+  const [rfid, setRfid] = useState<string>(""); // State to store RFID scan value
+
+  const handleRfidScan = async (scannedRfid: string) => {
+    try {
+      setRfid(scannedRfid);
+      const response = await updateCard(employeeId, scannedRfid);
+      console.log("Card updated successfully:", response);
+      setModal(2); // Move to the next modal on success
+    } catch (error) {
+      console.error("Error updating card:", error);
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "Enter") {
+        // When Enter is pressed, use the scanned RFID value
+        console.log(rfid);
+
+        handleRfidScan(rfid);
+        setRfid(""); // Clear the input after processing
+      } else {
+        // Accumulate RFID characters as they are typed
+        setRfid((prevRfid) => prevRfid + event.key);
+      }
+    };
+
+    if (screen) {
+      window.addEventListener("keydown", handleKeyPress);
+    }
+
+    // Cleanup on component unmount
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [screen, rfid]);
 
   if (screen)
     return (
