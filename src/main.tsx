@@ -31,6 +31,8 @@ import EmployeeRegister from "./routes/employee-management/employees-register/Em
 import EmployeePresenceListsManagement from "./routes/presence-management/employee-presence/EmployeesPresenceManagement.tsx";
 
 import LoadingScreen from "./components/LoadingScreen.tsx";
+
+import { SettingsProvider } from "./routes/settings/core/SettingsContext";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
@@ -123,15 +125,17 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <ReactQueryDevtools
-        position="bottom"
-        buttonPosition="bottom-left"
-        initialIsOpen={false}
-      />
-      <Toaster />
-    </QueryClientProvider>
-    <LoadingScreen />
+    <SettingsProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <ReactQueryDevtools
+          position="bottom"
+          buttonPosition="bottom-left"
+          initialIsOpen={false}
+        />
+        <Toaster />
+      </QueryClientProvider>
+      <LoadingScreen />
+    </SettingsProvider>
   </React.StrictMode>
 );
