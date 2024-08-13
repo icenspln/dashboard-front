@@ -3,7 +3,7 @@ export type Employee = {
  
   firstName: string;
   lastName: string;
-  position:string;
+  job:string;
   phoneNumber?: string;
   scanningCardId: string;
   __v?: number;

@@ -24,7 +24,7 @@ import StudentsPresenceListsManagement from "./routes/presence-management/studen
 import PaymentManagement from "./routes/teacher-payment-management/PaymentManagement.tsx";
 import AttendanceManagement from "./routes/attendance-register/AttendanceManagement.tsx";
 import TablesContainer from "./routes/attendance-register/Attendance-table/tablesContainer.tsx";
-import SeetingManagement from "./routes/settings/SettingManagement.tsx";
+import SettingManagment from "./routes/settings/SettingManagement.tsx";
 import { StudentUpdateWrapper } from "./routes/student-management/student-update/StudentUpdate.tsx";
 import EmployeeManagement from "./routes/employee-management/EmployeeManagement.tsx";
 import EmployeeRegister from "./routes/employee-management/employees-register/EmployeeRegister.tsx";
@@ -93,7 +93,7 @@ const router = createBrowserRouter(
         },
         {
           path: "/settings",
-          element: <SeetingManagement />,
+          element: <SettingManagment />,
         },
         {
           path: "/attendancemanagement",
