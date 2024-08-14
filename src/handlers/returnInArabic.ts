@@ -84,3 +84,26 @@ export function returnTimeString({
   const m = minute.toString().padStart(2, "0");
   return `${h}:${m}`;
 }
+
+export function returnAttendanceInAR(status: string): string {
+  switch (status) {
+    case "present":
+      return "حاضر";
+    case "absent":
+      return "غائب";
+    case "upcoming":
+      return "قادم";
+    case "not joined":
+      return "لم ينضم";
+    case "unknown":
+      return "مجهول";
+    case "out of group":
+      return "نزع من الفوج";
+    case "changed group":
+      return "تغيير الفوج";
+    case "teacher absent":
+      return "المعلم غائب";
+    default:
+      return "حالة غير معروفة";
+  }
+}

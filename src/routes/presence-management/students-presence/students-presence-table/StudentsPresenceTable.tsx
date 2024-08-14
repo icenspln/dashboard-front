@@ -1,22 +1,22 @@
-import {
-  useReactTable,
-  getCoreRowModel,
-  flexRender,
-} from "@tanstack/react-table";
-import { defaultColumns } from "./core/columns/columns";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getAttendanceForStudent } from "./core/_requests";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  getAttendanceForStudent,
+  setAttendanceForStudent,
+} from "./core/_requests";
 import { useParams } from "react-router-dom";
-import { AttendanceForStudentGroupType } from "./core/_models";
+import {
+  AttendanceForStudentGroupType,
+  SetAttendanceForStudentType,
+} from "./core/_models";
 import {
   returnDayInAR,
-  returnGroupLabel,
   returnInstitutionInAR,
   returnLevelInAR,
   returnTimeString,
 } from "../../../../handlers/returnInArabic";
+import { StudentPresentButton } from "../../../../components/isPresentButton";
 
 export function StudentsPresenceListsTable() {
   const constraintsRef = useRef(null);
@@ -35,6 +35,8 @@ export function StudentsPresenceListsTable() {
       setGroups(data.groups);
     }
   }, [data, isLoading, error]);
+
+  //     enum: ["present", "absent", "upcoming", "not joined", "unknown" , "out of group", "changed group" , "teacher absent"],
 
   return (
     <div ref={constraintsRef}>
@@ -55,9 +57,6 @@ export function StudentsPresenceListsTable() {
                 {grp.group.groupId && (
                   <th className="p-2 w-[200px] text-start">الفوج</th>
                 )}
-                {grp.group.pricing && (
-                  <th className="p-2 w-[200px] text-start">ثمن الدفع الشهري</th>
-                )}
                 {grp.attendance.map((att, i) => (
                   <th className=" w-[200px] p-2 text-start" key={i}>
                     {new Date(att.date).toLocaleDateString()}
@@ -75,12 +74,13 @@ export function StudentsPresenceListsTable() {
                     <span>{returnTimeString(grp.group.timing)}</span>
                   </td>
                 )}
-                <td className="w-[200px] p-2 text-start">
-                  {grp.group.pricing}
-                </td>
-                {grp.attendance.map((att) => (
-                  <td className="w-[200px] p-2 text-start" key={att.status}>
-                    {att.status}
+                {grp.attendance.map((att, i) => (
+                  <td className="w-[200px] p-2 text-start" key={i}>
+                    <StudentPresentButton
+                      att={att}
+                      studentId={id!}
+                      groupId={grp.group._id}
+                    />
                   </td>
                 ))}
               </tr>

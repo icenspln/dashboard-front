@@ -7,7 +7,7 @@ export type AttendanceForStudentType = {
     group: Group;
     alldays: string[];
     attendance: {
-      date: Date;
+      date: string;
       status: string;
     }[];
   }[];
@@ -17,7 +17,14 @@ export type AttendanceForStudentGroupType = {
   group: Group;
   alldays: string[];
   attendance: {
-    date: Date;
+    date: string;
     status: string;
   }[];
+};
+
+export type SetAttendanceForStudentType = {
+  groupId: string;
+  studentId: string;
+  date: string;
+  status: "present" | "absent";
 };
