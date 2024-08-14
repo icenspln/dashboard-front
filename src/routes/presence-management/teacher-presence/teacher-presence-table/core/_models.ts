@@ -9,12 +9,7 @@ export type Attendance = {
 
 export type AttendanceForTeacherType = {
   Teacher: Teacher;
-  groups: {
-    attendeesLeftGroup: [] | Student[];
-    group: Group;
-    alldays: string[];
-    students: { students: Student[]; attendance: Attendance[] };
-  }[];
+  groups: AttendanceForTeacherGroupType[];
 };
 
 export type AttendanceForTeacherGroupType = {

@@ -64,19 +64,11 @@ export function TeacherPresenceListsTable() {
                 {grp.group.pricing && (
                   <th className="p-2 w-[200px] text-start">ثمن الدفع الشهري</th>
                 )}
-                {grp.students && (
-                  <>
-                    {grp.students.map((std, i) => (
-                      <>
-                        {std.attendance.map((atn, i) => (
-                          <th className="w-[200px] p-2 text-start" key={i}>
-                            {new Date(atn.date).toLocaleDateString()}
-                          </th>
-                        ))}
-                      </>
-                    ))}
-                  </>
-                )}
+                {grp.alldays.map((day, i) => (
+                  <th className="w-[200px] p-2 text-start" key={i}>
+                    {new Date(day).toLocaleDateString()}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
@@ -110,26 +102,18 @@ export function TeacherPresenceListsTable() {
                       {grp.group.pricing}
                     </td>
                   )}
-                  {grp.students && (
-                    <>
-                      {grp.students.map((std, i) => (
-                        <>
-                          {std.attendance.map((att, i) => (
-                            <th
-                              className="w-[200px] p-2 text-start font-medium"
-                              key={i}
-                            >
-                              <StudentPresentButton
-                                att={att}
-                                groupId={grp.group._id}
-                                studentId={std.student._id}
-                              />
-                            </th>
-                          ))}
-                        </>
-                      ))}
-                    </>
-                  )}
+                  {std.attendance.map((att, i) => (
+                    <th
+                      className="w-[200px] p-2 text-start font-medium"
+                      key={i}
+                    >
+                      <StudentPresentButton
+                        att={att}
+                        groupId={grp.group._id}
+                        studentId={std.student._id}
+                      />
+                    </th>
+                  ))}
                 </tr>
               ))}
             </tbody>
