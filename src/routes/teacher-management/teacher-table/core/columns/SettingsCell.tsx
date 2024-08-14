@@ -27,6 +27,12 @@ export default function SettingsCell({ row }: { row: Teacher }) {
       label: "تحميل قسيمة الدفع للشهر",
       action: () => setActiveOverlay("downloadReceipt"),
     },
+    {
+      label: "قائمة الحضور",
+      action: () => {
+        navigate(`/teachermanagement/teacherpresencemanagement/${row._id}`);
+      },
+    },
   ];
   const closeOverlay = () => setActiveOverlay(null);
   return (

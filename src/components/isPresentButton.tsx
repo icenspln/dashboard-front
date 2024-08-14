@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HandCursorSvg from "../assets/icons/HandCursorSvg";
-import {
-  AttendanceForStudentType,
-  SetAttendanceForStudentType,
-} from "../routes/presence-management/students-presence/students-presence-table/core/_models";
-import { Group } from "../routes/group-management/groups-table/core/_models";
+import { SetAttendanceForStudentType } from "../routes/presence-management/students-presence/students-presence-table/core/_models";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { setAttendanceForStudent } from "../routes/presence-management/students-presence/students-presence-table/core/_requests";
 import { returnAttendanceInAR } from "../handlers/returnInArabic";
@@ -43,13 +39,13 @@ const StudentPresentButton = ({
       setAttendanceForStudent({ ...data }),
     mutationKey: ["changeStudentPresence"],
     onSuccess: (res) => {
-      toast.success("changed presence");
+      toast.success("تم تغيير الحضور");
       queryClient.invalidateQueries({
         queryKey: ["getAttendanceForStudent"],
       });
       setAttendance(res.attendance.status);
     },
-    onError: () => toast.error("presence didnt change"),
+    onError: () => toast.error("حدث خطأ ما"),
   });
   if (mutation.isPending)
     return (

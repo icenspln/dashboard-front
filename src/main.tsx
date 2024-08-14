@@ -38,6 +38,7 @@ import { PdfViewTest } from "./routes/monthly-salary-statement/MonthlySalaryStat
 import { TeacherUpdateWrapper } from "./routes/teacher-management/teacher-update/TeacherUpdate.tsx";
 import { GroupUpdateWrapper } from "./routes/group-management/group-update/GroupUpdate.tsx";
 import { SettingsProvider } from "./routes/settings/core/SettingsContext";
+import TeacherPresenceManagement from "./routes/presence-management/teacher-presence/TeacherPresenceManagement.tsx";
 
 const queryClient = new QueryClient();
 
@@ -74,6 +75,10 @@ const router = createBrowserRouter(
         {
           path: "/teachermanagement/edit/:id",
           element: <TeacherUpdateWrapper />,
+        },
+        {
+          path: "/teachermanagement/teacherpresencemanagement/:id",
+          element: <TeacherPresenceManagement />,
         },
         {
           path: "/groupmanagement",
