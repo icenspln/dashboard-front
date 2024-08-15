@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import CardAnimationSvg from "../../../../assets/icons/CardAnimationSvg";
 import WrongCardSvg from "../../../../assets/icons/WrongCardSvg";
 import { StudentsTableContext } from "../core/StudentsTableContext";
+import { updateCard } from "../core/_requests"; // Import the updateCard function
 
 export default function StudentCardEdit() {
   const [modal, setModal] = useState(1);

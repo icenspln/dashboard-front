@@ -16,9 +16,9 @@ export default function SettingsCell({ row }: { row: any }) {
     setGroupModal(true);
     setSelectedGroup(row);
   };  const options = [
-    { label: "تعديل المعلومات", action: () => {} },
-    { label: "حذف الفوج", action: () => SetActiveOverlay("deleteParticularGroup") },
-    { label: "رؤية قائمة الحضور", action: () => navigate('/particulargroupspresencemanagement') },
+    // { label: "تعديل المعلومات", action: () => {} },
+    // { label: "حذف الفوج", action: () => SetActiveOverlay("deleteParticularGroup") },
+    // { label: "رؤية قائمة الحضور", action: () => navigate('/particulargroupspresencemanagement') },
     { label: "رؤية قائمة المسجلين", action: () => assignStudentToGroup() },
   ];
   const closeOverlay = () => SetActiveOverlay(null)

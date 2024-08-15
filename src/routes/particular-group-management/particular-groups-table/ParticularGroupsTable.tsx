@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { useContext, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getSpecialGroups } from "./core/_requests";
+import { GroupAddStudentModal } from "./group-add-studen-modal/GroupAddStudentModal";
 
 import { SpecialGroupsTableContext } from "./core/SpecialGroupsContext";
 
@@ -118,6 +119,8 @@ export function ParticularGroupsTable() {
           ))}
         </tbody>
       </motion.table>
+      {groupModal && <GroupAddStudentModal />}
+
     </div>
   );
 }

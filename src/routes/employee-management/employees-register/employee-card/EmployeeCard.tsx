@@ -7,7 +7,6 @@ import ButtonRoundedPrimary from "../../../../components/ButtonRoundedPrimary";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { updateCard } from "../core/_requests"; // Import the updateCard function
-import SerialPort from "serialport"; // Import the serialport package
 
 interface EmployeeCardProps {
     employeeId: string;

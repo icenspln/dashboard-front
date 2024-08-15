@@ -10,3 +10,8 @@ export function studentPhoneNumberCheck(phoneNumber: string) {
     `/student/check-phone-number?phoneNumber=${phoneNumber}`
   ).then((res) => res.data);
 }
+
+export function updateCard(id: string, newScanningCardId: string) {
+  return AxiosInstance.put(`/student/update-scanning-card/${id}`, { newScanningCardId })
+    .then((res) => res.data);
+}

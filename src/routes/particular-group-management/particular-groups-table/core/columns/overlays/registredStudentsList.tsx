@@ -22,6 +22,9 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
   const queryClient = useQueryClient();
   const { selectedGroup, setSelectedGroup } = useContext(SpecialGroupsTableContext);
   console.log(selectedGroup?.toString());
+  const [studentInput, setStudentInput] = useState<string>("");
+
+  
   const [selectedOption, setSelectedOption] = useState<{
     label: string;
     value: string;
@@ -32,7 +35,13 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
       label: string;
     }[]
   >([{ label: "loading", value: "" }]);
-
+  const onSubmitGroups = () => {
+    // const student = selectedOption;
+    mutation.mutate({
+      groupId: selectedGroup?._id,
+      studentId: studentInput,
+    });
+  };
 
 
   //mutation for signing up a student for a group
@@ -41,14 +50,15 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
       assignStudentToGroup(groupId, studentId),
     onSuccess: (res) => {
       toast.success("تم تسجيل الطالب بنجاح");
+      setStudentInput('');
       // onClose();
-      queryClient.invalidateQueries({ queryKey: ["getGroups"] });
+      queryClient.invalidateQueries({ queryKey: ["getSpecialGroups"] });
       setSelectedGroup(res);
     },
     onError: () => {
       toast.error("حدث خطأ ما");
       // onClose();
-      queryClient.invalidateQueries({ queryKey: ["getGroups"] });
+      queryClient.invalidateQueries({ queryKey: ["getSpecialGroups"] });
     },
   });
 
@@ -60,13 +70,13 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
     onSuccess: (res) => {
       toast.success("تمت إزالة الطالب بنجاح");
       // onClose();
-      queryClient.invalidateQueries({ queryKey: ["getGroups"] });
+      queryClient.invalidateQueries({ queryKey: ["getSpecialGroups"] });
       setSelectedGroup(res);
     },
     onError: () => {
       toast.error("حدث خطأ ما");
       // onClose();
-      queryClient.invalidateQueries({ queryKey: ["getGroups"] });
+      queryClient.invalidateQueries({ queryKey: ["getSpecialGroups"] });
     },
   });
 
@@ -89,7 +99,7 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
                   <SelectGroup
                     id={i}
                     key={i}
-                    onDelete={() => deleteGroup(selectedGroup._id, "student._id")}
+                    onDelete={() => deleteGroup(selectedGroup._id, student)}
                     label={student}
                   />
                 ))}
@@ -104,12 +114,20 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
             <SelectGroup id={4} label="أسماء عبادي |12/09/2010" />
           </span> */}
           <div className="flex gap-[12px]">
-            <select className="w-[419px] h-[32px] border-2 rounded-md"></select>
+            <input
+            className="max-w-[553px]"
+            placeholder="أدخل اسم الطالب"
+            value={studentInput}
+            onChange={(e) => setStudentInput(e.target.value)}
+
+
+            ></input>
+            {/* <select className="w-[419px] h-[32px] border-2 rounded-md"></select>
             <input
               className="w-[86px] h-[32px] border-2 rounded-md text-center"
               placeholder="2000 دج"
               type="text"
-            />
+            /> */}
           </div>
         </div>
 
@@ -117,7 +135,9 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
           <ConfirmButton
             text="تسجيل التغييرات"
             className="text-white bg-blue hover:bg-grayBlue hover:text-blue border hover:border-blue "
-          />
+            onClick={onSubmitGroups}
+
+         />
           <ConfirmButton
             text="إضافة طالب جديد"
             className="text-blue bg-grayBlue hover:bg-blue hover:text-white border"

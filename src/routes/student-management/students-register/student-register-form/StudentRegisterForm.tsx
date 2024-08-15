@@ -11,7 +11,12 @@ import toast from "react-hot-toast";
 import { useContext, useEffect, useState } from "react";
 import { RegistrationContext } from "../core/RegistrationContext";
 
-export default function StudentRegisterForm() {
+interface StudentRegisterFormProps {
+  setStudentId: (id: string) => void;
+}
+export default function StudentRegisterForm({
+  setStudentId,
+}: StudentRegisterFormProps) {
   const [phoneNumberWarning, setPhoneNumberWarning] = useState(false);
 
   const { setScreen } = useContext(RegistrationContext);
@@ -43,7 +48,10 @@ export default function StudentRegisterForm() {
 
   const mutation = useMutation({
     mutationFn: studentRegister,
-    onSuccess: () => {
+    onSuccess: (res) => {
+      // console.log(res)
+      // console.log(res._id)
+      setStudentId(res._id)
       setScreen(true);
     },
     onError: () => {
