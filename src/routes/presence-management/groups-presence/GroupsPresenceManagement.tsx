@@ -1,7 +1,7 @@
-import ExcelSvg from "../../../assets/icons/ExcelSvg";
-import { GroupsPresenceListsTable } from "./groups-presence-table/GroupsPresenceTable";
 import SearchBar from "../../../components/SearchBar";
 import { FilterButton } from "../../../components/ButtonFilter";
+import ButtonPrimary from "../../../components/ButtonPrimary";
+import { GroupsPresenceListsTable } from "./groups-presence-table/GroupsPresenceTable";
 
 const MonthSelectionOptions = [
   { id: 1, label: "جانفي" },
@@ -23,16 +23,24 @@ const YearSelectionOptions = [
 ];
 
 export default function GroupsPresenceListsManagement() {
-  return (
+   return (
     <section className="w-full min-h-screen p-4 bg-mainBg">
       <div className="flex justify-between items-center mb-4">
         <div className=" flex gap-[12px]">
           <SearchBar />
-          <FilterButton label="السنة" options={YearSelectionOptions} />
-          <FilterButton label="الشهر" options={MonthSelectionOptions} />
+          <FilterButton
+            setFilterState={() => {}}
+            label="السنة"
+            options={YearSelectionOptions}
+          />
+          <FilterButton
+            setFilterState={() => {}}
+            label="الشهر"
+            options={MonthSelectionOptions}
+          />
         </div>
         <nav className="flex items-center gap-[12px]">
-          <ExcelSvg />
+          <ButtonPrimary text="تحميل قسيمة الدفع" active />
         </nav>
       </div>
       <div>

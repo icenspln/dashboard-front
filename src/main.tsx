@@ -113,7 +113,7 @@ const router = createBrowserRouter(
           element: <ParticularGroupsPresenceListsManagement />,
         },
         {
-          path: "/groupspresencemanagement",
+          path: "/groupspresencemanagement/:id",
           element: <GroupsPresenceListsManagement />,
         },
         {

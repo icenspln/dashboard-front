@@ -93,7 +93,7 @@ const StudentPresentButton = ({
 
   return (
     <>
-      <button className=" bg-red-100 text-red-500 py-2 px-2 rounded-full flex justify-between items-center max-w-full w-[180px] h-[26px]">
+      <button className=" bg-red-100 text-red-500 py-2 px-2 rounded-full flex justify-between items-center max-w-full w-[180px] h-[26px] cursor-default">
         {returnAttendanceInAR(att.status)}
       </button>
     </>
