@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useMemo, useRef, useState } from "react";
+import { useContext, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAttendanceForStudent } from "./core/_requests";
 import { useParams } from "react-router-dom";
@@ -11,15 +11,17 @@ import {
   returnTimeString,
 } from "../../../../handlers/returnInArabic";
 import { StudentPresentButton } from "../../../../components/isPresentButton";
+import { StudentsTableContext } from "./core/StudentsTableContext";
 
 export function StudentsPresenceListsTable() {
+  const { filter } = useContext(StudentsTableContext);
   const constraintsRef = useRef(null);
   const { id } = useParams();
   const [groups, setGroups] = useState<AttendanceForStudentGroupType[]>([]);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["getAttendanceForStudent"],
-    queryFn: () => getAttendanceForStudent(id!),
+    queryKey: ["getAttendanceForStudent", filter],
+    queryFn: () => getAttendanceForStudent(id!, filter),
   });
 
   useMemo(() => {
