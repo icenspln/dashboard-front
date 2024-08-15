@@ -5,7 +5,6 @@ import { getAttendanceForTeacher } from "./core/_requests";
 import { useParams } from "react-router-dom";
 import {
   AttendanceForTeacherGroupType,
-  SetAttendanceForStudentType,
 } from "./core/_models";
 import {
   returnDayInAR,
@@ -40,7 +39,7 @@ export function TeacherPresenceListsTable() {
       {groups.map((grp, i) => (
         <div
           key={i}
-          className="mb-8 overflow-x-clip border border-light rounded-xl w-full"
+          className="mb-8 overflow-x-clip border border-light rounded-xl w-full bg-white"
         >
           <motion.table
             drag={"x"}
@@ -50,7 +49,7 @@ export function TeacherPresenceListsTable() {
             className="w-full rounded-xl "
           >
             <thead>
-              <tr className="flex items-center justify-start gap-7 w-full text-textGray font-medium border-b border-light ">
+              <tr className="flex items-center justify-start gap-7 w-full text-textGray font-medium border-b border-light bg-whtie">
                 {grp.group.groupId && (
                   <th className="p-2 w-[200px] text-start">الفوج</th>
                 )}
