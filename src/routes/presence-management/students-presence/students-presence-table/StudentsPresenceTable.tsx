@@ -1,15 +1,9 @@
 import { motion } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import {
-  getAttendanceForStudent,
-  setAttendanceForStudent,
-} from "./core/_requests";
+import { useMemo, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getAttendanceForStudent } from "./core/_requests";
 import { useParams } from "react-router-dom";
-import {
-  AttendanceForStudentGroupType,
-  SetAttendanceForStudentType,
-} from "./core/_models";
+import { AttendanceForStudentGroupType } from "./core/_models";
 import {
   returnDayInAR,
   returnInstitutionInAR,
@@ -54,10 +48,10 @@ export function StudentsPresenceListsTable() {
           >
             <thead>
               <tr className="flex items-center justify-start gap-7 w-full text-textGray font-medium border-b border-light ">
-                {grp.group.groupId && (
+                {grp?.group.groupId && (
                   <th className="p-2 w-[200px] text-start">الفوج</th>
                 )}
-                {grp.attendance.map((att, i) => (
+                {grp?.attendance.map((att, i) => (
                   <th className=" w-[200px] p-2 text-start" key={i}>
                     {new Date(att.date).toLocaleDateString()}
                   </th>
@@ -74,7 +68,7 @@ export function StudentsPresenceListsTable() {
                     <span>{returnTimeString(grp.group.timing)}</span>
                   </td>
                 )}
-                {grp.attendance.map((att, i) => (
+                {grp?.attendance.map((att, i) => (
                   <td className="w-[200px] p-2 text-start" key={i}>
                     <StudentPresentButton
                       att={att}

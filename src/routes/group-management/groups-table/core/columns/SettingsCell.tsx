@@ -40,7 +40,8 @@ export default function SettingsCell({ row }: { row: any }) {
     { label: "حذف الفوج", action: () => setActiveOverlay("deleteGroup") },
     {
       label: "رؤية قائمة الحضور",
-      action: () => navigate(`/groupspresencemanagement/${row._id}`),
+      action: () =>
+        navigate(`/groupmanagement/groupspresencemanagement/${row._id}`),
     },
     {
       label: "رؤية قائمة المسجلين",
