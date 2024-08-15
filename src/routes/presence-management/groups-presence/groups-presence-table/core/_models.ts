@@ -83,6 +83,6 @@ export const MonthSelectionOptions = [
   { id: 12, label: "ديسمبر" },
 ];
 export const YearSelectionOptions = [
-  { id: 1, label: "2024" },
-  { id: 2, label: "2025" },
+  { id: 2024, label: "2024" },
+  { id: 2025, label: "2025" },
 ];

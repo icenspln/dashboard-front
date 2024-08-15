@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
-import { useMemo, useRef, useState } from "react";
+import { useContext, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { AttendanceForGroupType } from "./core/_models";
 import { StudentPresentButton } from "../../../../components/isPresentButton";
 import { getAttendanceForGroup } from "./core/_requests";
+import { GroupsTableContext } from "./core/GroupsTableContext";
 
 export function GroupsPresenceListsTable() {
+  const { filter } = useContext(GroupsTableContext);
   const constraintsRef = useRef(null);
   const { id } = useParams();
   const [group, setGroup] = useState<AttendanceForGroupType>();
@@ -14,8 +16,8 @@ export function GroupsPresenceListsTable() {
   console.log("group  ", group);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["getAttendanceForGroup"],
-    queryFn: () => getAttendanceForGroup(id!),
+    queryKey: ["getAttendanceForGroup", filter],
+    queryFn: () => getAttendanceForGroup(id!, filter),
   });
 
   useMemo(() => {
