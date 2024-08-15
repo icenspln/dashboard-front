@@ -41,17 +41,17 @@ export function GroupsTableContextProvider({
     months: [""],
   });
 
-  console.log(filterState);
-
   useEffect(() => {
-    let months = `month=${filterState.months.join(",")}`;
-    let years = `year=${filterState.years.join(",")}`;
+    console.log("making url...");
+    let months = `month=${filterState.months}`;
+    let years = `year=${filterState.years}`;
+    console.log(months, years);
     let url = "";
-    if (filterState.months.length > 0) {
+    if (filterState.months) {
       if (url) url += "&" + months;
       if (!url) url += months;
     }
-    if (filterState.years.length > 0) {
+    if (filterState.years) {
       if (url) url += "&" + years;
       if (!url) url += years;
     }

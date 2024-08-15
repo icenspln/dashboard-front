@@ -19,7 +19,7 @@ export default function StudentRegisterForm() {
         <div className="flex items-center gap-7 mb-7">
           <article className="flex flex-col gap-2 w-full">
             <label htmlFor="" className="text-blueDark">
-            اسم الحصة
+              اسم الحصة
             </label>
             <input
               {...register("moduleName")}
@@ -28,8 +28,6 @@ export default function StudentRegisterForm() {
               name=""
               id=""
             />
-             
-           
           </article>
           <article className="flex flex-col gap-2 w-full">
             <label htmlFor="" className="text-blueDark">
@@ -45,9 +43,7 @@ export default function StudentRegisterForm() {
         </div>
         <div className="flex items-center gap-7 mb-7">
           <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="">
-              اليوم
-            </label>
+            <label htmlFor="">اليوم</label>
             <select
               {...register("day")}
               className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
@@ -65,9 +61,7 @@ export default function StudentRegisterForm() {
           </article>
 
           <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="">
-              الوقت
-            </label>
+            <label htmlFor="">الوقت</label>
             <input
               {...register("time")}
               type="time"
@@ -137,7 +131,7 @@ export default function StudentRegisterForm() {
             <label htmlFor="institution" className="text-blueDark">
               السنة
             </label>
-           
+
             <select
               {...register("level")}
               className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"

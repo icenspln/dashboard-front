@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { MonthSelectionOptions, YearSelectionOptions } from "../core/_models";
 import { GroupsTableContext } from "../core/GroupsTableContext";
-import { FilterButton } from "../../../../../components/ButtonFilter";
+import { FilterButton } from "../../../../../components/ButtonFilterRadio";
 
 export function GroupTableForm() {
   const { setFilterState } = useContext(GroupsTableContext);
@@ -9,24 +9,26 @@ export function GroupTableForm() {
   const updateYearFilter = (selectedOptions: any) => {
     setFilterState((prev: any) => ({
       ...prev,
-      years: selectedOptions.map((opt: any) => opt.id),
+      years: selectedOptions?.id,
     }));
   };
   const updateMonthFilter = (selectedOptions: any) => {
     setFilterState((prev: any) => ({
       ...prev,
-      months: selectedOptions.map((opt: any) => opt.id),
+      months: selectedOptions?.id,
     }));
   };
 
   return (
     <>
       <FilterButton
+        name="year"
         label="السنة"
         options={YearSelectionOptions}
         setFilterState={updateYearFilter}
       />
       <FilterButton
+        name="month"
         label="الشهر"
         options={MonthSelectionOptions}
         setFilterState={updateMonthFilter}

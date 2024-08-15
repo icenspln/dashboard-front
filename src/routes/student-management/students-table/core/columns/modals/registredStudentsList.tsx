@@ -90,7 +90,6 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
     mutationFn: ({ groupId, studentId }: any) =>
       deleteStudentFromGroup(groupId, studentId),
     onSuccess: (res) => {
-      console.log(res);
       toast.success("تمت إزالة الطالب بنجاح");
       // onClose();
       queryClient.invalidateQueries({ queryKey: ["getStudents"] });

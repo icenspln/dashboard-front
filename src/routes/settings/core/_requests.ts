@@ -10,13 +10,11 @@ export const getAppNameAndLogo = async (): Promise<SettingsData> => {
 
 export const checkPassword = async (password: string): Promise<boolean> => {
   try {
-    console.log(password)
     const response = await AxiosInstance.post(
       `${API_BASE_URL}/check-password`,
       { password: password },
       // { headers: { 'Content-Type': 'application/json' } }
     );
-    console.log(response.status)
     return response.status === 200 ? true : false;
   } catch (error) {
     console.log(error);

@@ -69,7 +69,6 @@ function SettingScreen() {
       }
     }
   };
-  console.log(appName, logoUrl);
   const handleOverlayClose = async () => {
     try {
       const isValid = await checkPassword(password);

@@ -17,8 +17,6 @@ export function TeacherPresenceListsTable() {
   const { id } = useParams();
   const [groups, setGroups] = useState<AttendanceForTeacherGroupType[]>([]);
 
-  console.log(groups);
-
   const { data, isLoading, error } = useQuery({
     queryKey: ["getAttendanceForTeacher"],
     queryFn: () => getAttendanceForTeacher(id!),

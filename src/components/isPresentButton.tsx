@@ -19,7 +19,6 @@ const StudentPresentButton = ({
   studentId: string;
 }) => {
   const [attendance, setAttendance] = useState<string>(att.status);
-  console.log("att state", att.date, attendance);
 
   // useEffect(() => {
   //   setAttendance(att.status);

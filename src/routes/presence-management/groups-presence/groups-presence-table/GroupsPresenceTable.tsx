@@ -13,8 +13,6 @@ export function GroupsPresenceListsTable() {
   const { id } = useParams();
   const [group, setGroup] = useState<AttendanceForGroupType>();
 
-  console.log("group  ", group);
-
   const { data, isLoading, error } = useQuery({
     queryKey: ["getAttendanceForGroup", filter],
     queryFn: () => getAttendanceForGroup(id!, filter),
