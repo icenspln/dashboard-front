@@ -5,14 +5,43 @@ import {
 } from "@tanstack/react-table";
 import { defaultColumns } from "./core/columns/columns";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useContext, useMemo, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getSpecialGroups } from "./core/_requests";
+
+import { SpecialGroupsTableContext } from "./core/SpecialGroupsContext";
+
 // import { useMemo, useRef, useState } from "react";
 // import { useQuery } from "@tanstack/react-query";
-import data from "./core/data.json"
-import { ParticularGroup } from "./core/_models";
+// import data from "./core/data.json"
+import { SpecialGroup } from "./core/_models";
 export function ParticularGroupsTable() {
   const constraintsRef = useRef(null);
-  const particularGroupData : ParticularGroup = data
+  const [groups, setGroups] = useState<SpecialGroup[]>([]);
+
+  const { filter, groupModal, additionalDayModal } =
+    useContext(SpecialGroupsTableContext);
+
+  //query functions
+  const { data, isLoading } = useQuery({
+    queryKey: ["getSpecialGroups", filter],
+    queryFn: () => getSpecialGroups(filter),
+  });
+
+  useMemo(() => {
+    if (data && !isLoading) {
+      setGroups(data.data);
+    }
+  }, [data, isLoading]);
+
+  // table functions
+  const table = useReactTable({
+    columns: defaultColumns,
+    data: groups,
+    // data : groupsData,
+    getCoreRowModel: getCoreRowModel(),
+  });
+  // const particularGroupData : ParticularGroup = data
   // const [groups, setGroups] = useState<Group[]>([]);
 
   //query functions
@@ -28,11 +57,11 @@ export function ParticularGroupsTable() {
   // }, [data, isLoading]);
 
   // table functions
-  const table = useReactTable({
-    columns: defaultColumns,
-    data: particularGroupData,
-    getCoreRowModel: getCoreRowModel(),
-  });
+  // const table = useReactTable({
+  //   columns: defaultColumns,
+  //   data: particularGroupData,
+  //   getCoreRowModel: getCoreRowModel(),
+  // });
   return (
     <div
       ref={constraintsRef}

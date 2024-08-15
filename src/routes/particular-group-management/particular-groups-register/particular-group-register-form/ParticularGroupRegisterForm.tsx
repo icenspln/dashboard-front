@@ -1,54 +1,132 @@
 import ButtonPrimary from "../../../../components/ButtonPrimary";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ParticularGroupRegisterFormType } from "../core/_models";
 // import data from "../../../prof-management/prof-table/core/data.json";
+import {
+  ParticularGroupRegisterFormType,
+  TypeRegisterSchema,
+} from "../core/_models";
+import { useContext, useEffect, useState } from "react";
+import { RegistrationContext } from "../core/RegistrationContext";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getTeachers, groupRegister } from "../core/_requests";
+import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
+import Select from "react-select";
+import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
 
 export default function StudentRegisterForm() {
+  const [reactSelectOptions, setReactSelectOptions] = useState();
+  const [selectedTeacher, setSelectedTeacher] = useState<{
+    value: string;
+    label: string;
+  }>();
+  const { setScreen } = useContext(RegistrationContext);
   const {
     register,
     handleSubmit,
-    // formState: { errors },
-  } = useForm<ParticularGroupRegisterFormType>();
+    setValue,
+    formState: { errors, isSubmitting },
+  } = useForm<ParticularGroupRegisterFormType>({
+    resolver: yupResolver(TypeRegisterSchema as any),
+  });
 
-  const onSubmit: SubmitHandler<ParticularGroupRegisterFormType> = (data) =>
-    console.log("submintingg..", data);
+  const onSubmit: SubmitHandler<ParticularGroupRegisterFormType> = (data) => {
+    console.log("on submit");
+
+    const [hour, minute] = data.timing.split(":");
+    const teacher = data.teacher.value;
+
+    const finalData = {
+      ...data,
+      timing: {
+        hour: hour.padStart(2, "0"),
+        minute: minute.padStart(2, "0"),
+      },
+      teacher,
+    };
+    mutation.mutateAsync(finalData);
+  };
+
+  const mutation = useMutation({
+    mutationFn: (data: any) => groupRegister(data),
+    onSuccess: () => {
+      setScreen(true);
+    },
+    onError: () => {
+      toast.error("هناك خطأ ما");
+    },
+  });
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["getTeachersForGroups"],
+    queryFn: () => getTeachers(),
+  });
+
+  useEffect(() => {
+    if (data && !isLoading && !error) {
+      const teachersSelectArr = data.data.map((teacher: Teacher) => {
+        return {
+          label: teacher.firstName + " " + teacher.lastName,
+          value: teacher._id,
+        };
+      });
+      setReactSelectOptions(teachersSelectArr);
+    }
+    if (error) {
+      toast.error("error fetching teachers");
+    }
+  }, [data, isLoading, error]);
+  useEffect(() => {
+    if (selectedTeacher) setValue("teacher", selectedTeacher);
+  }, [selectedTeacher]);
 
   return (
     <>
       <form action="" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex items-center gap-7 mb-7">
           <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="" className="text-blueDark">
-            اسم الحصة
+            <label htmlFor="name" className="text-blueDark">
+              اسم الحصة
             </label>
             <input
-              {...register("moduleName")}
+              {...register("name")}
               className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               placeholder="ادخل اسم الحصة"
-              name=""
-              id=""
+              type="text"
+              // id=""
             />
-             
-           
+             {errors.name && (
+              <span className="text-red-500">{errors.name.message}</span>
+            )}
           </article>
           <article className="flex flex-col gap-2 w-full">
             <label htmlFor="" className="text-blueDark">
               القاعة
             </label>
             <input
-              {...register("classRoom")}
+              {...register("roomNumber")}
               type="text"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               placeholder="1"
             />
+            {errors.roomNumber && (
+              <span className="text-red-500">{errors.roomNumber.message}</span>
+            )}
           </article>
         </div>
         <div className="flex items-center gap-7 mb-7">
           <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="">
-              اليوم
-            </label>
-            <select
+            <label htmlFor="date">التاريخ</label>
+            <input
+              {...register("date")}
+              type="date"
+              className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
+              placeholder="08:00"
+            />
+            {errors.timing && (
+              <span className="text-red-500">{errors.timing.message}</span>
+            )}
+            {/* <select
               {...register("day")}
               className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               name=""
@@ -61,124 +139,135 @@ export default function StudentRegisterForm() {
               <option value="5">الأربعاء</option>
               <option value="6">الخميس</option>
               <option value="7">الجمعة</option>
-            </select>
+            </select> */}
           </article>
 
           <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="">
+            <label htmlFor="timing" className="text-blueDark">
               الوقت
             </label>
             <input
-              {...register("time")}
+              {...register("timing")}
               type="time"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               placeholder="08:00"
             />
+            {errors.timing && (
+              <span className="text-red-500">{errors.timing.message}</span>
+            )}
           </article>
         </div>
 
         <div className="flex items-center gap-7 mb-7">
           <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="" className="text-blueDark">
+            <label htmlFor="teacher" className="text-blueDark">
               الأستاذ
             </label>
-            <select
-              {...register("professor")}
-              className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              name=""
-              id=""
-            >
-              {/* {data.map((professor) => (
-                <option key={professor.profId} value={professor.profId}>
-                  {professor.firstName} {professor.lastName}
-                </option>
-              ))} */}
-            </select>
+            <Select
+              options={reactSelectOptions}
+              defaultValue={selectedTeacher}
+              onChange={setSelectedTeacher as any}
+            />
+            {errors.teacher?.value && (
+              <span className="text-red-500">
+                {errors.teacher.value.message}
+              </span>
+            )}
           </article>
           <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="moduleName" className="text-blueDark">
+            <label htmlFor="module" className="text-blueDark">
               المادة
             </label>
             <select
-              {...register("moduleName")}
-              className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              name=""
-              id=""
+              {...register("module")}
+              className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
             >
-              <option value="1">الرياضيات</option>
-              <option value="2">اللغة العربية</option>
-              <option value="3">اللغة الفرنسية</option>
-              <option value="4">اللغة الإنجليزية</option>
-              <option value="5">التربية المدنية</option>
-              <option value="6">التربية الإسلامية</option>
-              <option value="7">التربية العلمية</option>
-              <option value="8">التاريخ و الجغرافيا</option>
+              <option value="لغة عربية">لغة عربية</option>
+              <option value="رياضيات">رياضيات</option>
+              <option value="فيزياء">فيزياء</option>
+              <option value="علوم">علوم</option>
+              <option value="فلسفة">فلسفة</option>
+              <option value="فرنسية">فرنسية</option>
+              <option value="انجليزية">انجليزية</option>
+              <option value="اسبنيولية">اسبنيولية</option>
             </select>
+            {errors.module && (
+              <span className="text-red-500">{errors.module.message}</span>
+            )}
           </article>
         </div>
 
         <div className="flex items-center gap-7 mb-7">
           <article className="flex flex-col gap-2 w-full">
-            <label className="text-blueDark" htmlFor="level">
+            <label htmlFor="institution" className="text-blueDark">
               المستوى
             </label>
             <select
               {...register("institution")}
               className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              name=""
-              id=""
             >
-              <option value="الإبتدائي">الإبتدائي</option>
-              <option value="المتوسط">المتوسط</option>
-              <option value="الثانوي">الثانوي</option>
+              <option value="primarySchool">الإبتدائي</option>
+              <option value="middleSchool">المتوسط</option>
+              <option value="highSchool">الثانوي</option>
             </select>
+            {errors.institution && (
+              <span className="text-red-500">{errors.institution.message}</span>
+            )}
           </article>
           <article className="flex flex-col gap-2 w-full">
-            <label htmlFor="institution" className="text-blueDark">
+            <label className="text-blueDark" htmlFor="level">
               السنة
             </label>
-           
             <select
               {...register("level")}
               className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              name=""
-              id=""
             >
               <option value="1">الأولى</option>
               <option value="2">الثانية</option>
               <option value="3">الثالثة</option>
               <option value="4">الرابعة</option>
             </select>
+            {errors.level && (
+              <span className="text-red-500">{errors.level.message}</span>
+            )}
           </article>
         </div>
 
         <div className="flex items-center gap-7 mb-7 ">
-          <article className="flex flex-col gap-2 w-full">
+          {/* <article className="flex flex-col gap-2 w-full">
             <label className="text-blueDark" htmlFor="level">
               عدد الحصص
             </label>
             <input
-              {...register("price")}
+              {...register("pricing")}
               type="text"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
               placeholder="1"
             />
-          </article>
+          </article> */}
           <article className="flex flex-col gap-2 w-full">
-            <label className="text-blueDark" htmlFor="level">
+            <label className="text-blueDark" htmlFor="pricing">
               الثمن
             </label>
             <input
-              {...register("price")}
-              type="text"
+              {...register("pricing")}
+              type="number"
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-              placeholder="2000 دج"
+              placeholder="2000"
             />
+            {errors.pricing && (
+              <span className="text-red-500">{errors.pricing.message}</span>
+            )}
           </article>
         </div>
 
         <div className="flex items-center justify-start gap-7 mb-7 w-[140px] ">
-          <ButtonPrimary text="تسجيل" active />
+          <ButtonPrimary
+            text="تسجيل"
+            active
+            disabled={isSubmitting}
+            type="submit"
+          />
         </div>
       </form>
     </>
