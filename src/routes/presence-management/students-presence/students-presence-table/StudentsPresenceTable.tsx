@@ -69,6 +69,7 @@ export function StudentsPresenceListsTable() {
                 {grp?.attendance.map((att, i) => (
                   <td className="w-[200px] p-2 text-start" key={i}>
                     <StudentPresentButton
+                      invalidatedQueryName="getAttendanceForStudent"
                       att={att}
                       studentId={id!}
                       groupId={grp.group._id}

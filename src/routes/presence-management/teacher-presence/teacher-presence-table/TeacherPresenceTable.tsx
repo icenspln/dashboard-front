@@ -106,6 +106,7 @@ export function TeacherPresenceListsTable() {
                         key={i}
                       >
                         <StudentPresentButton
+                          invalidatedQueryName="getAttendanceForTeacher"
                           att={att}
                           groupId={grp.group._id}
                           studentId={std.student._id}

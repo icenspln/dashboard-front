@@ -10,6 +10,7 @@ const StudentPresentButton = ({
   att,
   groupId,
   studentId,
+  invalidatedQueryName,
 }: {
   att: {
     date: string;
@@ -17,6 +18,7 @@ const StudentPresentButton = ({
   };
   groupId: any;
   studentId: string;
+  invalidatedQueryName?: string;
 }) => {
   const [attendance, setAttendance] = useState<string>(att.status);
 
@@ -40,7 +42,7 @@ const StudentPresentButton = ({
     onSuccess: (res) => {
       toast.success("تم تغيير الحضور");
       queryClient.invalidateQueries({
-        queryKey: ["getAttendanceForStudent"],
+        queryKey: [invalidatedQueryName],
       });
       setAttendance(res.attendance.status);
     },

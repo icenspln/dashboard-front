@@ -105,6 +105,7 @@ export function GroupsPresenceListsTable() {
                         att={att}
                         groupId={group.group._id}
                         studentId={std.student._id}
+                        invalidatedQueryName="getAttendanceForGroup"
                       />
                     </th>
                   ))}
