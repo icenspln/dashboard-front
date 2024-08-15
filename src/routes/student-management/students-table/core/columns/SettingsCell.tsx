@@ -39,6 +39,7 @@ export default function SettingsCell({ row }: { row: any }) {
     {
       label: "تغيير البطاقة",
       action: () => {
+        setSelectedStudent(row);
         setEditCardModal(true);
         // setActiveOverlay("changeCard")}
       },
