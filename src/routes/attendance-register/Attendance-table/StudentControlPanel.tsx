@@ -19,14 +19,30 @@ export default function TablesContainer() {
   useEffect(() => {
     if (data) setStudentInfo(data);
   }, [data, isPending, error]);
-  if (studentInfo)
+
+  if (isPending)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <h1 className="text-3xl my-auto">تحميل...</h1>
+      </div>
+    );
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <h1 className="text-3xl my-auto text-yellow-300">
+          التلميذ لا ينتمي لأي فوج
+        </h1>
+      </div>
+    );
+
+  if (studentInfo && !error)
     return (
       // <div className="flex items-center w-full gap-[25px] px-4 ">
       <>
         <div>
           <StudentInfoTable student={studentInfo.student} />
           <StudentPaymentTable studentInfo={studentInfo} />
-          <GroupList />
+          <GroupList studentInfo={studentInfo} />
           {/* <div className="flex justify-end text-xl py-1">
           <CardlessRegister />
         </div> */}
