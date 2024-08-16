@@ -37,8 +37,7 @@ export default function TablesContainer() {
 
   if (studentInfo && !error)
     return (
-      // <div className="flex items-center w-full gap-[25px] px-4 ">
-      <>
+      <div className="flex items-center w-full gap-[25px] px-4 ">
         <div>
           <StudentInfoTable student={studentInfo.student} />
           <StudentPaymentTable studentInfo={studentInfo} />
@@ -50,7 +49,6 @@ export default function TablesContainer() {
         {/* <div className="w-full">
         <Notifications />
       </div> */}
-      </>
-      // </div>
+      </div>
     );
 }

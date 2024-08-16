@@ -21,6 +21,7 @@ export type Group = {
   additionalStudyDays: string[];
   __v: number;
   students: Student[];
+  attendanceStatus?: string;
 };
 export interface FilterOption {
   id: string;

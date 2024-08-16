@@ -103,7 +103,7 @@ export function StudentPaymentTable({
     }
   };
   return (
-    <div className=" w-[637px] mt-10 border border-[#E2E8F0] rounded-xl ">
+    <div className=" mt-10 border border-[#E2E8F0] rounded-xl ">
       <div className=" rounded-xl  overflow-hidden">
         <div className="bg-mainBg flex justify-between gap-3 text-center">
           <div className="bg-mainBg p-4 flex flex-col gap-3 ">

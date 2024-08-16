@@ -1,3 +1,4 @@
+import { StudentPresentButton } from "../../../components/isPresentButton";
 import { returnGroupLabel } from "../../../handlers/returnInArabic";
 import { GetStudentByCardIdType } from "./core/_models";
 import SettingsCell from "./core/columns/SettingsCell";
@@ -9,9 +10,9 @@ export default function GroupList({
 }) {
   if (studentInfo)
     return (
-      <div className="flex flex-col gap-[12px] w-[637px] h-[303px] mt-10  border border-gray-200 rounded-lg shadow-sm">
+      <div className="flex flex-col gap-[12px]  my-10 py-4 border border-gray-200 rounded-lg shadow-sm">
         <div>
-          <p className="text-sm text-gray-500 px-3 py-3">
+          <p className="text-sm text-gray-500 px-3 pb-3">
             قائمة الأفواج لهذا اليوم
           </p>
 
@@ -30,13 +31,24 @@ export default function GroupList({
               </div>
               <div className="flex gap-[8px]">
                 {/* <StudentPresentButton  /> */}
+                <div className="max-w-full">
+                  <StudentPresentButton
+                    att={{
+                      date: new Date().toISOString(),
+                      status: grp.attendanceStatus!,
+                    }}
+                    groupId={grp._id}
+                    studentId={studentInfo.student._id!}
+                    invalidatedQueryName="getStudentByCardId"
+                  />
+                </div>
                 <SettingsCell studentInfo={studentInfo} groupId={grp._id} />
               </div>
             </div>
           ))}
         </div>
         <div>
-          <p className="text-sm text-gray-500 px-3 py-3">
+          <p className="text-sm text-gray-500 px-3 pb-3">
             قائمة الأفواج الأخرى
           </p>
           {studentInfo.otherGroups.length < 1 && (

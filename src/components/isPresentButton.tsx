@@ -10,7 +10,7 @@ const StudentPresentButton = ({
   att,
   groupId,
   studentId,
-  invalidatedQueryName,
+  invalidatedQueryName = "changeStudentPresence",
 }: {
   att: {
     date: string;
@@ -38,7 +38,7 @@ const StudentPresentButton = ({
   const mutation = useMutation({
     mutationFn: (data: SetAttendanceForStudentType) =>
       setAttendanceForStudent({ ...data }),
-    mutationKey: ["changeStudentPresence"],
+    mutationKey: [invalidatedQueryName],
     onSuccess: (res) => {
       toast.success("تم تغيير الحضور");
       queryClient.invalidateQueries({

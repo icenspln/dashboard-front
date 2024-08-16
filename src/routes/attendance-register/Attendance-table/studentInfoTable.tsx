@@ -33,7 +33,7 @@ export function StudentInfoTable({
 
   if (student)
     return (
-      <div className="text-blueDark max-w-4xl w-[637px] mt-10 border border-[#E2E8F0] rounded-xl">
+      <div className="text-blueDark max-w-4xl  mt-10 border border-[#E2E8F0] rounded-xl">
         <div className="bg-gray-100 p-4  text-center text-blue text-2xl border-b rounded-t-xl ">
           {student.firstName} {student.lastName}
         </div>
