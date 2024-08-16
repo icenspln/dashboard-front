@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { Overlay } from "../../../../components/Overlay";
 import { RegistrationContext } from "../core/RegistrationContext";
 import { Check } from "../../../../assets/icons/Check";
@@ -6,52 +6,11 @@ import { Link } from "react-router-dom";
 import ButtonRoundedPrimary from "../../../../components/ButtonRoundedPrimary";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
-import { updateCard } from "../core/_requests"; // Import the updateCard function
 
-interface EmployeeCardProps {
-    employeeId: string;
-  }
-  
-  export default function EmployeeCard({ employeeId }: EmployeeCardProps) {
-    const { screen } = useContext(RegistrationContext);
+export default function GroupCard() {
+  const { screen } = useContext(RegistrationContext);
 
-  const [modal, setModal] = useState<number>(1);
-  const [rfid, setRfid] = useState<string>(""); // State to store RFID scan value
-
-  const handleRfidScan = async (scannedRfid: string) => {
-    try {
-      setRfid(scannedRfid);
-      const response = await updateCard(employeeId, scannedRfid);
-      console.log("Card updated successfully:", response);
-      setModal(2); // Move to the next modal on success
-    } catch (error) {
-      console.error("Error updating card:", error);
-    }
-  };
-
-  useEffect(() => {
-    const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.key === "Enter") {
-        // When Enter is pressed, use the scanned RFID value
-        console.log(rfid);
-
-        handleRfidScan(rfid);
-        setRfid(""); // Clear the input after processing
-      } else {
-        // Accumulate RFID characters as they are typed
-        setRfid((prevRfid) => prevRfid + event.key);
-      }
-    };
-
-    if (screen) {
-      window.addEventListener("keydown", handleKeyPress);
-    }
-
-    // Cleanup on component unmount
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [screen, rfid]);
+  const [modal, setModal] = useState(2);
 
   if (screen)
     return (
@@ -70,22 +29,22 @@ interface EmployeeCardProps {
                   className="flex flex-col gap-1 items-center h-full"
                 >
                   <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
-                    تم تسجيل الموظف بنجاح
+                    تم تسجيل الفوج بنجاح
                   </h2>
-                  <p className="w-full text- text-textGray2 text-center ">
-                    يمكن الآن للموظف الدخول للمؤسسة
-                  </p>
+                  {/* <p className="w-full text- text-textGray2 text-center ">
+                    يمكن الآن للطالب الدخول للمؤسسة
+                  </p> */}
                   <div className="my-auto">
                     <Check />
                   </div>
 
                   <Link
-                    to={`/employeemanagement`}
+                    to={`/particulargroupmanagement`}
                     className="w-[70%] flex justify-center items-center"
                   >
                     <ButtonRoundedPrimary
                       color="blue"
-                      text={`العودة إلى قائمة المسجلين`}
+                      text={`العودة إلى القائمة `}
                     />
                   </Link>
                 </motion.div>
@@ -112,7 +71,7 @@ const CardModal = ({ setModal }: { setModal: any }) => {
       </h2>
 
       <p className="w-full text- text-textGray2 text-center ">
-        يرجى تمرير البطاقة الذكية على الآلة لإنهاء تسجيل الموظف
+        يرجى تمرير البطاقة الذكية على الآلة لإنهاء تسجيل التلميذ
       </p>
       <div className="my-auto basis-1"></div>
       <div className="my-3">
@@ -123,3 +82,32 @@ const CardModal = ({ setModal }: { setModal: any }) => {
     </motion.div>
   );
 };
+
+// const SuccessModal = () => {
+//   return (
+//     <motion.div
+//       transition={{ duration: 0.2, type: "just" }}
+//       initial={{ x: 400 }}
+//       animate={{ x: 0 }}
+//       key={2}
+//       className="flex flex-col gap-1 items-center h-full"
+//     >
+//       <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
+//         تم تسجيل الطالب بنجاح
+//       </h2>
+//       <p className="w-full text- text-textGray2 text-center ">
+//         يمكن الآن للطالب الدخول للمؤسسة
+//       </p>
+//       <div className="my-auto">
+//         <Check />
+//       </div>
+
+//       <Link
+//         to={`/studentmanagement`}
+//         className="w-[60%] flex justify-center items-center"
+//       >
+//         <ButtonRoundedPrimary active text={`العودة إلى قائمة المسجلين`} />
+//       </Link>
+//     </motion.div>
+//   );
+// };

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import ChangeGroupOverlay from './selectStudent';
+import React, { useState } from "react";
+import SelectStudent from "./selectStudent";
 
 const CardlessRegister: React.FC = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
@@ -14,10 +14,14 @@ const CardlessRegister: React.FC = () => {
 
   return (
     <div>
-      
-      <p onClick={handleOpenOverlay} className="cursor-pointer text-blue  hover:text-blue-700">التسجيل بدون بطاقة</p>
+      <p
+        onClick={handleOpenOverlay}
+        className="cursor-pointer text-blue  hover:text-blue-700"
+      >
+        التسجيل بدون بطاقة
+      </p>
 
-      {isOverlayOpen && <ChangeGroupOverlay onClose={handleCloseOverlay} />}
+      {isOverlayOpen && <SelectStudent onClose={handleCloseOverlay} />}
     </div>
   );
 };

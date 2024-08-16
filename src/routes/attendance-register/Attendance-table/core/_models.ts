@@ -1,3 +1,5 @@
+import { Group } from "../../../group-management/groups-table/core/_models";
+
 export type Student = {
   _id?: string;
   studentId: number;
@@ -11,4 +13,24 @@ export type Student = {
   level: number;
   __v?: number;
   groups: any[];
+};
+
+export type Note = {
+  _id: string;
+  studentId: string;
+  text: string;
+  date: string;
+  __v: number;
+};
+export type GetStudentByCardIdType = {
+  totalMonthlyFee: number;
+  totalPaidThisMonth: number;
+  totalOutstandingBalance: number;
+  remainingBalanceForThisMonth: number;
+  totalDebts: number;
+  debts: [];
+  student: Student;
+  todayGroups: Group[];
+  otherGroups: Group[];
+  notes: Note[];
 };
