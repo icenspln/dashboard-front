@@ -7,7 +7,7 @@ import { employeeRegister } from "../core/_requests";
 import { useMutation } from "@tanstack/react-query";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { RegistrationContext } from "../core/RegistrationContext";
 
 interface EmployeeRegisterFormProps {

@@ -1,6 +1,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { SpecialGroup } from "../_models";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import SettingsCell from "./SettingsCell";
 import {
   returnInstitutionInAR,
@@ -22,7 +22,7 @@ export const defaultColumns = [
     header: "اليوم",
     cell: (info) => {
       const date = new Date(info.getValue());
-      const formattedDate = date.toISOString().split('T')[0];
+      const formattedDate = date.toISOString().split("T")[0];
       return formattedDate;
     },
   }),

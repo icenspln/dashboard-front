@@ -1,27 +1,29 @@
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import DeleteParticularGroupOverlay from "./overlays/deleteParticularGroup";
 import RegistredStudentsOverlay from "./overlays/registredStudentsList";
 import { SpecialGroupsTableContext } from "../SpecialGroupsContext";
 
 export default function SettingsCell({ row }: { row: any }) {
-  const [activeOverlay, SetActiveOverlay] =useState< string | null>(null)
-  const { setGroupModal, setSelectedGroup,  } =
-    useContext(SpecialGroupsTableContext);
-  const navigate = useNavigate();
+  const [activeOverlay, SetActiveOverlay] = useState<string | null>(null);
+  const { setGroupModal, setSelectedGroup } = useContext(
+    SpecialGroupsTableContext
+  );
+  // const navigate = useNavigate();
 
   const assignStudentToGroup = () => {
     setGroupModal(true);
     setSelectedGroup(row);
-  };  const options = [
+  };
+  const options = [
     // { label: "تعديل المعلومات", action: () => {} },
     // { label: "حذف الفوج", action: () => SetActiveOverlay("deleteParticularGroup") },
     // { label: "رؤية قائمة الحضور", action: () => navigate('/particulargroupspresencemanagement') },
     { label: "رؤية قائمة المسجلين", action: () => assignStudentToGroup() },
   ];
-  const closeOverlay = () => SetActiveOverlay(null)
+  const closeOverlay = () => SetActiveOverlay(null);
   return (
     <div>
       <Popup
@@ -57,8 +59,12 @@ export default function SettingsCell({ row }: { row: any }) {
             </button>
           ))}
         </div>
-        {activeOverlay === "deleteParticularGroup" && <DeleteParticularGroupOverlay onClose={closeOverlay}/>}
-        {activeOverlay === "registredStudentsList" && <RegistredStudentsOverlay onClose={closeOverlay}/>}
+        {activeOverlay === "deleteParticularGroup" && (
+          <DeleteParticularGroupOverlay onClose={closeOverlay} />
+        )}
+        {activeOverlay === "registredStudentsList" && (
+          <RegistredStudentsOverlay onClose={closeOverlay} />
+        )}
       </Popup>
     </div>
   );

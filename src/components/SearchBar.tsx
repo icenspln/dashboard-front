@@ -1,5 +1,3 @@
-import { useContext } from "react";
-
 export default function SearchBar() {
   return (
     <div className="flex items-center rounded border-2 border-gray bg-white  min-w-[241px] h-[32px]">

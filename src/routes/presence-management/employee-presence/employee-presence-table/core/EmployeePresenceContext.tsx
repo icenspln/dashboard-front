@@ -1,20 +1,33 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { PresenceList } from './_models';
-import { getAttendeesForEmployee } from './_request';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
+import { PresenceList } from "./_models";
+import { getAttendeesForEmployee } from "./_request";
 
 interface EmployeePresenceContextProps {
   presenceListData: PresenceList | null;
 }
 
-const EmployeePresenceContext = createContext<EmployeePresenceContextProps | undefined>(undefined);
+const EmployeePresenceContext = createContext<
+  EmployeePresenceContextProps | undefined
+>(undefined);
 
 interface EmployeePresenceProviderProps {
   children: ReactNode;
   id: string;
 }
 
-export const EmployeePresenceProvider = ({ children, id }: EmployeePresenceProviderProps) => {
-  const [presenceListData, setPresenceListData] = useState<PresenceList | null>(null);
+export const EmployeePresenceProvider = ({
+  children,
+  id,
+}: EmployeePresenceProviderProps) => {
+  const [presenceListData, setPresenceListData] = useState<PresenceList | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +35,7 @@ export const EmployeePresenceProvider = ({ children, id }: EmployeePresenceProvi
         const data = await getAttendeesForEmployee(id);
         setPresenceListData(data);
       } catch (error) {
-        console.error('Error fetching employee presence data:', error);
+        console.error("Error fetching employee presence data:", error);
       }
     };
 
@@ -39,7 +52,9 @@ export const EmployeePresenceProvider = ({ children, id }: EmployeePresenceProvi
 export const useEmployeePresence = () => {
   const context = useContext(EmployeePresenceContext);
   if (!context) {
-    throw new Error('useEmployeePresence must be used within an EmployeePresenceProvider');
+    throw new Error(
+      "useEmployeePresence must be used within an EmployeePresenceProvider"
+    );
   }
   return context;
 };

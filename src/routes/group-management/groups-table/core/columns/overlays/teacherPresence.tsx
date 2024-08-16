@@ -1,56 +1,52 @@
-import { Overlay } from "../../../../../../components/Overlay"
-import ConfirmButton from "../../../../../../components/confirmButton"
-import {StudentPresentButton} from "../../../../../../components/isPresentButton"
+import { Overlay } from "../../../../../../components/Overlay";
+import ConfirmButton from "../../../../../../components/confirmButton";
+import { StudentPresentButton } from "../../../../../../components/isPresentButton";
 
 interface TeacherPresenceProps {
-    onClose : () => void
+  onClose: () => void;
 }
 
-export default function TeacherPresence({onClose}:TeacherPresenceProps){
-    const groups = [
-        {label :"الأحد  2024 / 10 / 23 - 03:00"},
-        {label :"الأحد  2024 / 10 / 23 - 03:00"},
-        {label :"الأحد  2024 / 10 / 23 - 03:00"}
-    ]
-    return(
-        <Overlay onClose={onClose}>
-        <>
-          <div className="w-[553px] min-h-[378px] ">
-            <div className="flex flex-col text-center gap-[8px]">
-              <h1 className="font-bold">حضور / غياب الأستاذ</h1>
-              <span className="text-gray-400">
-                الرياضيات | السنة الأولى إبتدائي | علي رياد | الأحد - 03:00
-              </span>
-            </div>
-      
-            <div className="">
-              <ul className="mt-3">
-                {groups.map((group, index) => (
-                  <li
-                    key={index}
-                    className=" w-fill px-5 py-3 flex justify-between  border-b last:border-none"
-                  >
-                    
-                      <span className="">{group.label} </span>
-                      <span>
-                        <StudentPresentButton />
-                      </span>
-                    
-                  </li>
-                ))}
-              </ul>
-            </div>
+export default function TeacherPresence({ onClose }: TeacherPresenceProps) {
+  const groups = [
+    { label: "الأحد  2024 / 10 / 23 - 03:00" },
+    { label: "الأحد  2024 / 10 / 23 - 03:00" },
+    { label: "الأحد  2024 / 10 / 23 - 03:00" },
+  ];
+  return (
+    <Overlay onClose={onClose}>
+      <>
+        <div className="w-[553px] min-h-[378px] ">
+          <div className="flex flex-col text-center gap-[8px]">
+            <h1 className="font-bold">حضور / غياب الأستاذ</h1>
+            <span className="text-gray-400">
+              الرياضيات | السنة الأولى إبتدائي | علي رياد | الأحد - 03:00
+            </span>
           </div>
-          <span className="flex justify-center">
-              <ConfirmButton
-                text="تسجيل التغييرات"
-                className="text-white"
-                
-              />
-          </span>
-        </>
-      </Overlay>
-      
 
-    )
+          <div className="">
+            <ul className="mt-3">
+              {groups.map((group, index) => (
+                <li
+                  key={index}
+                  className=" w-fill px-5 py-3 flex justify-between  border-b last:border-none"
+                >
+                  <span className="">{group.label} </span>
+                  <span>
+                    <StudentPresentButton
+                      att={{ date: "", status: "" }}
+                      groupId={""}
+                      studentId=""
+                    />
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <span className="flex justify-center">
+          <ConfirmButton text="تسجيل التغييرات" className="text-white" />
+        </span>
+      </>
+    </Overlay>
+  );
 }

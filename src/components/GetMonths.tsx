@@ -1,14 +1,14 @@
 import {
   format,
-  subYears,
+  // subYears,
   addMonths,
   startOfMonth,
-  startOfYear,
+  // startOfYear,
 } from "date-fns";
 
-const getMonthYearLabel = (date) => format(date, "MM|yy");
+const getMonthYearLabel = (date: any) => format(date, "MM|yy");
 
-export default function GetMonthYear(startYear) {
+export default function GetMonthYear(startYear: any) {
   const options = [];
   const currentDate = startOfMonth(new Date());
   const startDate = startOfMonth(new Date(startYear, 0, 1));
@@ -26,4 +26,4 @@ export default function GetMonthYear(startYear) {
   return options;
 }
 
-const Grrr = GetMonthYear(12);
+// const Grrr = GetMonthYear(12);

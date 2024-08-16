@@ -1,4 +1,4 @@
-import { object, string, number } from "yup";
+import { object, string } from "yup";
 
 export const EmployeeRegisterFormTypeSchema = object({
   firstName: string().required("الحقل اجباري").max(20, "الحقل طويل جدا"),
@@ -8,16 +8,13 @@ export const EmployeeRegisterFormTypeSchema = object({
     .required("الحقل اجباري")
     .matches(/^\d+$/, "الرقم غير صحيح")
     .min(10, "الرقم غير صحيح"),
-    job: string().required("الحقل اجباري").max(20, "الحقل طويل جدا"),
-
+  job: string().required("الحقل اجباري").max(20, "الحقل طويل جدا"),
 });
-
 
 export type EmployeeRegisterFormType = {
   firstName: string;
   lastName: string;
-  job: string ;
+  job: string;
   phoneNumber: string;
   //guardianPhoneNumber: string;
-  
 };

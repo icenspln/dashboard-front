@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Overlay } from "../../../../../../components/Overlay";
 import ConfirmButton from "../../../../../../components/confirmButton";
 import SelectGroup from "./Popup-menu-component/PresentStudentsList";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { SpecialGroupsTableContext } from "../../SpecialGroupsContext";
-import { returnStudentLabel } from "../../../../../../handlers/returnInArabic";
+// import { returnStudentLabel } from "../../../../../../handlers/returnInArabic";
 import {
   assignStudentToGroup,
   deleteStudentFromGroup,
 } from "../../../group-add-studen-modal/core/_requests";
-import ButtonRoundedPrimary from "../../../../../../components/ButtonRoundedPrimary";
+// import ButtonRoundedPrimary from "../../../../../../components/ButtonRoundedPrimary";
 
 interface RegistredStudentsOverlayProps {
   onClose: () => void;
@@ -20,21 +20,22 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
   onClose,
 }) => {
   const queryClient = useQueryClient();
-  const { selectedGroup, setSelectedGroup } = useContext(SpecialGroupsTableContext);
+  const { selectedGroup, setSelectedGroup } = useContext(
+    SpecialGroupsTableContext
+  );
   console.log(selectedGroup?.toString());
   const [studentInput, setStudentInput] = useState<string>("");
 
-  
-  const [selectedOption, setSelectedOption] = useState<{
-    label: string;
-    value: string;
-  }>();
-  const [reactSelectOptions, setReactSelectOptions] = useState<
-    {
-      value: string;
-      label: string;
-    }[]
-  >([{ label: "loading", value: "" }]);
+  // const [selectedOption, setSelectedOption] = useState<{
+  //   label: string;
+  //   value: string;
+  // }>();
+  // const [reactSelectOptions, setReactSelectOptions] = useState<
+  //   {
+  //     value: string;
+  //     label: string;
+  //   }[]
+  // >([{ label: "loading", value: "" }]);
   const onSubmitGroups = () => {
     // const student = selectedOption;
     mutation.mutate({
@@ -43,14 +44,13 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
     });
   };
 
-
   //mutation for signing up a student for a group
   const mutation = useMutation({
     mutationFn: ({ groupId, studentId }: any) =>
       assignStudentToGroup(groupId, studentId),
     onSuccess: (res) => {
       toast.success("تم تسجيل الطالب بنجاح");
-      setStudentInput('');
+      setStudentInput("");
       // onClose();
       queryClient.invalidateQueries({ queryKey: ["getSpecialGroups"] });
       setSelectedGroup(res);
@@ -84,7 +84,6 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
     removeMutation.mutate({ groupId, studentId });
   };
 
-
   return (
     <Overlay onClose={onClose} isVisible>
       <>
@@ -115,12 +114,10 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
           </span> */}
           <div className="flex gap-[12px]">
             <input
-            className="max-w-[553px]"
-            placeholder="أدخل اسم الطالب"
-            value={studentInput}
-            onChange={(e) => setStudentInput(e.target.value)}
-
-
+              className="max-w-[553px]"
+              placeholder="أدخل اسم الطالب"
+              value={studentInput}
+              onChange={(e) => setStudentInput(e.target.value)}
             ></input>
             {/* <select className="w-[419px] h-[32px] border-2 rounded-md"></select>
             <input
@@ -136,8 +133,7 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
             text="تسجيل التغييرات"
             className="text-white bg-blue hover:bg-grayBlue hover:text-blue border hover:border-blue "
             onClick={onSubmitGroups}
-
-         />
+          />
           <ConfirmButton
             text="إضافة طالب جديد"
             className="text-blue bg-grayBlue hover:bg-blue hover:text-white border"

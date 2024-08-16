@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Overlay } from "../../../../components/Overlay";
 import { Check } from "../../../../assets/icons/Check";
 import { Link } from "react-router-dom";
@@ -53,7 +53,11 @@ export default function GroupCard() {
     );
 }
 
-const CardModal = ({ setModal }: { setModal: any }) => {
+const CardModal = ({
+  setModal,
+}: {
+  setModal: Dispatch<SetStateAction<number>>;
+}) => {
   return (
     <motion.div
       key={1}

@@ -1,10 +1,8 @@
-import { createColumnHelper } from "@tanstack/react-table";
-import { Student } from "../_models";
-import BirthDateCell from "./BirthDateCell";
-import InstitutionCell from "./InstitutionCell";
-import { PricingButton } from "../../../../../components/PricingButtonEdit";
+// import { createColumnHelper } from "@tanstack/react-table";
+// import { Student } from "../_models";
+// import { PricingButton } from "../../../../../components/PricingButtonEdit";
 
-const columnHelper = createColumnHelper<Student>();
+// const columnHelper = createColumnHelper<Student>();
 
 // export const studentInfoColumns = [
 
@@ -29,23 +27,23 @@ const columnHelper = createColumnHelper<Student>();
 //   }),
 // ];
 
-export const studentPaymentColumns = [
-  columnHelper.accessor("_id", {
-    header: "الثمن الذي تم دفعه",
-    cell: PricingButton,
-  }),
+// export const studentPaymentColumns = [
+//   columnHelper.accessor("_id", {
+//     header: "الثمن الذي تم دفعه",
+//     cell: PricingButton,
+//   }),
 
-  columnHelper.accessor("level", {
-    header: "الثمن الذي يجب دفعه",
-    cell: PricingButton,
-  }),
-  columnHelper.accessor("level", {
-    header: "الديون",
-    cell: PricingButton,
-  }),
+//   columnHelper.accessor("level", {
+//     header: "الثمن الذي يجب دفعه",
+//     cell: PricingButton,
+//   }),
+//   columnHelper.accessor("level", {
+//     header: "الديون",
+//     cell: PricingButton,
+//   }),
 
-  columnHelper.accessor("level", {
-    header: "المجموع",
-    cell: (info) => info?.getValue(),
-  }),
-];
+//   columnHelper.accessor("level", {
+//     header: "المجموع",
+//     cell: (info) => info?.getValue(),
+//   }),
+// ];

@@ -23,9 +23,9 @@ function SettingScreen() {
   const [appNameVar, setAppName] = useState("");
   const [selectedLogo, setSelectedLogo] = useState<File | null>(null);
 
-  const handleLogoSelect = (file: File | null) => {
-    setSelectedLogo(file);
-  };
+  // const handleLogoSelect = (file: File | null) => {
+  //   setSelectedLogo(file);
+  // };
   //overlays
   const [isAppNameOverlayVisible, setIsAppNameOverlayVisible] = useState(false);
   const [isLogoOverlayVisible, setIsLogoOverlayVisible] = useState(false);
@@ -38,7 +38,6 @@ function SettingScreen() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const {
     appName,
-    logoUrl,
     updateAppName,
     updateLogo,
     backupDatabase,
@@ -79,7 +78,7 @@ function SettingScreen() {
       } else {
         setError("كلمة المرور غير صحيحة");
       }
-    } catch (error) {
+    } catch {
       setError("حدث خطأ ما. حاول مرة أخرى.");
     }
   };
@@ -95,7 +94,7 @@ function SettingScreen() {
       setError("");
       setPasswordOverlayVisible(true);
       // You can add a success message or redirect logic here
-    } catch (error) {
+    } catch {
       setError("كلمة السر القديمة خاطئة");
     }
   };

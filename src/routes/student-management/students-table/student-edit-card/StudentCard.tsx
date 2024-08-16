@@ -12,14 +12,14 @@ import { UpdateCard } from "./_requests"; // Import the updateCard function
 
 export default function StudentCardEdit() {
   const [modal, setModal] = useState(1);
-  const { editCardModal, setEditCardModal , selectedStudent} = useContext(StudentsTableContext);
+  const { editCardModal, setEditCardModal, selectedStudent } =
+    useContext(StudentsTableContext);
   const [rfid, setRfid] = useState<string>(""); // State to store RFID scan value
   const [isPending, setIsPending] = useState(true);
 
   const handleRfidScan = async (scannedRfid: string) => {
     try {
-
-      console.log(selectedStudent)
+      console.log(selectedStudent);
       setRfid(scannedRfid);
       await UpdateCard(selectedStudent!._id, scannedRfid);
       console.log("Card updated successfully");
@@ -102,7 +102,7 @@ export default function StudentCardEdit() {
 }
 
 const CardModal = ({
-  setModal,
+  // setModal,
   isPending,
   setIsPending,
   setEditCardModal,

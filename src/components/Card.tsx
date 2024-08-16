@@ -31,7 +31,7 @@ export function Card({
           to={`/studentmanagement`}
           className="w-[60%] flex justify-center items-center"
         >
-          <ButtonRoundedPrimary active text={textButtonPrimary} />
+          <ButtonRoundedPrimary text={textButtonPrimary} />
         </Link>
       )}
       {textButtonSecondary && (

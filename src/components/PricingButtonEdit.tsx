@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PencilSvg from "../assets/icons/PencilSvg";
 
 type PricingButtonProps = {
-  initValue: any;
+  initValue: number;
   submit?: (a: number) => void;
 };
 //Edit cell button

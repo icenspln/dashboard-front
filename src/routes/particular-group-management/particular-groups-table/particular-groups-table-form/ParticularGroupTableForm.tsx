@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import {
-  dayOfWeekFilterOptions,
+  // dayOfWeekFilterOptions,
   institutionFilterOptions,
   levelFilterOptions,
-  modulesFilterOptions,
+  // modulesFilterOptions,
 } from "../core/_models";
 import { SpecialGroupsTableContext } from "../core/SpecialGroupsContext";
 import { FilterButton } from "../../../../components/ButtonFilter";
@@ -23,12 +23,12 @@ export function ParticularGroupTableForm() {
       institution: selectedOptions.map((opt: any) => opt.id),
     }));
   };
-  const updateModulesFilter = (selectedOptions: any) => {
-    setFilterState((prev: any) => ({
-      ...prev,
-      modules: selectedOptions.map((opt: any) => opt.id),
-    }));
-  };
+  // const updateModulesFilter = (selectedOptions: any) => {
+  //   setFilterState((prev: any) => ({
+  //     ...prev,
+  //     modules: selectedOptions.map((opt: any) => opt.id),
+  //   }));
+  // };
 
   return (
     <>
@@ -63,7 +63,7 @@ export function ParticularGroupTableForm() {
         options={modulesFilterOptions}
         setFilterState={updateModulesFilter}
       /> */}
-     
+
       {/* <ColumnSelection options={ColumnSelectionOptions} /> */}
     </>
   );

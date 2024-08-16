@@ -20,8 +20,7 @@ export function ParticularGroupsTable() {
   const constraintsRef = useRef(null);
   const [groups, setGroups] = useState<SpecialGroup[]>([]);
 
-  const { filter, groupModal, additionalDayModal } =
-    useContext(SpecialGroupsTableContext);
+  const { filter, groupModal } = useContext(SpecialGroupsTableContext);
 
   //query functions
   const { data, isLoading } = useQuery({
@@ -120,7 +119,6 @@ export function ParticularGroupsTable() {
         </tbody>
       </motion.table>
       {groupModal && <GroupAddStudentModal />}
-
     </div>
   );
 }

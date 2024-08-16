@@ -1,6 +1,6 @@
-import { BLUE } from "../../GLOBALS";
+// import { BLUE } from "../../GLOBALS";
 
-export default function SignalSvg({ fill = "white" }) {
+export default function SignalSvg({ fill = "white" }: any) {
   return (
     <>
       <svg

@@ -5,12 +5,12 @@ import {
 } from "@tanstack/react-table";
 import { defaultColumns } from "./core/columns/columns";
 import { useEmployeePresence } from "./core/EmployeePresenceContext";
-import { useRef } from "react";
+// import { useRef } from "react";
 import PersonSvg from "../../../../assets/icons/PersonSvg";
 import PhoneSvg from "../../../../assets/icons/PhoneSvg";
 
 export function EmployeePresenceListsTable() {
-  const constraintsRef = useRef(null);
+  // const constraintsRef = useRef(null);
   const { presenceListData } = useEmployeePresence();
 
   const table = useReactTable({
