@@ -2,30 +2,27 @@ import { useState, useEffect } from "react";
 import PencilSvg from "../assets/icons/PencilSvg";
 
 type PricingButtonProps = {
-  getValue: any;
-  row: any;
-  column: any;
-  table: any;
+  initValue: any;
+  submit?: (a: number) => void;
 };
 //Edit cell button
-export function PricingButton({
-  getValue,
-  row,
-  column,
-  table,
-}: PricingButtonProps) {
-  const initialValue = getValue();
-  const [value, setValue] = useState(initialValue);
+export function PricingButton({ initValue, submit }: PricingButtonProps) {
+  const [value, setValue] = useState(0);
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
+    if (initValue > 0) {
+      setValue(initValue);
+    }
+  }, [initValue]);
 
   const confirmEdit = () => {
     setIsEditing(false);
-    table.options.meta?.updateData(row.index, column.id, value);
+    if (submit) {
+      submit(value);
+    }
   };
+
   return (
     <div className="flex items-center gap-[10px] space-x-2  h-[24px] ">
       {!isEditing && (
@@ -39,21 +36,21 @@ export function PricingButton({
         <>
           <input
             value={value}
-            onChange={(e) => setValue(e.target.value)}
-            onBlur={confirmEdit}
+            onChange={(e) => setValue(+e.target.value)}
+            // onBlur={confirmEdit}
             autoFocus
             className="border border-gray rounded outline-gray-300  w-[57px] h-[20px]"
           />
           <button
             className="w-[57px] h-[20px] bg-blue rounded text-sm
-            hover:bg-blue Hovered hover:bg-blue transition-all duration-300 text-white"
+            hover:bg-blue Hovered transition-all duration-300 text-white"
             onClick={confirmEdit}
           >
             تسجيل
           </button>
         </>
       ) : (
-        <span>{value}</span>
+        <span>{initValue}</span>
       )}
     </div>
   );

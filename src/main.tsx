@@ -28,7 +28,7 @@ import EmployeePresenceListsManagement from "./routes/presence-management/employ
 import PaymentManagement from "./routes/teacher-payment-management/PaymentManagement.tsx";
 import StudentPaymentHistory from "./routes/student-payment-history/StudentPaymentHistory.tsx";
 import AttendanceManagement from "./routes/attendance-register/AttendanceManagement.tsx";
-import TablesContainer from "./routes/attendance-register/Attendance-table/tablesContainer.tsx";
+import TablesContainer from "./routes/attendance-register/Attendance-table/StudentControlPanel.tsx";
 import SeetingManagement from "./routes/settings/SettingManagement.tsx";
 import { StudentUpdateWrapper } from "./routes/student-management/student-update/StudentUpdate.tsx";
 
@@ -136,7 +136,7 @@ const router = createBrowserRouter(
           element: <AttendanceManagement />,
         },
         {
-          path: "/test",
+          path: "/attendancemanagement/:id",
           element: <TablesContainer />,
         },
         {
