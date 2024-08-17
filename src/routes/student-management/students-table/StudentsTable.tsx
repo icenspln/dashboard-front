@@ -12,17 +12,19 @@ import { StudentsTableContext } from "./core/StudentsTableContext";
 import { StudentGroupModal } from "./student-group-modal/StudentGroupModal";
 import StudentCardEdit from "./student-edit-card/StudentCard";
 import { defaultColumns } from "./core/columns/columns";
+import { Pagination } from "../../../components/pagination";
 
 function StudentsTable() {
   const { filter, groupModal, editCardModal } =
     useContext(StudentsTableContext);
   const constraintsRef = useRef(null);
   const [students, setStudents] = useState<Student[]>([]);
-
+  const [page, setPage] = useState<number>(1);
+  console.log("page", page);
   //query functions
   const { data, isLoading } = useQuery({
-    queryKey: ["getStudents", filter],
-    queryFn: () => getStudents(filter),
+    queryKey: ["getStudents", filter, page],
+    queryFn: () => getStudents(filter, page),
 
     // enabled: filt
   });
@@ -41,64 +43,76 @@ function StudentsTable() {
   });
 
   return (
-    <div
-      ref={constraintsRef}
-      className="overflow-x-clip border border-[#E2E8F0] rounded-xl"
-    >
-      <motion.table
-        drag={"x"}
-        dragConstraints={constraintsRef}
-        dragElastic={0}
-        dragMomentum={false}
-        className="max-w-full bg-white rounded-xl"
+    <>
+      <div
+        ref={constraintsRef}
+        className="overflow-x-clip border border-[#E2E8F0] rounded-xl"
       >
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => {
-            return (
-              <tr className="border-b border-b-light" key={headerGroup.id}>
-                {headerGroup.headers.map(
-                  (
-                    header // map over the headerGroup headers array
-                  ) => (
-                    <th
-                      key={header.id}
-                      className="text-textGray text-start p-3 font-normal w-full min-w-[180px]"
-                      colSpan={header.colSpan}
+        <motion.table
+          drag={"x"}
+          dragConstraints={constraintsRef}
+          dragElastic={0}
+          dragMomentum={false}
+          className="max-w-full bg-white rounded-xl"
+        >
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => {
+              return (
+                <tr className="border-b border-b-light" key={headerGroup.id}>
+                  {headerGroup.headers.map(
+                    (
+                      header // map over the headerGroup headers array
+                    ) => (
+                      <th
+                        key={header.id}
+                        className="text-textGray text-start p-3 font-normal w-full min-w-[180px]"
+                        colSpan={header.colSpan}
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                      </th>
+                    )
+                  )}
+                </tr>
+              );
+            })}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr
+                className="border-b border-b-light last:border-none"
+                key={row.id}
+              >
+                {row.getAllCells().map((cell) => {
+                  return (
+                    <td
+                      className="text-darkGray text-start p-3 font-normal w-full min-w-[180px]"
+                      key={cell.id}
                     >
                       {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
+                        cell.column.columnDef.cell,
+                        cell.getContext()
                       )}
-                    </th>
-                  )
-                )}
+                    </td>
+                  );
+                })}
               </tr>
-            );
-          })}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr
-              className="border-b border-b-light last:border-none"
-              key={row.id}
-            >
-              {row.getAllCells().map((cell) => {
-                return (
-                  <td
-                    className="text-darkGray text-start p-3 font-normal w-full min-w-[180px]"
-                    key={cell.id}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                );
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </motion.table>
-      {groupModal && <StudentGroupModal />}
-      {editCardModal && <StudentCardEdit />}
-    </div>
+            ))}
+          </tbody>
+        </motion.table>
+        {groupModal && <StudentGroupModal />}
+        {editCardModal && <StudentCardEdit />}
+      </div>
+      {data && (
+        <Pagination
+          setPage={setPage}
+          page={page}
+          totalPages={data.totalPages}
+        />
+      )}
+    </>
   );
 }
 

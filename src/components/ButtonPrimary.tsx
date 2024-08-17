@@ -48,7 +48,7 @@ export default function ButtonPrimary({
       disabled={disabled}
       onClick={onClick}
       className={
-        "min-w-[140px] bg-white transition hover:bg-light border border-solid border-light text-blueDark font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2"
+        "w-full min-w-[140px] bg-white transition hover:bg-light border border-solid border-light text-blueDark font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2"
       }
     >
       {children && (
@@ -56,7 +56,11 @@ export default function ButtonPrimary({
           {children}
         </div>
       )}
-      <h2 className="text-blueDark">{text}</h2>
+      <h2
+        className={`text-xl  text-darkGray ${!children ? "w-full text-center" : "text-center"}`}
+      >
+        {text}
+      </h2>
     </button>
   );
 }
