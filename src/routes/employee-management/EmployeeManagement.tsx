@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import ButtonPrimary from "../../components/ButtonPrimary";
-import { EmployeesTable } from "./employees-card/EmployeesCard";
+import { EmployeesTable } from "./employees-card/EmployeesTable";
 import SearchBar from "../../components/SearchBar";
-import { EmployeeProvider } from "./employees-card/EmployeeContext";
+import { EmployeeProvider } from "./employees-card/core/EmployeeContext";
 
 export default function EmployeeManagement() {
   return (

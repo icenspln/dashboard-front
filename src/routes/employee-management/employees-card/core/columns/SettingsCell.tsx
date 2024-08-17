@@ -3,17 +3,20 @@ import Popup from "reactjs-popup";
 import DotsSvg from "../../../../../assets/icons/DotsSvg";
 
 import DeleteFromListOverlay from "./overlays/deleteFromList";
-
-
+import { useEmployeeContext } from "../EmployeeContext";
 
 export default function SettingsCell() {
-  const [activeOverlay, setActiveOverlay] = useState<string | null>(null)
+  const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
+  const { setEditEmployeeCard } = useEmployeeContext();
 
   const options = [
-    { label: "تعديل المعلومات", action: () => {} },
-    { label: "حذف الموظف ", action: () => setActiveOverlay("deleteFromList") },
-   
-    
+    {
+      label: "تعديل البطاقة",
+      action: () => {
+        setEditEmployeeCard(true);
+      },
+    },
+    // { label: "حذف الموظف ", action: () => setActiveOverlay("deleteFromList") },
   ];
   const closeOverlay = () => setActiveOverlay(null);
   return (
@@ -21,7 +24,7 @@ export default function SettingsCell() {
       <Popup
         trigger={
           <button>
-            <DotsSvg/>
+            <DotsSvg />
           </button>
         }
         arrow={false}
@@ -38,10 +41,10 @@ export default function SettingsCell() {
             </button>
           ))}
         </div>
-        {activeOverlay === "deleteFromList" && <DeleteFromListOverlay onClose={closeOverlay} />}
-      
+        {activeOverlay === "deleteFromList" && (
+          <DeleteFromListOverlay onClose={closeOverlay} />
+        )}
       </Popup>
-     
     </div>
   );
 }
