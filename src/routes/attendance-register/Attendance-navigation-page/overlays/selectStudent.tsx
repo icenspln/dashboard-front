@@ -55,9 +55,9 @@ const SelectStudent: React.FC<SelectStudentProps> = ({ onClose }) => {
 
   const loadOptions = (inputValue: string) =>
     new Promise<Student[]>((resolve) => {
-      setTimeout(() => {
-        resolve(filterStudents(inputValue));
-      }, 1000);
+      // setTimeout(() => {
+      resolve(filterStudents(inputValue));
+      // }, 1000);
     });
 
   // useEffect(() => {

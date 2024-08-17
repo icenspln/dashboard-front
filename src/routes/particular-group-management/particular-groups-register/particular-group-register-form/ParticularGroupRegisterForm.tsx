@@ -99,9 +99,9 @@ export default function StudentRegisterForm() {
 
   const loadOptions = (inputValue: string) =>
     new Promise<Teacher[]>((resolve) => {
-      setTimeout(() => {
-        resolve(filterTeachers(inputValue));
-      }, 1000);
+      // setTimeout(() => {
+      resolve(filterTeachers(inputValue));
+      // }, 1000);
     });
 
   return (
