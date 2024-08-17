@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { getStudentByCardId } from "./core/_requests";
 import { GetStudentByCardIdType } from "./core/_models";
+import Notifications from "./notifications";
 
 export default function TablesContainer() {
   const { id } = useParams();
@@ -38,7 +39,7 @@ export default function TablesContainer() {
   if (studentInfo && !error)
     return (
       <div className="flex items-center w-full gap-[25px] px-4 ">
-        <div>
+        <div className="basis-2/3">
           <StudentInfoTable student={studentInfo.student} />
           <StudentPaymentTable studentInfo={studentInfo} />
           <GroupList studentInfo={studentInfo} />
@@ -46,9 +47,9 @@ export default function TablesContainer() {
           <CardlessRegister />
         </div> */}
         </div>
-        {/* <div className="w-full">
-        <Notifications />
-      </div> */}
+        <div className="w-full">
+          <Notifications />
+        </div>
       </div>
     );
 }

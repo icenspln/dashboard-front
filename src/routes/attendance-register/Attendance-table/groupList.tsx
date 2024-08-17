@@ -53,7 +53,7 @@ export default function GroupList({
           </p>
           {studentInfo.otherGroups.length < 1 && (
             <>
-              <span className="px-5">لا يوجد أفواج لهذا اليوم</span>
+              <span className="px-5">لا يوجد أفواج أخرى</span>
             </>
           )}
           {studentInfo.otherGroups.map((grp, i) => (

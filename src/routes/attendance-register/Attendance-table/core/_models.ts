@@ -34,3 +34,11 @@ export type GetStudentByCardIdType = {
   otherGroups: Group[];
   notes: Note[];
 };
+
+export type NoteType = {
+  _id: string;
+  studentId: string;
+  text: string;
+  date: string;
+  __v: number;
+};

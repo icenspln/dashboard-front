@@ -47,3 +47,13 @@ export function updateTotalDebt({
     newTotalDebt,
   }).then((res) => res.data);
 }
+
+export function getNotesForStudent(studentId: string) {
+  return AxiosInstance.get(`/note/${studentId}`).then((res) => res.data);
+}
+
+export function postNoteForStudent(studentId: string, text: string) {
+  return AxiosInstance.post(`/note`, { studentId, text }).then(
+    (res) => res.data
+  );
+}
