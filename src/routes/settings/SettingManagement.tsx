@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import PasswordInput from "./passwordInputField";
 import ConfirmButton from "../../components/confirmButton";
 import LogoUpload from "./handleLogoUpload";
@@ -53,7 +54,21 @@ function SettingScreen() {
       setIsConfirmOverlayVisible(true);
     }
   };
+  //Navigate to another page when you want to exit the setting page without putting the password
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const handleEscapeKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        
+        navigate("/studentmanagement"); 
+      }
+    };
+
+    window.addEventListener("keydown", handleEscapeKeyPress);
+    return () => window.removeEventListener("keydown", handleEscapeKeyPress);
+  }, [navigate]);
+  ///
   const handleConfirmRestore = async () => {
     if (selectedFile) {
       try {
