@@ -8,14 +8,15 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { RegistrationContext } from "../core/RegistrationContext";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getTeachers, groupRegister } from "../core/_requests";
+import { getFilteredTeachers, groupRegister } from "../core/_requests";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
-import Select from "react-select";
+import AsyncSelect from "react-select/async";
 import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
 
 export default function StudentRegisterForm() {
-  const [reactSelectOptions, setReactSelectOptions] = useState();
+  const [filter, setFilter] = useState("");
+  // const [reactSelectOptions, setReactSelectOptions] = useState();
   const [selectedTeacher, setSelectedTeacher] = useState<{
     value: string;
     label: string;
@@ -57,28 +58,51 @@ export default function StudentRegisterForm() {
     },
   });
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["getTeachersForGroups"],
-    queryFn: () => getTeachers(),
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["getTeachersForGroups", filter],
+    queryFn: () => getFilteredTeachers(filter),
   });
 
+  // useEffect(() => {
+  //   if (data && !isLoading && !error) {
+  //     const teachersSelectArr = data.data.map((teacher: Teacher) => {
+  //       return {
+  //         label: teacher.firstName + " " + teacher.lastName,
+  //         value: teacher._id,
+  //       };
+  //     });
+  //     setReactSelectOptions(teachersSelectArr);
+  //   }
+  //   if (error) {
+  //     toast.error("error fetching teachers");
+  //   }
+  // }, [data, isLoading, error]);
+
   useEffect(() => {
+    if (selectedTeacher) setValue("teacher", selectedTeacher);
+  }, [selectedTeacher]);
+
+  const filterTeachers = (inputValue: string) => {
+    setFilter(inputValue);
+
     if (data && !isLoading && !error) {
-      const teachersSelectArr = data.data.map((teacher: Teacher) => {
+      return data.data.map((teacher: Teacher) => {
         return {
           label: teacher.firstName + " " + teacher.lastName,
           value: teacher._id,
         };
       });
-      setReactSelectOptions(teachersSelectArr);
+    } else {
+      return [];
     }
-    if (error) {
-      toast.error("error fetching teachers");
-    }
-  }, [data, isLoading, error]);
-  useEffect(() => {
-    if (selectedTeacher) setValue("teacher", selectedTeacher);
-  }, [selectedTeacher]);
+  };
+
+  const loadOptions = (inputValue: string) =>
+    new Promise<Teacher[]>((resolve) => {
+      setTimeout(() => {
+        resolve(filterTeachers(inputValue));
+      }, 1000);
+    });
 
   return (
     <>
@@ -163,9 +187,9 @@ export default function StudentRegisterForm() {
             <label htmlFor="teacher" className="text-blueDark">
               الأستاذ
             </label>
-            <Select
-              options={reactSelectOptions}
-              defaultValue={selectedTeacher}
+            <AsyncSelect
+              cacheOptions
+              loadOptions={loadOptions}
               onChange={setSelectedTeacher as any}
             />
             {errors.teacher?.value && (
