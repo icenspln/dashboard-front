@@ -5,5 +5,10 @@ export const getStudents = (filter: string = "", page: number = 1) => {
     (res) => res.data
   );
 };
+export const getFilteredStudents = (filter: string = "") => {
+  return AxiosInstance.get(`/student/filter?name=${filter}`).then(
+    (res) => res.data
+  );
+};
 
 //student/filter?institution=highSchool&level=2&search=Jane&page=1

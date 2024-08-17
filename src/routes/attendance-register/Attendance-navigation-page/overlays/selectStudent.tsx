@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
-import Select from "react-select";
-import { Overlay } from "../../../../components/Overlay";
+import AsyncSelect from "react-select/async";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getStudents } from "../../../group-management/groups-table/group-add-studen-modal/core/_requests";
 import { Student } from "../../../student-management/students-table/core/_models";
+import { Overlay } from "../../../../components/Overlay";
+import { getFilteredStudents } from "../../../student-management/students-table/core/_requests";
 
 interface SelectStudentProps {
   onClose: () => void;
 }
 
 const SelectStudent: React.FC<SelectStudentProps> = ({ onClose }) => {
+  const [filter, setFilter] = useState("");
   const navigate = useNavigate();
-  const [reactSelectOptions, setReactSelectOptions] = useState<
-    {
-      value: string;
-      label: string;
-    }[]
-  >([{ label: "loading", value: "" }]);
+  // const [reactSelectOptions, setReactSelectOptions] = useState<
+  //   {
+  //     value: string;
+  //     label: string;
+  //   }[]
+  // >([{ label: "loading", value: "" }]);
   const [selectedOption, setSelectedOption] = useState<{
     label: string;
     value: string;
@@ -32,25 +33,45 @@ const SelectStudent: React.FC<SelectStudentProps> = ({ onClose }) => {
   // const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   //query functions
-  const { data, isPending, error } = useQuery({
-    queryKey: ["getStudents"],
-    queryFn: () => getStudents(),
-
-    // enabled: filt
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["getStudents", filter],
+    queryFn: () => getFilteredStudents(filter),
   });
 
-  useEffect(() => {
-    if (data && !error && !isPending) {
-      const arr = data.map((std: Student) => {
+  const filterStudents = (inputValue: string) => {
+    setFilter(inputValue);
+
+    if (data && !isLoading && !error) {
+      return data.data.map((student: Student) => {
         return {
-          value: `${std._id}`,
-          label: `${std.firstName} ${std.lastName}`,
+          label: student.firstName + " " + student.lastName,
+          value: student._id,
         };
       });
-      setReactSelectOptions(arr);
+    } else {
+      return [];
     }
-    if (error) setReactSelectOptions([{ label: "خطأ", value: "" }]);
-  }, [data, isPending, error]);
+  };
+
+  const loadOptions = (inputValue: string) =>
+    new Promise<Student[]>((resolve) => {
+      setTimeout(() => {
+        resolve(filterStudents(inputValue));
+      }, 1000);
+    });
+
+  // useEffect(() => {
+  //   if (data && !error && !isPending) {
+  //     const arr = data.map((std: Student) => {
+  //       return {
+  //         value: `${std._id}`,
+  //         label: `${std.firstName} ${std.lastName}`,
+  //       };
+  //     });
+  //     setReactSelectOptions(arr);
+  //   }
+  //   if (error) setReactSelectOptions([{ label: "خطأ", value: "" }]);
+  // }, [data, isPending, error]);
 
   // const filteredItems = checklistItems.filter((item) =>
   //   item.label.includes(searchTerm)
@@ -93,12 +114,11 @@ const SelectStudent: React.FC<SelectStudentProps> = ({ onClose }) => {
 
         <div className="relative w-full text-base">
           <div className="my-10">
-            <Select
+            <AsyncSelect
               className="max-w-[553px]"
-              options={reactSelectOptions}
+              loadOptions={loadOptions}
               // defaultValue={SelectedOption}
               onChange={setSelectedOption as any}
-              isRtl
             />
           </div>
           {/* <input
