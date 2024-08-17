@@ -1,24 +1,24 @@
 import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
 
 export type SpecialGroup = {
-  _id: string;
-  name: string;
   timing: {
     hour: number;
     minute: number;
   };
+  _id: string;
+  name: string;
   roomNumber: number;
   date: string;
   teacher: Teacher;
-  module: string;
-  institution: "primarySchool" | "middleSchool" | "highSchool";
-  level: number;
-  pricing: number;
-  students: string[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-  specialGroupId: number;
+  module: "فيزياء";
+  institution: "highSchool";
+  level: 3;
+  pricing: 2000;
+  students: ["test", "okey"];
+  createdAt: "2024-08-16T23:46:15.919Z";
+  updatedAt: "2024-08-16T23:46:34.128Z";
+  specialGroupId: 2;
+  __v: 2;
 };
 export interface FilterOption {
   id: string;
