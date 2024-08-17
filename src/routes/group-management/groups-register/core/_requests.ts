@@ -7,3 +7,7 @@ export function groupRegister(data: GroupRegisterFormType) {
 export const getTeachers = () => {
   return AxiosInstance.get(`/teacher`).then((res) => res.data);
 };
+
+export const getFilteredTeachers = (name: string = "") => {
+  return AxiosInstance.get(`/teacher?name=${name}`).then((res) => res.data);
+};
