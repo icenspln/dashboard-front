@@ -9,5 +9,7 @@ export const getTeachers = () => {
 };
 
 export const getFilteredTeachers = (name: string = "") => {
-  return AxiosInstance.get(`/teacher?name=${name}`).then((res) => res.data);
+  return AxiosInstance.get(`/teacher/filter?search=${name}`).then(
+    (res) => res.data
+  );
 };

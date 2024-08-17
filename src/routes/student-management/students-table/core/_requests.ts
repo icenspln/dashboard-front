@@ -6,7 +6,7 @@ export const getStudents = (filter: string = "", page: number = 1) => {
   );
 };
 export const getFilteredStudents = (filter: string = "") => {
-  return AxiosInstance.get(`/student/filter?name=${filter}`).then(
+  return AxiosInstance.get(`/student/filter?search=${filter}`).then(
     (res) => res.data
   );
 };
