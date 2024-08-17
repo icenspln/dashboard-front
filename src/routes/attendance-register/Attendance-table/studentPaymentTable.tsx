@@ -33,7 +33,7 @@ export function StudentPaymentTable({
     onError: (err: any) => {
       toast.error("حدث خطأ ما");
       if (
-        (err.response.data.message = "Payment amount exceeds total amount due")
+        err.response.data.message == "Payment amount exceeds total amount due"
       ) {
         toast.error("المبلغ المدفوع اكبر من المبلغ المطلوب");
       }
@@ -103,7 +103,7 @@ export function StudentPaymentTable({
     }
   };
   return (
-    <div className=" mt-10 border border-[#E2E8F0] rounded-xl ">
+    <div className="  border border-[#E2E8F0] rounded-xl ">
       <div className=" rounded-xl  overflow-hidden">
         <div className="bg-mainBg flex justify-between gap-3 text-center">
           <div className="bg-mainBg p-4 flex flex-col gap-3 ">

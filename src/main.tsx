@@ -28,8 +28,7 @@ import EmployeePresenceListsManagement from "./routes/presence-management/employ
 import PaymentManagement from "./routes/teacher-payment-management/PaymentManagement.tsx";
 import StudentPaymentHistory from "./routes/student-payment-history/StudentPaymentHistory.tsx";
 import AttendanceManagement from "./routes/attendance-register/AttendanceManagement.tsx";
-import TablesContainer from "./routes/attendance-register/Attendance-table/StudentControlPanel.tsx";
-import SeetingManagement from "./routes/settings/SettingManagement.tsx";
+import SettingManagement from "./routes/settings/SettingManagement.tsx";
 import { StudentUpdateWrapper } from "./routes/student-management/student-update/StudentUpdate.tsx";
 
 import LoadingScreen from "./components/LoadingScreen.tsx";
@@ -39,6 +38,7 @@ import { TeacherUpdateWrapper } from "./routes/teacher-management/teacher-update
 import { GroupUpdateWrapper } from "./routes/group-management/group-update/GroupUpdate.tsx";
 import { SettingsProvider } from "./routes/settings/core/SettingsContext";
 import TeacherPresenceManagement from "./routes/presence-management/teacher-presence/TeacherPresenceManagement.tsx";
+import StudentControlPanel from "./routes/attendance-register/Attendance-table/StudentControlPanel.tsx";
 
 const queryClient = new QueryClient();
 
@@ -134,7 +134,7 @@ const router = createBrowserRouter(
         },
         {
           path: "/settings",
-          element: <SeetingManagement />,
+          element: <SettingManagement />,
         },
         {
           path: "/attendancemanagement",
@@ -142,7 +142,7 @@ const router = createBrowserRouter(
         },
         {
           path: "/attendancemanagement/:id",
-          element: <TablesContainer />,
+          element: <StudentControlPanel />,
         },
         {
           path: "/monthlysalarystatement",

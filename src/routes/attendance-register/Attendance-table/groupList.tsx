@@ -10,7 +10,7 @@ export default function GroupList({
 }) {
   if (studentInfo)
     return (
-      <div className="flex flex-col gap-[12px]  my-10 py-4 border border-gray-200 rounded-lg shadow-sm">
+      <div className="h-full flex flex-col gap-[12px]   py-4 border border-gray-200 rounded-lg shadow-sm">
         <div>
           <p className="text-sm text-gray-500 px-3 pb-3">
             قائمة الأفواج لهذا اليوم
