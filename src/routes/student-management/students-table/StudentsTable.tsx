@@ -20,7 +20,7 @@ function StudentsTable() {
   const constraintsRef = useRef(null);
   const [students, setStudents] = useState<Student[]>([]);
   const [page, setPage] = useState<number>(1);
-  console.log("page", page);
+
   //query functions
   const { data, isLoading } = useQuery({
     queryKey: ["getStudents", filter, page],
@@ -105,7 +105,7 @@ function StudentsTable() {
         {groupModal && <StudentGroupModal />}
         {editCardModal && <StudentCardEdit />}
       </div>
-      {data && (
+      {data?.totalPages > 1 && (
         <Pagination
           setPage={setPage}
           page={page}

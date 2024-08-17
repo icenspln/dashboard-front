@@ -1,5 +1,7 @@
 import { AxiosInstance } from "../../../../api/Axios";
 
-export const getTeachers = (filter: string = "") => {
-  return AxiosInstance.get(`/teacher/filter?${filter}`).then((res) => res.data);
+export const getTeachers = (filter: string = "", page: number = 1) => {
+  return AxiosInstance.get(`/teacher/filter?${filter}&page=${page}`).then(
+    (res) => res.data
+  );
 };
