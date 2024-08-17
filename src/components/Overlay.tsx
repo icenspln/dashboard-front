@@ -25,7 +25,7 @@ export function Overlay({ children, onClose, isVisible }: OverlayProps) {
       <div className="relative bg-white p-6 rounded-lg shadow-lg">
         {isVisible && onClose && (
           <button
-            className="absolute top-0 right-0 text-gray-700"
+            className="absolute top-[-20px] right-[-20px]   p-1 flex items-center justify-centertext-gray-700"
             onClick={onClose}
           >
             <CloseSvg />
