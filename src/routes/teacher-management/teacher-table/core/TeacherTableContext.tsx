@@ -42,7 +42,7 @@ export function TeachersTableContextProvider({
   });
 
   useEffect(() => {
-    let search = `search=${filterState.searchBar}`;
+    const search = `search=${filterState.searchBar}`;
     let url = "";
     if (filterState.searchBar != "") url += search;
 

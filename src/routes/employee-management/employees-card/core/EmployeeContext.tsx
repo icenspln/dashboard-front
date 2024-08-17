@@ -3,6 +3,7 @@ import React, {
   Dispatch,
   SetStateAction,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -14,6 +15,16 @@ interface EmployeeContextType {
   isLoading: boolean;
   editEmployeeCard: boolean;
   setEditEmployeeCard: Dispatch<SetStateAction<boolean>>;
+  filterState: {
+    searchBar: string;
+  };
+  setFilterState: Dispatch<
+    SetStateAction<{
+      searchBar: string;
+    }>
+  >;
+  filter: string;
+  setFilter: Dispatch<SetStateAction<string>>;
 }
 
 const EmployeeContext = createContext<EmployeeContextType>({
@@ -21,23 +32,52 @@ const EmployeeContext = createContext<EmployeeContextType>({
   isLoading: false,
   editEmployeeCard: false,
   setEditEmployeeCard: () => {},
+  filterState: {
+    searchBar: "",
+  },
+  setFilterState: () => {}, // Correctly typed empty function
+  filter: "",
+  setFilter: () => {}, // Correctly typed empty function
 });
 
 export const EmployeeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const [editEmployeeCard, setEditEmployeeCard] = useState<boolean>(false);
+
+  const [filter, setFilter] = useState<string>("");
+  const [filterState, setFilterState] = useState<{
+    searchBar: string;
+  }>({
+    searchBar: "",
+  });
+
+  useEffect(() => {
+    const search = `search=${filterState.searchBar}`;
+    let url = "";
+    if (filterState.searchBar != "") url += search;
+
+    setFilter(url);
+  }, [filterState]);
+
   const { data, isLoading } = useQuery({
-    queryKey: ["getEmployees"],
-    queryFn: getEmployees,
+    queryKey: ["getEmployees", filter],
+    queryFn: () => getEmployees(),
   });
 
   const employees = data || [];
-
-  const [editEmployeeCard, setEditEmployeeCard] = useState<boolean>(false);
-
   return (
     <EmployeeContext.Provider
-      value={{ employees, isLoading, editEmployeeCard, setEditEmployeeCard }}
+      value={{
+        employees,
+        isLoading,
+        editEmployeeCard,
+        setEditEmployeeCard,
+        filterState,
+        setFilterState,
+        setFilter,
+        filter,
+      }}
     >
       {children}
     </EmployeeContext.Provider>

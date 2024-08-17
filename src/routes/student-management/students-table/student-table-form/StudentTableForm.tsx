@@ -98,7 +98,7 @@ const InstitutionFilter = () => {
   );
 };
 
-const LevelFilter = ({}) => {
+const LevelFilter = () => {
   const [selectedOptions, setSelectedOptions] = useState<FilterOption[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const { setFilterState } = useContext(StudentsTableContext);

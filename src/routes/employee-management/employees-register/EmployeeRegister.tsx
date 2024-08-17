@@ -1,7 +1,7 @@
 import EmployeeRegisterForm from "./employee-register-form/EmployeeRegisterForm";
-import { RegistrationContextProvider } from "./core/RegistrationContext";
 import EmployeeCard from "./employee-card/EmployeeCard";
-import {useState }  from "react";
+import { useState } from "react";
+import { RegistrationContextProvider } from "./core/RegistrationContext";
 export default function EmployeeRegister() {
   const [employeeId, setEmployeeId] = useState<string>("");
 
@@ -11,7 +11,10 @@ export default function EmployeeRegister() {
         <div className="  mb-6">
           <h1 className="text-2xl font-medium">تسجيل جديد | تعديل المعلومات</h1>
         </div>
-        <EmployeeRegisterContent employeeId={employeeId} setEmployeeId={setEmployeeId} />
+        <EmployeeRegisterContent
+          employeeId={employeeId}
+          setEmployeeId={setEmployeeId}
+        />
       </section>
     </RegistrationContextProvider>
   );
@@ -22,7 +25,10 @@ interface EmployeeRegisterContentProps {
   setEmployeeId: (id: string) => void;
 }
 
-function EmployeeRegisterContent({ employeeId, setEmployeeId }: EmployeeRegisterContentProps) {
+function EmployeeRegisterContent({
+  employeeId,
+  setEmployeeId,
+}: EmployeeRegisterContentProps) {
   return (
     <div>
       <EmployeeRegisterForm setEmployeeId={setEmployeeId} />
