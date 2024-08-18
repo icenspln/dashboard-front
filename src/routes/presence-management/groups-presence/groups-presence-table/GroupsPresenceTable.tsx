@@ -6,7 +6,6 @@ import { AttendanceForGroupType } from "./core/_models";
 import { StudentPresentButton } from "../../../../components/isPresentButton";
 import { getAttendanceForGroup } from "./core/_requests";
 import { GroupsTableContext } from "./core/GroupsTableContext";
-import { PricingButton } from "../../../../components/PricingButtonEdit";
 
 export function GroupsPresenceListsTable() {
   const { filter } = useContext(GroupsTableContext);
@@ -72,11 +71,12 @@ export function GroupsPresenceListsTable() {
                   </td>
 
                   <td className="p-2 w-[200px] text-start underline">
-                    <PricingButton
+                    {std.student.groupFinancials?.groupPaidAmount}
+                    {/* <PricingButton
                       initValue={
                         std.student.groupFinancials?.groupPaidAmount || 0
                       }
-                    />
+                    /> */}
                   </td>
 
                   <td className="p-2 w-[200px] text-start underline">
