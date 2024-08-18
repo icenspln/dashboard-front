@@ -93,6 +93,10 @@ export function TeacherPresenceListsTable() {
                             initValue={
                               std.student.groupFinancials?.groupPaidAmount || 0
                             }
+                            submit={(newValue) => {
+                              std.student.groupFinancials?.groupPaidAmount =
+                                newValue;
+                            }}
                           />
                         </td>
 
