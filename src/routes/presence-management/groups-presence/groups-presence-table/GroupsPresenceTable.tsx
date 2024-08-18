@@ -111,6 +111,44 @@ export function GroupsPresenceListsTable() {
                   ))}
                 </tr>
               ))}
+              {group.attendeesLeftGroup.map((std, i) => (
+                <tr
+                  key={i}
+                  className="flex items-center justify-start gap-7 w-full text-darkGray border-b border-light py-3"
+                >
+                  {group.group.groupId && (
+                    <td className="w-[100px] p-2 text-start flex gap-1">
+                      {group.group.groupId}
+                    </td>
+                  )}
+
+                  <td className="w-[200px] p-2 text-start flex gap-1">
+                    {std.student.firstName + " " + std.student.lastName}
+                  </td>
+                  {group.group.pricing && (
+                    <td className="p-2 w-[200px] text-start">
+                      {group.group.pricing}
+                    </td>
+                  )}
+
+                  <td className="w-[200px] p-2 text-start flex gap-1">
+                    {std.student.phoneNumber}
+                  </td>
+                  {std.attendees.map((att, i) => (
+                    <th
+                      className="w-[200px] p-2 text-start font-medium"
+                      key={i}
+                    >
+                      <StudentPresentButton
+                        att={att}
+                        groupId={group.group._id}
+                        studentId={std.student._id}
+                        invalidatedQueryName="getAttendanceForGroup"
+                      />
+                    </th>
+                  ))}
+                </tr>
+              ))}
             </tbody>
           </motion.table>
         </div>
