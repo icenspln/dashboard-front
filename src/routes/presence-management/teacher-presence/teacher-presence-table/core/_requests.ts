@@ -1,8 +1,11 @@
 import { AxiosInstance } from "../../../../../api/Axios";
 import { SetAttendanceForStudentType } from "./_models";
 
-export function getAttendanceForTeacher(teacherId: string) {
-  return AxiosInstance.get(`/attendance/teacher/${teacherId}`).then(
+export function getAttendanceForTeacher(
+  teacherId: string,
+  filter: string = ""
+) {
+  return AxiosInstance.get(`/attendance/teacher/${teacherId}?${filter}`).then(
     (res) => res.data
   );
 }

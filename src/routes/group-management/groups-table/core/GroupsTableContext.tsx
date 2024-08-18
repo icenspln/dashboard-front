@@ -85,11 +85,11 @@ export function GroupsTableContextProvider({
   const [groupModal, setGroupModal] = useState<boolean>(false);
 
   useEffect(() => {
-    let institution = `institution=${filterState.institution.join(",")}`;
-    let search = `search=${filterState.searchBar}`;
-    let level = `level=${filterState.level.join(",")}`;
-    let modules = `modules=${filterState.modules.join(",")}`;
-    let dayOfWeek = `dayOfWeek=${filterState.dayOfWeek.join(",")}`;
+    const institution = `institution=${filterState.institution.join(",")}`;
+    const search = `search=${filterState.searchBar}`;
+    const level = `level=${filterState.level.join(",")}`;
+    const modules = `modules=${filterState.modules.join(",")}`;
+    const dayOfWeek = `dayOfWeek=${filterState.dayOfWeek.join(",")}`;
     let url = "";
     if (filterState.searchBar != "") url += search;
     if (filterState.institution.length > 0) url += "&" + institution;
