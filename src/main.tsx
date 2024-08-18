@@ -77,7 +77,7 @@ const router = createBrowserRouter(
           element: <TeacherUpdateWrapper />,
         },
         {
-          path: "/teachermanagement/teacherpresencemanagement/:id",
+          path: "/teachermanagement/teacherpayment/:id",
           element: <TeacherPresenceManagement />,
         },
         {

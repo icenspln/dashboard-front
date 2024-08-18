@@ -24,15 +24,15 @@ export default function SettingsCell({ row }: { row: Teacher }) {
       action: () => setActiveOverlay("deleteFromList"),
     },
     {
-      label: "تحميل قسيمة الدفع للشهر",
+      label: "تحميل كشف الراتب الشهري",
       action: () => setActiveOverlay("downloadReceipt"),
     },
-    {
-      label: "قائمة الحضور",
-      action: () => {
-        navigate(`/teachermanagement/teacherpresencemanagement/${row._id}`);
-      },
-    },
+    // {
+    //   label: "قائمة الحضور",
+    //   action: () => {
+    //     navigate(`/teachermanagement/teacherpresencemanagement/${row._id}`);
+    //   },
+    // },
   ];
   const closeOverlay = () => setActiveOverlay(null);
   return (
@@ -61,7 +61,7 @@ export default function SettingsCell({ row }: { row: Teacher }) {
           <DeleteFromListOverlay onClose={closeOverlay} />
         )}
         {activeOverlay === "downloadReceipt" && (
-          <DownloadReceiptOverlay onClose={closeOverlay} />
+          <DownloadReceiptOverlay onClose={closeOverlay} teacherId={row._id} />
         )}
       </Popup>
     </div>

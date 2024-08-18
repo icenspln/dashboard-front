@@ -17,7 +17,10 @@ export default function GetMonthYear(startYear: any) {
 
   while (currentMonth <= currentDate) {
     options.push({
-      id: options.length + 1,
+      id: {
+        month: currentMonth.getMonth() + 1,
+        year: currentMonth.getFullYear(),
+      },
       label: getMonthYearLabel(currentMonth),
     });
     currentMonth = addMonths(currentMonth, 1);
