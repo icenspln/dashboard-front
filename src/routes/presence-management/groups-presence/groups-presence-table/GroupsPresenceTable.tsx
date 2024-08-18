@@ -39,9 +39,6 @@ export function GroupsPresenceListsTable() {
           >
             <thead>
               <tr className="flex items-center justify-start gap-7 w-full text-textGray font-medium border-b border-light bg-whtie">
-                {/* {group?.group && (
-                  <th className="p-2 w-[200px] text-start">الفوج</th>
-                )} */}
                 {group.group.groupId && (
                   <th className="p-2 w-[100px] text-start">الرقم</th>
                 )}
@@ -51,6 +48,15 @@ export function GroupsPresenceListsTable() {
 
                 {group.group.pricing && (
                   <th className="p-2 w-[200px] text-start">ثمن الدفع الشهري</th>
+                )}
+                {group.group.pricing && (
+                  <th className="p-2 w-[200px] text-start">الثمن المدفوع </th>
+                )}
+                {group.group.pricing && (
+                  <th className="p-2 w-[200px] text-start">الديون</th>
+                )}
+                {group.group.pricing && (
+                  <th className="p-2 w-[200px] text-start">المجموع</th>
                 )}
                 {group.students && (
                   <th className="p-2 w-[200px] text-start">رقم الهاتف</th>
@@ -68,17 +74,6 @@ export function GroupsPresenceListsTable() {
                   key={i}
                   className="flex items-center justify-start gap-7 w-full text-darkGray border-b border-light py-3"
                 >
-                  {/* {group.group && (
-                    <td className="w-[200px] p-2 text-start flex gap-1">
-                      <span>{returnLevelInAR(group.group.level)}</span>
-                      <span>
-                        {returnInstitutionInAR(group.group.institution)}|
-                      </span>
-                      <span>{returnDayInAR(group.group.dayOfWeek)}|</span>
-                      <span>{returnTimeString(group.group.timing)}</span>
-                    </td>
-                  )} */}
-
                   {group.group.groupId && (
                     <td className="w-[100px] p-2 text-start flex gap-1">
                       {group.group.groupId}
@@ -88,9 +83,28 @@ export function GroupsPresenceListsTable() {
                   <td className="w-[200px] p-2 text-start flex gap-1">
                     {std.student.firstName + " " + std.student.lastName}
                   </td>
+
                   {group.group.pricing && (
-                    <td className="p-2 w-[200px] text-start">
+                    <td className="p-2 w-[200px] text-start underline">
                       {group.group.pricing}
+                    </td>
+                  )}
+
+                  {std.student.groupFinancials.groupPaidAmount && (
+                    <td className="p-2 w-[200px] text-start underline">
+                      {std.student.groupFinancials.groupPaidAmount}
+                    </td>
+                  )}
+
+                  {std.student.financials.totalDebts != undefined && (
+                    <td className="p-2 w-[200px] text-start underline">
+                      {std.student.financials.totalDebts}
+                    </td>
+                  )}
+                  {std.student.financials.totalOutstandingBalance !=
+                    undefined && (
+                    <td className="p-2 w-[200px] text-start underline">
+                      {std.student.financials.totalOutstandingBalance}
                     </td>
                   )}
                   <td className="w-[200px] p-2 text-start flex gap-1">
@@ -125,9 +139,26 @@ export function GroupsPresenceListsTable() {
                   <td className="w-[200px] p-2 text-start flex gap-1">
                     {std.student.firstName + " " + std.student.lastName}
                   </td>
+
                   {group.group.pricing && (
-                    <td className="p-2 w-[200px] text-start">
+                    <td className="p-2 w-[200px] text-start underline">
                       {group.group.pricing}
+                    </td>
+                  )}
+
+                  {std.financials && (
+                    <td className="p-2 w-[200px] text-start underline">N/A</td>
+                  )}
+
+                  {std.financials.totalDebts != undefined && (
+                    <td className="p-2 w-[200px] text-start underline">
+                      {std.financials.totalDebts}
+                    </td>
+                  )}
+
+                  {std.financials.totalOutstandingBalance != undefined && (
+                    <td className="p-2 w-[200px] text-start underline">
+                      {std.financials.totalOutstandingBalance}
                     </td>
                   )}
 
