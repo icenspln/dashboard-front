@@ -6,6 +6,7 @@ import { AttendanceForGroupType } from "./core/_models";
 import { StudentPresentButton } from "../../../../components/isPresentButton";
 import { getAttendanceForGroup } from "./core/_requests";
 import { GroupsTableContext } from "./core/GroupsTableContext";
+import { PricingButton } from "../../../../components/PricingButtonEdit";
 
 export function GroupsPresenceListsTable() {
   const { filter } = useContext(GroupsTableContext);
@@ -50,13 +51,15 @@ export function GroupsPresenceListsTable() {
                   <th className="p-2 w-[200px] text-start">ثمن الدفع الشهري</th>
                 )}
                 {group.group.pricing && (
-                  <th className="p-2 w-[200px] text-start">الثمن المدفوع </th>
+                  <th className="p-2 w-[200px] text-start">
+                    الثمن الذي يجب دفعه
+                  </th>
                 )}
                 {group.group.pricing && (
                   <th className="p-2 w-[200px] text-start">الديون</th>
                 )}
                 {group.group.pricing && (
-                  <th className="p-2 w-[200px] text-start">المجموع</th>
+                  <th className="p-2 w-[200px] text-start">مجموع الديون</th>
                 )}
                 {group.students && (
                   <th className="p-2 w-[200px] text-start">رقم الهاتف</th>
@@ -84,15 +87,19 @@ export function GroupsPresenceListsTable() {
                     {std.student.firstName + " " + std.student.lastName}
                   </td>
 
-                  {group.group.pricing && (
+                  {std.student.groupFinancials.groupPaidAmount && (
                     <td className="p-2 w-[200px] text-start underline">
-                      {group.group.pricing}
+                      {/* {std.student.groupFinancials.groupPaidAmount} */}
+                      <PricingButton
+                        initValue={std.student.groupFinancials.groupPaidAmount}
+                      />
                     </td>
                   )}
 
-                  {std.student.groupFinancials.groupPaidAmount && (
+                  {std.student.financials.totalOutstandingBalance !=
+                    undefined && (
                     <td className="p-2 w-[200px] text-start underline">
-                      {std.student.groupFinancials.groupPaidAmount}
+                      {std.student.financials.totalOutstandingBalance}
                     </td>
                   )}
 
@@ -102,11 +109,13 @@ export function GroupsPresenceListsTable() {
                     </td>
                   )}
                   {std.student.financials.totalOutstandingBalance !=
-                    undefined && (
-                    <td className="p-2 w-[200px] text-start underline">
-                      {std.student.financials.totalOutstandingBalance}
-                    </td>
-                  )}
+                    undefined &&
+                    std.student.financials.totalDebts != undefined && (
+                      <td className="p-2 w-[200px] text-start underline">
+                        {std.student.financials.totalOutstandingBalance +
+                          std.student.financials.totalDebts}
+                      </td>
+                    )}
                   <td className="w-[200px] p-2 text-start flex gap-1">
                     {std.student.phoneNumber}
                   </td>
@@ -140,14 +149,20 @@ export function GroupsPresenceListsTable() {
                     {std.student.firstName + " " + std.student.lastName}
                   </td>
 
-                  {group.group.pricing && (
-                    <td className="p-2 w-[200px] text-start underline">
-                      {group.group.pricing}
-                    </td>
-                  )}
+                  {/* {std.student.groupFinancials.groupPaidAmount && ( */}
+                  <td className="p-2 w-[200px] text-start underline">
+                    {/* {std.student.groupFinancials.groupPaidAmount} */}
+                    N/A
+                    {/* <PricingButton
+                        initValue={std.student.groupFinancials.groupPaidAmount}
+                      /> */}
+                  </td>
+                  {/* )} */}
 
-                  {std.financials && (
-                    <td className="p-2 w-[200px] text-start underline">N/A</td>
+                  {std.financials.totalOutstandingBalance != undefined && (
+                    <td className="p-2 w-[200px] text-start underline">
+                      {std.financials.totalOutstandingBalance}
+                    </td>
                   )}
 
                   {std.financials.totalDebts != undefined && (
@@ -155,12 +170,13 @@ export function GroupsPresenceListsTable() {
                       {std.financials.totalDebts}
                     </td>
                   )}
-
-                  {std.financials.totalOutstandingBalance != undefined && (
-                    <td className="p-2 w-[200px] text-start underline">
-                      {std.financials.totalOutstandingBalance}
-                    </td>
-                  )}
+                  {std.financials.totalOutstandingBalance != undefined &&
+                    std.financials.totalDebts != undefined && (
+                      <td className="p-2 w-[200px] text-start underline">
+                        {std.financials.totalOutstandingBalance +
+                          std.financials.totalDebts}
+                      </td>
+                    )}
 
                   <td className="w-[200px] p-2 text-start flex gap-1">
                     {std.student.phoneNumber}
