@@ -88,14 +88,36 @@ export function TeacherPresenceListsTable() {
                         </td>
 
                         <td className="p-2 w-[200px] text-start underline">
-                          {/* {std.student.groupFinancials?.groupPaidAmount} */}
                           <PricingButton
                             initValue={
                               std.student.groupFinancials?.groupPaidAmount || 0
                             }
                             submit={(newValue) => {
-                              std.student.groupFinancials?.groupPaidAmount =
-                                newValue;
+                              setGroups((prevGroups) =>
+                                prevGroups.map((grpItem) =>
+                                  grpItem === grp
+                                    ? {
+                                        ...grpItem,
+                                        students: grpItem.students.map(
+                                          (studentItem) =>
+                                            studentItem === std
+                                              ? {
+                                                  ...studentItem,
+                                                  student: {
+                                                    ...studentItem.student,
+                                                    groupFinancials: {
+                                                      ...studentItem.student
+                                                        .groupFinancials,
+                                                      groupPaidAmount: newValue,
+                                                    },
+                                                  },
+                                                }
+                                              : studentItem
+                                        ),
+                                      }
+                                    : grpItem
+                                )
+                              );
                             }}
                           />
                         </td>
