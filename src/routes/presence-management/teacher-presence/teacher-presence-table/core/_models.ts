@@ -1,6 +1,10 @@
 import { Group } from "../../../../group-management/groups-table/core/_models";
 import { Student } from "../../../../student-management/students-table/core/_models";
 import { Teacher } from "../../../../teacher-management/teacher-table/core/_models";
+import {
+  Attendees,
+  FullStudent,
+} from "../../../groups-presence/groups-presence-table/core/_models";
 
 export type Attendance = {
   date: string;
@@ -13,10 +17,17 @@ export type AttendanceForTeacherType = {
 };
 
 export type AttendanceForTeacherGroupType = {
-  attendeesLeftGroup: [] | Student[];
+  attendeesLeftGroup: {
+    student: Student;
+    attendees: Attendees[];
+    financials: {
+      totalDebts: number;
+      totalOutstandingBalance: number;
+    };
+  }[];
   group: Group;
   alldays: string[];
-  students: { student: Student; attendance: Attendance[] }[];
+  students: { student: FullStudent; attendance: Attendance[] }[];
 };
 
 export type SetAttendanceForStudentType = {
