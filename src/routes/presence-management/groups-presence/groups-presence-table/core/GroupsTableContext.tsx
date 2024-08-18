@@ -42,9 +42,8 @@ export function GroupsTableContextProvider({
   });
 
   useEffect(() => {
-    console.log("making url...");
-    let months = `month=${filterState.months}`;
-    let years = `year=${filterState.years}`;
+    const months = `month=${filterState.months}`;
+    const years = `year=${filterState.years}`;
     console.log(months, years);
     let url = "";
     if (filterState.months) {
