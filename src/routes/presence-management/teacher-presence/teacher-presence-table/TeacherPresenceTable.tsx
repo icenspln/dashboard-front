@@ -12,6 +12,7 @@ import { AttendanceForTeacherGroupType } from "./core/_models";
 // } from "../../../../handlers/returnInArabic";
 import { StudentPresentButton } from "../../../../components/isPresentButton";
 import { teacherpresenceTableContext } from "./core/TeacherPresenceTableContext";
+import { PricingButton } from "../../../../components/PricingButtonEdit";
 
 export function TeacherPresenceListsTable() {
   const constraintsRef = useRef(null);
@@ -87,12 +88,12 @@ export function TeacherPresenceListsTable() {
                         </td>
 
                         <td className="p-2 w-[200px] text-start underline">
-                          {std.student.groupFinancials?.groupPaidAmount}
-                          {/* <PricingButton
-                      initValue={
-                        std.student.groupFinancials?.groupPaidAmount || 0
-                      }
-                    /> */}
+                          {/* {std.student.groupFinancials?.groupPaidAmount} */}
+                          <PricingButton
+                            initValue={
+                              std.student.groupFinancials?.groupPaidAmount || 0
+                            }
+                          />
                         </td>
 
                         <td className="p-2 w-[200px] text-start underline">
