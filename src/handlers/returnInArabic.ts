@@ -33,9 +33,12 @@ export function returnLevelInAR(level: number) {
 }
 
 export function returnGroupLabel(group: Group) {
-  console.log("group recieived", group);
   if (!group) return `group undefined`;
-  return `${group.module} | ${returnLevelInAR(group.level)} ${returnInstitutionInAR(group.institution)} | ${group.responsibleTeacher.firstName + " " + group.responsibleTeacher.lastName} | ${returnDayInAR(group.dayOfWeek)} - ${group.timing.hour}:${group.timing.minute}`;
+  return `${group.module} | ${returnLevelInAR(group.level)} ${returnInstitutionInAR(group.institution)} | ${group.responsibleTeacher.firstName + " " + group.responsibleTeacher.lastName} | ${returnDayInAR(group.dayOfWeek)} -  ${returnTimeString(group.timing)}`;
+}
+export function returnGroupLabelWithoutTeacher(group: Group) {
+  if (!group) return `group undefined`;
+  return `${group.module} | ${returnLevelInAR(group.level)} ${returnInstitutionInAR(group.institution)} | ${returnDayInAR(group.dayOfWeek)} - ${returnTimeString(group.timing)}`;
 }
 export function returnStudentLabel(firstName: string, lastName: string) {
   return `${firstName} ${lastName}`;

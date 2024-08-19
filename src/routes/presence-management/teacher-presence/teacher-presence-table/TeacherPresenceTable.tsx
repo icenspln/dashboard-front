@@ -15,6 +15,7 @@ import { teacherpresenceTableContext } from "./core/TeacherPresenceTableContext"
 import { PricingButton } from "../../../../components/PricingButtonEdit";
 import { GlobalContext } from "../../../../GlobalContext";
 import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
+import { returnGroupLabelWithoutTeacher } from "../../../../handlers/returnInArabic";
 
 export function TeacherPresenceListsTable() {
   const globalContext = useContext(GlobalContext);
@@ -64,6 +65,7 @@ export function TeacherPresenceListsTable() {
                 >
                   <thead>
                     <tr className="flex items-center justify-start gap-7 w-full text-textGray font-medium border-b border-light bg-whtie">
+                      <th className="p-2 w-[250px] text-start">الفوج</th>
                       <th className="p-2 w-[100px] text-start">الرقم</th>
                       <th className="p-2 w-[200px] text-start">الطالب</th>
                       <th className="p-2 w-[200px] text-start">
@@ -88,6 +90,9 @@ export function TeacherPresenceListsTable() {
                         key={i}
                         className="flex items-center justify-start gap-7 w-full text-darkGray border-b border-light py-3"
                       >
+                        <td className="w-[250px] p-2 text-start flex gap-1">
+                          {returnGroupLabelWithoutTeacher(grp.group as any)}
+                        </td>
                         <td className="w-[100px] p-2 text-start flex gap-1">
                           {grp.group.groupId}
                         </td>
@@ -168,7 +173,6 @@ export function TeacherPresenceListsTable() {
 
             {grp.attendeesLeftGroup.length > 0 && (
               <div className="mb-8 mt-3 overflow-x-clip border border-light rounded-xl w-full bg-white">
-                <h2>leftgroup</h2>
                 <motion.table
                   drag={"x"}
                   dragConstraints={constraintsRef}
@@ -178,7 +182,8 @@ export function TeacherPresenceListsTable() {
                 >
                   <thead>
                     <tr className="flex items-center justify-start  w-full text-textGray font-medium border-b border-light bg-whtie">
-                      <th className="p-2 w-[200px] text-start">الرقم</th>
+                      <th className="p-2 w-[250px] text-start">الفوج</th>
+                      <th className="p-2 w-[100px] text-start">الرقم</th>
                       <th className="p-2 w-[200px] text-start">الطالب</th>
                       <th className="p-2 w-[200px] text-start">
                         ثمن الدفع الشهري
@@ -204,9 +209,12 @@ export function TeacherPresenceListsTable() {
                     {grp.attendeesLeftGroup.map((std, i) => (
                       <tr
                         key={i}
-                        className="flex items-center justify-start  w-full text-darkGray border-b border-light py-3"
+                        className="flex items-center justify-start  w-full text-warning border-b border-light py-3"
                       >
-                        <td className="w-[200px] p-2 text-start flex gap-1">
+                        <td className="w-[250px] p-2 text-start flex gap-1">
+                          {returnGroupLabelWithoutTeacher(grp.group as any)}
+                        </td>
+                        <td className="w-[100px] p-2 text-start flex gap-1">
                           {grp.group.groupId}
                         </td>
 
