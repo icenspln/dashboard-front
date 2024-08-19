@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import SelectGroup from "./Popup-menu-component/PresentStudentsList";
 import { Overlay } from "../../../../../../components/Overlay";
-import Select from "react-select";
+import AsyncSelect from "react-select/async";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   assignStudentToGroup,
   deleteStudentFromGroup,
-  getGroups,
+  getFilteredGroups,
 } from "../../../student-group-modal/core/_requests";
 import { Group } from "../../../student-group-modal/core/_model";
 import toast from "react-hot-toast";
@@ -22,6 +22,7 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
   onClose,
 }) => {
   const queryClient = useQueryClient();
+  const [filter, setFilter] = useState("");
   const { selectedStudent } = useContext(StudentsTableContext);
   const [selectedOption, setSelectedOption] = useState<{
     label: string;
@@ -34,16 +35,16 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
     }[]
   >([{ label: "loading", value: "" }]);
 
-  const { isPending, error, data } = useQuery<Group[]>({
-    queryKey: ["getGroups"],
-    queryFn: () => getGroups(),
+  const { isPending, error, data } = useQuery({
+    queryKey: ["getFilteredGroups", filter],
+    queryFn: () => getFilteredGroups(filter),
   });
 
   const [groups, setGroups] = useState<Group[]>([]);
 
   useEffect(() => {
     if (data && !error && !isPending) {
-      const arr = data.map((group) => {
+      const arr = data.data.map((group: any) => {
         return {
           value: `${group._id}`,
           label: `${returnGroupLabel(group as any)}`,
@@ -74,8 +75,13 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
     },
     onError: (err: any) => {
       const message = err.response.data.message;
+      console.log(message);
       if (message == "Student already in the group") {
         toast.error("الطالب مسجل في الفوج مسبقا");
+      } else if (
+        message == "Cannot add student: group is already at maximum capacity."
+      ) {
+        toast.error("وصل الفوج الى الحد الأقصى");
       } else {
         toast.error("حدث خطأ ما");
       }
@@ -108,6 +114,29 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
   useEffect(() => {
     setGroups(selectedStudent?.groups || []);
   }, [selectedStudent]);
+
+  const filterStudents = (inputValue: string) => {
+    setFilter(inputValue);
+
+    if (data && !isPending && !error) {
+      return data.data.map((student: any) => {
+        return {
+          label: student.firstName + " " + student.lastName,
+          value: student._id,
+        };
+      });
+    } else {
+      return [];
+    }
+  };
+
+  const loadOptions = (inputValue: string) =>
+    new Promise<any>((resolve) => {
+      // setTimeout(() => {
+      resolve(filterStudents(inputValue));
+      // }, 1000);
+    });
+
   return (
     <Overlay onClose={onClose} isVisible>
       <>
@@ -133,9 +162,11 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
         </div>
 
         <div className="my-10">
-          <Select
+          <AsyncSelect
+            isClearable
+            defaultOptions={reactSelectOptions}
             className="max-w-[553px]"
-            options={reactSelectOptions}
+            loadOptions={loadOptions}
             // defaultValue={SelectedOption}
             onChange={setSelectedOption as any}
           />

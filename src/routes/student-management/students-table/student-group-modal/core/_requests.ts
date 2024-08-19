@@ -4,6 +4,10 @@ export function getGroups() {
   return AxiosInstance.get(`/groups/filter`).then((res) => res.data.data);
 }
 
+export function getFilteredGroups(filter: string = "") {
+  return AxiosInstance.get(`/groups/filter?${filter}`).then((res) => res.data);
+}
+
 export function assignStudentToGroup(groupID: string, studentId: string) {
   return AxiosInstance.post(`/groups/${groupID}/assignStudent`, {
     studentId,
