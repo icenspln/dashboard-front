@@ -70,9 +70,9 @@ export function StudentsTableContextProvider({
   const [groupModal, setGroupModal] = useState<boolean>(false);
 
   useEffect(() => {
-    let institution = `institution=${filterState.institution.join(",")}`;
-    let search = `search=${filterState.searchBar}`;
-    let level = `level=${filterState.level.join(",")}`;
+    const institution = `institution=${filterState.institution.join(",")}`;
+    const search = `search=${filterState.searchBar}`;
+    const level = `level=${filterState.level.join(",")}`;
     let url = "";
     if (filterState.searchBar != "") url += search;
     if (filterState.institution.length > 0) url += "&" + institution;

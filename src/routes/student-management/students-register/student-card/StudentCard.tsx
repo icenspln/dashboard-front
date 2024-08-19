@@ -15,7 +15,7 @@ interface StudentCardProps {
 }
 
 export default function StudentCard({ studentId }: StudentCardProps) {
-  const { screen } = useContext(RegistrationContext);
+  const { screen, setGroupModal } = useContext(RegistrationContext);
 
   const [modal, setModal] = useState<number>(1);
   const [rfid, setRfid] = useState<string>(""); // State to store RFID scan value
@@ -55,6 +55,10 @@ export default function StudentCard({ studentId }: StudentCardProps) {
     };
   }, [screen, rfid]);
 
+  const addToGroup = () => {
+    setGroupModal(true);
+  };
+
   if (screen)
     return (
       <>
@@ -85,16 +89,22 @@ export default function StudentCard({ studentId }: StudentCardProps) {
                   <div className="my-auto">
                     <Check />
                   </div>
-
-                  <Link
-                    to={`/studentmanagement`}
-                    className="w-[70%] flex justify-center items-center"
-                  >
+                  <div className="flex gap-3 justify-center">
+                    <Link
+                      to={`/studentmanagement`}
+                      className="w-[70%] flex justify-center items-center"
+                    >
+                      <ButtonRoundedPrimary
+                        color="blue"
+                        text={`العودة إلى قائمة المسجلين`}
+                      />
+                    </Link>
                     <ButtonRoundedPrimary
+                      onClick={addToGroup}
                       color="blue"
-                      text={`العودة إلى قائمة المسجلين`}
+                      text={`اضافة الطالب الئ فوج`}
                     />
-                  </Link>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -167,10 +177,7 @@ const CardModal = ({
             </button>
           </div>
           <div className="my-3">
-            <button
-              onClick={() => setModal(2)}
-              className="text-blue underline"
-            >
+            <button onClick={() => setModal(2)} className="text-blue underline">
               تخطي هذه المرحلة و التسجيل بدون بطاقة
             </button>
           </div>
