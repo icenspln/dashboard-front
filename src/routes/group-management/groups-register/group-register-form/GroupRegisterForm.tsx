@@ -26,6 +26,8 @@ export default function GroupRegisterForm() {
     resolver: yupResolver(TypeRegisterSchema),
   });
 
+  const [reactSelectOptions, setReactSelectOptions] = useState();
+
   const onSubmit: SubmitHandler<GroupRegisterFormType> = (data) => {
     const [hour, minute] = data.timing.split(":");
     const responsibleTeacher = data.responsibleTeacher.value;
@@ -56,20 +58,20 @@ export default function GroupRegisterForm() {
     queryFn: () => getFilteredTeachers(filter),
   });
 
-  // useEffect(() => {
-  //   if (data && !isLoading && !error) {
-  //     const teachersSelectArr = data.data.map((teacher: Teacher) => {
-  //       return {
-  //         label: teacher.firstName + " " + teacher.lastName,
-  //         value: teacher._id,
-  //       };
-  //     });
-  //     setReactSelectOptions(teachersSelectArr);
-  //   }
-  //   if (error) {
-  //     toast.error("error fetching teachers");
-  //   }
-  // }, [data, isLoading, error]);
+  useEffect(() => {
+    if (data && !isLoading && !error) {
+      const teachersSelectArr = data.data.map((teacher: Teacher) => {
+        return {
+          label: teacher.firstName + " " + teacher.lastName,
+          value: teacher._id,
+        };
+      });
+      setReactSelectOptions(teachersSelectArr);
+    }
+    if (error) {
+      toast.error("error fetching teachers");
+    }
+  }, [data, isLoading, error]);
 
   useEffect(() => {
     if (selectedTeacher) setValue("responsibleTeacher", selectedTeacher);
@@ -91,7 +93,7 @@ export default function GroupRegisterForm() {
   };
 
   const loadOptions = (inputValue: string) =>
-    new Promise<Teacher[]>((resolve) => {
+    new Promise<any>((resolve) => {
       // setTimeout(() => {
       resolve(filterTeachers(inputValue));
       // }, 1000);
@@ -143,6 +145,7 @@ export default function GroupRegisterForm() {
               الأستاذ
             </label>
             <AsyncSelect
+              defaultOptions={reactSelectOptions}
               cacheOptions
               loadOptions={loadOptions}
               onChange={setSelectedTeacher as any}
