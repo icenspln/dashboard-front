@@ -37,21 +37,21 @@ export default function SettingsCell({ row }: { row: any }) {
         );
       },
     },
-    { label: "حذف الفوج", action: () => setActiveOverlay("deleteGroup") },
+    // { label: "حذف الفوج", action: () => setActiveOverlay("deleteGroup") },
     {
-      label: "رؤية قائمة الحضور",
+      label: "قائمة الحضور",
       action: () =>
         navigate(`/groupmanagement/groupspresencemanagement/${row._id}`),
     },
     {
-      label: "رؤية قائمة المسجلين",
+      label: "قائمة المسجلين",
       action: () => assignStudentToGroup(),
       // action: () => setActiveOverlay("registredStudents"),
     },
-    {
-      label: "حضور / غياب الأستاذ",
-      action: () => setActiveOverlay("teacherPresence"),
-    },
+    // {
+    //   label: "حضور / غياب الأستاذ",
+    //   action: () => setActiveOverlay("teacherPresence"),
+    // },
 
     {
       label: "إضافة حصة إضافية",

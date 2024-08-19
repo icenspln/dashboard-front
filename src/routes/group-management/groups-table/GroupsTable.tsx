@@ -10,7 +10,7 @@ import { useContext, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getGroups } from "./core/_requests";
 import { GroupsTableContext } from "./core/GroupsTableContext";
-import { GroupAddStudentModal } from "./group-add-studen-modal/GroupAddStudentModal";
+import { GroupAddStudentModal } from "./group-add-student-modal/GroupAddStudentModal";
 import { GroupAddAdditionalDays } from "./group-add-additional-days/GroupAddAdditionalDays";
 import { Pagination } from "../../../components/pagination";
 

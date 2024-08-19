@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import SelectGroup from "./Popup-menu-component/PresentStudentsList";
-import Select from "react-select";
+import AsyncSelect from "react-select/async";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { Overlay } from "../../../../../../components/Overlay";
@@ -9,10 +9,11 @@ import { returnStudentLabel } from "../../../../../../handlers/returnInArabic";
 import {
   assignStudentToGroup,
   deleteStudentFromGroup,
-  getStudents,
-} from "../../../group-add-studen-modal/core/_requests";
+  // getStudents,
+} from "../../../group-add-student-modal/core/_requests";
 import { Student } from "../../../../../student-management/students-table/core/_models";
 import ButtonRoundedPrimary from "../../../../../../components/ButtonRoundedPrimary";
+import { getFilteredStudents } from "../../../../../student-management/students-table/core/_requests";
 
 interface RegistredStudentsOverlayProps {
   onClose: () => void;
@@ -21,13 +22,14 @@ interface RegistredStudentsOverlayProps {
 export const RegistredStudentsOverlay: React.FC<
   RegistredStudentsOverlayProps
 > = ({ onClose }) => {
+  const [filter, setFilter] = useState("");
   const queryClient = useQueryClient();
   const { selectedGroup, setSelectedGroup } = useContext(GroupsTableContext);
   const [selectedOption, setSelectedOption] = useState<{
     label: string;
     value: string;
   }>();
-  
+
   const [reactSelectOptions, setReactSelectOptions] = useState<
     {
       value: string;
@@ -35,18 +37,18 @@ export const RegistredStudentsOverlay: React.FC<
     }[]
   >([{ label: "loading", value: "" }]);
 
-  const { isPending, error, data } = useQuery<Student[]>({
-    queryKey: ["getStudents"],
-    queryFn: () => getStudents(),
+  const { data, isPending, error } = useQuery({
+    queryKey: ["getStudents", filter],
+    queryFn: () => getFilteredStudents(filter),
   });
 
   useEffect(() => {
     if (data && !error && !isPending) {
       const excludeSet = selectedGroup?.students.map((std) => std._id);
-      const filteredSet = data.filter(
-        (item) => !excludeSet?.includes(item._id)
+      const filteredSet = data.data.filter(
+        (item: any) => !excludeSet?.includes(item._id)
       );
-      const arr = filteredSet.map((student) => {
+      const arr = filteredSet.map((student: any) => {
         return {
           value: `${student._id}`,
           label: returnStudentLabel(student.firstName, student.lastName),
@@ -66,6 +68,28 @@ export const RegistredStudentsOverlay: React.FC<
     });
   };
 
+  const filterStudents = (inputValue: string) => {
+    setFilter(inputValue);
+
+    if (data && !isPending && !error) {
+      return data.data.map((student: Student) => {
+        return {
+          label: student.firstName + " " + student.lastName,
+          value: student._id,
+        };
+      });
+    } else {
+      return [];
+    }
+  };
+
+  const loadOptions = (inputValue: string) =>
+    new Promise<any>((resolve) => {
+      // setTimeout(() => {
+      resolve(filterStudents(inputValue));
+      // }, 1000);
+    });
+
   //mutation for signing up a student for a group
   const mutation = useMutation({
     mutationFn: ({ groupId, studentId }: any) =>
@@ -76,8 +100,10 @@ export const RegistredStudentsOverlay: React.FC<
       queryClient.invalidateQueries({ queryKey: ["getGroups"] });
       setSelectedGroup(res);
     },
-    onError: () => {
+    onError: (err: any) => {
       toast.error("حدث خطأ ما");
+      if (err.response.data.message == "Student already in the group")
+        toast.error("الطالب مسجل في هذا الفوج مسبقا");
       // onClose();
       queryClient.invalidateQueries({ queryKey: ["getGroups"] });
     },
@@ -133,11 +159,12 @@ export const RegistredStudentsOverlay: React.FC<
         </div>
 
         <div className="my-10">
-          <Select
-            className="max-w-[553px]"
-            options={reactSelectOptions}
-            defaultValue={selectedOption}
+          <AsyncSelect
             isClearable
+            defaultOptions={reactSelectOptions}
+            className="max-w-[553px]"
+            loadOptions={loadOptions}
+            // defaultValue={SelectedOption}
             onChange={setSelectedOption as any}
           />
         </div>
