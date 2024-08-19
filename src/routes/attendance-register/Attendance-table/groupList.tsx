@@ -24,7 +24,7 @@ export default function GroupList({
           {studentInfo.todayGroups.map((grp, i) => (
             <div key={i} className=" flex justify-between px-5">
               <div className="flex gap-[10px] items-center ">
-                <p>{returnGroupLabel(grp)}</p>
+                <p>{returnGroupLabel(grp as any)}</p>
                 <span className="w-[68px] h-[20px] text-sm text-center border rounded-full">
                   {grp.pricing} دج
                 </span>
@@ -59,7 +59,7 @@ export default function GroupList({
           {studentInfo.otherGroups.map((grp, i) => (
             <div key={i} className=" flex justify-between px-5">
               <div className="flex gap-[10px] items-center ">
-                <p>{returnGroupLabel(grp)}</p>
+                <p>{returnGroupLabel(grp as any)}</p>
                 <span className="w-[68px] h-[20px] text-sm text-center border rounded-full">
                   {grp.pricing} دج
                 </span>
