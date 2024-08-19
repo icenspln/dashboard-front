@@ -27,8 +27,8 @@ const ChangeGroupOverlay: React.FC<ChangeGroupOverlayProps> = ({ onClose }) => {
           <p>يرجى اختيار الفوج الذي تريد التغيير إليه </p>
 
           <span className="flex flex-col justify-between gap-[12px]">
-            <Checklist items={checklistItems} />
-            <Checklist items={checklistItems} />
+            <Checklist items={checklistItems} setState={() => {}} />
+            <Checklist items={checklistItems} setState={() => {}} />
           </span>
           <span className="flex justify-center">
             <ConfirmButton
