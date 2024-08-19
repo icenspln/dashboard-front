@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ButtonPrimary from "../../../components/ButtonPrimary";
 
 import { TeacherPresenceListsTable } from "./teacher-presence-table/TeacherPresenceTable";
@@ -13,7 +14,9 @@ export default function TeacherPresenceManagement() {
             <TeacherTableForm />
           </div>
           <nav className="flex items-center gap-[12px]">
-            <ButtonPrimary text="تحميل قسيمة الدفع" active />
+            <Link to="/monthlysalarystatement">
+              <ButtonPrimary text="تحميل قسيمة الدفع" active />
+            </Link>
           </nav>
         </div>
         <div>

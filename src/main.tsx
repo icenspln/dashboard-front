@@ -39,6 +39,7 @@ import { GroupUpdateWrapper } from "./routes/group-management/group-update/Group
 import { SettingsProvider } from "./routes/settings/core/SettingsContext";
 import TeacherPresenceManagement from "./routes/presence-management/teacher-presence/TeacherPresenceManagement.tsx";
 import StudentControlPanel from "./routes/attendance-register/Attendance-table/StudentControlPanel.tsx";
+import { GlobalContexProvider } from "./GlobalContext.tsx";
 
 const queryClient = new QueryClient();
 
@@ -156,17 +157,19 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <SettingsProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools
-          position="bottom"
-          buttonPosition="bottom-left"
-          initialIsOpen={false}
-        />
-        <Toaster />
-      </QueryClientProvider>
-      <LoadingScreen />
-    </SettingsProvider>
+    <GlobalContexProvider>
+      <SettingsProvider>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools
+            position="bottom"
+            buttonPosition="bottom-left"
+            initialIsOpen={false}
+          />
+          <Toaster />
+        </QueryClientProvider>
+        <LoadingScreen />
+      </SettingsProvider>
+    </GlobalContexProvider>
   </React.StrictMode>
 );

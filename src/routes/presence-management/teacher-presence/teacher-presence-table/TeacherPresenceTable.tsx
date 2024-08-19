@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useContext, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAttendanceForTeacher } from "./core/_requests";
 import { useParams } from "react-router-dom";
@@ -13,11 +13,15 @@ import { AttendanceForTeacherGroupType } from "./core/_models";
 import { StudentPresentButton } from "../../../../components/isPresentButton";
 import { teacherpresenceTableContext } from "./core/TeacherPresenceTableContext";
 import { PricingButton } from "../../../../components/PricingButtonEdit";
+import { GlobalContext } from "../../../../GlobalContext";
+import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
 
 export function TeacherPresenceListsTable() {
+  const globalContext = useContext(GlobalContext);
   const constraintsRef = useRef(null);
   const { id } = useParams();
   const [groups, setGroups] = useState<AttendanceForTeacherGroupType[]>([]);
+  const [teacher, setTeacher] = useState<Teacher>();
   console.log("presence table groups", groups);
 
   const { filter } = useContext(teacherpresenceTableContext);
@@ -30,8 +34,14 @@ export function TeacherPresenceListsTable() {
   useMemo(() => {
     if (data) {
       setGroups(data.groups);
+      setTeacher(data.teacher);
     }
   }, [data, isLoading, error]);
+
+  useEffect(() => {
+    if (groups) globalContext.setGroups(groups);
+    if (teacher) globalContext.setTeacher(teacher);
+  }, [groups, teacher]);
 
   //     enum: ["present", "absent", "upcoming", "not joined", "unknown" , "out of group", "changed group" , "teacher absent"],
 
