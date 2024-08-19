@@ -11,7 +11,8 @@ import {
 import { PDFViewer } from "@react-pdf/renderer";
 import { useContext } from "react";
 import { GlobalContext } from "../../GlobalContext";
-import {Teacher } from "../teacher-management/teacher-table/core/_models"
+import { Teacher } from "../teacher-management/teacher-table/core/_models";
+import { AttendanceForTeacherGroupType } from "../presence-management/teacher-presence/teacher-presence-table/core/_models";
 
 Font.register({
     family: 'Amiri',
@@ -71,21 +72,26 @@ const styles = StyleSheet.create({
     }
 });
 
-export function MonthlySalaryStatement(){
-    const { teacher = {} as Teacher } = useContext(GlobalContext);
-
-    if (teacher ) {
-        return (
-            <Document>
-                <Page size="A4" style={styles.page}>
-                    <View>
-                        <Text style={styles.header}>كشف الراتب لشهر ديسمبر</Text>
-                    </View>
-                    <View style={styles.subHeader}>
-                        <Text style={styles.subHeaderText}>{teacher.firstName} :الأستاذ</Text>
-                        <Text style={styles.subHeaderText}>:المادة</Text>
-                        <Text style={styles.subHeaderText}>:السنة</Text>
-                    </View>
+export function MonthlySalaryStatement({
+  teacher,
+  // groups,
+}: {
+  teacher: Teacher;
+  groups: AttendanceForTeacherGroupType[];
+}) {
+  console.log(teacher);
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View>
+          <Text style={styles.header}>كشف الراتب لشهر ديسمبر</Text>
+        </View>
+        <View style={styles.subHeader}>
+          <Text style={styles.subHeaderText}>:الأستاذ</Text>
+          <Text style={styles.subHeaderText}>{teacher.firstName}</Text>
+          <Text style={styles.subHeaderText}>:المادة</Text>
+          <Text style={styles.subHeaderText}>:السنة</Text>
+        </View>
 
                     <View style={styles.section}>
                         <SalaryStatementTable />
@@ -112,7 +118,7 @@ export function PdfViewTest() {
   return (
     <div style={{ width: "100%", height: "100vh" }}>
       <PDFViewer style={{ width: "1000px", height: "100%" }}>
-        <MonthlySalaryStatement />
+        <MonthlySalaryStatement teacher={teacher as Teacher} groups={groups} />
       </PDFViewer>
       <Link to="/monthlysalarystatement"></Link>
     </div>
