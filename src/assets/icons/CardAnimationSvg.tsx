@@ -74,9 +74,9 @@ export default function CardAnimationSvg({
           width="187.884"
           height="257.154"
           filterUnits="userSpaceOnUse"
-          colorInterpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -110,8 +110,8 @@ export default function CardAnimationSvg({
           y2="467.014"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D8EAFF" />
-          <stop offset="1" stop-color="#B9D9FF" />
+          <stop stopColor="#D8EAFF" />
+          <stop offset="1" stopColor="#B9D9FF" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_99_5494"
@@ -132,7 +132,7 @@ export default function CardAnimationSvg({
           y2="257.924"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#74AAE9" />
+          <stop stopColor="#74AAE9" />
           <stop offset="1" stopColor="#2B8AF8" />
         </linearGradient>
       </defs>

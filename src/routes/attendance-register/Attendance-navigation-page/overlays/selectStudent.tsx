@@ -13,12 +13,12 @@ interface SelectStudentProps {
 const SelectStudent: React.FC<SelectStudentProps> = ({ onClose }) => {
   const [filter, setFilter] = useState("");
   const navigate = useNavigate();
-  // const [reactSelectOptions, setReactSelectOptions] = useState<
-  //   {
-  //     value: string;
-  //     label: string;
-  //   }[]
-  // >([{ label: "loading", value: "" }]);
+  const [reactSelectOptions, setReactSelectOptions] = useState<
+    {
+      value: string;
+      label: string;
+    }[]
+  >([{ label: "loading", value: "" }]);
   const [selectedOption, setSelectedOption] = useState<{
     label: string;
     value: string;
@@ -54,24 +54,24 @@ const SelectStudent: React.FC<SelectStudentProps> = ({ onClose }) => {
   };
 
   const loadOptions = (inputValue: string) =>
-    new Promise<Student[]>((resolve) => {
+    new Promise<any>((resolve) => {
       // setTimeout(() => {
       resolve(filterStudents(inputValue));
       // }, 1000);
     });
 
-  // useEffect(() => {
-  //   if (data && !error && !isPending) {
-  //     const arr = data.map((std: Student) => {
-  //       return {
-  //         value: `${std._id}`,
-  //         label: `${std.firstName} ${std.lastName}`,
-  //       };
-  //     });
-  //     setReactSelectOptions(arr);
-  //   }
-  //   if (error) setReactSelectOptions([{ label: "خطأ", value: "" }]);
-  // }, [data, isPending, error]);
+  useEffect(() => {
+    if (data && !error && !isLoading) {
+      const arr = data.map((std: Student) => {
+        return {
+          value: `${std._id}`,
+          label: `${std.firstName} ${std.lastName}`,
+        };
+      });
+      setReactSelectOptions(arr);
+    }
+    if (error) setReactSelectOptions([{ label: "خطأ", value: "" }]);
+  }, [data, isLoading, error]);
 
   // const filteredItems = checklistItems.filter((item) =>
   //   item.label.includes(searchTerm)
@@ -115,6 +115,7 @@ const SelectStudent: React.FC<SelectStudentProps> = ({ onClose }) => {
         <div className="relative w-full text-base">
           <div className="my-10">
             <AsyncSelect
+              defaultOptions={reactSelectOptions}
               className="max-w-[553px]"
               loadOptions={loadOptions}
               // defaultValue={SelectedOption}
