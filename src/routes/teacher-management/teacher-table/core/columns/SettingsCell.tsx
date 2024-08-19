@@ -19,10 +19,10 @@ export default function SettingsCell({ row }: { row: Teacher }) {
         );
       },
     },
-    {
-      label: "حذف من القائمة",
-      action: () => setActiveOverlay("deleteFromList"),
-    },
+    // {
+    //   label: "حذف من القائمة",
+    //   action: () => setActiveOverlay("deleteFromList"),
+    // },
     {
       label: "تحميل كشف الراتب الشهري",
       action: () => setActiveOverlay("downloadReceipt"),
