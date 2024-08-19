@@ -12,9 +12,16 @@ export default function StudentControlPanel() {
   const { id } = useParams();
   const [studentInfo, setStudentInfo] = useState<GetStudentByCardIdType>();
 
+
+  const isUserId = id && id.startsWith('user-'); // Example logic to differentiate
+  const isScanningCardId = id && id.startsWith('card-'); 
+
+  const userId = isUserId ? id?.replace('user-', '') : null;
+  const scanningCardId = isScanningCardId ? id?.replace('card-', '') : null;
+console.log(scanningCardId);
   const { data, isPending, error } = useQuery({
     queryKey: ["getStudentByCardId"],
-    queryFn: () => getStudentByCardId(id!),
+    queryFn: () => getStudentByCardId(userId, scanningCardId),
   });
 
   useEffect(() => {

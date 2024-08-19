@@ -11,65 +11,100 @@ import {
 import { PDFViewer } from "@react-pdf/renderer";
 import { useContext } from "react";
 import { GlobalContext } from "../../GlobalContext";
+import {Teacher } from "../teacher-management/teacher-table/core/_models"
 
 Font.register({
-  family: "Amiri",
-  src: "src/assets/fonts/Amiri-Regular.ttf",
-  fontStyle: "normal",
-  fontWeight: "normal",
+    family: 'Amiri',
+    src: 'src/assets/fonts/Amiri-Regular.ttf', 
+    fontStyle: 'normal',
+    fontWeight: 'normal'
 });
 const styles = StyleSheet.create({
-  page: {
-    flexDirection: "column",
-    fontFamily: "Amiri",
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1,
-    textAlign: "center",
-  },
-  header: {
-    margin: 5,
-    height: 50,
-    textAlign: "center",
-  },
-  headerText: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  subHeader: {
-    flexDirection: "row-reverse",
-    justifyContent: "space-around",
-  },
-  subHeaderText: {
-    textAlign: "center",
-  },
+    page: {
+        flexDirection: 'column',
+        fontFamily: 'Amiri',
+    },
+    section: {
+        margin: 3,
+        padding: 3,
+        flexGrow: 1,  
+        textAlign: "center"
+    },
+    header: {
+        margin:3,
+        height: 40, 
+        textAlign: 'center',
+    },
+    headerText: {
+        fontSize: 14, 
+        fontWeight: 'bold',
+    },
+    subHeader: {
+        flexDirection: 'row-reverse',
+        justifyContent:'space-around',
+        
+        
+    },
+    subHeaderText:{
+        textAlign:'center'
+    },
+    monthlyPaymentContainer:{
+        display:'flex',
+        
+        marginLeft:10,
+        marginBottom:10
+    },
+    monthlyPaymentText:{
+        fontSize:14,
+        marginLeft:10,
+        marginBottom:5,
+        
+        
+        
+    },
+    monthlyPaymentCell:{
+        width: 70, 
+        border: "1px solid",
+        borderWidth: 1.5,
+        fontSize:14,
+        textAlign:'center'
+    }
 });
 
-export function MonthlySalaryStatement() {
-  return (
-    <Document>
-      <Page size="A4" style={styles.page}>
-        <View>
-          <Text style={styles.header}>كشف الراتب لشهر ديسمبر</Text>
-        </View>
-        <View style={styles.subHeader}>
-          <Text style={styles.subHeaderText}>:الأستاذ</Text>
-          <Text style={styles.subHeaderText}>:المادة</Text>
-          <Text style={styles.subHeaderText}>:السنة</Text>
-        </View>
+export function MonthlySalaryStatement(){
+    const { teacher = {} as Teacher } = useContext(GlobalContext);
 
-        <View style={styles.section}>
-          <SalaryStatementTable />
-        </View>
-        <View>
-          <Text></Text>
-        </View>
-      </Page>
-    </Document>
-  );
+    if (teacher ) {
+        return (
+            <Document>
+                <Page size="A4" style={styles.page}>
+                    <View>
+                        <Text style={styles.header}>كشف الراتب لشهر ديسمبر</Text>
+                    </View>
+                    <View style={styles.subHeader}>
+                        <Text style={styles.subHeaderText}> :الأستاذ</Text>
+                        <Text style={styles.subHeaderText}>:المادة</Text>
+                        <Text style={styles.subHeaderText}>:السنة</Text>
+                    </View>
+
+                    <View style={styles.section}>
+                        <SalaryStatementTable />
+                    </View>
+                    <View style={styles.monthlyPaymentContainer}>
+                        <Text style={styles.monthlyPaymentText}>الدفع الشهري</Text>
+                        <View style={styles.monthlyPaymentCell}>
+                            <Text>2500دج</Text>
+                        </View>
+                    </View>
+                </Page>
+            </Document>
+        );
+    }
+
+    return null; 
 }
+
+
 
 export function PdfViewTest() {
   const { groups, teacher } = useContext(GlobalContext);

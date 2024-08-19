@@ -26,7 +26,7 @@ const SelectStudent: React.FC<SelectStudentProps> = ({ onClose }) => {
 
   useEffect(() => {
     if (selectedOption)
-      navigate(`/attendancemanagement/${selectedOption.value}`);
+      navigate(`/attendancemanagement/user-${selectedOption.value}`);
   }, [selectedOption]);
 
   // const [searchTerm, setSearchTerm] = useState("");

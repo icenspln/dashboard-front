@@ -4,12 +4,23 @@ export const getStudents = () => {
   return AxiosInstance.get("/student").then((res) => res.data);
 };
 
-export function getStudentByCardId(studentId: string) {
-  return AxiosInstance.post("/student/scan/", { userId: studentId }).then(
+export function getStudentByCardId(userId: string | null, scanningCardId: string | null) {
+  const requestBody: { userId?: string; scanningCardId?: string } = {};
+
+  if (userId) {
+    requestBody.userId = userId;
+  }
+
+  if (scanningCardId) {
+    requestBody.scanningCardId = scanningCardId;
+  }
+
+  console.log("in reuqest ", requestBody)
+
+  return AxiosInstance.post("/student/scan", requestBody).then(
     (res) => res.data
   );
 }
-
 export function submitPayment({
   studentId,
   amount,
