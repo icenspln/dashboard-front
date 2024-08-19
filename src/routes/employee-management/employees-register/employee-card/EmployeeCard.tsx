@@ -9,11 +9,11 @@ import { motion } from "framer-motion";
 import { updateCard } from "../core/_requests"; // Import the updateCard function
 
 interface EmployeeCardProps {
-    employeeId: string;
-  }
-  
-  export default function EmployeeCard({ employeeId }: EmployeeCardProps) {
-    const { screen } = useContext(RegistrationContext);
+  employeeId: string;
+}
+
+export default function EmployeeCard({ employeeId }: EmployeeCardProps) {
+  const { screen } = useContext(RegistrationContext);
 
   const [modal, setModal] = useState<number>(1);
   const [rfid, setRfid] = useState<string>(""); // State to store RFID scan value
@@ -22,7 +22,6 @@ interface EmployeeCardProps {
     try {
       setRfid(scannedRfid);
       const response = await updateCard(employeeId, scannedRfid);
-      console.log("Card updated successfully:", response);
       setModal(2); // Move to the next modal on success
     } catch (error) {
       console.error("Error updating card:", error);

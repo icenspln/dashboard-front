@@ -42,7 +42,6 @@ export function StudentsTableContextProvider({
   });
 
   useEffect(() => {
-    console.log("making url...");
     let months = `month=${filterState.months}`;
     let years = `year=${filterState.years}`;
     console.log(months, years);

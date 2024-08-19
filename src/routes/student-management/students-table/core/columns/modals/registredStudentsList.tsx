@@ -24,7 +24,6 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
   const queryClient = useQueryClient();
   const [filter, setFilter] = useState("");
   const { selectedStudent } = useContext(StudentsTableContext);
-  console.log("selectedStudent", selectedStudent);
   const [selectedOption, setSelectedOption] = useState<{
     label: string;
     value: string;

@@ -73,7 +73,6 @@ export function MonthlySalaryStatement() {
 
 export function PdfViewTest() {
   const { groups, teacher } = useContext(GlobalContext);
-  console.log("state in the pdf", groups, teacher);
   return (
     <div style={{ width: "100%", height: "100vh" }}>
       <PDFViewer style={{ width: "1000px", height: "100%" }}>

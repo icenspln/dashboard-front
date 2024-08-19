@@ -18,7 +18,6 @@ const DownloadReceiptOverlay: React.FC<DownloadReceiptOverlayProps> = ({
 }) => {
   //state for filtering in teacher pdf
   const [timeQuery, setTimeQuery] = useState({ month: 1, year: 2024 });
-  console.log("time", timeQuery);
   const [currentView, setCurrentView] = useState<"checklist" | "password">(
     "checklist"
   );

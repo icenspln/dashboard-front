@@ -14,8 +14,6 @@ export function GlobalContexProvider({ children }: { children: ReactNode }) {
   const [groups, setGroups] = useState<AttendanceForTeacherGroupType[]>([]);
   const [teacher, setTeacher] = useState({});
 
-  console.log("state in the context", groups, teacher);
-
   return (
     <GlobalContext.Provider value={{ groups, teacher, setGroups, setTeacher }}>
       {children}

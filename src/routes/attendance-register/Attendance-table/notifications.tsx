@@ -68,7 +68,6 @@ export default function Notifications() {
     setInputValue("");
   };
 
-  console.log("notes", notes);
   if (notes)
     return (
       <div className="h-full border border-gray-200 rounded-lg shadow-sm p-4 flex flex-col justify-between">

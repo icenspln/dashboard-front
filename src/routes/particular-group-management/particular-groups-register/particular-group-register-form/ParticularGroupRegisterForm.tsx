@@ -32,8 +32,6 @@ export default function StudentRegisterForm() {
   });
 
   const onSubmit: SubmitHandler<ParticularGroupRegisterFormType> = (data) => {
-    console.log("on submit");
-
     const [hour, minute] = data.timing.split(":");
     const teacher = data.teacher.value;
 

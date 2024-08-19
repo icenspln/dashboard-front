@@ -18,7 +18,7 @@ export type AttendanceForTeacherType = {
 
 export type AttendanceForTeacherGroupType = {
   attendeesLeftGroup: {
-    student: Student;
+    student: FullStudent;
     attendees: Attendees[];
     financials: {
       totalDebts: number;
