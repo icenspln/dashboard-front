@@ -88,7 +88,6 @@ const RegistredStudentsOverlay = ({
     },
     onError: (err: any) => {
       const message = err.response.data.message;
-      console.log(message);
       if (message == "Student already in the group") {
         toast.error("الطالب مسجل في الفوج مسبقا");
       } else if (
@@ -130,12 +129,12 @@ const RegistredStudentsOverlay = ({
 
   const filterStudents = (inputValue: string) => {
     setFilter(inputValue);
-
+    if (inputValue == "") setFilter("");
     if (data && !isPending && !error) {
-      return data.data.map((student: any) => {
+      return data.data.map((group: any) => {
         return {
-          label: student.firstName + " " + student.lastName,
-          value: student._id,
+          label: returnGroupLabel(group),
+          value: group._id,
         };
       });
     } else {
@@ -146,6 +145,7 @@ const RegistredStudentsOverlay = ({
   const loadOptions = (inputValue: string) =>
     new Promise<any>((resolve) => {
       // setTimeout(() => {
+      console.log("called", inputValue);
       resolve(filterStudents(inputValue));
       // }, 1000);
     });
@@ -181,6 +181,7 @@ const RegistredStudentsOverlay = ({
               defaultOptions={reactSelectOptions}
               className="max-w-[553px]"
               loadOptions={loadOptions}
+              onInputChange={loadOptions}
               // defaultValue={SelectedOption}
               onChange={setSelectedOption as any}
             />

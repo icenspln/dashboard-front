@@ -118,10 +118,10 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
     setFilter(inputValue);
 
     if (data && !isPending && !error) {
-      return data.data.map((student: any) => {
+      return data.data.map((group: any) => {
         return {
-          label: student.firstName + " " + student.lastName,
-          value: student._id,
+          label: returnGroupLabel(group),
+          value: group._id,
         };
       });
     } else {
@@ -162,10 +162,10 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
 
         <div className="my-10">
           <AsyncSelect
-            isClearable
             defaultOptions={reactSelectOptions}
             className="max-w-[553px]"
             loadOptions={loadOptions}
+            onInputChange={loadOptions}
             // defaultValue={SelectedOption}
             onChange={setSelectedOption as any}
           />

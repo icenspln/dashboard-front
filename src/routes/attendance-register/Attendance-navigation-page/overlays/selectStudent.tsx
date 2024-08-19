@@ -118,6 +118,7 @@ const SelectStudent: React.FC<SelectStudentProps> = ({ onClose }) => {
               defaultOptions={reactSelectOptions}
               className="max-w-[553px]"
               loadOptions={loadOptions}
+              onInputChange={loadOptions}
               // defaultValue={SelectedOption}
               onChange={setSelectedOption as any}
             />

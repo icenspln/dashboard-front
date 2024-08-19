@@ -148,6 +148,7 @@ export default function GroupRegisterForm() {
               defaultOptions={reactSelectOptions}
               cacheOptions
               loadOptions={loadOptions}
+              onInputChange={loadOptions}
               onChange={setSelectedTeacher as any}
             />
             {errors.responsibleTeacher?.value && (

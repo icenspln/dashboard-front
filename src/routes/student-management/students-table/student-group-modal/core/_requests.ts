@@ -5,7 +5,9 @@ export function getGroups() {
 }
 
 export function getFilteredGroups(filter: string = "") {
-  return AxiosInstance.get(`/groups/filter?${filter}`).then((res) => res.data);
+  return AxiosInstance.get(`/groups/filter?search=${filter}`).then(
+    (res) => res.data
+  );
 }
 
 export function assignStudentToGroup(groupID: string, studentId: string) {
