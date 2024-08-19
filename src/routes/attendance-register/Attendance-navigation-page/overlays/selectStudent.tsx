@@ -62,7 +62,7 @@ const SelectStudent: React.FC<SelectStudentProps> = ({ onClose }) => {
 
   useEffect(() => {
     if (data && !error && !isLoading) {
-      const arr = data.map((std: Student) => {
+      const arr = data.data.map((std: Student) => {
         return {
           value: `${std._id}`,
           label: `${std.firstName} ${std.lastName}`,
