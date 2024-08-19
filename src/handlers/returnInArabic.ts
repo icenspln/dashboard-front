@@ -1,4 +1,4 @@
-import { Group } from "../routes/group-management/groups-table/core/_models";
+import { Group } from "../routes/student-management/students-table/student-group-modal/core/_model";
 
 export function returnInstitutionInAR(inst: string) {
   switch (inst) {
@@ -32,15 +32,10 @@ export function returnLevelInAR(level: number) {
   }
 }
 
-export function returnGroupLabel({
-  module,
-  institution,
-  level,
-  responsibleTeacher,
-  dayOfWeek,
-  timing,
-}: Group) {
-  return `${module} | ${institution} ${level} | ${responsibleTeacher.firstName + " " + responsibleTeacher.lastName} | ${dayOfWeek} - ${timing.hour}:${timing.minute}`;
+export function returnGroupLabel(group: Group) {
+  console.log("group recieived", group);
+  if (!group) return `group undefined`;
+  return `${group.module} | ${returnLevelInAR(group.level)} ${returnInstitutionInAR(group.institution)} | ${group.responsibleTeacher.firstName + " " + group.responsibleTeacher.lastName} | ${returnDayInAR(group.dayOfWeek)} - ${group.timing.hour}:${group.timing.minute}`;
 }
 export function returnStudentLabel(firstName: string, lastName: string) {
   return `${firstName} ${lastName}`;

@@ -8,11 +8,11 @@ import {
   deleteStudentFromGroup,
   getFilteredGroups,
 } from "../../../student-group-modal/core/_requests";
-import { Group } from "../../../student-group-modal/core/_model";
 import toast from "react-hot-toast";
 import { StudentsTableContext } from "../../../core/StudentsTableContext";
 import ButtonRoundedPrimary from "../../../../../../components/ButtonRoundedPrimary";
 import { returnGroupLabel } from "../../../../../../handlers/returnInArabic";
+import { Group } from "../../../student-group-modal/core/_model";
 
 interface RegistredStudentsOverlayProps {
   onClose: () => void;
@@ -24,6 +24,7 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
   const queryClient = useQueryClient();
   const [filter, setFilter] = useState("");
   const { selectedStudent } = useContext(StudentsTableContext);
+  console.log("selectedStudent", selectedStudent);
   const [selectedOption, setSelectedOption] = useState<{
     label: string;
     value: string;
@@ -44,10 +45,10 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
 
   useEffect(() => {
     if (data && !error && !isPending) {
-      const arr = data.data.map((group: any) => {
+      const arr = data.data.map((group: Group) => {
         return {
           value: `${group._id}`,
-          label: `${returnGroupLabel(group as any)}`,
+          label: returnGroupLabel(group),
         };
       });
       setReactSelectOptions(arr);
@@ -75,7 +76,6 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
     },
     onError: (err: any) => {
       const message = err.response.data.message;
-      console.log(message);
       if (message == "Student already in the group") {
         toast.error("الطالب مسجل في الفوج مسبقا");
       } else if (
@@ -152,7 +152,7 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
                     id={i}
                     key={i}
                     onDelete={() => deleteGroup(group._id, selectedStudent._id)}
-                    label={returnGroupLabel(group as any)}
+                    label={returnGroupLabel(group)}
                   />
                 ))}
               </>
