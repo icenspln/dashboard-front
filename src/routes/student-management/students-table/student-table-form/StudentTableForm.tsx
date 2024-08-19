@@ -128,7 +128,7 @@ const LevelFilter = () => {
     <div className="relative">
       <button
         onClick={toggleOpen}
-        className="flex items-center gap-[8px] w-[116px] h-[32px] px-4 py-2 border border-dashed border-gray-300 rounded-md shadow-sm hover:bg-gray-100"
+        className=" bg-white flex items-center gap-[8px] w-[116px] h-[32px] px-4 py-2 border border-dashed border-gray-300 rounded-md shadow-sm hover:bg-gray-100"
       >
         <PlusSvg />
         <span className="text-gray-700">السنة</span>

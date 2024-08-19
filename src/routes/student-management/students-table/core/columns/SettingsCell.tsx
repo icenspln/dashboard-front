@@ -29,13 +29,13 @@ export default function SettingsCell({ row }: { row: any }) {
       },
     },
     {
-      label: "رؤية الأفواج الحالية",
+      label: "الأفواج",
       action: () => {
         // setActiveOverlay("registredStudentsList");
         setStudent();
       },
     },
-    { label: "تغيير الفوج", action: () => setActiveOverlay("changeGroup") },
+    // { label: "تغيير الفوج", action: () => setActiveOverlay("changeGroup") },
     {
       label: "تغيير البطاقة",
       action: () => {
@@ -44,12 +44,12 @@ export default function SettingsCell({ row }: { row: any }) {
         // setActiveOverlay("changeCard")}
       },
     },
+    // {
+    //   label: "رؤية تواريخ الدفع",
+    //   action: () => navigate("/studentspaymenthistory"),
+    // },
     {
-      label: "رؤية تواريخ الدفع",
-      action: () => navigate("/studentspaymenthistory"),
-    },
-    {
-      label: "رؤية تواريخ الحضور والغياب",
+      label: "قائمة الحضور",
       action: () =>
         navigate(`/studentmanagement/studentspresencemanagement/${row._id}`),
     },
