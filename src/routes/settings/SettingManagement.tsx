@@ -104,6 +104,7 @@ function SettingScreen() {
   };
 
   const updateAppNameFunc = async (newAppName: string) => {
+    if (newAppName.trim() == "") return;
     try {
       await updateAppName(newAppName);
       setIsAppNameOverlayVisible(true);
