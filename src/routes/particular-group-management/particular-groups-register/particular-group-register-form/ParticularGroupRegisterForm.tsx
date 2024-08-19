@@ -16,7 +16,7 @@ import { Teacher } from "../../../teacher-management/teacher-table/core/_models"
 
 export default function StudentRegisterForm() {
   const [filter, setFilter] = useState("");
-  // const [reactSelectOptions, setReactSelectOptions] = useState();
+  const [reactSelectOptions, setReactSelectOptions] = useState();
   const [selectedTeacher, setSelectedTeacher] = useState<{
     value: string;
     label: string;
@@ -63,20 +63,20 @@ export default function StudentRegisterForm() {
     queryFn: () => getFilteredTeachers(filter),
   });
 
-  // useEffect(() => {
-  //   if (data && !isLoading && !error) {
-  //     const teachersSelectArr = data.data.map((teacher: Teacher) => {
-  //       return {
-  //         label: teacher.firstName + " " + teacher.lastName,
-  //         value: teacher._id,
-  //       };
-  //     });
-  //     setReactSelectOptions(teachersSelectArr);
-  //   }
-  //   if (error) {
-  //     toast.error("error fetching teachers");
-  //   }
-  // }, [data, isLoading, error]);
+  useEffect(() => {
+    if (data && !isLoading && !error) {
+      const teachersSelectArr = data.data.map((teacher: Teacher) => {
+        return {
+          label: teacher.firstName + " " + teacher.lastName,
+          value: teacher._id,
+        };
+      });
+      setReactSelectOptions(teachersSelectArr);
+    }
+    if (error) {
+      toast.error("error fetching teachers");
+    }
+  }, [data, isLoading, error]);
 
   useEffect(() => {
     if (selectedTeacher) setValue("teacher", selectedTeacher);
@@ -188,6 +188,7 @@ export default function StudentRegisterForm() {
               الأستاذ
             </label>
             <AsyncSelect
+              defaultOptions={reactSelectOptions}
               cacheOptions
               loadOptions={loadOptions}
               onChange={setSelectedTeacher as any}
