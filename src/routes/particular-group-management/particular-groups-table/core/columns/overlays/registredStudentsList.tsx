@@ -38,10 +38,12 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
   // >([{ label: "loading", value: "" }]);
   const onSubmitGroups = () => {
     // const student = selectedOption;
-    mutation.mutate({
-      groupId: selectedGroup?._id,
-      studentId: studentInput,
-    });
+    if (studentInput.trim() != "") {
+      mutation.mutate({
+        groupId: selectedGroup?._id,
+        studentId: studentInput,
+      });
+    }
   };
 
   //mutation for signing up a student for a group
@@ -134,10 +136,10 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
             className="text-white bg-blue hover:bg-grayBlue hover:text-blue border hover:border-blue "
             onClick={onSubmitGroups}
           />
-          <ConfirmButton
+          {/* <ConfirmButton
             text="إضافة طالب جديد"
             className="text-blue bg-grayBlue hover:bg-blue hover:text-white border"
-          />
+          /> */}
         </span>
       </>
     </Overlay>
