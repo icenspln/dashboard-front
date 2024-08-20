@@ -11,6 +11,7 @@ import { useContext, useEffect, useState } from "react";
 import Select from "react-select";
 import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
 import ButtonPrimary from "../../../../components/ButtonPrimary";
+import { modules } from "../../../../handlers/returnInArabic";
 
 export default function GroupUpdateForm() {
   const [reactSelectOptions, setReactSelectOptions] = useState();
@@ -164,14 +165,11 @@ export default function GroupUpdateForm() {
               {...register("module")}
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
             >
-              <option value="لغة عربية">لغة عربية</option>
-              <option value="رياضيات">رياضيات</option>
-              <option value="فيزياء">فيزياء</option>
-              <option value="علوم">علوم</option>
-              <option value="فلسفة">فلسفة</option>
-              <option value="فرنسية">فرنسية</option>
-              <option value="انجليزية">انجليزية</option>
-              <option value="اسبنيولية">اسبنيولية</option>
+              {modules.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.label}
+                </option>
+              ))}
             </select>
             {errors.module && (
               <span className="text-red-500">{errors.module.message}</span>

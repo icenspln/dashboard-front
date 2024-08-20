@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import AsyncSelect from "react-select/async";
 import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
+import { modules } from "../../../../handlers/returnInArabic";
 
 export default function GroupRegisterForm() {
   const [filter, setFilter] = useState("");
@@ -165,14 +166,11 @@ export default function GroupRegisterForm() {
               {...register("module")}
               className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
             >
-              <option value="لغة عربية">لغة عربية</option>
-              <option value="رياضيات">رياضيات</option>
-              <option value="فيزياء">فيزياء</option>
-              <option value="علوم">علوم</option>
-              <option value="فلسفة">فلسفة</option>
-              <option value="فرنسية">فرنسية</option>
-              <option value="انجليزية">انجليزية</option>
-              <option value="اسبنيولية">اسبنيولية</option>
+              {modules.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.label}
+                </option>
+              ))}
             </select>
             {errors.module && (
               <span className="text-red-500">{errors.module.message}</span>

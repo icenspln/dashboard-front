@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { modules } from "../handlers/returnInArabic";
 
 export default function MultiSelect({
   setValue,
@@ -60,7 +61,22 @@ export default function MultiSelect({
         </button>
         {isOpen && (
           <div className=" block absolute bg-white rounded-md min-w-[160px] shadow-sm z-10">
-            <label className="m-3 flex justify-between flex-row-reverse cursor-pointer">
+            {modules.map((m) => (
+              <label
+                key={m.id}
+                className="m-3 flex justify-between flex-row-reverse cursor-pointer"
+              >
+                <input
+                  type="checkbox"
+                  value={m.id}
+                  checked={selectedModules.includes(m.id)}
+                  onChange={handleCheckboxChange}
+                />
+                <span className="text-md">{m.label}</span>
+              </label>
+            ))}
+
+            {/* <label className="m-3 flex justify-between flex-row-reverse cursor-pointer">
               <input
                 type="checkbox"
                 value="لغة عربية"
@@ -68,15 +84,6 @@ export default function MultiSelect({
                 onChange={handleCheckboxChange}
               />
               <span className="text-md">لغة عربية</span>
-            </label>
-            <label className="m-3 flex justify-between flex-row-reverse cursor-pointer">
-              <input
-                type="checkbox"
-                value="رياضيات"
-                checked={selectedModules.includes("رياضيات")}
-                onChange={handleCheckboxChange}
-              />
-              <span className="text-md">رياضيات</span>
             </label>
 
             <label className="m-3 flex justify-between flex-row-reverse cursor-pointer">
@@ -134,7 +141,7 @@ export default function MultiSelect({
                 onChange={handleCheckboxChange}
               />
               <span className="text-md">اسبنيولية</span>
-            </label>
+            </label> */}
           </div>
         )}
       </div>

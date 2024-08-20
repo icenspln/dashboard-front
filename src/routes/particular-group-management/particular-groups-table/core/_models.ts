@@ -75,12 +75,19 @@ export const ColumnSelectionOptions = [
 
 export const modulesFilterOptions = [
   { id: "رياضيات", label: "رياضيات" },
-  { id: "فيزياء", label: "فيزياء" },
   { id: "علوم", label: "علوم" },
+  { id: "فيزياء", label: "فيزياء" },
+  { id: "لغة عربية", label: "لغة عربية" },
   { id: "فلسفة", label: "فلسفة" },
+  { id: "محاسبة", label: "محاسبة" },
   { id: "فرنسية", label: "فرنسية" },
   { id: "انجليزية", label: "انجليزية" },
-  { id: "اسبنيولية", label: "اسبنيولية" },
+  { id: "تاريخ و جغرافيا", label: "تاريخ و جغرافيا" },
+  { id: "شريعة اسلامية", label: "شريعة اسلامية" },
+  { id: "ألمانية", label: "ألمانية" },
+  { id: "هندسة مدنية", label: "هندسة مدنية" },
+  { id: "هندسة ميكانيكية", label: "هندسة ميكانيكية" },
+  { id: "هندسة طرائق", label: "هندسة طرائق" },
 ];
 
 export const dayOfWeekFilterOptions = [

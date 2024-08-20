@@ -3,10 +3,10 @@ import {
   dayOfWeekFilterOptions,
   institutionFilterOptions,
   levelFilterOptions,
-  modulesFilterOptions,
 } from "../core/_models";
 import { GroupsTableContext } from "../core/GroupsTableContext";
 import { FilterButton } from "../../../../components/ButtonFilter";
+import { modules } from "../../../../handlers/returnInArabic";
 
 export function GroupTableForm() {
   const { setFilterState, filterState } = useContext(GroupsTableContext);
@@ -65,7 +65,7 @@ export function GroupTableForm() {
       />
       <FilterButton
         label="المادة"
-        options={modulesFilterOptions}
+        options={modules}
         setFilterState={updateModulesFilter}
       />
       <FilterButton

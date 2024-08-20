@@ -76,16 +76,6 @@ export const ColumnSelectionOptions = [
   { id: 14, label: "الإعدادات" },
 ];
 
-export const modulesFilterOptions = [
-  { id: "رياضيات", label: "رياضيات" },
-  { id: "فيزياء", label: "فيزياء" },
-  { id: "علوم", label: "علوم" },
-  { id: "فلسفة", label: "فلسفة" },
-  { id: "فرنسية", label: "فرنسية" },
-  { id: "انجليزية", label: "انجليزية" },
-  { id: "اسبنيولية", label: "اسبنيولية" },
-];
-
 export const dayOfWeekFilterOptions = [
   { id: "Saturday", label: "السبت" },
   { id: "Sunday", label: "الأحد" },
