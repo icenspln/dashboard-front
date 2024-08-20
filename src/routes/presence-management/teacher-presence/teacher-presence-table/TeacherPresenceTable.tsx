@@ -22,9 +22,8 @@ export function TeacherPresenceListsTable() {
   const constraintsRef = useRef(null);
   const { id } = useParams();
   const [groups, setGroups] = useState<AttendanceForTeacherGroupType[]>([]);
-  console.log("groups being set", groups);
   const [teacher, setTeacher] = useState<Teacher>();
-  console.log("presence table groups", groups);
+  const [date, setDate] = useState<{ month: number; year: number }>();
 
   const { filter } = useContext(teacherpresenceTableContext);
 
@@ -37,12 +36,14 @@ export function TeacherPresenceListsTable() {
     if (data) {
       setGroups(data.groups);
       setTeacher(data.teacher);
+      setDate({ month: data.queryMonth, year: data.queryYear });
     }
   }, [data, isLoading, error]);
 
   useEffect(() => {
     if (groups) globalContext.setGroups(groups);
     if (teacher) globalContext.setTeacher(teacher);
+    if (date) globalContext.setDate(date);
   }, [groups, teacher]);
 
   //     enum: ["present", "absent", "upcoming", "not joined", "unknown" , "out of group", "changed group" , "teacher absent"],
@@ -51,7 +52,7 @@ export function TeacherPresenceListsTable() {
     return (
       <div ref={constraintsRef}>
         {groups.map((grp, i) => (
-          <>
+          <div key={i}>
             {grp.students.length > 0 && (
               <div
                 key={i}
@@ -195,15 +196,13 @@ export function TeacherPresenceListsTable() {
                       <th className="p-2 w-[200px] text-start">الديون</th>
                       <th className="p-2 w-[200px] text-start">مجموع الديون</th>
                       <th className="p-2 w-[200px] text-start">رقم الهاتف</th>
-                      {grp.attendeesLeftGroup.map((std) => (
-                        <>
-                          {std.attendees.map((att, i) => (
-                            <th className="w-[200px] p-2 text-start" key={i}>
-                              {new Date(att.date).toLocaleDateString()}
-                            </th>
-                          ))}
-                        </>
-                      ))}
+                      {grp.attendeesLeftGroup.map((std) => {
+                        return std.attendees.map((att, i) => (
+                          <th className="w-[200px] p-2 text-start" key={i}>
+                            {new Date(att.date).toLocaleDateString()}
+                          </th>
+                        ));
+                      })}
                     </tr>
                   </thead>
                   <tbody>
@@ -269,7 +268,7 @@ export function TeacherPresenceListsTable() {
                 </motion.table>
               </div>
             )}
-          </>
+          </div>
         ))}
       </div>
     );

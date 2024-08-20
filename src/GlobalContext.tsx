@@ -8,14 +8,25 @@ export const GlobalContext = createContext<{
   setTeacher: Dispatch<SetStateAction<Teacher>>;
   groups: AttendanceForTeacherGroupType[];
   setGroups: Dispatch<SetStateAction<AttendanceForTeacherGroupType[]>>;
-}>({ teacher: {}, groups: [], setTeacher: () => {}, setGroups: () => {} });
+  date: { month: number; year: number } | object;
+  setDate: Dispatch<SetStateAction<{ month: number; year: number }>>;
+}>({
+  teacher: {},
+  groups: [],
+  setTeacher: () => {},
+  setGroups: () => {},
+  date: {},
+  setDate: () => {},
+});
 
 export function GlobalContexProvider({ children }: { children: ReactNode }) {
   const [groups, setGroups] = useState<AttendanceForTeacherGroupType[]>([]);
   const [teacher, setTeacher] = useState({});
-
+  const [date, setDate] = useState({});
   return (
-    <GlobalContext.Provider value={{ groups, teacher, setGroups, setTeacher }}>
+    <GlobalContext.Provider
+      value={{ groups, teacher, setGroups, setTeacher, date, setDate }}
+    >
       {children}
     </GlobalContext.Provider>
   );

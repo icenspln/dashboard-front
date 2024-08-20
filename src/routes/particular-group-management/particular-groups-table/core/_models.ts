@@ -10,15 +10,15 @@ export type SpecialGroup = {
   roomNumber: number;
   date: string;
   teacher: Teacher;
-  module: "فيزياء";
-  institution: "highSchool";
-  level: 3;
-  pricing: 2000;
-  students: ["test", "okey"];
-  createdAt: "2024-08-16T23:46:15.919Z";
-  updatedAt: "2024-08-16T23:46:34.128Z";
-  specialGroupId: 2;
-  __v: 2;
+  module: string;
+  institution: string;
+  level: number;
+  pricing: number;
+  students: string[];
+  createdAt: string;
+  updatedAt: string;
+  specialGroupId: number;
+  __v: number;
 };
 export interface FilterOption {
   id: string;

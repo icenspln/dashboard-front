@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     padding: 3,
     flexGrow: 1,
     textAlign: "right",
-    alignSelf: 'flex-end',  // Align each table to the right
+    alignSelf: "flex-end", // Align each table to the right
     marginBottom: 10,
   },
   header: {
@@ -72,17 +72,18 @@ const styles = StyleSheet.create({
 export function MonthlySalaryStatement({
   teacher,
   groups,
+  // date,
 }: {
   teacher: Teacher;
   groups: AttendanceForTeacherGroupType[];
+  date: { month: number; year: number };
 }) {
-  // console.log(teacher);
-  console.log(groups)
   const totalPayment = groups.reduce((total, group) => {
     return (
       total +
       group.students.reduce((groupTotal, student) => {
-        const paidAmount = student.student.groupFinancials?.groupPaidAmount ?? 0;
+        const paidAmount =
+          student.student.groupFinancials?.groupPaidAmount ?? 0;
         return groupTotal + paidAmount;
       }, 0)
     );
@@ -95,13 +96,15 @@ export function MonthlySalaryStatement({
         </View>
         <View style={styles.subHeader}>
           <Text style={styles.subHeaderText}>:الأستاذ</Text>
-          <Text style={styles.subHeaderText}>{teacher.firstName} {teacher.lastName}</Text>
+          <Text style={styles.subHeaderText}>
+            {teacher.firstName} {teacher.lastName}
+          </Text>
           <Text style={styles.subHeaderText}>:المادة</Text>
           <Text style={styles.subHeaderText}>:السنة</Text>
         </View>
 
         <View style={styles.section}>
-          <SalaryStatementTable groups={groups}/>
+          <SalaryStatementTable groups={groups} />
         </View>
         <View style={styles.monthlyPaymentContainer}>
           <Text style={styles.monthlyPaymentText}>الدفع الشهري</Text>
@@ -115,12 +118,18 @@ export function MonthlySalaryStatement({
 }
 
 export function PdfViewTest() {
-  const { groups, teacher } = useContext(GlobalContext);
+  const { groups, teacher, date } = useContext(GlobalContext);
+
+  console.log("state in the pdf date", date);
   console.log("state in the pdf", groups, teacher);
   return (
     <div style={{ width: "100%", height: "100vh" }}>
       <PDFViewer style={{ width: "1000px", height: "100%" }}>
-        <MonthlySalaryStatement teacher={teacher as Teacher} groups={groups} />
+        <MonthlySalaryStatement
+          date={date as { month: number; year: number }}
+          teacher={teacher as Teacher}
+          groups={groups}
+        />
       </PDFViewer>
       <Link to="/monthlysalarystatement"></Link>
     </div>
