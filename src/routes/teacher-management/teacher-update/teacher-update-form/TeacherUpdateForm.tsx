@@ -16,6 +16,9 @@ export default function TeacherUpdateForm() {
   const location = useLocation();
   const id = params.id!;
   const parsedParams = queryString.parse(location.search);
+  console.log(parsedParams);
+  const birthDate: any = parsedParams.birthDate;
+  const modules: any = parsedParams.modules;
   const {
     register,
     setValue,
@@ -25,10 +28,8 @@ export default function TeacherUpdateForm() {
     resolver: yupResolver(TeacherUpdateSchema),
     defaultValues: {
       ...parsedParams,
-      //  @ts-ignore
-      modules: [],
-      birthDate: undefined,
-      // birthDate: new Date(parsedParams.birthDate as any).toLocaleDateString(),
+      birthDate: birthDate?.split("T")[0],
+      modules: modules.split(","),
     },
   });
 
@@ -117,7 +118,7 @@ export default function TeacherUpdateForm() {
             <label htmlFor="modules" className="text-blueDark">
               المادة
             </label>
-            <MultiSelect setValue={setValue} />
+            <MultiSelect setValue={setValue} initValue={modules.split(",")} />
             {errors.modules && (
               <span className="text-red-500">{errors.modules.message}</span>
             )}

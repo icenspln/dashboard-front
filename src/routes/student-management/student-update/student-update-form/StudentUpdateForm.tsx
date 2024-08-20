@@ -19,6 +19,7 @@ export default function StudentUpdateForm() {
   const location = useLocation();
   const id = params.id!;
   const parsedParams = queryString.parse(location.search);
+  const birthDate: any = parsedParams.birthDate;
   const {
     register,
     watch,
@@ -28,7 +29,7 @@ export default function StudentUpdateForm() {
     resolver: yupResolver(StudentUpdateSchema),
     defaultValues: {
       ...parsedParams,
-      birthDate: undefined,
+      birthDate: birthDate?.split("T")[0],
     },
   });
 
