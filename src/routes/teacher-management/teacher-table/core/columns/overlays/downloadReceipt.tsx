@@ -17,7 +17,7 @@ const DownloadReceiptOverlay: React.FC<DownloadReceiptOverlayProps> = ({
   teacherId,
 }) => {
   //state for filtering in teacher pdf
-  const [timeQuery, setTimeQuery] = useState({ month: 1, year: 2024 });
+  const [timeQuery, setTimeQuery] = useState<{ month: number; year: number }>();
   const [currentView, setCurrentView] = useState<"checklist" | "password">(
     "checklist"
   );
@@ -26,9 +26,13 @@ const DownloadReceiptOverlay: React.FC<DownloadReceiptOverlayProps> = ({
     if (currentView === "checklist") {
       setCurrentView("password");
     } else if (currentView === "password") {
-      navigate(
-        `/teachermanagement/teacherpayment/${teacherId}?month=${timeQuery.month}&year=${timeQuery.year}`
-      );
+      if (timeQuery) {
+        navigate(
+          `/teachermanagement/teacherpayment/${teacherId}?month=${timeQuery?.month}&year=${timeQuery?.year}`
+        );
+        return;
+      }
+      navigate(`/teachermanagement/teacherpayment/${teacherId}`);
     }
   };
 
