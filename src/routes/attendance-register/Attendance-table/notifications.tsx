@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import SendMessageSvg from "../../../assets/icons/SendMessageSvg";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getNotesForStudent, postNoteForStudent } from "./core/_requests";
-import { useParams } from "react-router-dom";
-import { NoteType } from "./core/_models";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { postNoteForStudent } from "./core/_requests";
+// import { useParams } from "react-router-dom";
+import { GetStudentByCardIdType, NoteType } from "./core/_models";
 import toast from "react-hot-toast";
 
 // interface Notification {
@@ -12,7 +12,12 @@ import toast from "react-hot-toast";
 //   timestamp: string;
 // }
 
-export default function Notifications() {
+export default function Notifications({
+  studentInfo,
+}: {
+  studentInfo: GetStudentByCardIdType;
+}) {
+  console.log("studentinfo inside notification", studentInfo);
   const queryClient = useQueryClient();
   // const [notifications, setNotifications] = useState<Notification[]>([]);
   const [inputValue, setInputValue] = useState("");
@@ -23,19 +28,13 @@ export default function Notifications() {
     }
   };
 
-  const [notes, setNotes] = useState<NoteType[]>();
-  const { id } = useParams();
+  const [notes, setNotes] = useState<NoteType[]>(studentInfo.notes);
+  // const { id } = useParams();
 
-  const { data, isPending, error } = useQuery({
-    queryKey: ["getNotesForStudent"],
-    queryFn: () => getNotesForStudent(id!),
-  });
-
-  useEffect(() => {
-    if (data && !error) {
-      setNotes(data);
-    }
-  }, [data, isPending, error]);
+  // const { data, isPending, error } = useQuery({
+  //   queryKey: ["getNotesForStudent"],
+  //   queryFn: () => getNotesForStudent(id!),
+  // });
 
   const mutation = useMutation({
     mutationFn: (data: { studentId: string; text: string }) =>
@@ -61,12 +60,18 @@ export default function Notifications() {
 
     // setNotifications([...notifications, newNotification]);
     const data = {
-      studentId: id!,
+      studentId: studentInfo.student._id!,
       text: inputValue,
     };
     mutation.mutate(data);
     setInputValue("");
   };
+
+  useEffect(() => {
+    if (mutation.data && !mutation.error) {
+      setNotes((prev) => [...prev, mutation.data]);
+    }
+  }, [mutation.data, mutation.isError]);
 
   if (notes)
     return (

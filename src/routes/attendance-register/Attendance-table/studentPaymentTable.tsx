@@ -112,21 +112,21 @@ export function StudentPaymentTable({
           </div>
           <div className="bg-mainBg p-4 flex flex-col gap-3 ">
             <h3 className="text-lg text-textGray">الثمن الذي يجب دفعه</h3>
-            <p className="underline">
+            <div className="underline">
               <PricingButton
                 submit={submitTotalToPayMutation}
                 initValue={studentInfo.totalOutstandingBalance}
               />
-            </p>
+            </div>
           </div>
           <div className="bg-mainBg p-4 flex flex-col gap-3 ">
             <h3 className="text-lg text-textGray">الديون</h3>
-            <p className="underline">
+            <div className="underline">
               <PricingButton
                 submit={submitTotalDebtMutation}
                 initValue={studentInfo.totalDebts}
               />
-            </p>
+            </div>
           </div>
           <div className="bg-mainBg p-4 flex flex-col gap-3 ">
             <h3 className="text-lg text-textGray">المجموع</h3>

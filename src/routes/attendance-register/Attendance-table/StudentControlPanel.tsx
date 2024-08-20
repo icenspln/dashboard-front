@@ -3,16 +3,14 @@ import { StudentPaymentTable } from "./studentPaymentTable";
 import GroupList from "./groupList";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState , useRef  } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getStudentByCardId } from "./core/_requests";
 import { GetStudentByCardIdType } from "./core/_models";
 import Notifications from "./notifications";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export default function StudentControlPanel() {
-  const navigate = useNavigate();
-  const [rfid, setRfid] = useState<string>(""); 
+  const [rfid, setRfid] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { id } = useParams();
@@ -23,8 +21,8 @@ export default function StudentControlPanel() {
 
   const userId = isUserId ? id?.replace("user-", "") : null;
   const scanningCardId = isScanningCardId ? id?.replace("card-", "") : null;
+
   const { data, isPending, error, refetch } = useQuery({
-    
     queryKey: ["getStudentByCardId"],
     queryFn: () => getStudentByCardId(userId, scanningCardId),
     enabled: !!userId || !!scanningCardId,
@@ -33,26 +31,11 @@ export default function StudentControlPanel() {
   useEffect(() => {
     console.log("use effect");
     if (data) {
-      console.log("refetch")
+      console.log("refetch");
       setStatus(data.status);
       if (data.status === 200) setStudentInfo(data.data);
     }
-  }, [data, isPending, error , refetch]);
-
-  if (isPending)
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <h1 className="text-3xl my-auto">تحميل...</h1>
-      </div>
-    );
-  if (error)
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <h1 className="text-3xl my-auto text-yellow-300">
-          التلميذ لا ينتمي لأي فوج
-        </h1>
-      </div>
-    );
+  }, [data, isPending, error, refetch]);
 
   const handleRfidScan = async (scannedRfid: string) => {
     try {
@@ -93,6 +76,20 @@ export default function StudentControlPanel() {
     };
   }, [rfid]);
 
+  if (isPending)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <h1 className="text-3xl my-auto">تحميل...</h1>
+      </div>
+    );
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <h1 className="text-3xl my-auto text-yellow-300">
+          التلميذ لا ينتمي لأي فوج
+        </h1>
+      </div>
+    );
   if (status === 201) {
     return (
       <motion.div
@@ -123,7 +120,7 @@ export default function StudentControlPanel() {
         </div> */}
         </div>
         <div className="w-full min-h-full ">
-          <Notifications />
+          <Notifications studentInfo={studentInfo} />
         </div>
       </div>
     );
