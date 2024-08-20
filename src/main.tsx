@@ -4,7 +4,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 
 import {
-  createBrowserRouter,
+  // createBrowserRouter,
+  createHashRouter,
   redirect,
   RouterProvider,
 } from "react-router-dom";
@@ -43,7 +44,7 @@ import { GlobalContexProvider } from "./GlobalContext.tsx";
 
 const queryClient = new QueryClient();
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   [
     {
       path: "/",
