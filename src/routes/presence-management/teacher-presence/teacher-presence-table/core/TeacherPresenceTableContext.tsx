@@ -33,6 +33,7 @@ export function TeacherPresenceTableContextProvider({
   children: ReactNode;
 }) {
   const [filter, setFilter] = useState<string>("");
+  console.log("filter being set", filter);
 
   const { month, year } = queryString.parse(location.search) as any;
   const [filterState, setFilterState] = useState<{
@@ -43,6 +44,14 @@ export function TeacherPresenceTableContextProvider({
     year: year,
   });
 
+  useEffect(() => {
+    if (month && year) {
+      setFilterState({
+        month: month,
+        year: year,
+      });
+    }
+  }, []);
   useEffect(() => {
     const month = `month=${filterState.month}`;
     const year = `year=${filterState.year}`;

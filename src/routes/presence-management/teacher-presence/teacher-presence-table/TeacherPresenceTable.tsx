@@ -22,6 +22,7 @@ export function TeacherPresenceListsTable() {
   const constraintsRef = useRef(null);
   const { id } = useParams();
   const [groups, setGroups] = useState<AttendanceForTeacherGroupType[]>([]);
+  console.log("groups being set", groups);
   const [teacher, setTeacher] = useState<Teacher>();
   console.log("presence table groups", groups);
 

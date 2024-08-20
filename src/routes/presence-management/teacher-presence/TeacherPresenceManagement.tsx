@@ -15,7 +15,7 @@ export default function TeacherPresenceManagement() {
           </div>
           <nav className="flex items-center gap-[12px]">
             <Link to="/monthlysalarystatement">
-              <ButtonPrimary text="تحميل قسيمة الدفع" active />
+              <ButtonPrimary text="تحميل كشف الراتب الشهري" active />
             </Link>
           </nav>
         </div>
