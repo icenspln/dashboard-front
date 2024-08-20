@@ -1,5 +1,4 @@
 import { Group } from "../../../../group-management/groups-table/core/_models";
-import { Student } from "../../../../student-management/students-table/core/_models";
 import { Teacher } from "../../../../teacher-management/teacher-table/core/_models";
 import {
   Attendees,

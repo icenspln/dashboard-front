@@ -24,7 +24,7 @@ export default function StudentCard({ studentId }: StudentCardProps) {
   const handleRfidScan = async (scannedRfid: string) => {
     try {
       setRfid(scannedRfid);
-      const response = await updateCard(studentId, scannedRfid);
+      await updateCard(studentId, scannedRfid);
       setModal(2); // Move to the next modal on success
     } catch (error) {
       console.error("Error updating card:", error);

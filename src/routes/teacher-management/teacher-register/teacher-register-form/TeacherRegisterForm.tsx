@@ -102,7 +102,7 @@ export default function TeacherRegisterForm() {
             <label htmlFor="modules" className="text-blueDark">
               المادة
             </label>
-            <MultiSelect setValue={setValue} />
+            <MultiSelect setValue={setValue} initValue={[]} />
             {errors.modules && (
               <span className="text-red-500">{errors.modules.message}</span>
             )}

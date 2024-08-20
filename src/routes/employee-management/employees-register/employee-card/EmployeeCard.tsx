@@ -21,7 +21,7 @@ export default function EmployeeCard({ employeeId }: EmployeeCardProps) {
   const handleRfidScan = async (scannedRfid: string) => {
     try {
       setRfid(scannedRfid);
-      const response = await updateCard(employeeId, scannedRfid);
+      await updateCard(employeeId, scannedRfid);
       setModal(2); // Move to the next modal on success
     } catch (error) {
       console.error("Error updating card:", error);
