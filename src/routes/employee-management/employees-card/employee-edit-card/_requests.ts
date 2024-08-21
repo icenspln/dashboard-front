@@ -1,10 +1,11 @@
 import { AxiosInstance } from "../../../../api/Axios";
 
-export function assignCardToEmployee(studentId: string, newCardId: string) {
-  AxiosInstance.post(`/student/update-scanning-card/${studentId}`, newCardId);
-}
-export function updateCard(id: string, newScanningCardId: string) {
-  return AxiosInstance.put(`/student/update-scanning-card/${id}`, {
-    newScanningCardId,
-  }).then((res) => res.data);
+export async function UpdateCard(employeeId: string, newScanningCardId: string): Promise<{ ok: boolean }> {
+  try {
+    const response = await AxiosInstance.put(`/employee/${employeeId}/scanningCardId/`, { newScanningCardId: newScanningCardId });
+    return { ok: response.status === 200 };
+  } catch (error) {
+    console.error("Error updating card:", error);
+    return { ok: false };
+  }
 }

@@ -7,11 +7,15 @@ import { useEffect, useState, useRef } from "react";
 import { getStudentByCardId } from "./core/_requests";
 import { GetStudentByCardIdType } from "./core/_models";
 import Notifications from "./notifications";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
+import { useNavigate } from "react-router-dom";
 
 export default function StudentControlPanel() {
   const [rfid, setRfid] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+
+  const [scanningCard, setScanningCard] = useState<string | null>(null);
 
   const { id } = useParams();
   const [studentInfo, setStudentInfo] = useState<GetStudentByCardIdType>();
@@ -21,11 +25,13 @@ export default function StudentControlPanel() {
 
   const userId = isUserId ? id?.replace("user-", "") : null;
   const scanningCardId = isScanningCardId ? id?.replace("card-", "") : null;
-
+  useEffect(() => {
+    setScanningCard(scanningCardId);
+  }, [scanningCardId]);
   const { data, isPending, error, refetch } = useQuery({
     queryKey: ["getStudentByCardId"],
-    queryFn: () => getStudentByCardId(userId, scanningCardId),
-    enabled: !!userId || !!scanningCardId,
+    queryFn: () => getStudentByCardId(userId, scanningCard),
+    enabled: !!userId || !!scanningCard,
   });
 
   useEffect(() => {
@@ -40,10 +46,11 @@ export default function StudentControlPanel() {
   const handleRfidScan = async (scannedRfid: string) => {
     try {
       setRfid(scannedRfid);
+      setScanningCard(scannedRfid);
       console.log(scannedRfid);
       console.log("scanning");
       await refetch();
-      // navigate(`/attendancemanagement/card-${scannedRfid}`);
+      navigate(`/attendancemanagement/card-${scannedRfid}`);
     } catch (error) {
       console.error("Error updating card:", error);
     }

@@ -5,8 +5,11 @@ import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import CardAnimationSvg from "../../../../assets/icons/CardAnimationSvg";
 import WrongCardSvg from "../../../../assets/icons/WrongCardSvg";
-import { updateCard } from "./_requests"; // Import the updateCard function
+import { Check } from "../../../../assets/icons/Check";
+
+import { UpdateCard } from "./_requests"; // Import the updateCard function
 import { useEmployeeContext } from "../core/EmployeeContext";
+import { Link } from "react-router-dom";
 
 interface EmployeeCardProps {
   employeeId: string;
@@ -22,7 +25,11 @@ export default function EmployeeEditCard({ employeeId }: EmployeeCardProps) {
   const handleRfidScan = async (scannedRfid: string) => {
     try {
       setRfid(scannedRfid);
-      const response = await updateCard(employeeId, scannedRfid);
+      const response = await UpdateCard(employeeId, scannedRfid);
+
+      if (!response.ok) {
+        throw new Error("Failed to update card");
+      }
       console.log("Card updated successfully:", response);
       setModal(2); // Move to the next modal on success
     } catch (error) {
@@ -71,6 +78,29 @@ export default function EmployeeEditCard({ employeeId }: EmployeeCardProps) {
                 />
               )}
               {modal === 2 && (
+                // <motion.div
+                //   transition={{ duration: 0.2, type: "just" }}
+                //   initial={{ x: 400 }}
+                //   animate={{ x: 0 }}
+                //   key={2}
+                //   className="flex flex-col gap-1 items-center h-full"
+                // >
+                //   <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
+                //     لم يتم تسجيل البطاقة
+                //   </h2>
+                //   {/* <p className="w-full text- text-textGray2 text-center ">
+                //     يمكن الآن للطالب الدخول للمؤسسة
+                //   </p> */}
+                //   <div className="my-auto">
+                //     <WrongCardSvg />
+                //   </div>
+
+                //   <ButtonRoundedPrimary
+                //     onClick={close}
+                //     color="blue"
+                //     text={`العودة`}
+                //   />
+                // </motion.div>
                 <motion.div
                   transition={{ duration: 0.2, type: "just" }}
                   initial={{ x: 400 }}
@@ -79,20 +109,25 @@ export default function EmployeeEditCard({ employeeId }: EmployeeCardProps) {
                   className="flex flex-col gap-1 items-center h-full"
                 >
                   <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
-                    لم يتم تسجيل البطاقة
+                    تم تسجيل الموظف بنجاح
                   </h2>
-                  {/* <p className="w-full text- text-textGray2 text-center ">
-                    يمكن الآن للطالب الدخول للمؤسسة
-                  </p> */}
+                  <p className="w-full text- text-textGray2 text-center ">
+                    يمكن الآن للموظف الدخول للمؤسسة
+                  </p>
                   <div className="my-auto">
-                    <WrongCardSvg />
+                    <Check />
                   </div>
 
-                  <ButtonRoundedPrimary
-                    onClick={close}
-                    color="blue"
-                    text={`العودة`}
-                  />
+                  <Link
+                    to={`/employeemanagement`}
+                    className="w-[70%] flex justify-center items-center"
+                  >
+                    <ButtonRoundedPrimary
+                      onClick={close}
+                      color="blue"
+                      text={`العودة إلى قائمة المسجلين`}
+                    />
+                  </Link>
                 </motion.div>
               )}
             </AnimatePresence>

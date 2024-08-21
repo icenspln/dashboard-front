@@ -10,6 +10,10 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    webPreferences: {
+      webSecurity: false, // Add this line
+      // preload: path.join(__dirname, 'preload.js'),
+    },
     // webPreferences: {
     //   preload: path.join(__dirname, 'preload.js'),
     // },
@@ -21,7 +25,7 @@ function createWindow() {
 
   // Open the DevTools in development only
   // if (process.env.NODE_ENV === 'development') {
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
   // }
 }
 

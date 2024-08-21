@@ -1,4 +1,4 @@
-import React, { useState, useRef ,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PasswordInput from "./passwordInputField";
 import ConfirmButton from "../../components/confirmButton";
 import LogoUpload from "./handleLogoUpload";
@@ -6,6 +6,7 @@ import { Overlay } from "../../components/Overlay";
 import { useSettings, SettingsProvider } from "./core/SettingsContext";
 import CustomOverlay from "../../components/CustomOverlay";
 import { useNavigate } from "react-router-dom";
+import WrongCardSvg from "../../assets/icons/WrongCardSvg";
 
 export default function SettingManagment() {
   return (
@@ -35,6 +36,8 @@ function SettingScreen() {
   const [isRestoreOverlayVisible, setIsRestoreOverlayVisible] = useState(false);
   const [isConfirmOverlayVisible, setIsConfirmOverlayVisible] = useState(false);
 
+  const [fileErrorOverlay, setfileErrorOverlay] = useState(false);
+
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -55,15 +58,14 @@ function SettingScreen() {
   useEffect(() => {
     const handleEscapeKeyPress = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        
-        navigate("/studentmanagement"); 
+        navigate("/studentmanagement");
       }
     };
 
     window.addEventListener("keydown", handleEscapeKeyPress);
     return () => window.removeEventListener("keydown", handleEscapeKeyPress);
   }, [navigate]);
-  
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setSelectedFile(event.target.files[0]);
@@ -79,6 +81,8 @@ function SettingScreen() {
         setIsRestoreOverlayVisible(true);
       } catch (error) {
         setIsConfirmOverlayVisible(false);
+        setfileErrorOverlay(true);
+        console.log(fileErrorOverlay);
 
         console.error("Error restoring database:", error);
         // Optionally, you can set an error state to show an error message to the user
@@ -239,6 +243,48 @@ function SettingScreen() {
             setIsRestoreOverlayVisible(false);
           }}
         />
+      )}
+
+      {fileErrorOverlay && (
+        <Overlay>
+          <div className="flex flex-col items-center">
+            <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
+            ملف خاطئ            </h2>
+
+            <p className="w-full text- text-textGray2 text-center ">
+            الملف الذي تقوم برفعه خاطئ أو متلف، يرحى اختيار ملف صحيح            </p>
+            <div className="my-auto basis-1">
+              <WrongCardSvg />
+            </div>
+            <div className="my-3">
+            <button
+              onClick={() => setfileErrorOverlay(false)}
+              className="text-blue underline"
+            >
+              الغاء
+            </button>
+          </div>
+          </div>
+        </Overlay>
+
+        // <motion.div
+        //   transition={{ duration: 0.2, type: "just" }}
+        //   initial={{ x: 400 }}
+        //   animate={{ x: 0 }}
+        //   key={2}
+        //   className="flex flex-col gap-1 items-center h-full"
+        // >
+        //   <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
+        //     بطاقة خاطئة
+        //   </h2>
+
+        //   <p className="w-full text- text-textGray2 text-center ">
+        //     البطاقة التي قمت بتمريرها ملك للطالب أخر
+        //   </p>
+        //   <div className="my-auto basis-1">
+        //     <WrongCardSvg />
+        //   </div>
+        // </motion.div>
       )}
 
       {isConfirmOverlayVisible && (

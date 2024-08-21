@@ -21,7 +21,11 @@ export default function StudentCardEdit() {
     try {
       console.log(selectedStudent);
       setRfid(scannedRfid);
-      await UpdateCard(selectedStudent!._id, scannedRfid);
+      const response = await UpdateCard(selectedStudent!._id, scannedRfid);
+      if (!response.ok) {
+        throw new Error("Failed to update card");
+      }
+
       console.log("Card updated successfully");
       setModal(2); // Move to the success modal on success
     } catch (error) {
