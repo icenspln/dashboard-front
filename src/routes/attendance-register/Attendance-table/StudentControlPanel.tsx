@@ -2,7 +2,7 @@ import { StudentInfoTable } from "./studentInfoTable";
 import { StudentPaymentTable } from "./studentPaymentTable";
 import GroupList from "./groupList";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery , useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState, useRef } from "react";
 import { getStudentByCardId } from "./core/_requests";
 import { GetStudentByCardIdType } from "./core/_models";
@@ -13,6 +13,8 @@ export default function StudentControlPanel() {
   const [rfid, setRfid] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
 
   const [scanningCard, setScanningCard] = useState<string | null>(null);
 
@@ -57,6 +59,12 @@ export default function StudentControlPanel() {
       console.log("scanning");
       await refetch();
       navigate(`/attendancemanagement/card-${scannedRfid}`);
+
+
+      queryClient.invalidateQueries({
+        queryKey: ["getStudentByCardId"],
+      })
+
     } catch (error) {
       console.error("Error updating card:", error);
     }

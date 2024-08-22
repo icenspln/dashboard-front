@@ -22,6 +22,8 @@ export default function AttendanceManagement() {
     }
   };
 
+  
+
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === "Enter") {

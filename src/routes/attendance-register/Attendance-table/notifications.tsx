@@ -17,7 +17,6 @@ export default function Notifications({
 }: {
   studentInfo: GetStudentByCardIdType;
 }) {
-  console.log("studentinfo inside notification", studentInfo);
   const queryClient = useQueryClient();
   // const [notifications, setNotifications] = useState<Notification[]>([]);
   const [inputValue, setInputValue] = useState("");
