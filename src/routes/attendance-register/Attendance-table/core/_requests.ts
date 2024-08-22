@@ -15,13 +15,17 @@ export function getStudentByCardId(userId: string | null, scanningCardId: string
     requestBody.scanningCardId = scanningCardId;
   }
 
-  console.log("in reuqest ", requestBody)
+  console.log("in request ", requestBody);
 
   return AxiosInstance.post("/student/scan", requestBody).then((res) => {
-    return {
-      data: res.data,
-      status: res.status,  // Include status code in the response
-    };
+    if (res.status === 200) {
+      return {
+        data: res.data,
+        status: res.status,
+      };
+    } else {
+      throw new Error(`Request failed with status code ${res.status}`);
+    }
   });
 }
 export function submitPayment({

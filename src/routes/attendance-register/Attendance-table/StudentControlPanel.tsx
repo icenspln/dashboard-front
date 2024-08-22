@@ -7,7 +7,6 @@ import { useEffect, useState, useRef } from "react";
 import { getStudentByCardId } from "./core/_requests";
 import { GetStudentByCardIdType } from "./core/_models";
 import Notifications from "./notifications";
-import { motion } from "framer-motion"
 import { useNavigate } from "react-router-dom";
 
 export default function StudentControlPanel() {
@@ -19,7 +18,6 @@ export default function StudentControlPanel() {
 
   const { id } = useParams();
   const [studentInfo, setStudentInfo] = useState<GetStudentByCardIdType>();
-  const [status, setStatus] = useState<number | null>(null);
   const isUserId = id && id.startsWith("user-"); // Example logic to differentiate
   const isScanningCardId = id && id.startsWith("card-");
 
@@ -32,14 +30,22 @@ export default function StudentControlPanel() {
     queryKey: ["getStudentByCardId"],
     queryFn: () => getStudentByCardId(userId, scanningCard),
     enabled: !!userId || !!scanningCard,
+    retry: false,
   });
 
+
+
   useEffect(() => {
-    console.log("use effect");
+    console.log("use effect data");
     if (data) {
       console.log("refetch");
-      setStatus(data.status);
-      if (data.status === 200) setStudentInfo(data.data);
+      if (data.status === 200) {
+        setStudentInfo(data.data);
+      }
+    } else if (error) {
+      console.error("Error fetching student data:", error);
+      // setStatus();
+      // setStudentInfo(null);0010589654
     }
   }, [data, isPending, error, refetch]);
 
@@ -97,25 +103,8 @@ export default function StudentControlPanel() {
         </h1>
       </div>
     );
-  if (status === 201) {
-    return (
-      <motion.div
-        transition={{ duration: 0.2, type: "just" }}
-        initial={{ x: 400 }}
-        animate={{ x: 0 }}
-        key={2}
-        className="flex flex-col gap-1 items-center h-full"
-      >
-        <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
-          تم تسجيل الموظف بنجاح بنجاح{" "}
-        </h2>
-        <p className="w-full text-textGray2 text-center">
-          يمكنك تفقد تواريخ التسجيل في صفحة الموظف{" "}
-        </p>
-        <div className="my-auto">{/* <Check /> */}</div>
-      </motion.div>
-    );
-  } else if (studentInfo && !error)
+
+  if (studentInfo  && !error ) {
     return (
       <div className="flex  gap-[25px] p-4 py-8 min-h-screen">
         <div className="w-full min-h-full flex flex-col gap-3 items-stretch justify-start">
@@ -131,4 +120,4 @@ export default function StudentControlPanel() {
         </div>
       </div>
     );
-}
+}}
