@@ -42,8 +42,10 @@ export default function EmployeeEditCard({ employeeId }: EmployeeCardProps) {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === "Enter") {
         // When Enter is pressed, use the scanned RFID value
-        handleRfidScan(rfid);
-        setRfid(""); // Clear the input after processing
+        if (rfid.length === 10) {
+          console.log(rfid);
+          handleRfidScan(rfid);
+        }        setRfid(""); // Clear the input after processing
       } else {
         // Accumulate RFID characters as they are typed
         setRfid((prevRfid) => prevRfid + event.key);

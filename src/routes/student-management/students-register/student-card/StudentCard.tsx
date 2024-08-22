@@ -35,8 +35,10 @@ export default function StudentCard({ studentId }: StudentCardProps) {
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === "Enter") {
-        // When Enter is pressed, use the scanned RFID value
-        handleRfidScan(rfid);
+        if (rfid.length === 10) {
+          console.log(rfid);
+          handleRfidScan(rfid);
+        }
         setRfid(""); // Clear the input after processing
       } else {
         // Accumulate RFID characters as they are typed

@@ -61,14 +61,15 @@ export default function StudentControlPanel() {
       console.error("Error updating card:", error);
     }
   };
+  
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === "Enter") {
-        // When Enter is pressed, use the scanned RFID value
-        console.log(rfid);
-
-        handleRfidScan(rfid);
+        if (rfid.length === 10) {
+          console.log(rfid);
+          handleRfidScan(rfid);
+        }
         setRfid("");
       } else {
         // Accumulate RFID characters as they are typed
@@ -76,6 +77,8 @@ export default function StudentControlPanel() {
       }
     };
 
+
+   
     if (inputRef.current) {
       inputRef.current.focus(); // Focus the hidden input field
     }

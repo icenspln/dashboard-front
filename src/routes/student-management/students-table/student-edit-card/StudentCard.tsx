@@ -21,10 +21,10 @@ export default function StudentCardEdit() {
     try {
       console.log(selectedStudent);
       setRfid(scannedRfid);
-      const response = await UpdateCard(selectedStudent!._id, scannedRfid);
-      if (!response.ok) {
-        throw new Error("Failed to update card");
-      }
+     const response =  await UpdateCard(selectedStudent!._id, scannedRfid);
+     if (!response.ok) {
+      throw new Error('Failed to update card');
+    }
 
       console.log("Card updated successfully");
       setModal(2); // Move to the success modal on success
@@ -38,8 +38,10 @@ export default function StudentCardEdit() {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === "Enter") {
         // When Enter is pressed, use the scanned RFID value
-        handleRfidScan(rfid);
-        setRfid(""); // Clear the input after processing
+        if (rfid.length === 10) {
+          console.log(rfid);
+          handleRfidScan(rfid);
+        }        setRfid(""); // Clear the input after processing
       } else {
         // Accumulate RFID characters as they are typed
         setRfid((prevRfid) => prevRfid + event.key);

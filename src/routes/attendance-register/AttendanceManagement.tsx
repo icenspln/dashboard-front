@@ -26,9 +26,10 @@ export default function AttendanceManagement() {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === "Enter") {
         // When Enter is pressed, use the scanned RFID value
-        console.log(rfid);
-
-        handleRfidScan(rfid);
+        if (rfid.length === 10) {
+          console.log(rfid);
+          handleRfidScan(rfid);
+        }
         setRfid(""); // Clear the input after processing
       } else {
         // Accumulate RFID characters as they are typed

@@ -34,7 +34,10 @@ export default function EmployeeCard({ employeeId }: EmployeeCardProps) {
         // When Enter is pressed, use the scanned RFID value
         console.log(rfid);
 
-        handleRfidScan(rfid);
+        if (rfid.length === 10) {
+          console.log(rfid);
+          handleRfidScan(rfid);
+        }
         setRfid(""); // Clear the input after processing
       } else {
         // Accumulate RFID characters as they are typed
