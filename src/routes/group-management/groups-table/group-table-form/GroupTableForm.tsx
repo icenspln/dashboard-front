@@ -1,81 +1,81 @@
-import { useContext } from "react";
+import { useContext } from "react"
 import {
-  dayOfWeekFilterOptions,
-  institutionFilterOptions,
-  levelFilterOptions,
-} from "../core/_models";
-import { GroupsTableContext } from "../core/GroupsTableContext";
-import { FilterButton } from "../../../../components/ButtonFilter";
-import { modules } from "../../../../handlers/returnInArabic";
+    dayOfWeekFilterOptions,
+    institutionFilterOptions,
+    levelFilterOptions,
+} from "../core/_models"
+import { GroupsTableContext } from "../core/GroupsTableContext"
+import { FilterButton } from "../../../../components/ButtonFilter"
+import { modules } from "../../../../handlers/returnInArabic"
 
 export function GroupTableForm() {
-  const { setFilterState, filterState } = useContext(GroupsTableContext);
+    const { setFilterState, filterState } = useContext(GroupsTableContext)
 
-  const updateLevelFilter = (selectedOptions: any) => {
-    setFilterState((prev: any) => ({
-      ...prev,
-      level: selectedOptions.map((opt: any) => opt.id),
-    }));
-  };
-  const updateInstitutionFilter = (selectedOptions: any) => {
-    setFilterState((prev: any) => ({
-      ...prev,
-      institution: selectedOptions.map((opt: any) => opt.id),
-    }));
-  };
-  const updateModulesFilter = (selectedOptions: any) => {
-    setFilterState((prev: any) => ({
-      ...prev,
-      modules: selectedOptions.map((opt: any) => opt.id),
-    }));
-  };
-  const updateDayFilter = (selectedOptions: any) => {
-    setFilterState((prev: any) => ({
-      ...prev,
-      dayOfWeek: selectedOptions.map((opt: any) => opt.id),
-    }));
-  };
-  return (
-    <>
-      <div className="flex items-center rounded border-2 border-gray bg-white  min-w-[241px] h-[32px]">
-        <input
-          onChange={(e: any) =>
-            setFilterState((prev: any) => ({
-              ...prev,
-              searchBar: e.target.value,
-            }))
-          }
-          value={filterState.searchBar}
-          className="appearance-none bg-transparent  border-none w-full text-gray-700 mr-3 px-3 py-2  leading-tight focus:outline-none"
-          type="text"
-          placeholder="البحث في القائمة"
-        />
-      </div>
-      {/* <InstitutionFilter /> */}
-      {/* <LevelFilter /> */}
-      <FilterButton
-        label="السنة"
-        options={levelFilterOptions}
-        setFilterState={updateLevelFilter}
-      />
-      <FilterButton
-        label="المستوى"
-        options={institutionFilterOptions}
-        setFilterState={updateInstitutionFilter}
-      />
-      <FilterButton
-        label="المادة"
-        options={modules}
-        setFilterState={updateModulesFilter}
-      />
-      <FilterButton
-        label="اليوم"
-        options={dayOfWeekFilterOptions}
-        setFilterState={updateDayFilter}
-      />
-      {/* <ColumnSelection options={ColumnSelectionOptions} /> */}
-    </>
-  );
+    const updateLevelFilter = (selectedOptions: any) => {
+        setFilterState((prev: any) => ({
+            ...prev,
+            level: selectedOptions.map((opt: any) => opt.id),
+        }))
+    }
+    const updateInstitutionFilter = (selectedOptions: any) => {
+        setFilterState((prev: any) => ({
+            ...prev,
+            institution: selectedOptions.map((opt: any) => opt.id),
+        }))
+    }
+    const updateModulesFilter = (selectedOptions: any) => {
+        setFilterState((prev: any) => ({
+            ...prev,
+            modules: selectedOptions.map((opt: any) => opt.id),
+        }))
+    }
+    const updateDayFilter = (selectedOptions: any) => {
+        setFilterState((prev: any) => ({
+            ...prev,
+            dayOfWeek: selectedOptions.map((opt: any) => opt.id),
+        }))
+    }
+    return (
+        <>
+            <div className="flex items-center rounded border-2 border-gray bg-white  min-w-[241px] h-[32px]">
+                <input
+                    onChange={(e: any) =>
+                        setFilterState((prev: any) => ({
+                            ...prev,
+                            searchBar: e.target.value,
+                        }))
+                    }
+                    value={filterState.searchBar}
+                    className="appearance-none bg-transparent  border-none w-full text-gray-700 mr-3 px-3 py-2  leading-tight focus:outline-none"
+                    type="text"
+                    placeholder="البحث في القائمة"
+                />
+            </div>
+            {/* <InstitutionFilter /> */}
+            {/* <LevelFilter /> */}
+            <FilterButton
+                label="السنة"
+                options={levelFilterOptions}
+                setFilterState={updateLevelFilter}
+            />
+            <FilterButton
+                label="المستوى"
+                options={institutionFilterOptions}
+                setFilterState={updateInstitutionFilter}
+            />
+            <FilterButton
+                label="المادة"
+                options={modules}
+                setFilterState={updateModulesFilter}
+            />
+            <FilterButton
+                label="اليوم"
+                options={dayOfWeekFilterOptions}
+                setFilterState={updateDayFilter}
+            />
+            {/* <ColumnSelection options={ColumnSelectionOptions} /> */}
+        </>
+    )
 }
 
 // const InstitutionFilter = () => {
@@ -111,7 +111,7 @@ export function GroupTableForm() {
 //         className="bg-white flex items-center gap-[8px] w-[120px] h-[32px] px-4 py-2 border border-dashed border-gray-300 rounded-md shadow-sm hover:bg-gray-100"
 //       >
 //         <PlusSvg />
-//         <span className="text-gray-700">المؤسسة</span>
+//         <span className="text-gray-700">الطور</span>
 //       </button>
 
 //       {isOpen && (
