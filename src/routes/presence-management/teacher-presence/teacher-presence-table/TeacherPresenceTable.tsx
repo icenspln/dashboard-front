@@ -10,6 +10,7 @@ import { AttendanceForTeacherGroupType } from "./core/_models";
 //   returnLevelInAR,
 //   returnTimeString,
 // } from "../../../../handlers/returnInArabic";
+import NoteSvg from "../../../../assets/icons/NoteSvg";
 import { StudentPresentButton } from "../../../../components/isPresentButton";
 import { teacherpresenceTableContext } from "./core/TeacherPresenceTableContext";
 import { PricingButton } from "../../../../components/PricingButtonEdit";
@@ -100,8 +101,36 @@ export function TeacherPresenceListsTable() {
                         </td>
 
                         <td className="w-[200px] p-2 text-start flex gap-1">
-                          {std.student.firstName + " " + std.student.lastName ||
-                            "N/A"}
+                        
+                        <div className="group flex items-center gap-[10px]">
+
+                          
+                          
+                          <span className="relative">
+                            <NoteSvg/>
+                            </span>
+                            <div className="w-[629px] flex hidden group-hover:block absolute bg-white p-2 border rounded shadow-md ">
+                             <div className="flex border-t gap-[15px] py-2" >
+                              <p>12-08-2024 / 15:08</p>
+                              <p>لم يتم دفع الرسوم الدراسية لهذا الشهر بعد، يرجى التذكير.</p>
+                              </div>
+                              <div className="flex border-t gap-[15px] py-2" >
+                              <p>12-08-2024 / 15:08</p>
+                              <p>لم يتم دفع الرسوم الدراسية لهذا الشهر بعد، يرجى التذكير.</p>
+                              </div>
+                              <div className="flex border-t gap-[15px] py-2" >
+                              <p>12-08-2024 / 15:08</p>
+                              <p>لم يتم دفع الرسوم الدراسية لهذا الشهر بعد، يرجى التذكير.</p>
+                              </div>
+                              <div className="flex border-t gap-[15px] py-2" >
+                              <p>12-08-2024 / 15:08</p>
+                              <p>لم يتم دفع الرسوم الدراسية لهذا الشهر بعد، يرجى التذكير.</p>
+                              </div>
+                           </div>
+                            {std.student.firstName + " " + std.student.lastName ||
+                              "N/A"}
+                        </div>
+                            
                         </td>
 
                         <td className="p-2 w-[200px] text-start underline">
