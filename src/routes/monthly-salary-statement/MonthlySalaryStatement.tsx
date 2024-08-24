@@ -7,6 +7,7 @@ import {
     View,
     StyleSheet,
     Font,
+    Image
 } from "@react-pdf/renderer"
 
 import { PDFViewer } from "@react-pdf/renderer"
@@ -15,6 +16,7 @@ import { GlobalContext } from "../../GlobalContext"
 import { Teacher } from "../teacher-management/teacher-table/core/_models"
 import { AttendanceForTeacherGroupType } from "../presence-management/teacher-presence/teacher-presence-table/core/_models"
 import amiri from "../../assets/fonts/Amiri-Regular.ttf"
+import {SettingsProvider, useSettings } from "../settings/core/SettingsContext"
 
 Font.register({
     family: "Amiri",
@@ -69,6 +71,13 @@ const styles = StyleSheet.create({
         fontSize: 14,
         textAlign: "center",
     },
+    logoStyle: {
+        width:70,
+        height:70,
+        left:260,
+        marginBottom:10
+        
+    }
 })
 
 export function MonthlySalaryStatement({
@@ -90,12 +99,16 @@ export function MonthlySalaryStatement({
             }, 0)
         )
     }, 0)
+    const {logoUrl} = useSettings()
     return (
         <Document>
             <Page size="A4" style={styles.page}>
+                
                 <View>
                     <Text style={styles.header}>كشف الراتب لشهر ديسمبر</Text>
+                    
                 </View>
+                <Image style={styles.logoStyle} src={logoUrl}/>
                 <View style={styles.subHeader}>
                     <Text style={styles.subHeaderText}>:الأستاذ</Text>
                     <Text style={styles.subHeaderText}>
@@ -127,11 +140,13 @@ export function PdfViewTest() {
     return (
         <div style={{ width: "100%", height: "100vh" }}>
             <PDFViewer style={{ width: "1000px", height: "100%" }}>
+                <SettingsProvider>
                 <MonthlySalaryStatement
                     date={date as { month: number; year: number }}
                     teacher={teacher as Teacher}
                     groups={groups}
                 />
+                </SettingsProvider>
             </PDFViewer>
             <Link to="/monthlysalarystatement"></Link>
         </div>
