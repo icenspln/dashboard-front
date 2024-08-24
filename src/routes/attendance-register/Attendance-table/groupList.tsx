@@ -31,7 +31,7 @@ export default function GroupList({
               </div>
               <div className="flex gap-[8px]">
                 {/* <StudentPresentButton  /> */}
-                <div className="max-w-full">
+                <div className="max-w-full w-[90px]">
                   <StudentPresentButton
                     att={{
                       date: new Date().toISOString(),
