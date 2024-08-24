@@ -17,14 +17,18 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: "space-between",
+        gap:"25px",
+        marginRight:50
     },
     table: {
         display: "flex",
-        // width: "48%",
+       
+        width: "40vw",
 
         borderRightWidth: 0,
         borderBottomWidth: 0,
         marginBottom: 10,
+        
     },
 })
 
