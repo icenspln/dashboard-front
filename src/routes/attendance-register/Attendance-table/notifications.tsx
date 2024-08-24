@@ -74,7 +74,7 @@ export default function Notifications({
 
   if (notes)
     return (
-      <div className="h-full border border-gray-200 rounded-lg shadow-sm p-4 flex flex-col justify-between">
+      <div className="h-[700px] overflow-auto border border-gray-200 rounded-lg shadow-sm p-4 flex flex-col justify-between">
         <div className="flex flex-col gap-2 overflow-y-auto h-auto max-h-[807px]">
           {notes.map((notification) => (
             <div key={notification._id}>
