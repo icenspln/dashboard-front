@@ -1,5 +1,6 @@
 import { Group } from "../../../../group-management/groups-table/core/_models";
 import { Teacher } from "../../../../teacher-management/teacher-table/core/_models";
+import {Note} from "../../../../attendance-register/Attendance-table/core/_models";
 import {
   Attendees,
   FullStudent,
@@ -26,7 +27,7 @@ export type AttendanceForTeacherGroupType = {
   }[];
   group: Group;
   alldays: string[];
-  students: { student: FullStudent; attendance: Attendance[] }[];
+  students: { student: FullStudent; attendance: Attendance[] , notes : Note[] }[];
 };
 
 export type SetAttendanceForStudentType = {
