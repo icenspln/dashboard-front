@@ -125,7 +125,7 @@ export function TeacherPresenceListsTable() {
                                                         <span className="relative">
                                                             <NoteSvg />
                                                         </span>
-                                                        <div className="w-[629px] flex hidden group-hover:block absolute bg-white p-2 border rounded shadow-md ">
+                                                        <div className="w-[629px] max-h-[200px] overflow-auto flex hidden group-hover:block absolute bg-white p-2 border rounded shadow-md ">
                                                             {std.notes.map(
                                                                 (note) => (
                                                                     <div
