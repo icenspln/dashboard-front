@@ -49,9 +49,11 @@ const styles = StyleSheet.create({
     subHeader: {
         flexDirection: "row-reverse",
         justifyContent: "space-around",
+        marginBottom:5
     },
     subHeaderText: {
         textAlign: "center",
+      
     },
     monthlyPaymentContainer: {
         display: "flex",
@@ -72,10 +74,9 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     logoStyle: {
-        width:70,
-        height:70,
-        left:260,
-        marginBottom:10
+        width:40,
+        height:40,
+        margin:5
         
     }
 })
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
 export function MonthlySalaryStatement({
     teacher,
     groups,
-    // date,
+    date,
 }: {
     teacher: Teacher
     groups: AttendanceForTeacherGroupType[]
@@ -103,19 +104,19 @@ export function MonthlySalaryStatement({
     return (
         <Document>
             <Page size="A4" style={styles.page}>
-                
+            <Image style={styles.logoStyle} src={logoUrl}/>
                 <View>
-                    <Text style={styles.header}>كشف الراتب لشهر ديسمبر</Text>
+               
+                    <Text style={styles.header}>كشف الراتب لشهر {date.month} سنة {date.year}</Text>
                     
                 </View>
-                <Image style={styles.logoStyle} src={logoUrl}/>
+                
                 <View style={styles.subHeader}>
-                    <Text style={styles.subHeaderText}>:الأستاذ</Text>
-                    <Text style={styles.subHeaderText}>
-                        {teacher.firstName} {teacher.lastName}
-                    </Text>
+                    
+                    <Text style={styles.subHeaderText}> الأستاذ: {teacher.firstName} {teacher.lastName}</Text>
                     <Text style={styles.subHeaderText}>:المادة</Text>
                     <Text style={styles.subHeaderText}>:السنة</Text>
+                    
                 </View>
 
                 <View style={styles.section}>
