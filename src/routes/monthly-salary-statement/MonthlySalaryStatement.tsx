@@ -100,6 +100,8 @@ export function MonthlySalaryStatement({
             }, 0)
         )
     }, 0)
+   
+    
     const {logoUrl} = useSettings()
     return (
         <Document>
@@ -114,8 +116,8 @@ export function MonthlySalaryStatement({
                 <View style={styles.subHeader}>
                     
                     <Text style={styles.subHeaderText}> الأستاذ: {teacher.firstName} {teacher.lastName}</Text>
-                    <Text style={styles.subHeaderText}>:المادة</Text>
-                    <Text style={styles.subHeaderText}>:السنة</Text>
+                    <Text key={teacher._id} style={styles.subHeaderText}> المادة: {teacher.modules.join("،")}</Text>
+                    
                     
                 </View>
 
