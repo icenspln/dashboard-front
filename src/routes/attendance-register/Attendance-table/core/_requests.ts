@@ -17,9 +17,12 @@ export function getStudentByCardId(userId: string | null, scanningCardId: string
 
   console.log("in reuqest ", requestBody)
 
-  return AxiosInstance.post("/student/scan", requestBody).then(
-    (res) => res.data
-  );
+  return AxiosInstance.post("/student/scan", requestBody).then((res) => {
+    return {
+      data: res.data,
+      status: res.status,  // Include status code in the response
+    };
+  });
 }
 export function submitPayment({
   studentId,
