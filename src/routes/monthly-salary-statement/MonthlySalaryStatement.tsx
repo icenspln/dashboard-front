@@ -82,7 +82,7 @@ export function MonthlySalaryStatement(){
                         <Text style={styles.header}>كشف الراتب لشهر ديسمبر</Text>
                     </View>
                     <View style={styles.subHeader}>
-                        <Text style={styles.subHeaderText}> :الأستاذ</Text>
+                        <Text style={styles.subHeaderText}>{teacher.firstName} :الأستاذ</Text>
                         <Text style={styles.subHeaderText}>:المادة</Text>
                         <Text style={styles.subHeaderText}>:السنة</Text>
                     </View>
