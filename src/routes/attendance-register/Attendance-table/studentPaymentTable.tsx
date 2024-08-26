@@ -9,6 +9,7 @@ import {
 import { useState } from "react"
 import toast from "react-hot-toast"
 import { PricingButton } from "../../../components/PricingButtonEdit"
+import { useNavigate } from "react-router-dom"
 
 export function StudentPaymentTable({
     studentInfo,
@@ -17,17 +18,25 @@ export function StudentPaymentTable({
 }) {
     const queryClient = useQueryClient()
     const [paymentAmount, setPaymentAmount] = useState<string>("")
+    const navigate = useNavigate()
 
     //payment
     const paymentMutation = useMutation({
         mutationKey: ["paymentMutation"],
         mutationFn: (data: { studentId: string; amount: number }) =>
             submitPayment(data),
-        onSuccess: () => {
+        onSuccess: (data, variables) => {
             toast.success("تم تسجيل الدفع")
             setPaymentAmount("")
             queryClient.invalidateQueries({
                 queryKey: ["getStudentByCardId"],
+            })
+
+            navigate("/receiptprint", {
+                state: {
+                    studentInfo: studentInfo,
+                    paymentAmount: variables.amount,
+                },
             })
         },
         onError: (err: any) => {
