@@ -1,4 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GetStudentByCardIdType } from "../attendance-register/Attendance-table/core/_models";
 import {
   returnInstitutionInAR,
@@ -9,18 +10,16 @@ import { useSettings } from "../settings/core/SettingsContext";
 
 export default function ReceiptPrintManagement() {
   const location = useLocation();
+  const navigate = useNavigate();  // Initialize useNavigate for navigation
   const { studentInfo, paymentAmount } = location.state as {
     studentInfo: GetStudentByCardIdType;
     paymentAmount: number;
   };
 
-  const {
-    appName,
-    logoUrl
-
-  } = useSettings();
+  const { appName, logoUrl } = useSettings();
 
   console.log(studentInfo, paymentAmount);
+
   const handlePrint = () => {
     const printContent = document.getElementById('print-section')?.innerHTML;
 
@@ -44,13 +43,12 @@ export default function ReceiptPrintManagement() {
                   }
                 }
                 img {
-                  width:70;
-                  height:70;
-                  
+                  width: 70px;
+                  height: 70px;
                 }
-                .logo-school{
-                  display:flex;
-                  justify-content:space-between;               
+                .logo-school {
+                  display: flex;
+                  justify-content: space-between;               
                 }    
                 h1 {
                   font-size: 22px;
@@ -75,31 +73,46 @@ export default function ReceiptPrintManagement() {
                 }
               </style>
             </head>
-            <body onload="window.print(); window.close();">
+            <body onload="window.print(); window.onafterprint = closePrintWindow;">
               <div class="content">
                 <div class="date">${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}</div>
                 <div>${printContent}</div>
               </div>
+              <script>
+                function closePrintWindow() {
+                  window.close();
+                }
+              </script>
             </body>
           </html>
         `);
         printWindow.document.close();
+
+        
+        printWindow.onafterprint = () => {
+          printWindow.close();
+          navigate(-1);  
+        };
       }
     }
   };
+
+  useEffect(() => {
+    handlePrint();
+  }, []);
+
   return (
-    <div className="p-4">
-      <div id="print-section" className="w-[72mm] mx-auto bg-white p-4">
-        <div className='logo-school'>
-          <img src={logoUrl} />
-          <h2>{appName}</h2>
+    <div className="p-4 flex flex-col justify-center">
+      <div id="print-section" className="bg-white p-4">
+        <div className="logo-school flex flex-col justify-center">
+          <img className="w-[50px]" src={logoUrl} alt="Logo" />
+          <h2 className="text-2xl">{appName}</h2>
         </div>
         <h1 className="text-lg font-bold text-center">وصل الدفع</h1>
         <div key={studentInfo.student._id} className="mt-4">
-          <p className="text-2xl">الإسم: {studentInfo.student.firstName} </p>
+          <p className="text-2xl">الإسم: {studentInfo.student.firstName}</p>
           <p className="text-2xl">اللقب: {studentInfo.student.lastName}</p>
           <p className="text-2xl">الطور: {returnInstitutionInAR(studentInfo.student.institution)}</p>
-
           <p className="text-2xl">المستوى: {returnLevelInAR(studentInfo.student.level)}</p>
           <p className="text-2xl">
             المواد: 
@@ -116,20 +129,18 @@ export default function ReceiptPrintManagement() {
                 {index < studentInfo.otherGroups.length - 1 && " + "}
               </span>
             ))}
-          </p>          <p className="text-2xl">الثمن الذي تم دفعه:  {studentInfo.totalPaidThisMonth}</p>
-          <p className="text-2xl">الباقي: {studentInfo.totalOutstandingBalance +
-                                studentInfo.totalDebts}</p>
+          </p>
+          <p className="text-2xl">الثمن الذي تم دفعه: {studentInfo.totalPaidThisMonth}</p>
+          <p className="text-2xl">الباقي: {studentInfo.totalOutstandingBalance + studentInfo.totalDebts}</p>
         </div>
       </div>
       <button
-        className="mt-6 px-4 py-2 bg-blue-500 text-green rounded"
+        className="mt-6 px-4 py-2 bg-blue text-white rounded-md hover:bg-white hover:text-blue outline hover:outline-blue-500"
         onClick={handlePrint}
       >
-        Print this receipt
+        طباعة الوصل
       </button>
-      <Link to={'/receiptprint'}/>
+      <Link to={'/receiptprint'}></Link>
     </div>
   );
-};
-
-
+}
