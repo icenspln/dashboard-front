@@ -116,7 +116,7 @@ export function MonthlySalaryStatement({
                 <View style={styles.subHeader}>
                     
                     <Text style={styles.subHeaderText}> الأستاذ: {teacher.firstName} {teacher.lastName}</Text>
-                    <Text style={styles.subHeaderText}> المادة: {teacher.modules.join("،")}</Text>
+                    {/* <Text style={styles.subHeaderText}> المادة: {teacher.modules.join("،")}</Text> */}
                     
                     
                 </View>
