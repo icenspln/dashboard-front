@@ -44,7 +44,7 @@ function generateTables(groups: AttendanceForTeacherGroupType[]) {
         tables.push(
             <View style={styles.table} key={index}>
                 {/* Pass the alldays array to the TableHeader */}
-                <TableHeader alldays={group.alldays} />
+                <TableHeader group={group} alldays={group.alldays} />
                 <TableRows group={group} />
             </View>
         )

@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "@react-pdf/renderer";
-
+import { returnGroupLabelWithoutTeacher } from "../../../../handlers/returnInArabic";
+import { AttendanceForTeacherGroupType } from "../../../presence-management/teacher-presence/teacher-presence-table/core/_models";
 const styles = StyleSheet.create({
   tableRow: {
     flexDirection: "row-reverse",
@@ -22,9 +23,14 @@ const styles = StyleSheet.create({
 });
 interface TableHeaderProps {
   alldays: string[]; // Prop to receive allDays array
+  group: AttendanceForTeacherGroupType
 }
-export default function TableHeader({ alldays }: TableHeaderProps) {
+export default function TableHeader({ alldays, group }: TableHeaderProps) {
   return (
+    <>
+    <View style={styles.tableRow}  >
+      <Text style={styles.tableCellHeader}> {returnGroupLabelWithoutTeacher(group.group as any)}</Text>
+    </View>
     <View style={styles.tableRow}>
       <View style={styles.tableColHeader}>
         <Text style={styles.tableCellHeader}>الفوج الأول</Text>
@@ -38,5 +44,6 @@ export default function TableHeader({ alldays }: TableHeaderProps) {
         <Text style={styles.tableCellHeader}>الدفع الشهري</Text>
       </View>
     </View>
+    </>
   );
 }
