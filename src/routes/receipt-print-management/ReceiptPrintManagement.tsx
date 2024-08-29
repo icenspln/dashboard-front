@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { GetStudentByCardIdType } from "../attendance-register/Attendance-table/core/_models";
 import {
   returnInstitutionInAR,
@@ -10,7 +10,6 @@ import { useSettings } from "../settings/core/SettingsContext";
 
 export default function ReceiptPrintManagement() {
   const location = useLocation();
-  const navigate = useNavigate();
   const { studentInfo, paymentAmount , totalToPay } = location.state as {
     studentInfo: GetStudentByCardIdType;
     paymentAmount: number;
@@ -90,10 +89,10 @@ export default function ReceiptPrintManagement() {
           `);
           printWindow.document.close();
 
-          printWindow.onafterprint = () => {
-            printWindow.close();
-            navigate(-1);
-          };
+          // printWindow.onafterprint = () => {
+          //   printWindow.close();
+          //   navigate(-1);
+          // };
         }
       
     }

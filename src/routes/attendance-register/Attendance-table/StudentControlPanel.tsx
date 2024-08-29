@@ -13,6 +13,7 @@ export default function StudentControlPanel() {
   const [rfid, setRfid] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const [status, setStatus] = useState<number | null>(null);
 
   const queryClient = useQueryClient();
 
@@ -40,6 +41,8 @@ export default function StudentControlPanel() {
   useEffect(() => {
     console.log("use effect data");
     if (data) {
+      setStatus(data.status);
+
       console.log("refetch");
       if (data.status === 200) {
         setStudentInfo(data.data);
@@ -116,7 +119,19 @@ export default function StudentControlPanel() {
       </div>
     );
 
-  if (studentInfo  && !error ) {
+    if (status === 201) {
+      return (
+        <div>
+          <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
+            تم تسجيل الموظف بنجاح بنجاح{" "}
+          </h2>
+          <p className="w-full text-textGray2 text-center">
+            يمكنك تفقد تواريخ التسجيل في صفحة الموظف{" "}
+          </p>
+          <div className="my-auto">{/* <Check /> */}</div>
+          </div>
+      )
+    } else  if (studentInfo  && !error ) {
     return (
       <div className="flex  gap-[25px] p-4 py-8 min-h-screen">
         <div className="w-full min-h-full flex flex-col gap-3 items-stretch justify-start">
