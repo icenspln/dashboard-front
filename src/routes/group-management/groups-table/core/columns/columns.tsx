@@ -4,6 +4,8 @@ import SettingsCell from "./SettingsCell";
 import {
   returnInstitutionInAR,
   returnLevelInAR,
+  returnDayInAR,
+
 } from "../../../../../handlers/returnInArabic";
 
 
@@ -17,7 +19,7 @@ export const defaultColumns = [
   }),
   columnHelper.accessor("dayOfWeek", {
     header: "اليوم",
-    cell: (info) => info.getValue(),
+    cell: (info) => returnDayInAR(info.getValue()),
   }),
   columnHelper.accessor("timing", {
     header: "الوقت",
