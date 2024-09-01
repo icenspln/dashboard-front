@@ -23,6 +23,7 @@ export default function GroupRegisterForm() {
         register,
         handleSubmit,
         setValue,
+        watch,
         formState: { errors, isSubmitting },
     } = useForm<GroupRegisterFormType>({
         resolver: yupResolver(TypeRegisterSchema),
@@ -220,7 +221,13 @@ export default function GroupRegisterForm() {
                             <option value="1">الأولى</option>
                             <option value="2">الثانية</option>
                             <option value="3">الثالثة</option>
-                            <option value="4">الرابعة</option>
+                            {/* <option value="4">الرابعة</option> */}
+                            {watch("institution") != "highSchool" && (
+                                <option value={4}>الرابعة</option>
+                            )}
+                            {watch("institution") == "primarySchool" && (
+                                <option value={5}>الخامسة</option>
+                            )}
                         </select>
                         {errors.level && (
                             <span className="text-red-500">
