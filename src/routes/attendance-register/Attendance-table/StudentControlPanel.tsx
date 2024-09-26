@@ -57,13 +57,14 @@ export default function StudentControlPanel() {
       setScanningCard(scannedRfid);
       console.log(scannedRfid);
       console.log("scanning");
-      await refetch();
-      navigate(`/attendancemanagement/card-${scannedRfid}`);
-
-
+      // await refetch();
       queryClient.invalidateQueries({
         queryKey: ["getStudentByCardId"],
       })
+      navigate(`/attendancemanagement/card-${scannedRfid}`);
+
+
+ 
 
     } catch (error) {
       console.error("Error updating card:", error);
