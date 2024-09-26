@@ -29,7 +29,9 @@ const styles = StyleSheet.create({
     margin: 3,
     padding: 3,
     flexGrow: 1,
-    textAlign: "center",
+    textAlign: "right",
+    alignSelf: 'flex-end',  // Align each table to the right
+    marginBottom: 10,
   },
   header: {
     margin: 3,
@@ -69,12 +71,22 @@ const styles = StyleSheet.create({
 
 export function MonthlySalaryStatement({
   teacher,
-  // groups,
+  groups,
 }: {
   teacher: Teacher;
   groups: AttendanceForTeacherGroupType[];
 }) {
-  console.log(teacher);
+  // console.log(teacher);
+  console.log(groups)
+  const totalPayment = groups.reduce((total, group) => {
+    return (
+      total +
+      group.students.reduce((groupTotal, student) => {
+        const paidAmount = student.student.groupFinancials?.groupPaidAmount ?? 0;
+        return groupTotal + paidAmount;
+      }, 0)
+    );
+  }, 0);
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -83,18 +95,18 @@ export function MonthlySalaryStatement({
         </View>
         <View style={styles.subHeader}>
           <Text style={styles.subHeaderText}>:الأستاذ</Text>
-          <Text style={styles.subHeaderText}>{teacher.firstName}</Text>
+          <Text style={styles.subHeaderText}>{teacher.firstName} {teacher.lastName}</Text>
           <Text style={styles.subHeaderText}>:المادة</Text>
           <Text style={styles.subHeaderText}>:السنة</Text>
         </View>
 
         <View style={styles.section}>
-          <SalaryStatementTable />
+          <SalaryStatementTable groups={groups}/>
         </View>
         <View style={styles.monthlyPaymentContainer}>
           <Text style={styles.monthlyPaymentText}>الدفع الشهري</Text>
           <View style={styles.monthlyPaymentCell}>
-            <Text>2500دج</Text>
+            <Text>{totalPayment}دج</Text>
           </View>
         </View>
       </Page>

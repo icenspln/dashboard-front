@@ -20,27 +20,22 @@ const styles = StyleSheet.create({
         textAlign: "center", 
     },
 });
-
-export default function TableHeader() {
+interface TableHeaderProps {
+    alldays: string[]; // Prop to receive allDays array
+}
+export default function TableHeader({ alldays }: TableHeaderProps) {
     return (
         <View style={styles.tableRow}>
             <View style={styles.tableColHeader}>
-                <Text style={styles.tableCellHeader}>الفوح الأولل</Text>
+                <Text style={styles.tableCellHeader}>الفوج الأول</Text>
             </View>
-            <View style={styles.tableColHeader}>
-                <Text style={styles.tableCellHeader}>الحصة 1</Text>
-            </View>
-            <View style={styles.tableColHeader}>
-                <Text style={styles.tableCellHeader}>الحصة 2</Text>
-            </View>
-            <View style={styles.tableColHeader}>
-                <Text style={styles.tableCellHeader}>الحصة 3</Text>
-            </View>
-            <View style={styles.tableColHeader}>
-                <Text style={styles.tableCellHeader}>الحصة 4</Text>
-            </View>
-            <View style={styles.tableColHeader}>
-                <Text style={styles.tableCellHeader}>الحصة 5</Text>
+            {alldays.map((day, index) => (
+                <View style={styles.tableColHeader} key={index}>
+                    <Text style={styles.tableCellHeader}>الحصة {index + 1}</Text>
+                </View>
+            ))}
+                 <View style={styles.tableColHeader}>
+                <Text style={styles.tableCellHeader}>الدفع الشهري</Text>
             </View>
         </View>
     );
