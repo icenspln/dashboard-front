@@ -52,16 +52,26 @@ export default function StudentControlPanel() {
         }
     }, [data, isPending, error, refetch])
 
+
+    useEffect(() => {
+        if (scanningCard) {
+            queryClient.invalidateQueries({
+                queryKey: ["getStudentByCardId"],
+            });
+        }
+    }, [scanningCard, queryClient]);
+
     const handleRfidScan = async (scannedRfid: string) => {
+        console.log("inside rfid scan")
         try {
             setRfid(scannedRfid)
             setScanningCard(scannedRfid)
             console.log(scannedRfid)
             console.log("scanning")
             // await refetch();
-            queryClient.invalidateQueries({
-                queryKey: ["getStudentByCardId"],
-            })
+            // queryClient.invalidateQueries({
+            //     queryKey: ["getStudentByCardId"],
+            // })
             navigate(`/attendancemanagement/card-${scannedRfid}`)
         } catch (error) {
             console.error("Error updating card:", error)
