@@ -23,7 +23,7 @@ export default function StudentControlPanel() {
   const userId = isUserId ? id?.replace("user-", "") : null;
   const scanningCardId = isScanningCardId ? id?.replace("card-", "") : null;
   console.log(scanningCardId);
-  const { data, isPending, error } = useQuery({
+  const { data, isPending, error, refetch } = useQuery({
     queryKey: ["getStudentByCardId"],
     queryFn: () => getStudentByCardId(userId, scanningCardId),
     enabled: !!userId || !!scanningCardId,
@@ -32,8 +32,7 @@ export default function StudentControlPanel() {
   useEffect(() => {
     if (data) {
       setStatus(data.status);
-      if (data.status ===200)
-      setStudentInfo(data.data);
+      if (data.status === 200) setStudentInfo(data.data);
     }
   }, [data, isPending, error]);
 
@@ -52,61 +51,42 @@ export default function StudentControlPanel() {
       </div>
     );
 
-
   const handleRfidScan = async (scannedRfid: string) => {
     try {
       setRfid(scannedRfid);
-      console.log(scannedRfid)
-      console.log("scanning")
+      console.log(scannedRfid);
+      console.log("scanning");
+      await refetch();
       navigate(`/attendancemanagement/card-${scannedRfid}`);
-      // window.location.reload(); 
-      
-      // const response = await updateCard(employeeId, scannedRfid);
-      // console.log("Card updated successfully:", response);
-      // setModal(2); // Move to the next modal on success
     } catch (error) {
       console.error("Error updating card:", error);
     }
   };
 
-
   useEffect(() => {
-    let debounceTimer: NodeJS.Timeout;
-
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === "Enter") {
         // When Enter is pressed, use the scanned RFID value
         console.log(rfid);
+
         handleRfidScan(rfid);
         setRfid("");
       } else {
         // Accumulate RFID characters as they are typed
         setRfid((prevRfid) => prevRfid + event.key);
-
-        // Clear the previous debounce timer
-        if (debounceTimer) {
-          clearTimeout(debounceTimer);
-        }
-
-        // Set a new debounce timer
-        debounceTimer = setTimeout(() => {
-          handleRfidScan(rfid);
-          setRfid(""); // Clear RFID after processing
-        }, 1000); // 1 second delay
       }
     };
 
-    window.addEventListener("keydown", handleKeyPress);
+    if (screen) {
+      window.addEventListener("keydown", handleKeyPress);
+    }
 
     // Cleanup on component unmount
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
-      if (debounceTimer) {
-        clearTimeout(debounceTimer);
-      }
     };
   }, [rfid]);
-  
+
   if (status === 201) {
     return (
       <motion.div
