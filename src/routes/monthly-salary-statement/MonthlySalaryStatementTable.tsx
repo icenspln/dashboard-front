@@ -1,9 +1,8 @@
 
 import { View, StyleSheet, Font } from '@react-pdf/renderer';
-import data from "./core/data.json";
-import { SalaryStatement } from "./core/_models";
 import TableHeader from './core/columns/tableHeader';
 import TableRows from './core/columns/tableRows';
+import { AttendanceForTeacherGroupType } from "../presence-management/teacher-presence/teacher-presence-table/core/_models";
 
 Font.register({
     family: 'Amiri',
@@ -30,32 +29,32 @@ const styles = StyleSheet.create({
     },
 });
 
-function generateTables(data: SalaryStatement[]) {
-    const tables = [];
-    const rowsPerTable = 24; // Adjust the number of rows per table as needed
+function generateTables(groups: AttendanceForTeacherGroupType[]) {
+    const tables: JSX.Element[] = [];
+console.log(groups.toString)
+    
+    groups.forEach((group, index) => {
+        // Adjust rowsPerTable based on your requirements
+        // const rowsPerTable = 24; 
+        console.log("all days,", group.alldays)
 
-    for (let i = 0; i < data.length; i += rowsPerTable) {
-        const tableData = data.slice(i, i + rowsPerTable);
         tables.push(
-            <View style={styles.table} key={i}>
-                <TableHeader />
-                <TableRows rows={tableData} />
+            <View style={styles.table} key={index}>
+                {/* Pass the alldays array to the TableHeader */}
+                <TableHeader alldays={group.alldays} />
+                <TableRows group= {group} /> 
             </View>
         );
-    }
+    });
 
     return tables;
 }
 
 
-export default function SalaryStatementTable() {
-    const salaryStatementData: SalaryStatement[] = data;
-
+export default function SalaryStatementTable({ groups }: { groups: AttendanceForTeacherGroupType[] }) {
     return (
         <View style={styles.container}>
-            {generateTables(salaryStatementData)}
+            {generateTables(groups)}
         </View>
     );
 }
-
-
