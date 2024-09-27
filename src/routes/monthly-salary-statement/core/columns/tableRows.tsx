@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "@react-pdf/renderer";
 import { AttendanceForTeacherGroupType } from "../../../presence-management/teacher-presence/teacher-presence-table/core/_models";
-
+import { returnGroupLabelWithoutTeacher } from "../../../../handlers/returnInArabic";
 const styles = StyleSheet.create({
   tableRow: {
     flexDirection: "row-reverse",
@@ -27,6 +27,7 @@ interface TableRowsProps {
 export default function TableRows({ group }: TableRowsProps) {
   const { students, alldays } = group;
 
+
   // Function to determine the correct symbol based on the status
   const getStatusSymbol = (status: string) => {
     switch (status) {
@@ -43,6 +44,10 @@ export default function TableRows({ group }: TableRowsProps) {
 
   return (
     <>
+    
+    <View style={styles.tableRow}  >
+      <Text style={styles.tableCell}> {returnGroupLabelWithoutTeacher(group.group as any)}</Text>
+    </View>
       {students.map((row, index) => (
         <View style={styles.tableRow} key={index}>
           {/* Display student's name */}

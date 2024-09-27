@@ -41,6 +41,7 @@ import { SettingsProvider } from "./routes/settings/core/SettingsContext";
 import TeacherPresenceManagement from "./routes/presence-management/teacher-presence/TeacherPresenceManagement.tsx";
 import StudentControlPanel from "./routes/attendance-register/Attendance-table/StudentControlPanel.tsx";
 import { GlobalContexProvider } from "./GlobalContext.tsx";
+import ReceiptPrintManagement from "./routes/receipt-print-management/ReceiptPrintManagement.tsx";
 
 const queryClient = new QueryClient();
 
@@ -149,6 +150,10 @@ const router = createHashRouter(
         {
           path: "/monthlysalarystatement",
           element: <PdfViewTest />,
+        },
+        {
+          path: "/receiptprint",
+          element: <ReceiptPrintManagement />,
         },
       ],
     },
