@@ -1,42 +1,41 @@
-import { object, string, number } from "yup";
+import { object, string, number } from "yup"
 
 export const StudentRegisterSchema = object({
-  firstName: string().required("الحقل اجباري").max(20, "الحقل طويل جدا"),
-  lastName: string().required("الحقل اجباري").max(20, "الحقل طويل جدا"),
-  birthDate: string().required("الحقل اجباري"),
-  // typeError("الحقل اجباري")
-  phoneNumber: string()
-    .required("الحقل اجباري")
-    .matches(/^\d+$/, "الرقم غير صحيح")
-    .min(10, "الرقم غير صحيح"),
-  guardianPhoneNumber: string()
-    .required("الحقل اجباري")
-    .matches(/^\d*$/, "الرقم غير صحيح")
-    .min(10, "الرقم غير صحيح"),
-  institution: string().required("الحقل اجباري"),
-  level: number().required("الحقل اجباري").positive("الحقل اجباري"),
-  speciality: string(),
-});
+    firstName: string().required("first name required").max(20, "Too long"),
+    lastName: string().required("last name required").max(20, "Too long"),
+    birthDate: string().required("birth date required"),
+    // typeError("الحقل اجباري")
+    phoneNumber: string()
+        .required("phone number required")
+        .matches(/^\d+$/, "Wrong Number"),
+    // .min(10, "Wrong Number"),
+    guardianPhoneNumber: string()
+        .required("parent's phone number required")
+        .matches(/^\d*$/, "Wrong Number"),
+    // .min(10, "الرقم غير صحيح"),
+    institution: string().required("institution required"),
+    level: number().required("level requried"),
+    speciality: string(),
+})
 
 export type StudentRegisterFormType = {
-  firstName: string;
-  lastName: string;
-  birthDate: string;
-  phoneNumber: string;
-  guardianPhoneNumber: string;
-  institution: string | "primarySchool" | "middleSchool" | "highSchool";
-  level: number;
-  speciality?: string;
-};
+    firstName: string
+    lastName: string
+    birthDate: string
+    phoneNumber: string
+    guardianPhoneNumber: string
+    institution: string | "primarySchool" | "middleSchool" | "highSchool"
+    level: number
+    speciality?: string
+}
 
 export const speciality = {
-  level1: ["جذع مشترك علوم", "ادب"],
-  level2: [
-    "رياضيات",
-    "علوم تجريبية",
-    "تسيير و اقتصاد",
-    "تقني رياضي",
-    "اداب و فلسفة",
-    "لغات",
-  ],
-};
+    level1: ["Science", "literature"],
+    level2: [
+        "Maths",
+        "Experimental sciences",
+        "Management and economy",
+        "Etiquette and philosophy",
+        "Languages",
+    ],
+}

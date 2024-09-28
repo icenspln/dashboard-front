@@ -20,7 +20,7 @@ export default function Root() {
                     <section className="navbar--section fixed w-[240px] top-0 left-0    min-h-dvh max-w-md  min-w-md flex flex-col justify-between  p-3 ">
                         <ul className="navbar--ul flex flex-col gap-3 mt-[56px] ">
                             <li>
-                                <NavLink to={`/studentmanagement`}>
+                                <NavLink to={`/students-management`}>
                                     {({ isActive }) => (
                                         <>
                                             <ButtonSecondary
@@ -40,7 +40,7 @@ export default function Root() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to={`/teachermanagement`}>
+                                <NavLink to={`/teachers-management`}>
                                     {({ isActive }) => (
                                         <>
                                             <ButtonSecondary
@@ -60,7 +60,7 @@ export default function Root() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to={`/groupmanagement`}>
+                                <NavLink to={`/groups-management`}>
                                     {({ isActive }) => (
                                         <>
                                             <ButtonSecondary
@@ -80,7 +80,7 @@ export default function Root() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to={`/particulargroupmanagement`}>
+                                <NavLink to={`/private-groups-management`}>
                                     {({ isActive }) => (
                                         <>
                                             <ButtonSecondary
@@ -100,7 +100,7 @@ export default function Root() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to={`/employeemanagement`}>
+                                <NavLink to={`/employees-management`}>
                                     {({ isActive }) => (
                                         <>
                                             <ButtonSecondary
@@ -143,7 +143,7 @@ export default function Root() {
 
                         <NavLink
                             className={`mt-auto`}
-                            to={`/attendancemanagement`}
+                            to={`/attendance-management`}
                         >
                             <ButtonPrimary text="Enroll Student" active>
                                 <Signal />

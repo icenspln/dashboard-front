@@ -23,7 +23,7 @@ export function StudentTableForm() {
                     value={filterState.searchBar}
                     className="appearance-none bg-transparent  border-none w-full text-gray-700 mr-3 px-3 py-2  leading-tight focus:outline-none"
                     type="text"
-                    placeholder="البحث في القائمة"
+                    placeholder="Search The List"
                 />
             </div>
             <InstitutionFilter />
@@ -66,10 +66,10 @@ const InstitutionFilter = () => {
         <div className="relative">
             <button
                 onClick={toggleOpen}
-                className="bg-white flex items-center gap-[8px] w-[120px] h-[32px] px-4 py-2 border border-dashed border-gray-300 rounded-md shadow-sm hover:bg-gray-100"
+                className="bg-white flex items-center gap-[8px] min-w-[120px] h-[32px] px-4 py-2 border border-dashed border-gray-300 rounded-md shadow-sm hover:bg-gray-100"
             >
                 <PlusSvg />
-                <span className="text-gray-700">الطور</span>
+                <span className="text-gray-700">Institution</span>
             </button>
 
             {isOpen && (
@@ -136,7 +136,7 @@ const LevelFilter = () => {
                 className=" bg-white flex items-center gap-[8px] w-[116px] h-[32px] px-4 py-2 border border-dashed border-gray-300 rounded-md shadow-sm hover:bg-gray-100"
             >
                 <PlusSvg />
-                <span className="text-gray-700">السنة</span>
+                <span className="text-gray-700">Level</span>
             </button>
 
             {isOpen && (
