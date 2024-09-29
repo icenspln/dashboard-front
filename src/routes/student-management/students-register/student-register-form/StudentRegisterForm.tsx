@@ -1,25 +1,30 @@
-import { SubmitHandler, useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form";
 import {
-    speciality,
+    // speciality,
     StudentRegisterFormType,
     StudentRegisterSchema,
-} from "../core/_models"
-import { studentPhoneNumberCheck, studentRegister } from "../core/_requests"
-import { useMutation } from "@tanstack/react-query"
-import { yupResolver } from "@hookform/resolvers/yup"
-import toast from "react-hot-toast"
-import { useContext, useEffect, useState } from "react"
-import { RegistrationContext } from "../core/RegistrationContext"
+} from "../core/_models";
+import { studentPhoneNumberCheck, studentRegister } from "../core/_requests";
+import { useMutation } from "@tanstack/react-query";
+import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
+import { useContext, useEffect, useState } from "react";
+import { RegistrationContext } from "../core/RegistrationContext";
+import {
+    INSTITUTIONS,
+    LEVELS,
+    SPECIALITIES,
+} from "../../../../handlers/appGlobalVARS";
 
 interface StudentRegisterFormProps {
-    setStudentId: (id: string) => void
+    setStudentId: (id: string) => void;
 }
 export default function StudentRegisterForm({
     setStudentId,
 }: StudentRegisterFormProps) {
-    const [phoneNumberWarning, setPhoneNumberWarning] = useState(false)
+    const [phoneNumberWarning, setPhoneNumberWarning] = useState(false);
 
-    const { setScreen } = useContext(RegistrationContext)
+    const { setScreen } = useContext(RegistrationContext);
     const {
         register,
         watch,
@@ -27,84 +32,44 @@ export default function StudentRegisterForm({
         formState: { errors, isSubmitting },
     } = useForm<StudentRegisterFormType>({
         resolver: yupResolver(StudentRegisterSchema),
-    })
+    });
 
+    // submit mutation for the form
     const onSubmit: SubmitHandler<StudentRegisterFormType> = (data) => {
-        mutation.mutate({ ...data })
-    }
+        mutation.mutate({ ...data });
+    };
 
+    // mutation function for checking re-used phone number
     const phoneNumberCheckMutation = useMutation({
         mutationFn: (phone: string) => studentPhoneNumberCheck(phone),
         onSuccess: (res) => {
             if (res.exists) {
-                setPhoneNumberWarning(true)
-                toast("الرقم مستخدم مسبقا ⚠️", { duration: 5000 })
+                setPhoneNumberWarning(true);
+                toast("Phone number already used! ⚠️", { duration: 5000 });
             }
             if (!res.exists) {
-                setPhoneNumberWarning(false)
+                setPhoneNumberWarning(false);
             }
         },
-    })
+    });
 
+    // registration function
     const mutation = useMutation({
         mutationFn: studentRegister,
         onSuccess: (res) => {
-            // console.log(res)
-            // console.log(res._id)
-            setStudentId(res._id)
-            setScreen(true)
+            setStudentId(res._id);
+            setScreen(true);
         },
         onError: () => {
-            toast.error("هناك خطأ ما")
+            toast.error("Something went wrong");
         },
-    })
-
-    const displaySpeciality = () => {
-        if (watch("institution") == "highSchool" && watch("level") == 1) {
-            return (
-                <>
-                    <option value={``}>اختر الشعبة</option>
-                    <option value={speciality.level1[0]}>
-                        {speciality.level1[0]}
-                    </option>
-                    <option value={speciality.level1[1]}>
-                        {speciality.level1[1]}
-                    </option>
-                </>
-            )
-        }
-        if (watch("institution") == "highSchool" && watch("level") != 1) {
-            return (
-                <>
-                    <option value={``}>اختر الشعبة</option>
-                    <option value={speciality.level2[0]}>
-                        {speciality.level2[0]}
-                    </option>
-                    <option value={speciality.level2[1]}>
-                        {speciality.level2[1]}
-                    </option>
-                    <option value={speciality.level2[2]}>
-                        {speciality.level2[2]}
-                    </option>
-                    <option value={speciality.level2[3]}>
-                        {speciality.level2[3]}
-                    </option>
-                    <option value={speciality.level2[4]}>
-                        {speciality.level2[4]}
-                    </option>
-                    <option value={speciality.level2[5]}>
-                        {speciality.level2[5]}
-                    </option>
-                </>
-            )
-        }
-    }
+    });
 
     useEffect(() => {
         if (watch("phoneNumber").length >= 10) {
-            phoneNumberCheckMutation.mutateAsync(watch("phoneNumber"))
+            phoneNumberCheckMutation.mutateAsync(watch("phoneNumber"));
         }
-    }, [watch("phoneNumber")])
+    }, [watch("phoneNumber")]);
 
     return (
         <>
@@ -112,13 +77,19 @@ export default function StudentRegisterForm({
                 <div className="flex items-center gap-7 mb-3">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label htmlFor="firstName" className="text-blueDark">
-                            الإسم
+                            First Name
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <input
                             type="text"
                             {...register("firstName")}
                             className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4 "
-                            placeholder="يرجى ادخال الاسم"
+                            placeholder="Student's First Name"
                         />
                         {errors.firstName && (
                             <span className="text-red-500">
@@ -128,13 +99,19 @@ export default function StudentRegisterForm({
                     </article>
                     <article className="flex flex-col gap-2 w-full min-h-[96px] ">
                         <label htmlFor="lastName" className="text-blueDark">
-                            اللقب
+                            Last Name
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <input
                             {...register("lastName")}
                             type="text"
                             className="border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-                            placeholder="يرجى ادخال اللقب"
+                            placeholder="Student's Last Name"
                         />
                         {errors.lastName && (
                             <span className="text-red-500">
@@ -147,10 +124,16 @@ export default function StudentRegisterForm({
                 <div className="flex items-center gap-7 mb-3">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label htmlFor="phoneNumber" className="text-blueDark">
-                            رقم الهاتف
+                            Phone Number
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                             {phoneNumberWarning && (
                                 <span className="mx-2 text-warning">
-                                    الرقم مستخدم مسبقا ⚠️
+                                    Phone Already Used!⚠
                                 </span>
                             )}
                         </label>
@@ -171,7 +154,13 @@ export default function StudentRegisterForm({
                             htmlFor="guardianPhoneNumber"
                             className="text-blueDark"
                         >
-                            رقم هاتف ولي الأمر
+                            Parent's Phone Number
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <input
                             {...register("guardianPhoneNumber")}
@@ -190,7 +179,13 @@ export default function StudentRegisterForm({
                 <div className="flex items-center gap-7 mb-3">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label htmlFor="birthDate" className="text-blueDark">
-                            تاريخ الميلاد
+                            Birth Date
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <input
                             {...register("birthDate")}
@@ -205,16 +200,24 @@ export default function StudentRegisterForm({
                     </article>
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label htmlFor="institution" className="text-blueDark">
-                            الطور
+                            Institution
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <select
                             {...register("institution")}
                             className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
                         >
-                            <option value={``}>اختر الطور</option>
-                            <option value="primarySchool">الإبتدائي</option>
-                            <option value="middleSchool">المتوسط</option>
-                            <option value="highSchool">الثانوي</option>
+                            <option value={``}>
+                                Choose Student's the Institution
+                            </option>
+                            {INSTITUTIONS.map((i) => (
+                                <option value={i}>{i}</option>
+                            ))}
                         </select>
                         {errors.institution && (
                             <span className="text-red-500">
@@ -227,22 +230,16 @@ export default function StudentRegisterForm({
                 <div className="flex items-center gap-7 mb-3 ">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label className="text-blueDark" htmlFor="level">
-                            السنة
+                            Level
                         </label>
                         <select
                             {...register("level")}
                             className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
                         >
-                            <option value={-1}>اختر السنة</option>
-                            <option value={1}>الأولى</option>
-                            <option value={2}>الثانية</option>
-                            <option value={3}>الثالثة</option>
-                            {watch("institution") != "highSchool" && (
-                                <option value={4}>الرابعة</option>
-                            )}
-                            {watch("institution") == "primarySchool" && (
-                                <option value={5}>الخامسة</option>
-                            )}
+                            <option value={0}>Choose Student's Level</option>
+                            {LEVELS.map((l, i) => (
+                                <option value={i + 1}>{l}</option>
+                            ))}
                         </select>
                         {errors.level && (
                             <span className="text-red-500">
@@ -250,32 +247,25 @@ export default function StudentRegisterForm({
                             </span>
                         )}
                     </article>
-
-                    {watch("institution") == "highSchool" &&
-                        watch("level") != -1 && (
-                            <>
-                                <article className="flex flex-col gap-2 w-full min-h-[96px]">
-                                    <label
-                                        className="text-blueDark"
-                                        htmlFor="speciality"
-                                    >
-                                        الشعبة
-                                    </label>
-                                    <select
-                                        {...register("speciality")}
-                                        className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
-                                    >
-                                        {/* {watch("level") == 1 ? <></> : <></>} */}
-                                        {displaySpeciality()}
-                                    </select>
-                                    {errors.speciality && (
-                                        <span className="text-red-500">
-                                            {errors.speciality.message}
-                                        </span>
-                                    )}
-                                </article>
-                            </>
+                    <article className="flex flex-col gap-2 w-full min-h-[96px]">
+                        <label className="text-blueDark" htmlFor="speciality">
+                            Speciality
+                        </label>
+                        <select
+                            {...register("speciality")}
+                            className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
+                        >
+                            <option value={``}>Choose Speciality</option>
+                            {SPECIALITIES.map((s) => (
+                                <option value={s}>{s}</option>
+                            ))}
+                        </select>
+                        {errors.speciality && (
+                            <span className="text-red-500">
+                                {errors.speciality.message}
+                            </span>
                         )}
+                    </article>
                 </div>
 
                 <div className="flex items-center justify-start gap-7 w-[140px] ">
@@ -287,11 +277,11 @@ export default function StudentRegisterForm({
                         <h2
                             className={`text-xl  text-white text-center mx-auto`}
                         >
-                            تسجيل
+                            Submit
                         </h2>
                     </button>
                 </div>
             </form>
         </>
-    )
+    );
 }
