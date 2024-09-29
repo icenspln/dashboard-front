@@ -41,7 +41,13 @@ export default function SettingsCell({ row }: { row: any }) {
                 )
             },
         },
-        // { label: "حذف الفوج", action: () => setActiveOverlay("deleteGroup") },
+        {
+            label: "حذف الفوج",
+            action: () => {
+                setSelectedGroup(row)
+                setActiveOverlay("deleteGroup")
+            },
+        },
         {
             label: "قائمة الحضور",
             action: () =>
@@ -91,7 +97,7 @@ export default function SettingsCell({ row }: { row: any }) {
                     ))}
                 </div>
                 {activeOverlay === "deleteGroup" && (
-                    <DeleteGroupOverlay onClose={closeOverlay} />
+                    <DeleteGroupOverlay onClose={closeOverlay}  groupId={row._id}/>
                 )}
                 {activeOverlay === "addNewSession" && (
                     <AddNewSessionOverlay onClose={closeOverlay} />
@@ -99,9 +105,7 @@ export default function SettingsCell({ row }: { row: any }) {
                 {activeOverlay === "registredStudents" && (
                     <RegistredStudentsOverlay onClose={closeOverlay} />
                 )}
-                {activeOverlay === "deleteGroup" && (
-                    <DeleteGroupOverlay onClose={closeOverlay} />
-                )}
+
                 {activeOverlay === "addNewSession" && (
                     <AddNewSessionOverlay onClose={closeOverlay} />
                 )}

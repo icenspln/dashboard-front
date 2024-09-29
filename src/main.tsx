@@ -132,7 +132,7 @@ const router = createHashRouter(
           element: <PaymentManagement />,
         },
         {
-          path: "/studentspaymenthistory",
+          path: "/studentspaymenthistory/:id/:fullName",
           element: <StudentPaymentHistory />,
         },
         {
@@ -148,7 +148,7 @@ const router = createHashRouter(
           element: <StudentControlPanel />,
         },
         {
-          path: "/monthlysalarystatement",
+          path: "/monthlysalarystatement/:percentage",
           element: <PdfViewTest />,
         },
         {

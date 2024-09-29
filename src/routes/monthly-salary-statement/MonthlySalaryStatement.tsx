@@ -9,6 +9,7 @@ import {
     Font,
     Image
 } from "@react-pdf/renderer"
+import { useParams } from "react-router-dom";
 
 import { PDFViewer } from "@react-pdf/renderer"
 import { useContext } from "react"
@@ -85,10 +86,14 @@ export function MonthlySalaryStatement({
     teacher,
     groups,
     date,
+    percentage,
+
 }: {
     teacher: Teacher
     groups: AttendanceForTeacherGroupType[]
     date: { month: number; year: number }
+    percentage: number;
+
 }) {
     const totalPayment = groups.reduce((total, group) => {
         return (
@@ -100,7 +105,8 @@ export function MonthlySalaryStatement({
             }, 0)
         )
     }, 0)
-   
+    const totalAfterPercentage = totalPayment * (percentage / 100);
+
     
     const {logoUrl} = useSettings()
     return (
@@ -115,7 +121,7 @@ export function MonthlySalaryStatement({
                 
                 <View style={styles.subHeader}>
                     
-                    <Text style={styles.subHeaderText}> الأستاذ: {teacher.firstName} {teacher.lastName}</Text>
+                    <Text style={styles.subHeaderText}> الأستاذ : {teacher.firstName} {teacher.lastName}</Text>
                     {/* <Text style={styles.subHeaderText}> المادة: {teacher.modules.join("،")}</Text> */}
                     
                     
@@ -130,6 +136,12 @@ export function MonthlySalaryStatement({
                         <Text>{totalPayment}دج</Text>
                     </View>
                 </View>
+                <View style={styles.monthlyPaymentContainer}>
+                    <Text style={styles.monthlyPaymentText}>المجموع بعد النسبة</Text>
+                    <View style={styles.monthlyPaymentCell}>
+                        <Text>{totalAfterPercentage.toFixed(2)}دج</Text>
+                    </View>
+                </View>
             </Page>
         </Document>
     )
@@ -137,6 +149,7 @@ export function MonthlySalaryStatement({
 
 export function PdfViewTest() {
     const { groups, teacher, date } = useContext(GlobalContext)
+    const { percentage } = useParams<{ percentage: string }>();
 
     console.log("state in the pdf date", date)
     console.log("state in the pdf", groups, teacher)
@@ -148,6 +161,8 @@ export function PdfViewTest() {
                     date={date as { month: number; year: number }}
                     teacher={teacher as Teacher}
                     groups={groups}
+                    percentage={parseFloat(percentage || "0")}
+
                 />
                 </SettingsProvider>
             </PDFViewer>

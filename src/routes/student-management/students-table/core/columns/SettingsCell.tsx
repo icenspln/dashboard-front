@@ -53,6 +53,13 @@ export default function SettingsCell({ row }: { row: any }) {
       action: () =>
         navigate(`/studentmanagement/studentspresencemanagement/${row._id}`),
     },
+    {
+      label: "تواريخ الدفع",
+      action: () => {
+        const fullName = `${row.firstName} ${row.lastName}`;
+        navigate(`/studentspaymenthistory/${row._id}/${encodeURIComponent(fullName)}`);
+      },
+    }
   ];
 
   const closeOverlay = () => setActiveOverlay(null);

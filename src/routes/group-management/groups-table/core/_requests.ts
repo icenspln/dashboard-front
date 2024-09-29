@@ -15,3 +15,11 @@ export function deleteTeacherAbsence(absenceId: string) {
         (res) => res.data
     )
 }
+
+
+export function deleteGroup(groupId: string) {
+    return AxiosInstance.delete(`groups/${groupId}`).then(
+        (res) => res.data
+    )
+}
+

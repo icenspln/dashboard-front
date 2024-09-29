@@ -32,12 +32,14 @@ export function StudentPaymentTable({
                 queryKey: ["getStudentByCardId"],
             })
             console.log(data)
-            const totalToPay = data.newfinancials.totalOutstandingBalance + data.newfinancials.totalDebts 
+            const totalToPay =
+                data.newfinancials.totalOutstandingBalance +
+                data.newfinancials.totalDebts
             navigate("/receiptprint", {
                 state: {
                     studentInfo: studentInfo,
                     paymentAmount: variables.amount,
-                    totalToPay : totalToPay
+                    totalToPay: totalToPay,
                 },
             })
         },

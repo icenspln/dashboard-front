@@ -3,6 +3,7 @@ import TableHeader from "./core/columns/tableHeader"
 import TableRows from "./core/columns/tableRows"
 import { AttendanceForTeacherGroupType } from "../presence-management/teacher-presence/teacher-presence-table/core/_models"
 import amiri from "../../assets/fonts/Amiri-Regular.ttf"
+import { useParams } from "react-router-dom";
 
 Font.register({
     family: "Amiri",
@@ -35,6 +36,9 @@ const styles = StyleSheet.create({
 function generateTables(groups: AttendanceForTeacherGroupType[]) {
     const tables: JSX.Element[] = []
     console.log(groups.toString)
+
+    const { percentage } = useParams<{ percentage: string }>();
+
 
     groups.forEach((group, index) => {
         // Adjust rowsPerTable based on your requirements

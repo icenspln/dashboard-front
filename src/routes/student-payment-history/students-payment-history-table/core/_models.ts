@@ -7,3 +7,14 @@ export type Student = {
   //scanningCardId: string;
   
 };
+
+export interface Payment {
+  _id: string;
+  student: string;
+  amount?: number;
+  totalOutstanding?: number;
+  totalDebts?: number;
+  rest?: number;
+  modules?: string;
+  date: string;
+}
