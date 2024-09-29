@@ -101,7 +101,7 @@ export default function StudentCard({ studentId }: StudentCardProps) {
                                         </Link>
                                         <ButtonRoundedPrimary
                                             onClick={addToGroup}
-                                            text={`add student to a group`}
+                                            text={`Add student to a group`}
                                         />
                                     </div>
                                 </motion.div>
