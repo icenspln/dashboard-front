@@ -91,6 +91,7 @@ export default function StudentCardEdit() {
                   <ButtonRoundedPrimary
                     color="blue"
                     text={`العودة إلى قائمة المسجلين`}
+                    onClick={() => setEditCardModal(false)}
                   />
                 </Link>
               </motion.div>

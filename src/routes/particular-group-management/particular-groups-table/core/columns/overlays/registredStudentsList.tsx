@@ -93,7 +93,7 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
           <h1 className="text-2xl">قائمة المسجلين</h1>
           <p>الرياضيات|السنة الأولى|علي رياد|الأحد-15:00</p>
 
-          <div className="flex w-full flex-col gap-[12px]">
+          <div className="flex w-full h-[250px] overflow-auto flex-col gap-[12px]">
             {selectedGroup && (
               <>
                 {selectedGroup.students.map((student, i) => (

@@ -1,10 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef ,useEffect } from "react";
 import PasswordInput from "./passwordInputField";
 import ConfirmButton from "../../components/confirmButton";
 import LogoUpload from "./handleLogoUpload";
 import { Overlay } from "../../components/Overlay";
 import { useSettings, SettingsProvider } from "./core/SettingsContext";
 import CustomOverlay from "../../components/CustomOverlay";
+import { useNavigate } from "react-router-dom";
+
 export default function SettingManagment() {
   return (
     <SettingsProvider>
@@ -47,6 +49,21 @@ function SettingScreen() {
   } = useSettings();
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleEscapeKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        
+        navigate("/studentmanagement"); 
+      }
+    };
+
+    window.addEventListener("keydown", handleEscapeKeyPress);
+    return () => window.removeEventListener("keydown", handleEscapeKeyPress);
+  }, [navigate]);
+  
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setSelectedFile(event.target.files[0]);

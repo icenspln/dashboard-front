@@ -22,7 +22,6 @@ export default function StudentControlPanel() {
 
   const userId = isUserId ? id?.replace("user-", "") : null;
   const scanningCardId = isScanningCardId ? id?.replace("card-", "") : null;
-  console.log(scanningCardId);
   const { data, isPending, error, refetch } = useQuery({
     queryKey: ["getStudentByCardId"],
     queryFn: () => getStudentByCardId(userId, scanningCardId),

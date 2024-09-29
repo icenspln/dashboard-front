@@ -1,5 +1,5 @@
 import { NavigateToRegister } from "./Attendance-navigation-page/NavigateToRegister";
-import { useState, useEffect } from "react";
+import { useState, useEffect  } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function AttendanceManagement() {
