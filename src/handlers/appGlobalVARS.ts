@@ -1,13 +1,13 @@
 // contain global data that impact the whole app
 
 export const DAYS = [
-    "saturday",
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thurdsay",
-    "firday",
+    "Saturday",
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thurdsay",
+    "Firday",
 ];
 
 export const INSTITUTIONS = ["primary school", "middle school", "high school"];
@@ -30,13 +30,13 @@ export const SPECIALITIES = [
     "languages",
 ];
 export const dayOfWeekFilterOptions = [
-    { id: "Saturday", label: DAYS[0] },
-    { id: "Sunday", label: DAYS[1] },
-    { id: "Monday", label: DAYS[2] },
-    { id: "Tuesday", label: DAYS[3] },
-    { id: "Wednesday", label: DAYS[4] },
-    { id: "Thursday", label: DAYS[5] },
-    { id: "Friday", label: DAYS[6] },
+    { id: DAYS[0], label: DAYS[0] },
+    { id: DAYS[1], label: DAYS[1] },
+    { id: DAYS[2], label: DAYS[2] },
+    { id: DAYS[3], label: DAYS[3] },
+    { id: DAYS[4], label: DAYS[4] },
+    { id: DAYS[5], label: DAYS[5] },
+    { id: DAYS[6], label: DAYS[6] },
 ];
 export const institutionFilterOptions = [
     { id: INSTITUTIONS[0], label: INSTITUTIONS[0] },
