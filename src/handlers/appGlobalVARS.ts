@@ -30,13 +30,13 @@ export const SPECIALITIES = [
     "languages",
 ];
 export const dayOfWeekFilterOptions = [
-    { id: "Saturday", label: "السبت" },
-    { id: "Sunday", label: "الأحد" },
-    { id: "Monday", label: "الاثنين" },
-    { id: "Tuesday", label: "الثلاثاء" },
-    { id: "Wednesday", label: "الأربعاء" },
-    { id: "Thursday", label: "الخميس" },
-    { id: "Friday", label: "الجمعة" },
+    { id: "Saturday", label: DAYS[0] },
+    { id: "Sunday", label: DAYS[1] },
+    { id: "Monday", label: DAYS[2] },
+    { id: "Tuesday", label: DAYS[3] },
+    { id: "Wednesday", label: DAYS[4] },
+    { id: "Thursday", label: DAYS[5] },
+    { id: "Friday", label: DAYS[6] },
 ];
 export const institutionFilterOptions = [
     { id: INSTITUTIONS[0], label: INSTITUTIONS[0] },
