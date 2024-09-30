@@ -1,23 +1,30 @@
-import { NavLink, Outlet } from "react-router-dom"
-import { Book, Bookmark, Gear, Prof, Signal, Student } from "../../assets/icons"
-import BriefCase from "../../assets/icons/BriefCaseSvg"
-import ButtonPrimary from "../../components/ButtonPrimary"
-import ButtonSecondary from "../../components/ButtonSecondary"
-import { BLUE, DISABLEDGRAY } from "../../GLOBALS"
-import "./root.css"
-import { useSettings } from "../settings/core/SettingsContext"
+import { NavLink, Outlet } from "react-router-dom";
+import {
+    Book,
+    Bookmark,
+    Gear,
+    Prof,
+    Signal,
+    Student,
+} from "../../assets/icons";
+import BriefCase from "../../assets/icons/BriefCaseSvg";
+import ButtonPrimary from "../../components/ButtonPrimary";
+import ButtonSecondary from "../../components/ButtonSecondary";
+import { BLUE, DISABLEDGRAY } from "../../GLOBALS";
+import "./root.css";
+// import { useSettings } from "../settings/core/SettingsContext";
 
 export default function Root() {
-    const { logoUrl } = useSettings()
+    // const { logoUrl } = useSettings();
 
     return (
         <>
             <main className="navbar flex">
-                <div className="fixed">
-                    <div className="w-[42px] h-[42px] mt-3 mr-5">
-                        <img src={logoUrl} alt="" />
+                <div className="fixed w-[240px] ps-10">
+                    <div className="my-3 mt-5 w-full">
+                        <h1 className="text-2xl font-bold ">DEMO</h1>
                     </div>
-                    <section className="navbar--section fixed w-[240px] top-0 left-0    min-h-dvh max-w-md  min-w-md flex flex-col justify-between  p-3 ">
+                    <section className="navbar--section fixed w-[240px] top-0 left-0 min-h-dvh max-w-md  min-w-md flex flex-col justify-between  p-3 ">
                         <ul className="navbar--ul flex flex-col gap-3 mt-[56px] ">
                             <li>
                                 <NavLink to={`/students-management`}>
@@ -156,5 +163,5 @@ export default function Root() {
                 </section>
             </main>
         </>
-    )
+    );
 }
