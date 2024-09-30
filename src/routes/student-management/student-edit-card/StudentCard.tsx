@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { Overlay } from "../../../../components/Overlay";
-import { Check } from "../../../../assets/icons/Check";
 import { Link } from "react-router-dom";
-import ButtonRoundedPrimary from "../../../../components/ButtonRoundedPrimary";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
-import CardAnimationSvg from "../../../../assets/icons/CardAnimationSvg";
-import WrongCardSvg from "../../../../assets/icons/WrongCardSvg";
-import { StudentsTableContext } from "../core/StudentsTableContext";
 import { UpdateCard } from "./_requests"; // Import the updateCard function
+import { StudentsTableContext } from "../students-table/core/StudentsTableContext";
+import { Overlay } from "../../../components/Overlay";
+import ButtonRoundedPrimary from "../../../components/ButtonRoundedPrimary";
+import { Check } from "../../../assets/icons/Check";
+import CardAnimationSvg from "../../../assets/icons/CardAnimationSvg";
+import WrongCardSvg from "../../../assets/icons/WrongCardSvg";
 
 export default function StudentCardEdit() {
     const [modal, setModal] = useState(1);

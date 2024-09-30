@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { Overlay } from "../../../../components/Overlay";
-import { RegistrationContext } from "../core/RegistrationContext";
-import { Check } from "../../../../assets/icons/Check";
 import { Link } from "react-router-dom";
-import ButtonRoundedPrimary from "../../../../components/ButtonRoundedPrimary";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
-import CardAnimationSvg from "../../../../assets/icons/CardAnimationSvg";
-import WrongCardSvg from "../../../../assets/icons/WrongCardSvg";
-import { updateCard } from "../core/_requests"; // Import the updateCard function
+import { RegistrationContext } from "../students-register/core/RegistrationContext";
+import { updateCard } from "../students-register/core/_requests";
+import { Overlay } from "../../../components/Overlay";
+import { Check } from "../../../assets/icons/Check";
+import ButtonRoundedPrimary from "../../../components/ButtonRoundedPrimary";
+import CardAnimationSvg from "../../../assets/icons/CardAnimationSvg";
+import WrongCardSvg from "../../../assets/icons/WrongCardSvg";
 
 interface StudentCardProps {
     studentId: string;

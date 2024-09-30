@@ -1,11 +1,11 @@
-import { RegistrationContextProvider } from "./core/RegistrationContext"
-import StudentRegisterForm from "./student-register-form/StudentRegisterForm"
-import StudentCard from "./student-card/StudentCard"
-import { useState } from "react"
-import { StudentGroupModal } from "./student-group-modal/StudentGroupModal"
+import { RegistrationContextProvider } from "./core/RegistrationContext";
+import StudentRegisterForm from "./student-register-form/StudentRegisterForm";
+import { useState } from "react";
+import { StudentGroupModal } from "./student-group-modal/StudentGroupModal";
+import StudentCard from "../student-add-card/StudentCard";
 
 export default function StudentRegister() {
-    const [studentId, setStudentId] = useState<string>("")
+    const [studentId, setStudentId] = useState<string>("");
 
     return (
         <RegistrationContextProvider>
@@ -22,12 +22,12 @@ export default function StudentRegister() {
                 />
             </section>
         </RegistrationContextProvider>
-    )
+    );
 }
 
 interface studentRegisterContentProps {
-    studentId: string
-    setStudentId: (id: string) => void
+    studentId: string;
+    setStudentId: (id: string) => void;
 }
 function StudentRegisterContent({
     studentId,
@@ -39,5 +39,5 @@ function StudentRegisterContent({
             <StudentCard studentId={studentId} />
             <StudentGroupModal studentId={studentId} />
         </div>
-    )
+    );
 }

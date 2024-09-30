@@ -9,10 +9,10 @@ import { useContext, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getStudents } from "./core/_requests";
 import { StudentsTableContext } from "./core/StudentsTableContext";
-import StudentCardEdit from "./student-edit-card/StudentCard";
 import { defaultColumns } from "./core/columns/columns";
 import { Pagination } from "../../../components/pagination";
 import { StudentGroupModal } from "./student-group-modal/StudentGroupModal";
+import StudentCardEdit from "../student-edit-card/StudentCard";
 
 function StudentsTable() {
     const { filter, enrollStudentModal, editCardModal } =
