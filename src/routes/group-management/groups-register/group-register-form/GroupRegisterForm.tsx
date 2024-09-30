@@ -1,24 +1,24 @@
-import ButtonPrimary from "../../../../components/ButtonPrimary"
-import { SubmitHandler, useForm } from "react-hook-form"
-import { GroupRegisterFormType, TypeRegisterSchema } from "../core/_models"
-import { useContext, useEffect, useState } from "react"
-import { RegistrationContext } from "../core/RegistrationContext"
-import { useMutation, useQuery } from "@tanstack/react-query"
-import { getFilteredTeachers, groupRegister } from "../core/_requests"
-import { yupResolver } from "@hookform/resolvers/yup"
-import toast from "react-hot-toast"
-import AsyncSelect from "react-select/async"
-import { Teacher } from "../../../teacher-management/teacher-table/core/_models"
-import { modules } from "../../../../handlers/returnInArabic"
+import ButtonPrimary from "../../../../components/ButtonPrimary";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { GroupRegisterFormType, TypeRegisterSchema } from "../core/_models";
+import { useContext, useEffect, useState } from "react";
+import { RegistrationContext } from "../core/RegistrationContext";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getFilteredTeachers, groupRegister } from "../core/_requests";
+import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
+import AsyncSelect from "react-select/async";
+import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
+import { modules } from "../../../../handlers/appGlobalVARS";
 
 export default function GroupRegisterForm() {
-    const [teacherModules, setTeacherModules] = useState(modules)
-    const [filter, setFilter] = useState("")
+    const [teacherModules, setTeacherModules] = useState(modules);
+    const [filter, setFilter] = useState("");
     const [selectedTeacher, setSelectedTeacher] = useState<{
-        value: string
-        label: string
-    }>()
-    const { setScreen } = useContext(RegistrationContext)
+        value: string;
+        label: string;
+    }>();
+    const { setScreen } = useContext(RegistrationContext);
     const {
         register,
         handleSubmit,
@@ -27,13 +27,13 @@ export default function GroupRegisterForm() {
         formState: { errors, isSubmitting },
     } = useForm<GroupRegisterFormType>({
         resolver: yupResolver(TypeRegisterSchema),
-    })
+    });
 
-    const [reactSelectOptions, setReactSelectOptions] = useState()
+    const [reactSelectOptions, setReactSelectOptions] = useState();
 
     const onSubmit: SubmitHandler<GroupRegisterFormType> = (data) => {
-        const [hour, minute] = data.timing.split(":")
-        const responsibleTeacher = data.responsibleTeacher.value
+        const [hour, minute] = data.timing.split(":");
+        const responsibleTeacher = data.responsibleTeacher.value;
 
         const finalData = {
             ...data,
@@ -42,24 +42,24 @@ export default function GroupRegisterForm() {
                 minute: minute.padStart(2, "0"),
             },
             responsibleTeacher,
-        }
-        mutation.mutateAsync(finalData)
-    }
+        };
+        mutation.mutateAsync(finalData);
+    };
 
     const mutation = useMutation({
         mutationFn: (data: any) => groupRegister(data),
         onSuccess: () => {
-            setScreen(true)
+            setScreen(true);
         },
         onError: () => {
-            toast.error("هناك خطأ ما")
+            toast.error("هناك خطأ ما");
         },
-    })
+    });
 
     const { data, error, isLoading } = useQuery({
         queryKey: ["getTeachersForGroups", filter],
         queryFn: () => getFilteredTeachers(filter),
-    })
+    });
 
     useEffect(() => {
         if (data && !isLoading && !error) {
@@ -67,40 +67,40 @@ export default function GroupRegisterForm() {
                 return {
                     label: teacher.firstName + " " + teacher.lastName,
                     value: teacher._id,
-                }
-            })
-            setReactSelectOptions(teachersSelectArr)
+                };
+            });
+            setReactSelectOptions(teachersSelectArr);
         }
         if (error) {
-            toast.error("error fetching teachers")
+            toast.error("error fetching teachers");
         }
-    }, [data, isLoading, error])
+    }, [data, isLoading, error]);
 
     useEffect(() => {
-        if (selectedTeacher) setValue("responsibleTeacher", selectedTeacher)
-    }, [selectedTeacher])
+        if (selectedTeacher) setValue("responsibleTeacher", selectedTeacher);
+    }, [selectedTeacher]);
 
     const filterTeachers = (inputValue: string) => {
-        setFilter(inputValue)
+        setFilter(inputValue);
 
         if (data && !isLoading && !error) {
             return data.data.map((teacher: Teacher) => {
                 return {
                     label: teacher.firstName + " " + teacher.lastName,
                     value: teacher._id,
-                }
-            })
+                };
+            });
         } else {
-            return []
+            return [];
         }
-    }
+    };
 
     const loadOptions = (inputValue: string) =>
         new Promise<any>((resolve) => {
             // setTimeout(() => {
-            resolve(filterTeachers(inputValue))
+            resolve(filterTeachers(inputValue));
             // }, 1000);
-        })
+        });
 
     const returnFilteredModules = (
         modules: { id: string; label: string }[],
@@ -109,21 +109,21 @@ export default function GroupRegisterForm() {
     ) => {
         const teacher = teachers.find(
             (teacher: Teacher) => teacher._id == selectedTeacherId
-        )
+        );
         if (teacher) {
             const teacherModules = modules.filter((module) => {
-                return teacher.modules.includes(module.id)
-            })
-            setTeacherModules(teacherModules)
+                return teacher.modules.includes(module.id);
+            });
+            setTeacherModules(teacherModules);
         }
-    }
+    };
 
     useEffect(() => {
-        console.log("triggered")
+        console.log("triggered");
         if (selectedTeacher && data.data) {
-            returnFilteredModules(modules, selectedTeacher.value, data.data)
+            returnFilteredModules(modules, selectedTeacher.value, data.data);
         }
-    }, [selectedTeacher, data])
+    }, [selectedTeacher, data]);
 
     return (
         <>
@@ -321,5 +321,5 @@ export default function GroupRegisterForm() {
                 </div>
             </form>
         </>
-    )
+    );
 }

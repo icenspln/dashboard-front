@@ -14,8 +14,10 @@ import ButtonRoundedPrimary from "../../../../components/ButtonRoundedPrimary";
 import { returnGroupLabel } from "../../../../handlers/returnInArabic";
 import { Group } from "./core/_model";
 import { FilterButton } from "../../../../components/ButtonFilter";
-import { levelFilterOptions } from "../../../group-management/groups-table/core/_models";
-import { institutionFilterOptions } from "../core/_models";
+import {
+    institutionFilterOptions,
+    levelFilterOptions,
+} from "../../../../handlers/appGlobalVARS";
 
 export function StudentGroupModal() {
     const { toggleStudentGroupsModal } = useContext(StudentsTableContext);
