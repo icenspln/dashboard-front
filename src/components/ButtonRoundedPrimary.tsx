@@ -6,9 +6,11 @@ type ButtonRoundedPrimary = {
     children?: ReactElement<any, any>;
     // color?: "warning" | "blue" | "danger" | "dead";
     onClick?: any;
+    disable: boolean;
 };
 
 export default function ButtonRoundedPrimary({
+    disable,
     children,
     text,
     onClick,
@@ -147,6 +149,7 @@ export default function ButtonRoundedPrimary({
     return (
         <>
             <button
+                disabled={disable}
                 onClick={onClick}
                 className={`w-full min-w-[150px] rounded-full   bg-blue  transition  hover:bg-blueHovered font-medium flex flex-row items-center   gap-3 px-4 py-2 `}
             >

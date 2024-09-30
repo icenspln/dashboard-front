@@ -1,25 +1,25 @@
-import { Group } from "../student-group-modal/core/_model"
+import { Group } from "../student-group-modal/core/_model";
 
 export type Student = {
-    _id: string
-    studentId: number
-    firstName: string
-    lastName: string
-    birthDate: string | Date
-    phoneNumber?: string
-    guardianPhoneNumber: string
-    scanningCardId: string
-    institution: string | "primarySchool" | "middleSchool" | "highSchool"
-    createdAt: Date
-    level: number
-    __v?: number
-    groups: Group[]
-    pricing: string
-}
+    _id: string;
+    studentId: number;
+    firstName: string;
+    lastName: string;
+    birthDate: string | Date;
+    phoneNumber?: string;
+    guardianPhoneNumber: string;
+    scanningCardId: string;
+    institution: string | "primarySchool" | "middleSchool" | "highSchool";
+    createdAt: Date;
+    level: number;
+    __v?: number;
+    groups: Group[];
+    pricing: string;
+};
 
 export interface FilterOption {
-    id: string
-    label: string
+    id: string;
+    label: string;
 }
 
 export const ColumnSelectionOptions = [
@@ -37,17 +37,17 @@ export const ColumnSelectionOptions = [
     { id: 12, label: "Total Debt" },
     { id: 13, label: "Total" },
     { id: 14, label: "Settings" },
-]
+];
 
 export const institutionFilterOptions = [
     { id: "primarySchool", label: "Primary School" },
     { id: "middleSchool", label: "Middle School" },
     { id: "highSchool", label: "High School" },
-]
+];
 export const levelFilterOption = [
     { id: "1", label: "First" },
     { id: "2", label: "Secound" },
     { id: "3", label: "Third" },
     { id: "4", label: "Fourth" },
     { id: "5", label: "Fifth" },
-]
+];

@@ -1,10 +1,9 @@
-import { createColumnHelper } from "@tanstack/react-table"
-import BirthDateCell from "./BirthDateCell"
-import InstitutionCell from "./InstitutionCell"
-import SettingsCell from "./SettingsCell"
-import { Student } from "../_models"
+import { createColumnHelper } from "@tanstack/react-table";
+import BirthDateCell from "./BirthDateCell";
+import SettingsCell from "./SettingsCell";
+import { Student } from "../_models";
 
-const columnHelper = createColumnHelper<Student>()
+const columnHelper = createColumnHelper<Student>();
 
 export const defaultColumns = [
     columnHelper.accessor("studentId", {
@@ -26,7 +25,7 @@ export const defaultColumns = [
     }),
     columnHelper.accessor("institution", {
         header: "Institution",
-        cell: (info) => <InstitutionCell value={info?.getValue()} />,
+        cell: (info) => <>{info.getValue()}</>,
     }),
     columnHelper.accessor("level", {
         header: "Level",
@@ -37,7 +36,7 @@ export const defaultColumns = [
         cell: (info) => info?.getValue(),
     }),
     columnHelper.accessor("createdAt", {
-        header: "Enrollment Date",
+        header: "Creation date",
         cell: (info) => new Date(info.getValue()).toLocaleDateString(),
     }),
     columnHelper.accessor("groups", {
@@ -50,4 +49,4 @@ export const defaultColumns = [
         id: "action",
         cell: (props) => <SettingsCell row={props.row.original} />,
     }),
-]
+];

@@ -14,27 +14,27 @@ import { ReactElement } from "react";
 import CloseSvg from "../assets/icons/CloseSvg";
 
 interface OverlayProps {
-  children?: ReactElement<any>;
-  onClose?: () => void;
-  isVisible?: boolean;
+    children?: ReactElement<any>;
+    onClose?: () => void;
+    isVisible?: boolean;
 }
 
 export function Overlay({ children, onClose, isVisible }: OverlayProps) {
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
-      <div className="relative bg-white p-6 rounded-lg shadow-lg">
-        {isVisible && onClose && (
-          <button
-            className="absolute top-0 right-0 text-gray-700"
-            onClick={onClose}
-          >
-            <CloseSvg />
-          </button>
-        )}
-        <div className="top-5">{children}</div>
-      </div>
-    </div>
-  );
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
+            <div className="relative bg-white p-6 rounded-lg shadow-lg">
+                {isVisible && onClose && (
+                    <button
+                        className="absolute -top-5 -right-5 text-gray-700"
+                        onClick={onClose}
+                    >
+                        <CloseSvg />
+                    </button>
+                )}
+                <div className="top-5">{children}</div>
+            </div>
+        </div>
+    );
 }
 
 // import { ReactElement } from "react";
