@@ -5,37 +5,37 @@ import SettingsCell from "./SettingsCell";
 const columnHelper = createColumnHelper<Teacher>();
 
 export const defaultColumns = [
-  columnHelper.accessor("teacherId", {
-    header: "الرقم",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("firstName", {
-    header: "الإسم",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("lastName", {
-    header: "اللقب",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("birthDate", {
-    header: "تاريخ الميلاد",
-    cell: (info) => new Date(info.getValue()).toLocaleDateString(),
-  }),
-  columnHelper.accessor("phoneNumber", {
-    header: "رقم الهاتف",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("modules", {
-    header: "المادة",
-    cell: (info) => `${info.getValue().join(",")}`,
-  }),
+    columnHelper.accessor("teacherId", {
+        header: "ID",
+        cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("firstName", {
+        header: "First Name",
+        cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("lastName", {
+        header: "Last Name",
+        cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("birthDate", {
+        header: "Birth Date",
+        cell: (info) => new Date(info.getValue()).toLocaleDateString(),
+    }),
+    columnHelper.accessor("phoneNumber", {
+        header: "Phone Number",
+        cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("modules", {
+        header: "Subject",
+        cell: (info) => `${info.getValue().join(",")}`,
+    }),
 
-  columnHelper.accessor("numberOfGroups", {
-    header: "عدد الأفواج الكلية",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.display({
-    header: "الإعدادات",
-    cell: (props) => <SettingsCell row={props.row.original} />,
-  }),
+    columnHelper.accessor("numberOfGroups", {
+        header: "Groups",
+        cell: (info) => info.getValue(),
+    }),
+    columnHelper.display({
+        header: "Settings",
+        cell: (props) => <SettingsCell row={props.row.original} />,
+    }),
 ];
