@@ -1,22 +1,12 @@
 import { useContext, useState } from "react";
 import DotsSvg from "../../../../../assets/icons/DotsSvg";
 import { useNavigate } from "react-router-dom";
-import DeleteFromListOverlay from "./modals/deleteFromList";
-import ChangeGroupOverlay from "./modals/changeGroup";
-import ChangeStudentCardOverlay from "./modals/changeStudentCard";
 import { StudentsTableContext } from "../StudentsTableContext";
 import { Student } from "../_models";
 
 export default function SettingsCell({ row }: { row: Student }) {
     const { setSelectedStudent, toggleStudentGroupsModal, setEditCardModal } =
         useContext(StudentsTableContext);
-
-    const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
-
-    const closeOverlay = () => {
-        setActiveOverlay(null);
-    };
-
     const navigate = useNavigate();
 
     const settingsOptions = [
@@ -71,15 +61,6 @@ export default function SettingsCell({ row }: { row: Student }) {
                         </button>
                     ))}
                 </div>
-            )}
-            {activeOverlay === "deleteFromList" && (
-                <DeleteFromListOverlay onClose={closeOverlay} />
-            )}
-            {activeOverlay === "changeGroup" && (
-                <ChangeGroupOverlay onClose={closeOverlay} />
-            )}
-            {activeOverlay === "changeCard" && (
-                <ChangeStudentCardOverlay onClose={closeOverlay} />
             )}
         </div>
     );
