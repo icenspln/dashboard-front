@@ -1,11 +1,7 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { Group } from "../_models";
 import SettingsCell from "./SettingsCell";
-import {
-    returnInstitutionInAR,
-    returnLevelInAR,
-    returnDayInAR,
-} from "../../../../../handlers/returnInArabic";
+import { digitToStringLevel } from "../../../../../handlers/returnInArabic";
 
 const columnHelper = createColumnHelper<Group>();
 
@@ -16,7 +12,7 @@ export const defaultColumns = [
     }),
     columnHelper.accessor("dayOfWeek", {
         header: "Day",
-        cell: (info) => returnDayInAR(info.getValue()),
+        cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("timing", {
         header: "Time",
@@ -29,20 +25,17 @@ export const defaultColumns = [
     }),
     columnHelper.accessor("institution", {
         header: "Institution",
-        cell: (info) => returnInstitutionInAR(info.getValue()),
+        cell: (info) => <span className="capitalize">{info.getValue()}</span>,
     }),
     columnHelper.accessor("level", {
         header: "Level",
-        cell: (info) => returnLevelInAR(info.getValue()),
+        cell: (info) => digitToStringLevel(info.getValue()),
     }),
     columnHelper.accessor("module", {
         header: "Subject",
         cell: (info) => info.getValue(),
     }),
-    // columnHelper.accessor("responsibleTeacher", {
-    //   header: "الأستاذ",
-    //   cell: (info) => `${info.getValue().firstName}  ${info.getValue().lastName}`,
-    // }),
+
     columnHelper.accessor("currentNumberOfStudents", {
         header: "Number of Students",
         cell: (info) => info.getValue(),

@@ -52,16 +52,16 @@ export const levelFilterOptions = [
     { id: 5, label: LEVELS[4] },
 ];
 
-export const ModuleSelectionOptions = [
-    { id: 1, label: "الرياضيات" },
-    { id: 2, label: "اللغة العربية" },
-    { id: 3, label: "اللغة الفرنسية" },
-    { id: 4, label: "اللغة الانجليزية" },
-    { id: 5, label: "التربية المدنية" },
-    { id: 6, label: "التربية الإسلامية" },
-    { id: 7, label: "التربية العلمية" },
-    { id: 8, label: "تاريخ وجغرافيا" },
-];
+// export const ModuleSelectionOptions = [
+//     { id: 1, label: "الرياضيات" },
+//     { id: 2, label: "اللغة العربية" },
+//     { id: 3, label: "اللغة الفرنسية" },
+//     { id: 4, label: "اللغة الانجليزية" },
+//     { id: 5, label: "التربية المدنية" },
+//     { id: 6, label: "التربية الإسلامية" },
+//     { id: 7, label: "التربية العلمية" },
+//     { id: 8, label: "تاريخ وجغرافيا" },
+// ];
 export const DaysSelectionOptions = [
     { id: 1, label: DAYS[0] },
     { id: 2, label: DAYS[1] },

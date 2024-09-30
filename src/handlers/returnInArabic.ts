@@ -13,32 +13,32 @@ export function returnInstitutionInAR(inst: string) {
     }
 }
 
-export function returnLevelInAR(level: number) {
+export function digitToStringLevel(level: number) {
     switch (level) {
         case 1:
-            return "​الأولى";
+            return "first year";
             break;
         case 2:
-            return "الثانية";
+            return "second year";
             break;
         case 3:
-            return "الثالثة";
+            return "third year";
         case 4:
-            return "الرابعة";
+            return "fourth year";
             break;
         case 5:
-            return "الخامسة";
+            return "fifth yera";
             break;
     }
 }
 
 export function returnGroupLabel(group: Group) {
     if (!group) return `group undefined`;
-    return `${group.module} | ${returnLevelInAR(group.level)} ${returnInstitutionInAR(group.institution)} | ${group.responsibleTeacher.firstName + " " + group.responsibleTeacher.lastName} | ${returnDayInAR(group.dayOfWeek)} -  ${returnTimeString(group.timing)}`;
+    return `${group.module} | ${digitToStringLevel(group.level)} ${returnInstitutionInAR(group.institution)} | ${group.responsibleTeacher.firstName + " " + group.responsibleTeacher.lastName} | ${returnDayInAR(group.dayOfWeek)} -  ${returnTimeString(group.timing)}`;
 }
 export function returnGroupLabelWithoutTeacher(group: Group) {
     if (!group) return `group undefined`;
-    return `${group.module} | ${returnLevelInAR(group.level)} ${returnInstitutionInAR(group.institution)} | ${returnDayInAR(group.dayOfWeek)} - ${returnTimeString(group.timing)}`;
+    return `${group.module} | ${digitToStringLevel(group.level)} ${returnInstitutionInAR(group.institution)} | ${returnDayInAR(group.dayOfWeek)} - ${returnTimeString(group.timing)}`;
 }
 export function returnStudentLabel(firstName: string, lastName: string) {
     return `${firstName} ${lastName}`;
