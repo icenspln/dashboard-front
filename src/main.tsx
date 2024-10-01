@@ -123,7 +123,7 @@ const router = createBrowserRouter(
                     element: <StudentsPresenceListsManagement />,
                 },
                 {
-                    path: "/employees-presences-management/:id",
+                    path: "/employees-presence-management/:id",
                     element: <EmployeePresenceListsManagement />,
                 },
                 {
