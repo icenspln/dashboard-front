@@ -1,117 +1,72 @@
-import Popup from "reactjs-popup"
-import "reactjs-popup/dist/index.css"
-import DotsSvg from "../../../../../assets/icons/DotsSvg"
-import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
-//importing the overlays
-import DeleteGroupOverlay from "./overlays/deleteGroup"
-import AddNewSessionOverlay from "./overlays/addNewSession"
-import TeacherPresence from "./overlays/teacherPresence"
-import { GroupsTableContext } from "../GroupsTableContext"
-import { RegistredStudentsOverlay } from "./overlays/registredStudentsList"
+import "reactjs-popup/dist/index.css";
+import DotsSvg from "../../../../../assets/icons/DotsSvg";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useGroupsTable } from "../GroupsTableContext";
 
 export default function SettingsCell({ row }: { row: any }) {
-    const [activeOverlay, setActiveOverlay] = useState<string | null>(null)
-    const { setGroupModal, setSelectedGroup, setAdditionalDayModal } =
-        useContext(GroupsTableContext)
-    const navigate = useNavigate()
+    const { setGroupModal, setSelectedGroup, setTeacherAbsenceModal } =
+        useGroupsTable();
+    const navigate = useNavigate();
 
     const assignStudentToGroup = () => {
-        setGroupModal(true)
-        setSelectedGroup(row)
-    }
-    const groupAddAdditionalDays = () => {
-        setSelectedGroup(row)
-        setAdditionalDayModal(true)
-    }
-    // const groupTeacherAbsences = () => {
-    //     setSelectedGroup(row)
-    //     setAdditionalDayModal(true)
-    // }
-    // useEffect(() => {
-    //   assignStudentToGroup();
-    // }, [triggerNewData]);
+        setGroupModal(true);
+        setSelectedGroup(row);
+    };
 
-    const options = [
+    const teacherAbsence = () => {
+        setTeacherAbsenceModal(true);
+        setSelectedGroup(row);
+    };
+    const settingsOptions = [
         {
-            label: "تعديل المعلومات",
+            label: "Edit Informations",
             action: () => {
                 navigate(
-                    `/groupmanagement/edit/${row._id}?dayOfWeek=${row.dayOfWeek}&timing=${row.timing.hour.toString().padStart(2, "0")}:${row.timing.minute.toString().padStart(2, "0")}&responsibleTeacherLabel=${row.responsibleTeacher.firstName + " " + row.responsibleTeacher.lastName}&responsibleTeacherValue=${row.responsibleTeacher._id}&module=${row.module}&institution=${row.institution}&level=${row.level}&pricing=${row.pricing}&roomNumber=${row.roomNumber}&maxNumberOfStudents=${row.maxNumberOfStudents}`
-                )
+                    `/groups-management/edit/${row._id}?dayOfWeek=${row.dayOfWeek}&timing=${row.timing.hour.toString().padStart(2, "0")}:${row.timing.minute.toString().padStart(2, "0")}&responsibleTeacherLabel=${row.responsibleTeacher.firstName + " " + row.responsibleTeacher.lastName}&responsibleTeacherValue=${row.responsibleTeacher._id}&module=${row.module}&institution=${row.institution}&level=${row.level}&pricing=${row.pricing}&roomNumber=${row.roomNumber}&maxNumberOfStudents=${row.maxNumberOfStudents}`
+                );
             },
         },
-        // { label: "حذف الفوج", action: () => setActiveOverlay("deleteGroup") },
         {
-            label: "قائمة الحضور",
+            label: "List of Attendance",
             action: () =>
                 navigate(
-                    `/groupmanagement/groupspresencemanagement/${row._id}`
+                    `/groups-management/groups-presence-management/${row._id}`
                 ),
         },
         {
-            label: "قائمة المسجلين",
+            label: "List of Students Enrolled",
             action: () => assignStudentToGroup(),
             // action: () => setActiveOverlay("registredStudents"),
         },
         {
-            label: "حضور / غياب الأستاذ",
-            action: () => {
-                setSelectedGroup(row)
-                return setActiveOverlay("teacherPresence")
-            },
+            label: "Teacher's Presence & Absence",
+            action: () => teacherAbsence(),
         },
+    ];
 
-        {
-            label: "إضافة حصة إضافية",
-            action: () => groupAddAdditionalDays(),
-        },
-    ]
-    const closeOverlay = () => setActiveOverlay(null)
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
-        <div>
-            <Popup
-                trigger={
-                    <button>
-                        <DotsSvg />
-                    </button>
-                }
-                arrow={false}
-                position="bottom center"
-            >
-                <div className="grid gap-1">
-                    {options.map((option, index) => (
+        <div className="relative w-fit">
+            <div>
+                <button onClick={() => setIsOpen((prev) => !prev)}>
+                    <DotsSvg />
+                </button>
+            </div>
+            {isOpen && (
+                <div className="absolute w-44 z-10 buttom-0 -left-1/2 bg-white shadow-lg border-1 border-textGray2 rounded">
+                    {settingsOptions.map((option, index) => (
                         <button
                             key={index}
-                            className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
+                            className="w-full px-4 py-2 text-sm text-gray-700  rounded hover:bg-gray-200"
                             onClick={option.action}
                         >
                             {option.label}
                         </button>
                     ))}
                 </div>
-                {activeOverlay === "deleteGroup" && (
-                    <DeleteGroupOverlay onClose={closeOverlay} />
-                )}
-                {activeOverlay === "addNewSession" && (
-                    <AddNewSessionOverlay onClose={closeOverlay} />
-                )}
-                {activeOverlay === "registredStudents" && (
-                    <RegistredStudentsOverlay onClose={closeOverlay} />
-                )}
-                {activeOverlay === "deleteGroup" && (
-                    <DeleteGroupOverlay onClose={closeOverlay} />
-                )}
-                {activeOverlay === "addNewSession" && (
-                    <AddNewSessionOverlay onClose={closeOverlay} />
-                )}
-                {activeOverlay === "registredStudents" && (
-                    <RegistredStudentsOverlay onClose={closeOverlay} />
-                )}
-                {activeOverlay === "teacherPresence" && (
-                    <TeacherPresence group={row} onClose={closeOverlay} />
-                )}
-            </Popup>
+            )}
         </div>
-    )
+    );
 }
