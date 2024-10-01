@@ -73,7 +73,8 @@ export default function EmployeeCard({ employeeId }: EmployeeCardProps) {
                                     className="flex flex-col gap-1 items-center h-full"
                                 >
                                     <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
-                                        Employee has been succesfully registered
+                                        Employee has been successfully
+                                        registered
                                     </h2>
                                     <p className="w-full text- text-textGray2 text-center ">
                                         Employee is authorized to roam the

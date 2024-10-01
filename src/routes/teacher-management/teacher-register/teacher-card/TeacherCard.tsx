@@ -24,7 +24,7 @@ export default function TeacherCard() {
                                 className="flex flex-col gap-1 items-center h-full"
                             >
                                 <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
-                                    Teacher has been succesfully registered
+                                    Teacher has been successfully registered
                                 </h2>
 
                                 <div className="my-auto">

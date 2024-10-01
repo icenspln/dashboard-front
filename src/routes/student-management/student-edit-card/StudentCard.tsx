@@ -85,7 +85,7 @@ export default function StudentCardEdit() {
                                 className="flex flex-col gap-1 items-center h-full"
                             >
                                 <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
-                                    Student has been succesfully registered
+                                    Student has been successfully registered
                                 </h2>
                                 <p className="w-full text- text-textGray2 text-center ">
                                     the new student is now welcomed at this

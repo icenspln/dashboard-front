@@ -18,7 +18,7 @@ export default function StudentCard() {
                             className="flex flex-col gap-1 items-center h-full"
                         >
                             <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
-                                Student has been updated succesfully
+                                Student has been updated successfully
                             </h2>
                             <div className="my-auto">
                                 <Check />

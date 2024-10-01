@@ -24,7 +24,7 @@ export default function GroupCard() {
                                 className="flex flex-col gap-1 items-center h-full"
                             >
                                 <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
-                                    Group has been succesfully created
+                                    Group has been successfully created
                                 </h2>
                                 <div className="my-auto">
                                     <Check />

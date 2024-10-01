@@ -113,7 +113,7 @@ const RegistredStudentsOverlay = ({
         mutationFn: ({ groupId, studentId }: any) =>
             deleteStudentFromGroup(groupId, studentId),
         onSuccess: (res) => {
-            toast.success("student has been removed succesfully");
+            toast.success("student has been removed successfully");
             // onClose();
             queryClient.invalidateQueries({ queryKey: ["getStudents"] });
             setGroups((prev) => [...prev].filter((grp) => grp._id != res._id));

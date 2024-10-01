@@ -1,8 +1,5 @@
 import { Student } from "./core/_models";
-import {
-    digitToStringLevel,
-    returnInstitutionInAR,
-} from "../../../handlers/returnInArabic";
+import { digitToStringLevel } from "../../../handlers/returnInArabic";
 
 export function StudentInfoTable({
     student,
@@ -39,23 +36,21 @@ export function StudentInfoTable({
                 </div>
                 <div className="flex justify-between gap-3 p-3">
                     <div className="p-2">
-                        <h3 className="text-textGray">المستوى</h3>
-                        <p className="text-lg">
-                            {returnInstitutionInAR(student.institution)}
-                        </p>
+                        <h3 className="text-textGray">Institution</h3>
+                        <p className="text-lg">{student.institution}</p>
                     </div>
                     <div className="p-2">
-                        <h3 className="text-textGray">السنة</h3>
+                        <h3 className="text-textGray">Level</h3>
                         <p className="text-lg">
                             {digitToStringLevel(student.level)}
                         </p>
                     </div>
                     <div className="p-2">
-                        <h3 className="text-textGray">رقم الهاتف</h3>
+                        <h3 className="text-textGray">Phone</h3>
                         <p className="text-lg">{student.phoneNumber}</p>
                     </div>
                     <div className="p-2">
-                        <h3 className="text-textGray">تاريخ الميلاد</h3>
+                        <h3 className="text-textGray">Birth</h3>
                         <p className="text-lg">
                             {new Date(student.birthDate).toLocaleDateString()}
                         </p>

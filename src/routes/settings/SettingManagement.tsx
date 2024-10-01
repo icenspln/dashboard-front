@@ -203,7 +203,7 @@ function SettingScreen() {
             )}
             {passwordOverlayVisible && (
                 <CustomOverlay
-                    title="Password has been succesfully updated"
+                    title="Password has been successfully updated"
                     message="you can use the new password now"
                     buttonText="close"
                     onButtonClick={handleCloseOverlay}
@@ -211,7 +211,7 @@ function SettingScreen() {
             )}
             {isAppNameOverlayVisible && (
                 <CustomOverlay
-                    title="App name has been succesfully updated"
+                    title="App name has been successfully updated"
                     message=""
                     buttonText="close"
                     onButtonClick={() => {
@@ -222,7 +222,7 @@ function SettingScreen() {
 
             {isLogoOverlayVisible && (
                 <CustomOverlay
-                    title="Logo has been succesfully updated"
+                    title="Logo has been successfully updated"
                     message=""
                     buttonText="close"
                     onButtonClick={() => {

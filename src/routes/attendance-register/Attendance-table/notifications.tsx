@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react"
-import SendMessageSvg from "../../../assets/icons/SendMessageSvg"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { postNoteForStudent } from "./core/_requests"
+import React, { useEffect, useState } from "react";
+import SendMessageSvg from "../../../assets/icons/SendMessageSvg";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { postNoteForStudent } from "./core/_requests";
 // import { useParams } from "react-router-dom";
-import { GetStudentByCardIdType, NoteType } from "./core/_models"
-import toast from "react-hot-toast"
+import { GetStudentByCardIdType, NoteType } from "./core/_models";
+import toast from "react-hot-toast";
 
 // interface Notification {
 //   id: number;
@@ -15,23 +15,23 @@ import toast from "react-hot-toast"
 export default function Notifications({
     studentInfo,
 }: {
-    studentInfo: GetStudentByCardIdType
+    studentInfo: GetStudentByCardIdType;
 }) {
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
     // const [notifications, setNotifications] = useState<Notification[]>([]);
-    const [inputValue, setInputValue] = useState("")
+    const [inputValue, setInputValue] = useState("");
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
-            handleSend()
+            handleSend();
         }
-    }
+    };
 
-    const [notes, setNotes] = useState<NoteType[]>(studentInfo.notes)
+    const [notes, setNotes] = useState<NoteType[]>(studentInfo.notes);
 
     useEffect(() => {
-        setNotes(studentInfo.notes)
-    }, [studentInfo])
+        setNotes(studentInfo.notes);
+    }, [studentInfo]);
 
     // const { id } = useParams();
 
@@ -45,17 +45,17 @@ export default function Notifications({
             postNoteForStudent(data.studentId, data.text),
         mutationKey: ["postNote"],
         onSuccess: () => {
-            toast.success("تم الحفض")
-            queryClient.invalidateQueries({ queryKey: ["getNotesForStudent"] })
+            toast.success("Saved");
+            queryClient.invalidateQueries({ queryKey: ["getNotesForStudent"] });
         },
         onError: () => {
-            toast.error("حدث خطأ ما")
-            queryClient.invalidateQueries({ queryKey: ["getNotesForStudent"] })
+            toast.error("Saved");
+            queryClient.invalidateQueries({ queryKey: ["getNotesForStudent"] });
         },
-    })
+    });
 
     const handleSend = () => {
-        if (inputValue.trim() === "") return
+        if (inputValue.trim() === "") return;
         // const newNotification: Notification = {
         //   id: Date.now(),
         //   message: inputValue,
@@ -66,16 +66,16 @@ export default function Notifications({
         const data = {
             studentId: studentInfo.student._id!,
             text: inputValue,
-        }
-        mutation.mutate(data)
-        setInputValue("")
-    }
+        };
+        mutation.mutate(data);
+        setInputValue("");
+    };
 
     useEffect(() => {
         if (mutation.data && !mutation.error) {
-            setNotes((prev) => [...prev, mutation.data])
+            setNotes((prev) => [...prev, mutation.data]);
         }
-    }, [mutation.data, mutation.isError])
+    }, [mutation.data, mutation.isError]);
 
     if (notes)
         return (
@@ -97,7 +97,7 @@ export default function Notifications({
                 <div className="flex items-center gap-2 mt-2">
                     <input
                         type="text"
-                        placeholder="اكتب ملاحضتك هنا"
+                        placeholder="write your note here"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onKeyDown={handleKeyDown}
@@ -108,5 +108,5 @@ export default function Notifications({
                     </button>
                 </div>
             </div>
-        )
+        );
 }
