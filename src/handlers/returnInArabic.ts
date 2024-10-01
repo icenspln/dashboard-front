@@ -2,7 +2,7 @@ import { Group } from "../routes/student-management/students-table/student-group
 
 export function returnInstitutionInAR(inst: string) {
     switch (inst) {
-        case "primarySchool":
+        case "primaryschool":
             return "ابتدائي";
             break;
         case "middleSchool":
@@ -34,7 +34,7 @@ export function digitToStringLevel(level: number) {
 
 export function returnGroupLabel(group: Group) {
     if (!group) return `group undefined`;
-    return `${group.module} | ${digitToStringLevel(group.level)} ${returnInstitutionInAR(group.institution)} | ${group.responsibleTeacher.firstName + " " + group.responsibleTeacher.lastName} | ${returnDayInAR(group.dayOfWeek)} -  ${returnTimeString(group.timing)}`;
+    return `${group.module} | ${digitToStringLevel(group.level)} ${group.institution} | ${group.responsibleTeacher.firstName + " " + group.responsibleTeacher.lastName} | ${group.dayOfWeek} -  ${returnTimeString(group.timing)}`;
 }
 export function returnGroupLabelWithoutTeacher(group: Group) {
     if (!group) return `group undefined`;
