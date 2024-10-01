@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import {
     Book,
-    Bookmark,
+    // Bookmark,
     Gear,
     Prof,
     Signal,
@@ -86,7 +86,7 @@ export default function Root() {
                                     )}
                                 </NavLink>
                             </li>
-                            <li>
+                            {/* <li>
                                 <NavLink to={`/private-groups-management`}>
                                     {({ isActive }) => (
                                         <>
@@ -105,7 +105,7 @@ export default function Root() {
                                         </>
                                     )}
                                 </NavLink>
-                            </li>
+                            </li> */}
                             <li>
                                 <NavLink to={`/employees-management`}>
                                     {({ isActive }) => (
