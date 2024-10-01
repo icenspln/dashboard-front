@@ -11,7 +11,12 @@ import { useContext, useEffect, useState } from "react";
 import Select from "react-select";
 import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
 import ButtonPrimary from "../../../../components/ButtonPrimary";
-import { modules } from "../../../../handlers/appGlobalVARS";
+import {
+    dayOfWeekFilterOptions,
+    INSTITUTIONS,
+    LEVELS,
+    modules,
+} from "../../../../handlers/appGlobalVARS";
 
 export default function GroupUpdateForm() {
     const [reactSelectOptions, setReactSelectOptions] = useState();
@@ -107,19 +112,21 @@ export default function GroupUpdateForm() {
                 <div className="flex items-center gap-7 mb-7">
                     <article className="flex flex-col gap-2 w-full">
                         <label htmlFor="dayOfWeek" className="text-blueDark">
-                            اليوم-(يعاد كل أسبوع)
+                            Day - repeated each week
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <select
                             {...register("dayOfWeek")}
                             className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
                         >
-                            <option value="Saturday">السبت</option>
-                            <option value="Sunday">الأحد</option>
-                            <option value="Monday">الإثنين</option>
-                            <option value="Tuesday">الثلاثاء</option>
-                            <option value="Wednesday">الأربعاء</option>
-                            <option value="Thursday">الخميس</option>
-                            <option value="Friday">الجمعة</option>
+                            {dayOfWeekFilterOptions.map((opt) => (
+                                <option value={opt.id}>{opt.label}</option>
+                            ))}
                         </select>
                         {errors.dayOfWeek && (
                             <span className="text-red-500">
@@ -129,7 +136,13 @@ export default function GroupUpdateForm() {
                     </article>
                     <article className="flex flex-col gap-2 w-full">
                         <label htmlFor="timing" className="text-blueDark">
-                            الوقت
+                            Time
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <input
                             {...register("timing")}
@@ -148,7 +161,13 @@ export default function GroupUpdateForm() {
                 <div className="flex items-center gap-7 mb-7">
                     <article className="flex flex-col gap-2 w-full">
                         <label htmlFor="teacher" className="text-blueDark">
-                            الأستاذ
+                            Teacher
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <Select
                             options={reactSelectOptions}
@@ -163,7 +182,13 @@ export default function GroupUpdateForm() {
                     </article>
                     <article className="flex flex-col gap-2 w-full">
                         <label htmlFor="module" className="text-blueDark">
-                            المادة
+                            Subject
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <select
                             {...register("module")}
@@ -186,16 +211,21 @@ export default function GroupUpdateForm() {
                 <div className="flex items-center gap-7 mb-7">
                     <article className="flex flex-col gap-2 w-full">
                         <label className="text-blueDark" htmlFor="level">
-                            السنة
+                            Level
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <select
                             {...register("level")}
                             className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
                         >
-                            <option value="1">الأولى</option>
-                            <option value="2">الثانية</option>
-                            <option value="3">الثالثة</option>
-                            <option value="4">الرابعة</option>
+                            {LEVELS.map((l, i) => (
+                                <option value={i + 1}>{l}</option>
+                            ))}
                         </select>
                         {errors.level && (
                             <span className="text-red-500">
@@ -205,15 +235,21 @@ export default function GroupUpdateForm() {
                     </article>
                     <article className="flex flex-col gap-2 w-full">
                         <label htmlFor="institution" className="text-blueDark">
-                            المستوى
+                            Institution
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <select
                             {...register("institution")}
                             className="bg-white border border-disabledGray rounded-lg placeholder:text-textGray placeholder:font-medium px-3 pe-4 outline-none  text-blueDark caret-disabledGray leading-4"
                         >
-                            <option value="primarySchool">الإبتدائي</option>
-                            <option value="middleSchool">المتوسط</option>
-                            <option value="highSchool">الثانوي</option>
+                            {INSTITUTIONS.map((i) => (
+                                <option value={i}>{i}</option>
+                            ))}
                         </select>
                         {errors.institution && (
                             <span className="text-red-500">
@@ -226,7 +262,13 @@ export default function GroupUpdateForm() {
                 <div className="flex items-center gap-7 mb-7 ">
                     <article className="flex flex-col gap-2 w-full">
                         <label className="text-blueDark" htmlFor="pricing">
-                            الثمن
+                            Price
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <input
                             {...register("pricing")}
@@ -242,7 +284,13 @@ export default function GroupUpdateForm() {
                     </article>
                     <article className="flex flex-col gap-2 w-full">
                         <label className="text-blueDark" htmlFor="roomNumber">
-                            القاعة
+                            Room
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <input
                             {...register("roomNumber")}
@@ -264,7 +312,13 @@ export default function GroupUpdateForm() {
                             className="text-blueDark"
                             htmlFor="maxNumberOfStudents"
                         >
-                            العدد الأقصى للتلاميذ
+                            Max number of students
+                            <span
+                                className="text-red-300 font-bold"
+                                title="Item Required"
+                            >
+                                🞰
+                            </span>
                         </label>
                         <input
                             {...register("maxNumberOfStudents")}
@@ -281,7 +335,7 @@ export default function GroupUpdateForm() {
                 </div>
                 <div className="flex items-center justify-start gap-7 mb-7 w-[140px] ">
                     <ButtonPrimary
-                        text="تسجيل"
+                        text="Submit"
                         active
                         disabled={isSubmitting}
                         type="submit"
