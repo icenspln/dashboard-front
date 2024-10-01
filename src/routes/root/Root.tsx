@@ -152,7 +152,7 @@ export default function Root() {
                             className={`mt-auto`}
                             to={`/attendance-management`}
                         >
-                            <ButtonPrimary text="Enroll Student" active>
+                            <ButtonPrimary text="Scan Card" active>
                                 <Signal />
                             </ButtonPrimary>
                         </NavLink>

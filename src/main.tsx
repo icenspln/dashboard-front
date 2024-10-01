@@ -168,7 +168,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                     <RouterProvider router={router} />
                     <ReactQueryDevtools
                         position="bottom"
-                        buttonPosition="bottom-left"
+                        buttonPosition="bottom-right"
                         initialIsOpen={false}
                     />
                     <Toaster />
