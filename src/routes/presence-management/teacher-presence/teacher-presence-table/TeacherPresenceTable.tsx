@@ -1,52 +1,47 @@
-import { motion } from "framer-motion"
-import { useContext, useEffect, useMemo, useRef, useState } from "react"
-import { useQuery } from "@tanstack/react-query"
-import { getAttendanceForTeacher } from "./core/_requests"
-import { useParams } from "react-router-dom"
-import { AttendanceForTeacherGroupType } from "./core/_models"
-// import {
-//   returnDayInAR,
-//   returnInstitutionInAR,
-//   returnLevelInAR,
-//   returnTimeString,
-// } from "../../../../handlers/returnInArabic";
-import NoteSvg from "../../../../assets/icons/NoteSvg"
-import { StudentPresentButton } from "../../../../components/isPresentButton"
-import { teacherpresenceTableContext } from "./core/TeacherPresenceTableContext"
-import { PricingButton } from "../../../../components/PricingButtonEdit"
-import { GlobalContext } from "../../../../GlobalContext"
-import { Teacher } from "../../../teacher-management/teacher-table/core/_models"
-import { returnGroupLabelWithoutTeacher } from "../../../../handlers/returnInArabic"
+import { motion } from "framer-motion";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getAttendanceForTeacher } from "./core/_requests";
+import { useParams } from "react-router-dom";
+import { AttendanceForTeacherGroupType } from "./core/_models";
+
+import NoteSvg from "../../../../assets/icons/NoteSvg";
+import { StudentPresentButton } from "../../../../components/isPresentButton";
+import { teacherpresenceTableContext } from "./core/TeacherPresenceTableContext";
+import { PricingButton } from "../../../../components/PricingButtonEdit";
+import { GlobalContext } from "../../../../GlobalContext";
+import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
+import { returnGroupLabelWithoutTeacher } from "../../../../handlers/returnInArabic";
 // import { Note } from "../../../attendance-register/Attendance-table/core/_models";
 
 export function TeacherPresenceListsTable() {
-    const globalContext = useContext(GlobalContext)
-    const constraintsRef = useRef(null)
-    const { id } = useParams()
-    const [groups, setGroups] = useState<AttendanceForTeacherGroupType[]>([])
-    const [teacher, setTeacher] = useState<Teacher>()
-    const [date, setDate] = useState<{ month: number; year: number }>()
+    const globalContext = useContext(GlobalContext);
+    const constraintsRef = useRef(null);
+    const { id } = useParams();
+    const [groups, setGroups] = useState<AttendanceForTeacherGroupType[]>([]);
+    const [teacher, setTeacher] = useState<Teacher>();
+    const [date, setDate] = useState<{ month: number; year: number }>();
 
-    const { filter } = useContext(teacherpresenceTableContext)
+    const { filter } = useContext(teacherpresenceTableContext);
 
     const { data, isLoading, error } = useQuery({
         queryKey: ["getAttendanceForTeacher", filter],
         queryFn: () => getAttendanceForTeacher(id!, filter),
-    })
+    });
 
     useMemo(() => {
         if (data) {
-            setGroups(data.groups)
-            setTeacher(data.teacher)
-            setDate({ month: data.queryMonth, year: data.queryYear })
+            setGroups(data.groups);
+            setTeacher(data.teacher);
+            setDate({ month: data.queryMonth, year: data.queryYear });
         }
-    }, [data, isLoading, error])
+    }, [data, isLoading, error]);
 
     useEffect(() => {
-        if (groups) globalContext.setGroups(groups)
-        if (teacher) globalContext.setTeacher(teacher)
-        if (date) globalContext.setDate(date)
-    }, [groups, teacher])
+        if (groups) globalContext.setGroups(groups);
+        if (teacher) globalContext.setTeacher(teacher);
+        if (date) globalContext.setDate(date);
+    }, [groups, teacher]);
 
     //     enum: ["present", "absent", "upcoming", "not joined", "unknown" , "out of group", "changed group" , "teacher absent"],
 
@@ -202,7 +197,7 @@ export function TeacherPresenceListsTable() {
                                                                                   }
                                                                                 : grpItem
                                                                     )
-                                                            )
+                                                            );
                                                         }}
                                                     />
                                                 </td>
@@ -302,7 +297,7 @@ export function TeacherPresenceListsTable() {
                                                                 ).toLocaleDateString()}
                                                             </th>
                                                         )
-                                                    )
+                                                    );
                                                 }
                                             )}
                                         </tr>
@@ -403,5 +398,5 @@ export function TeacherPresenceListsTable() {
                     </div>
                 ))}
             </div>
-        )
+        );
 }
