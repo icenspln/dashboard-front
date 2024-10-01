@@ -27,7 +27,7 @@ export const defaultColumns = [
         ? `${info.row.original.responsibleTeacher.firstName} ${info.row.original.responsibleTeacher.lastName}`
         : "N/A"; // If no teacher is assigned
 
-      return `${module} - ${level} - ${institution} - ${teacher}`;
+      return `${module} | ${level} ${institution} | ${teacher}`;
     },
   }),
 

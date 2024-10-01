@@ -8,7 +8,11 @@ import { getAttendanceForGroup } from "./core/_requests"
 import { GroupsTableContext } from "./core/GroupsTableContext"
 import jsPDF from "jspdf"
 import html2canvas from "html2canvas"
-
+import ButtonPrimary from "../../../../components/ButtonPrimary"
+import {
+    returnInstitutionInAR,
+    returnLevelInAR,
+} from "../../../../handlers/returnInArabic"
 export function GroupsPresenceListsTable() {
     const { filter } = useContext(GroupsTableContext)
     const constraintsRef = useRef(null)
@@ -32,16 +36,40 @@ export function GroupsPresenceListsTable() {
         setIsPrinting(true)
         setTimeout(() => {
             const input = document.getElementById("presence-table")
-            if (input) {
+            if (input && group) {
+                // html2canvas(input).then((canvas) => {
+                //     const imgData = canvas.toDataURL("image/png")
+                //     const pdf = new jsPDF()
+                //     const imgProps = pdf.getImageProperties(imgData)
+                //     const pdfWidth = pdf.internal.pageSize.getWidth()
+                //     const pdfHeight =
+                //         (imgProps.height * pdfWidth) / imgProps.width
+                //     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight)
+                //     pdf.save("presence.pdf")
+                //     setIsPrinting(false)
+                // })
                 html2canvas(input).then((canvas) => {
                     const imgData = canvas.toDataURL("image/png")
-                    const pdf = new jsPDF()
+                    const pdf = new jsPDF("p", "mm", "a4")
                     const imgProps = pdf.getImageProperties(imgData)
                     const pdfWidth = pdf.internal.pageSize.getWidth()
                     const pdfHeight =
                         (imgProps.height * pdfWidth) / imgProps.width
                     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight)
-                    pdf.save("presence.pdf")
+
+                    // Dynamic file name
+                    const teacherFullName =
+                        group.group.responsibleTeacher.firstName +
+                        " " +
+                        group.group.responsibleTeacher.lastName
+                    const levelInAR = returnLevelInAR(group.group.level)
+                    const institutionInAR = returnInstitutionInAR(
+                        group.group.institution
+                    )
+
+                    const fileName = `قائمة الحضور لفوج ${teacherFullName} - ${levelInAR} ${institutionInAR}.pdf`
+
+                    pdf.save(fileName)
                     setIsPrinting(false)
                 })
             }
@@ -50,13 +78,37 @@ export function GroupsPresenceListsTable() {
     if (group)
         return (
             <div ref={constraintsRef}>
-                <button
+                {/* <button
                     onClick={printPDF}
                     className="mb-4 p-2 bg-blue-500 text-white rounded"
+                > */}
+                <ButtonPrimary
+                    text="تحميل قائمة الحضور"
+                    active
+                    onClick={printPDF}
+                />
+                {/* Print as PDF
+                </button> */}
+
+                <div
+                    // id="presence-table"
+                    className="mb-8 overflow-x-clip border border-light rounded-xl w-full bg-white"
                 >
-                    Print as PDF
-                </button>
-                <div className="mb-8 overflow-x-clip border border-light rounded-xl w-full bg-white">
+                    {/* <div className="p-4 print:block">
+                        <h1 className="text-xl font-bold">
+                            اسم الأستاذ:{" "}
+                            {group.group.responsibleTeacher.firstName}{" "}
+                            {group.group.responsibleTeacher.lastName}
+                        </h1>
+                        <h2 className="text-lg">
+                            اسم المادة: {group.group.module}
+                        </h2>
+
+                        <h2 className="text-lg">
+                            المستوى: {returnLevelInAR(group.group.level)}{" "}
+                            {returnInstitutionInAR(group.group.institution)}
+                        </h2>
+                    </div> */}
                     <motion.table
                         id="presence-table"
                         drag={"x"}
@@ -65,16 +117,53 @@ export function GroupsPresenceListsTable() {
                         dragMomentum={false}
                         className="w-full rounded-xl "
                     >
-                        <style>
-                            {`
-          @media print {
-            .hide-on-print {
-              display: none;
-            }
-          }
-        `}
-                        </style>
+                        {/* <div className="p-4">
+                        <h1 className="text-xl font-bold">
+                            اسم الأستاذ:{" "}
+                            {group.group.responsibleTeacher.firstName}{" "}
+                            {group.group.responsibleTeacher.lastName}
+                        </h1>
+                        <h2 className="text-lg">
+                            اسم المادة: {group.group.module}
+                        </h2>
+
+                        <h2 className="text-lg">
+                            المستوى: {returnLevelInAR(group.group.level)}{" "}
+                            {returnInstitutionInAR(group.group.institution)}
+                        </h2>
+                    </div> */}
                         <thead>
+                            <tr>
+                                <th
+                                    colSpan={group.alldays.length + 6}
+                                    className="p-4"
+                                >
+                                    <div className="text-right">
+                                        <h1 className="text-xl font-bold">
+                                            اسم الأستاذ:{" "}
+                                            {
+                                                group.group.responsibleTeacher
+                                                    .firstName
+                                            }{" "}
+                                            {
+                                                group.group.responsibleTeacher
+                                                    .lastName
+                                            }
+                                        </h1>
+                                        <h2 className="text-lg">
+                                            المادة: {group.group.module}
+                                        </h2>
+                                        <h2 className="text-lg">
+                                            المستوى:{" "}
+                                            {returnLevelInAR(group.group.level)}{" "}
+                                            {returnInstitutionInAR(
+                                                group.group.institution
+                                            )}
+                                        </h2>
+                                    </div>
+                                </th>
+                            </tr>
+
                             <tr className="flex items-center justify-start gap-7 w-full text-textGray font-medium border-b border-light bg-whtie">
                                 <th className="p-2 w-[100px] text-start">
                                     الرقم
@@ -86,6 +175,11 @@ export function GroupsPresenceListsTable() {
                                     className={`p-2 w-[200px] text-start ${isPrinting ? "hidden" : ""}`}
                                 >
                                     ثمن الدفع الشهري
+                                </th>
+                                <th
+                                    className={`p-2 w-[200px] text-start ${isPrinting ? "hidden" : ""}`}
+                                >
+                                    الثمن الذي يجب دفعه
                                 </th>
                                 <th
                                     className={`p-2 w-[200px] text-start ${isPrinting ? "hidden" : ""}`}
@@ -105,7 +199,14 @@ export function GroupsPresenceListsTable() {
                                         className="w-[200px] p-2 text-start"
                                         key={i}
                                     >
-                                        {new Date(day).toLocaleDateString()}
+                                        {new Date(day).toLocaleDateString()}{" "}
+                                        {new Date(day).toLocaleTimeString(
+                                            "en-GB",
+                                            {
+                                                hour: "2-digit",
+                                                minute: "2-digit",
+                                            }
+                                        )}
                                     </th>
                                 ))}
                             </tr>
@@ -117,7 +218,7 @@ export function GroupsPresenceListsTable() {
                                     className="flex items-center justify-start gap-7 w-full text-darkGray border-b border-light py-3"
                                 >
                                     <td className="w-[100px] p-2 text-start flex gap-1">
-                                        {group.group.groupId}
+                                        {i + 1}
                                     </td>
 
                                     <td className="w-[200px] p-2 text-start flex gap-1">
@@ -179,7 +280,7 @@ export function GroupsPresenceListsTable() {
                                     className="flex items-center justify-start gap-7 w-full text-darkGray border-b border-light py-3"
                                 >
                                     <td className="w-[100px] p-2 text-start flex gap-1">
-                                        {group.group.groupId}
+                                        {i}
                                     </td>
 
                                     <td className="w-[200px] p-2 text-start flex gap-1">

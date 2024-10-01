@@ -35,7 +35,7 @@ export const PercentageModal: React.FC<ModalProps> = ({ isOpen, onClose, onSubmi
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <div className="flex justify-end gap-2">
           <button onClick={onClose} className="bg-gray-500 text-white p-2 rounded">إلغاء</button>
-          <button onClick={handleSubmit} className="bg-blue-500 text-white p-2 rounded">تأكيد</button>
+          <button onClick={handleSubmit} className="bg-blue text-white p-2 rounded">تأكيد</button>
         </div>
       </div>
     </div>

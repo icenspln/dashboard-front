@@ -1,5 +1,5 @@
 import { Student } from "../../../../student-management/students-table/core/_models";
-
+import {Teacher } from "../../../../teacher-management/teacher-table/core/_models";
 export type FullStudent = {
   _id: string;
   firstName: string;
@@ -35,7 +35,7 @@ export type AttendanceGroup = {
     minute: number;
     _id: string;
   };
-  responsibleTeacher: string;
+  responsibleTeacher: Teacher;
   module: string;
   institution: string | "primarySchool" | "middleSchool" | "highSchool";
   level: number;
