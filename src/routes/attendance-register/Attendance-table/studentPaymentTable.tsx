@@ -145,7 +145,9 @@ export function StudentPaymentTable({
                         </p>
                     </div>
                     <div className="bg-mainBg p-4 flex flex-col gap-3 ">
-                        <h3 className="text-lg text-textGray">Total Debts</h3>
+                        <h3 className="text-lg text-textGray">
+                            Total payment needed
+                        </h3>
                         <div className="underline">
                             <PricingButton
                                 submit={submitTotalToPayMutation}

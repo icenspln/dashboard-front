@@ -179,7 +179,8 @@ function SettingScreen() {
                                 Enter Password
                             </h1>
                             <p className="text-gray-400 mt-3">
-                                please enter password to reach settings
+                                please enter password to reach settings, default
+                                password is 0000
                             </p>
                             {error && (
                                 <p className="text-red-500 mt-2">{error}</p>
@@ -193,7 +194,7 @@ function SettingScreen() {
                                 onChange={(e) => setPassword(e.target.value)} // Update password state
                             />
                             <ConfirmButton
-                                text="next"
+                                text="Next"
                                 className="text-white rounded-full w-[140px]"
                                 onClick={handleOverlayClose}
                             />

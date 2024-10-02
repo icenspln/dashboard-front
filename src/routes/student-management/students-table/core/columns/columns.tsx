@@ -2,6 +2,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import BirthDateCell from "./BirthDateCell";
 import SettingsCell from "./SettingsCell";
 import { Student } from "../_models";
+import { digitToStringLevel } from "../../../../../handlers/returnInArabic";
 
 const columnHelper = createColumnHelper<Student>();
 
@@ -29,7 +30,7 @@ export const defaultColumns = [
     }),
     columnHelper.accessor("level", {
         header: "Level",
-        cell: (info) => info?.getValue(),
+        cell: (info) => digitToStringLevel(info?.getValue()),
     }),
     columnHelper.accessor("phoneNumber", {
         header: "Phone Number",

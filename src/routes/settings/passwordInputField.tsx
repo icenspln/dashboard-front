@@ -33,7 +33,7 @@ export default function PasswordInput({
                 <button
                     type="button"
                     onClick={toggleShowPassword}
-                    className="absolute inset-y-0 left-0 flex items-center px-4 text-gray-600 focus:outline-none"
+                    className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600 focus:outline-none"
                 >
                     <ShowPasswordSvg />
                 </button>

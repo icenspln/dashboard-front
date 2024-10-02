@@ -83,3 +83,22 @@ export const modules = [
     { id: "History", label: "History" },
     { id: "German", label: "German" },
 ];
+
+export const MonthSelectionOptions = [
+    { id: 1, label: "January" },
+    { id: 2, label: "February" },
+    { id: 3, label: "March" },
+    { id: 4, label: "April" },
+    { id: 5, label: "May" },
+    { id: 6, label: "June" },
+    { id: 7, label: "July" },
+    { id: 8, label: "August" },
+    { id: 9, label: "September" },
+    { id: 10, label: "October" },
+    { id: 11, label: "November" },
+    { id: 12, label: "December" },
+];
+export const YearSelectionOptions = [
+    { id: 2024, label: "2024" },
+    { id: 2025, label: "2025" },
+];

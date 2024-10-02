@@ -1,10 +1,7 @@
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { GetStudentByCardIdType } from "../attendance-register/Attendance-table/core/_models";
-import {
-    digitToStringLevel,
-    returnInstitutionInAR,
-} from "../../handlers/returnInArabic";
+import { digitToStringLevel } from "../../handlers/returnInArabic";
 
 import { useSettings } from "../settings/core/SettingsContext";
 
@@ -108,23 +105,25 @@ export default function ReceiptPrintManagement() {
                     <img className="w-[50px]" src={logoUrl} alt="Logo" />
                     <h2 className="text-2xl">{appName}</h2>
                 </div>
-                <h1 className="text-lg font-bold text-center">وصل الدفع</h1>
+                <h1 className="text-lg font-bold text-center">
+                    Payment Reciept
+                </h1>
                 <div key={studentInfo.student._id} className="mt-4">
                     <p className="text-2xl">
-                        الإسم: {studentInfo.student.firstName}
+                        First Name: {studentInfo.student.firstName}
                     </p>
                     <p className="text-2xl">
-                        اللقب: {studentInfo.student.lastName}
+                        Last Name: {studentInfo.student.lastName}
                     </p>
                     <p className="text-2xl">
-                        الطور:{" "}
-                        {returnInstitutionInAR(studentInfo.student.institution)}
+                        Institution:
+                        {studentInfo.student.institution}
                     </p>
                     <p className="text-2xl">
-                        المستوى: {digitToStringLevel(studentInfo.student.level)}
+                        Level: {digitToStringLevel(studentInfo.student.level)}
                     </p>
                     <p className="text-2xl">
-                        المواد:
+                        Subjects:
                         {studentInfo.todayGroups.map((group, index) => (
                             <span key={group._id}>
                                 {group.module}
@@ -143,19 +142,16 @@ export default function ReceiptPrintManagement() {
                             </span>
                         ))}
                     </p>
-                    <p className="text-2xl">
-                        الثمن الذي تم دفعه: {paymentAmount}
-                    </p>
-                    <p className="text-2xl">الباقي: {totalToPay}</p>
+                    <p className="text-2xl">Total Payments: {paymentAmount}</p>
+                    <p className="text-2xl">Rest To Pay: {totalToPay}</p>
                 </div>
             </div>
             <button
                 className="mt-6 px-4 py-2 bg-blue text-white rounded-md hover:bg-white hover:text-blue outline hover:outline-blue-500"
                 onClick={handlePrint}
             >
-                طباعة الوصل
+                Print
             </button>
-            <Link to={"/receiptprint"}></Link>
         </div>
     );
 }

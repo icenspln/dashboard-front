@@ -38,7 +38,7 @@ export function returnGroupLabel(group: Group) {
 }
 export function returnGroupLabelWithoutTeacher(group: Group) {
     if (!group) return `group undefined`;
-    return `${group.module} | ${digitToStringLevel(group.level)} ${returnInstitutionInAR(group.institution)} | ${returnDayInAR(group.dayOfWeek)} - ${returnTimeString(group.timing)}`;
+    return `${group.module} | ${digitToStringLevel(group.level)} ${group.institution} | ${group.dayOfWeek} - ${returnTimeString(group.timing)}`;
 }
 export function returnStudentLabel(firstName: string, lastName: string) {
     return `${firstName} ${lastName}`;

@@ -65,28 +65,28 @@ export function TeacherPresenceListsTable() {
                                     <thead>
                                         <tr className="flex items-center justify-start gap-7 w-full text-textGray font-medium border-b border-light bg-whtie">
                                             <th className="p-2 w-[250px] text-start">
-                                                الفوج
+                                                Group
                                             </th>
                                             <th className="p-2 w-[100px] text-start">
-                                                الرقم
+                                                ID
                                             </th>
                                             <th className="p-2 w-[200px] text-start">
-                                                الطالب
+                                                Student
                                             </th>
                                             <th className="p-2 w-[200px] text-start">
-                                                ثمن الدفع الشهري
+                                                Total monthly payment
                                             </th>
                                             <th className="p-2 w-[200px] text-start">
-                                                الثمن الذي يجب دفعه
+                                                Total to pay
                                             </th>
                                             <th className="p-2 w-[200px] text-start">
-                                                الديون
+                                                Debts
                                             </th>
                                             <th className="p-2 w-[200px] text-start">
-                                                مجموع الديون
+                                                Total Debts
                                             </th>
                                             <th className="p-2 w-[200px] text-start">
-                                                رقم الهاتف
+                                                Phone number
                                             </th>
                                             {grp.alldays.map((day, i) => (
                                                 <th
@@ -261,28 +261,28 @@ export function TeacherPresenceListsTable() {
                                     <thead>
                                         <tr className="flex items-center justify-start  w-full text-textGray font-medium border-b border-light bg-whtie">
                                             <th className="p-2 w-[250px] text-start">
-                                                الفوج
+                                                Group
                                             </th>
                                             <th className="p-2 w-[100px] text-start">
-                                                الرقم
+                                                ID{" "}
                                             </th>
                                             <th className="p-2 w-[200px] text-start">
-                                                الطالب
+                                                Student
                                             </th>
                                             <th className="p-2 w-[200px] text-start">
-                                                ثمن الدفع الشهري
+                                                Total monthly payment
                                             </th>
                                             <th className="p-2 w-[200px] text-start">
-                                                الثمن الذي يجب دفعه
+                                                Total to pay
                                             </th>
                                             <th className="p-2 w-[200px] text-start">
-                                                الديون
+                                                Debts
                                             </th>
                                             <th className="p-2 w-[200px] text-start">
-                                                مجموع الديون
+                                                Total debts
                                             </th>
                                             <th className="p-2 w-[200px] text-start">
-                                                رقم الهاتف
+                                                Phone number
                                             </th>
                                             {grp.attendeesLeftGroup.map(
                                                 (std) => {

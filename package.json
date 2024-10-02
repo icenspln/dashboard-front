@@ -59,7 +59,7 @@
     "electron-builder": "^22.11.7"
   },
   "build": {
-    "appId": "com.siradj-school.id",
+    "appId": "com.school.id",
     "files": [
       "dist/**/*",
       "main.js"

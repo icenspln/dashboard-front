@@ -6,8 +6,6 @@ import { useParams } from "react-router-dom";
 import { AttendanceForStudentGroupType } from "./core/_models";
 import {
     digitToStringLevel,
-    returnDayInAR,
-    returnInstitutionInAR,
     returnTimeString,
 } from "../../../../handlers/returnInArabic";
 import { StudentPresentButton } from "../../../../components/isPresentButton";
@@ -50,7 +48,7 @@ export function StudentsPresenceListsTable() {
                             <tr className="flex items-center justify-start gap-7 w-full text-textGray font-medium border-b border-light ">
                                 {grp?.group.groupId && (
                                     <th className="p-2 w-[200px] text-start">
-                                        الفوج
+                                        Group
                                     </th>
                                 )}
                                 {grp?.attendance.map((att, i) => (
@@ -68,22 +66,14 @@ export function StudentsPresenceListsTable() {
                         <tbody>
                             <tr className="flex items-center justify-start gap-7 w-full text-darkGray">
                                 {grp.group.groupId && (
-                                    <td className="w-[200px] p-2 text-start flex gap-1">
+                                    <td className="w-[300px] p-2 text-start flex gap-1">
                                         <span>
                                             {digitToStringLevel(
                                                 grp.group.level
                                             )}
                                         </span>
-                                        <span>
-                                            {returnInstitutionInAR(
-                                                grp.group.institution
-                                            )}
-                                            |
-                                        </span>
-                                        <span>
-                                            {returnDayInAR(grp.group.dayOfWeek)}
-                                            |
-                                        </span>
+                                        <span>{grp.group.institution}|</span>
+                                        <span>{grp.group.dayOfWeek}|</span>
                                         <span>
                                             {returnTimeString(grp.group.timing)}
                                         </span>

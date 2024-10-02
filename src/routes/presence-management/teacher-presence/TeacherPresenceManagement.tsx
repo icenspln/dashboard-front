@@ -6,23 +6,23 @@ import { TeacherPresenceTableContextProvider } from "./teacher-presence-table/co
 import { TeacherTableForm } from "./teacher-presence-table/core/teacher-table-form/TeacherTableForm";
 
 export default function TeacherPresenceManagement() {
-  return (
-    <TeacherPresenceTableContextProvider>
-      <section className="w-full min-h-screen p-4 bg-mainBg">
-        <div className="flex justify-between items-center mb-4">
-          <div className=" flex gap-[12px]">
-            <TeacherTableForm />
-          </div>
-          <nav className="flex items-center gap-[12px]">
-            <Link to="/monthlysalarystatement">
-              <ButtonPrimary text="تحميل كشف الراتب الشهري" active />
-            </Link>
-          </nav>
-        </div>
-        <div>
-          <TeacherPresenceListsTable />
-        </div>
-      </section>
-    </TeacherPresenceTableContextProvider>
-  );
+    return (
+        <TeacherPresenceTableContextProvider>
+            <section className="w-full min-h-screen p-4 bg-mainBg">
+                <div className="flex justify-between items-center mb-4">
+                    <div className=" flex gap-[12px]">
+                        <TeacherTableForm />
+                    </div>
+                    <nav className="flex items-center gap-[12px]">
+                        <Link to="/monthly-salary-statement">
+                            <ButtonPrimary text="Monthly Payment" active />
+                        </Link>
+                    </nav>
+                </div>
+                <div>
+                    <TeacherPresenceListsTable />
+                </div>
+            </section>
+        </TeacherPresenceTableContextProvider>
+    );
 }
