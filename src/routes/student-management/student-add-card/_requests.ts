@@ -1,5 +1,5 @@
-import { AxiosInstance } from "../../../../api/Axios";
+import { AxiosInstance } from "../../../api/Axios";
 
 export function assignCardToStudent(studentId: string, newCardId: string) {
-  AxiosInstance.post(`/student/update-scanning-card/${studentId}`, newCardId);
+    AxiosInstance.post(`/student/update-scanning-card/${studentId}`, newCardId);
 }
