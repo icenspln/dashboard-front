@@ -257,7 +257,9 @@ export default function StudentRegisterForm({
                         >
                             <option value={``}>Choose Speciality</option>
                             {SPECIALITIES.map((s) => (
-                                <option value={s}>{s}</option>
+                                <option key={s} value={s}>
+                                    {s}
+                                </option>
                             ))}
                         </select>
                         {errors.speciality && (

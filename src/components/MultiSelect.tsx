@@ -60,7 +60,7 @@ export default function MultiSelect({
                         handleButtonClick();
                     }}
                 >
-                    اختر المادة
+                    Choose
                 </button>
                 {isOpen && (
                     <div className=" block absolute bg-white rounded-md min-w-[160px] shadow-sm z-10">
