@@ -6,7 +6,7 @@ export const DAYS = [
     "Monday",
     "Tuesday",
     "Wednesday",
-    "Thurdsay",
+    "Thursday",
     "Firday",
 ];
 
