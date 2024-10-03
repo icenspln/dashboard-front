@@ -190,11 +190,11 @@ const CardModal = ({
                     className="flex flex-col gap-1 items-center h-full"
                 >
                     <h2 className="text-lg text-center mb-3 font-bold text-blueDark">
-                        بطاقة خاطئة
+                        Wrong Card
                     </h2>
 
                     <p className="w-full text- text-textGray2 text-center ">
-                        البطاقة التي قمت بتمريرها ملك لمستخدم أخر
+                        The scanned card belongs to someone else
                     </p>
                     <div className="my-auto basis-1">
                         <WrongCardSvg />
@@ -204,7 +204,7 @@ const CardModal = ({
                             onClick={() => setIsError(false)} // Reset the error state
                             className="text-blue underline"
                         >
-                            اعادة
+                            try again
                         </button>
                     </div>
                     <div className="my-3">
@@ -212,7 +212,7 @@ const CardModal = ({
                             onClick={() => setModal(2)}
                             className="text-blue underline"
                         >
-                            تخطي هذه المرحلة و التسجيل بدون بطاقة
+                            Skip
                         </button>
                     </div>
                 </motion.div>

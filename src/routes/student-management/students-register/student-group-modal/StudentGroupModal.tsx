@@ -85,7 +85,7 @@ const RegistredStudentsOverlay = ({
         mutationFn: ({ groupId, studentId }: any) =>
             assignStudentToGroup(groupId, studentId),
         onSuccess: (res) => {
-            toast.success("تم تسجيل الطالب بنجاح");
+            toast.success("Student been registered successfully");
             // onClose();
             queryClient.invalidateQueries({ queryKey: ["getStudents"] });
             setGroups((prev) => [...prev, res]);
