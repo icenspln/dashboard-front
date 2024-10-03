@@ -86,23 +86,23 @@ export function returnTimeString({
 export function returnAttendanceInAR(status: string): string {
     switch (status) {
         case "present":
-            return "حاضر";
+            return "Present";
         case "absent":
-            return "غائب";
+            return "Absent";
         case "upcoming":
-            return "قادم";
+            return "upcoming";
         case "not joined":
-            return "لم ينضم";
+            return "not joined";
         case "unknown":
-            return "مجهول";
+            return "unknown";
         case "out of group":
-            return "نزع من الفوج";
+            return "out of group";
         case "changed group":
-            return "تغيير الفوج";
+            return "changed group";
         case "teacher absent":
-            return "المعلم غائب";
+            return "teacher absent";
         default:
-            return "حالة غير معروفة";
+            return "unknown";
     }
 }
 
