@@ -15,6 +15,7 @@ import {
     LEVELS,
     SPECIALITIES,
 } from "../../../../handlers/appGlobalVARS";
+import SpinnerWhite from "../../../../components/SpinnerWhite";
 
 interface StudentRegisterFormProps {
     setStudentId: (id: string) => void;
@@ -82,7 +83,7 @@ export default function StudentRegisterForm({
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -104,7 +105,7 @@ export default function StudentRegisterForm({
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -129,7 +130,7 @@ export default function StudentRegisterForm({
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                             {phoneNumberWarning && (
                                 <span className="mx-2 text-warning">
@@ -159,7 +160,7 @@ export default function StudentRegisterForm({
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -184,7 +185,7 @@ export default function StudentRegisterForm({
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -205,7 +206,7 @@ export default function StudentRegisterForm({
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <select
@@ -279,7 +280,10 @@ export default function StudentRegisterForm({
                         <h2
                             className={`text-xl  text-white text-center mx-auto`}
                         >
-                            Submit
+                            <div className="flex justify-between items-center gap-3">
+                                <span>Submit</span>
+                                {isSubmitting ? <SpinnerWhite /> : null}
+                            </div>
                         </h2>
                     </button>
                 </div>

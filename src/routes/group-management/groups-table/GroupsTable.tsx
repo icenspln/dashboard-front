@@ -80,8 +80,7 @@ export function GroupsTable() {
                                     src={emptyImage}
                                     alt=""
                                 />
-                                There are no Groups yet, You can create Groups
-                                with the New Group Button
+                                There are no Groups
                             </td>
                         </tr>
                     </tbody>

@@ -231,7 +231,11 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
                     <ButtonRoundedPrimary
                         text="Submit"
                         onClick={onSubmitGroups}
-                        disable={!selectedOption}
+                        disable={
+                            !selectedOption ||
+                            mutation.isPending ||
+                            removeMutation.isPending
+                        }
                     />
                 </div>
             </>

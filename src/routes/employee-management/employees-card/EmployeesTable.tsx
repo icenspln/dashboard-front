@@ -53,8 +53,7 @@ export function EmployeesTable() {
                                     src={emptyImage}
                                     alt=""
                                 />
-                                There are no Employees yet, You can create
-                                Employees with the New Employee Button
+                                There are no Employees
                             </td>
                         </tr>
                     </tbody>

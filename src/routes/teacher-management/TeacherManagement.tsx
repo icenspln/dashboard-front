@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import ButtonPrimary from "../../components/ButtonPrimary";
 import { TeacherTable } from "./teacher-table/TeacherTable";
-import ExcelSvg from "../../assets/icons/ExcelSvg";
 
 import { TeachersTableContextProvider } from "./teacher-table/core/TeacherTableContext";
 import { TeacherTableForm } from "./teacher-table/teacher-table-form/TeacherTableForm";
@@ -16,7 +15,6 @@ export default function TeacherManagement() {
                         {/* <ColumnSelection options={ColumnSelectionOptions} /> */}
                     </div>
                     <nav className="flex items-center gap-[12px]">
-                        <ExcelSvg />
                         <Link to={`/teachers-management/new`}>
                             <ButtonPrimary text="New Teacher" active />
                         </Link>

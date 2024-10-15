@@ -198,6 +198,10 @@ function SettingScreen() {
                                 className="text-white rounded-full w-[140px]"
                                 onClick={handleOverlayClose}
                             />
+                            {/* <div className="flex justify-between items-center gap-3">
+                                <span>Submit</span>
+                                {isSubmitting ? <SpinnerWhite /> : null}
+                            </div> */}
                         </span>
                     </div>
                 </Overlay>

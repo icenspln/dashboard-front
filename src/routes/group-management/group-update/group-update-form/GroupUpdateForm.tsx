@@ -117,7 +117,7 @@ export default function GroupUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <select
@@ -141,7 +141,7 @@ export default function GroupUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -166,7 +166,7 @@ export default function GroupUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <Select
@@ -187,7 +187,7 @@ export default function GroupUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <select
@@ -216,7 +216,7 @@ export default function GroupUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <select
@@ -240,7 +240,7 @@ export default function GroupUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <select
@@ -267,7 +267,7 @@ export default function GroupUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -289,7 +289,7 @@ export default function GroupUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -317,7 +317,7 @@ export default function GroupUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input

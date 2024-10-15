@@ -82,8 +82,7 @@ function StudentsTable() {
                                     src={emptyImage}
                                     alt=""
                                 />
-                                There are no students yet, You can create users
-                                with the New Student Button
+                                There are no students
                             </td>
                         </tr>
                     </tbody>

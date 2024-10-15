@@ -137,7 +137,7 @@ export default function GroupRegisterForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <select
@@ -161,7 +161,7 @@ export default function GroupRegisterForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -186,7 +186,7 @@ export default function GroupRegisterForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <AsyncSelect
@@ -209,7 +209,7 @@ export default function GroupRegisterForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <select
@@ -238,7 +238,7 @@ export default function GroupRegisterForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <select
@@ -262,7 +262,7 @@ export default function GroupRegisterForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <select
@@ -289,7 +289,7 @@ export default function GroupRegisterForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -311,7 +311,7 @@ export default function GroupRegisterForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -339,7 +339,7 @@ export default function GroupRegisterForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input

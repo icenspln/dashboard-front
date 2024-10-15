@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { useContext } from "react";
 import { RegistrationContext } from "../core/RegistrationContext";
+import SpinnerWhite from "../../../../components/SpinnerWhite";
 
 interface EmployeeRegisterFormProps {
     setEmployeeId: (id: string) => void;
@@ -52,7 +53,7 @@ export default function EmployeeRegisterForm({
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -74,7 +75,7 @@ export default function EmployeeRegisterForm({
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -99,7 +100,7 @@ export default function EmployeeRegisterForm({
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -141,7 +142,10 @@ export default function EmployeeRegisterForm({
                         <h2
                             className={`text-xl  text-white text-center mx-auto`}
                         >
-                            Submit
+                            <div className="flex justify-between items-center gap-3">
+                                <span>Submit</span>
+                                {isSubmitting ? <SpinnerWhite /> : null}
+                            </div>
                         </h2>
                     </button>
                 </div>

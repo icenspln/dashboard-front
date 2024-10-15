@@ -9,6 +9,7 @@ import queryString from "query-string";
 import { UpdateContext } from "../core/UpdateContext";
 import { useContext } from "react";
 import { INSTITUTIONS, LEVELS } from "../../../../handlers/appGlobalVARS";
+import SpinnerWhite from "../../../../components/SpinnerWhite";
 
 export default function StudentUpdateForm() {
     const { setSuccessModal } = useContext(UpdateContext);
@@ -62,7 +63,7 @@ export default function StudentUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -84,7 +85,7 @@ export default function StudentUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -109,7 +110,7 @@ export default function StudentUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -134,7 +135,7 @@ export default function StudentUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -159,7 +160,7 @@ export default function StudentUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <input
@@ -181,7 +182,7 @@ export default function StudentUpdateForm() {
                                 className="text-red-300 font-bold"
                                 title="Item Required"
                             >
-                                🞰
+                                *
                             </span>
                         </label>
                         <select
@@ -234,7 +235,10 @@ export default function StudentUpdateForm() {
                         <h2
                             className={`text-xl  text-white text-center mx-auto`}
                         >
-                            Submit
+                            <div className="flex justify-between items-center gap-3">
+                                <span>Submit</span>
+                                {isSubmitting ? <SpinnerWhite /> : null}
+                            </div>
                         </h2>
                     </button>
                 </div>

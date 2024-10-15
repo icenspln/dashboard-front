@@ -85,8 +85,7 @@ export function TeacherTable() {
                                     src={emptyImage}
                                     alt=""
                                 />
-                                There are no teachers yet, You can create users
-                                with the New Teacher Button
+                                There are no teachers
                             </td>
                         </tr>
                     </tbody>
