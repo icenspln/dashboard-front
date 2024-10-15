@@ -8,4 +8,5 @@ export default defineConfig({
   },
   base: './',
   plugins: [react()],
+    assetsInclude: ['**/*.gltf'],
 });

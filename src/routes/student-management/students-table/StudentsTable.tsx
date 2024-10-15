@@ -14,6 +14,7 @@ import { Pagination } from "../../../components/pagination";
 import { StudentGroupModal } from "./student-group-modal/StudentGroupModal";
 import StudentCardEdit from "../student-edit-card/StudentCard";
 import Spinner from "../../../components/Spinner";
+import emptyImage from "../../../assets/imgs/empty.svg";
 
 function StudentsTable() {
     const { filter, enrollStudentModal, editCardModal } =
@@ -23,7 +24,7 @@ function StudentsTable() {
     const [page, setPage] = useState<number>(1);
 
     //query functions
-    const { data, isLoading } = useQuery({
+    const { data, isLoading, error } = useQuery({
         queryKey: ["getStudents", filter, page],
         queryFn: () => getStudents(filter, page),
 
@@ -31,7 +32,7 @@ function StudentsTable() {
     });
 
     useMemo(() => {
-        if (data && !isLoading) {
+        if (data && !isLoading && !error) {
             setStudents(data.data);
         }
     }, [data, isLoading]);
@@ -43,13 +44,52 @@ function StudentsTable() {
         getCoreRowModel: getCoreRowModel(),
     });
 
-    if(isLoading) {
+    if (error) {
         return (
-            <div className="flex justify-center items-center min-h-max">
+            <div className="flex justify-center items-center min-h-full">
+                Something went wrong..
+            </div>
+        );
+    }
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
                 <Spinner />
             </div>
-        )
+        );
     }
+
+    if (data.data.length == 0)
+        return (
+            <div
+                ref={constraintsRef}
+                className="overflow-x-clip border border-[#E2E8F0] rounded-xl"
+            >
+                <motion.table
+                    drag={"x"}
+                    dragConstraints={constraintsRef}
+                    dragElastic={0}
+                    dragMomentum={false}
+                    className="w-full bg-white rounded-xl"
+                >
+                    <tbody>
+                        <tr>
+                            <td className="p-4 w-full text-center">
+                                <img
+                                    className="mx-auto"
+                                    width={600}
+                                    src={emptyImage}
+                                    alt=""
+                                />
+                                There are no students yet, You can create users
+                                with the New Student Button
+                            </td>
+                        </tr>
+                    </tbody>
+                </motion.table>
+            </div>
+        );
 
     return (
         <>
