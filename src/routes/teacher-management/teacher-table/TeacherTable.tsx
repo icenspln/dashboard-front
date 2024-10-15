@@ -15,6 +15,9 @@ import {
 } from "./core/TeacherTableContext";
 import { Pagination } from "../../../components/pagination";
 import { TeacherPaymentModal } from "./teacher-payment-modal/TeacherPaymentModal";
+import Spinner from "../../../components/Spinner";
+
+import emptyImage from "../../../assets/imgs/empty.svg";
 
 export function TeacherTable() {
     const { paymentCheckModal } = useTeacherTable();
@@ -25,7 +28,7 @@ export function TeacherTable() {
     const [page, setPage] = useState(1);
 
     //query functions
-    const { data, isLoading } = useQuery({
+    const { data, isLoading, error } = useQuery({
         queryKey: ["getTeachers", filter, page],
         queryFn: () => getTeachers(filter, page),
     });
@@ -43,6 +46,53 @@ export function TeacherTable() {
         data: teachers,
         getCoreRowModel: getCoreRowModel(),
     });
+
+    if (error) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
+                Something went wrong..
+            </div>
+        );
+    }
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
+                <Spinner />
+            </div>
+        );
+    }
+
+    if (data.data.length == 0)
+        return (
+            <div
+                ref={constraintsRef}
+                className="overflow-x-clip border border-[#E2E8F0] rounded-xl"
+            >
+                <motion.table
+                    drag={"x"}
+                    dragConstraints={constraintsRef}
+                    dragElastic={0}
+                    dragMomentum={false}
+                    className="w-full bg-white rounded-xl"
+                >
+                    <tbody>
+                        <tr>
+                            <td className="p-4 w-full text-center">
+                                <img
+                                    className="mx-auto"
+                                    width={600}
+                                    src={emptyImage}
+                                    alt=""
+                                />
+                                There are no teachers yet, You can create users
+                                with the New Teacher Button
+                            </td>
+                        </tr>
+                    </tbody>
+                </motion.table>
+            </div>
+        );
 
     return (
         <>

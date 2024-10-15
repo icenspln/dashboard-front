@@ -14,13 +14,16 @@ import { GroupAddStudentModal } from "./group-add-student-modal/GroupAddStudentM
 import { Pagination } from "../../../components/pagination";
 import { TeacherAbsenceModal } from "./group-teacher-modal/TeacherAbsenceModal";
 
+import emptyImage from "../../../assets/imgs/empty.svg";
+import Spinner from "../../../components/Spinner";
+
 export function GroupsTable() {
     const constraintsRef = useRef(null);
     const [groups, setGroups] = useState<Group[]>([]);
     const { filter, groupModal, teacherAbsenceModal } = useGroupsTable();
     const [page, setPage] = useState(1);
     //query functions
-    const { data, isLoading } = useQuery({
+    const { data, isLoading, error } = useQuery({
         queryKey: ["getGroups", filter, page],
         queryFn: () => getGroups(filter, page),
     });
@@ -38,6 +41,54 @@ export function GroupsTable() {
         // data : groupsData,
         getCoreRowModel: getCoreRowModel(),
     });
+
+    if (error) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
+                Something went wrong..
+            </div>
+        );
+    }
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
+                <Spinner />
+            </div>
+        );
+    }
+
+    if (data.data.length == 0)
+        return (
+            <div
+                ref={constraintsRef}
+                className="overflow-x-clip border border-[#E2E8F0] rounded-xl"
+            >
+                <motion.table
+                    drag={"x"}
+                    dragConstraints={constraintsRef}
+                    dragElastic={0}
+                    dragMomentum={false}
+                    className="w-full bg-white rounded-xl"
+                >
+                    <tbody>
+                        <tr>
+                            <td className="p-4 w-full text-center">
+                                <img
+                                    className="mx-auto"
+                                    width={600}
+                                    src={emptyImage}
+                                    alt=""
+                                />
+                                There are no Groups yet, You can create Groups
+                                with the New Group Button
+                            </td>
+                        </tr>
+                    </tbody>
+                </motion.table>
+            </div>
+        );
+
     return (
         <>
             <div

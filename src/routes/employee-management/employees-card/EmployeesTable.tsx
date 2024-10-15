@@ -5,18 +5,62 @@ import { useNavigate } from "react-router-dom";
 
 import { useEmployeeContext } from "./core/EmployeeContext";
 import EmployeeEditCard from "./employee-edit-card/EmployeeEditCard";
+import emptyImage from "../../../assets/imgs/empty.svg";
+import Spinner from "../../../components/Spinner";
 
 export function EmployeesTable() {
     const navigate = useNavigate();
-    const { employees, isLoading } = useEmployeeContext();
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+    const { employees, isLoading, error } = useEmployeeContext();
 
     const handleClick = (id: string) => {
         navigate(`/employees-presence-management/${id}`);
     };
+    if (error) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
+                Something went wrong..
+            </div>
+        );
+    }
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
+                <Spinner />
+            </div>
+        );
+    }
+
+    if (employees.length == 0)
+        return (
+            <div
+                // ref={constraintsRef}
+                className="overflow-x-clip border border-[#E2E8F0] rounded-xl"
+            >
+                <table
+                    // drag={"x"}
+                    // dragConstraints={constraintsRef}
+                    // dragElastic={0}
+                    // dragMomentum={false}
+                    className="w-full bg-white rounded-xl"
+                >
+                    <tbody>
+                        <tr>
+                            <td className="p-4 w-full text-center">
+                                <img
+                                    className="mx-auto"
+                                    width={600}
+                                    src={emptyImage}
+                                    alt=""
+                                />
+                                There are no Employees yet, You can create
+                                Employees with the New Employee Button
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        );
 
     return (
         <div className="flex flex-wrap gap-[12px] ">
