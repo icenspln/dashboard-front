@@ -13,6 +13,7 @@ import { defaultColumns } from "./core/columns/columns";
 import { Pagination } from "../../../components/pagination";
 import { StudentGroupModal } from "./student-group-modal/StudentGroupModal";
 import StudentCardEdit from "../student-edit-card/StudentCard";
+import Spinner from "../../../components/Spinner";
 
 function StudentsTable() {
     const { filter, enrollStudentModal, editCardModal } =
@@ -41,6 +42,14 @@ function StudentsTable() {
         data: students,
         getCoreRowModel: getCoreRowModel(),
     });
+
+    if(isLoading) {
+        return (
+            <div className="flex justify-center items-center min-h-max">
+                <Spinner />
+            </div>
+        )
+    }
 
     return (
         <>
