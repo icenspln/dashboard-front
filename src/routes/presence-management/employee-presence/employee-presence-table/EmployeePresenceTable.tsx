@@ -8,6 +8,7 @@ import { useEmployeePresence } from "./core/EmployeePresenceContext";
 // import { useRef } from "react";
 import PersonSvg from "../../../../assets/icons/PersonSvg";
 import PhoneSvg from "../../../../assets/icons/PhoneSvg";
+import emptyImage from "../../../../assets/imgs/empty.png";
 
 export function EmployeePresenceListsTable() {
     // const constraintsRef = useRef(null);
@@ -18,6 +19,27 @@ export function EmployeePresenceListsTable() {
         data: presenceListData?.attendanceRecords || [],
         getCoreRowModel: getCoreRowModel(),
     });
+
+    if (presenceListData?.attendanceRecords.length == 0)
+        return (
+            <div className="overflow-x-clip border border-[#E2E8F0] rounded-xl">
+                <table className="w-full bg-white rounded-xl">
+                    <tbody>
+                        <tr>
+                            <td className="p-4 w-full text-center">
+                                <img
+                                    className="mx-auto"
+                                    width={600}
+                                    src={emptyImage}
+                                    alt=""
+                                />
+                                Employee did not clock in yet
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        );
 
     return (
         <>

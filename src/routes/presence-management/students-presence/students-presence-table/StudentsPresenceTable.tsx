@@ -10,6 +10,8 @@ import {
 } from "../../../../handlers/returnInArabic";
 import { StudentPresentButton } from "../../../../components/isPresentButton";
 import { StudentsTableContext } from "./core/StudentsTableContext";
+import Spinner from "../../../../components/Spinner";
+import emptyImage from "../../../../assets/imgs/empty.png";
 
 export function StudentsPresenceListsTable() {
     const { filter } = useContext(StudentsTableContext);
@@ -29,6 +31,52 @@ export function StudentsPresenceListsTable() {
     }, [data, isLoading, error]);
 
     //     enum: ["present", "absent", "upcoming", "not joined", "unknown" , "out of group", "changed group" , "teacher absent"],
+
+    if (error) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
+                Something went wrong..
+            </div>
+        );
+    }
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
+                <Spinner />
+            </div>
+        );
+    }
+
+    if (data.groups.length == 0)
+        return (
+            <div
+                ref={constraintsRef}
+                className="overflow-x-clip border border-[#E2E8F0] rounded-xl"
+            >
+                <motion.table
+                    drag={"x"}
+                    dragConstraints={constraintsRef}
+                    dragElastic={0}
+                    dragMomentum={false}
+                    className="w-full bg-white rounded-xl"
+                >
+                    <tbody>
+                        <tr>
+                            <td className="p-4 w-full text-center">
+                                <img
+                                    className="mx-auto"
+                                    width={600}
+                                    src={emptyImage}
+                                    alt=""
+                                />
+                                Student did not attende any classes yet
+                            </td>
+                        </tr>
+                    </tbody>
+                </motion.table>
+            </div>
+        );
 
     return (
         <div ref={constraintsRef}>

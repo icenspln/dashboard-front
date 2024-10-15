@@ -6,6 +6,8 @@ import { AttendanceForGroupType } from "./core/_models";
 import { StudentPresentButton } from "../../../../components/isPresentButton";
 import { getAttendanceForGroup } from "./core/_requests";
 import { GroupsTableContext } from "./core/GroupsTableContext";
+import Spinner from "../../../../components/Spinner";
+import emptyImage from "../../../../assets/imgs/empty.png";
 
 export function GroupsPresenceListsTable() {
     const { filter } = useContext(GroupsTableContext);
@@ -23,6 +25,52 @@ export function GroupsPresenceListsTable() {
             setGroup(data);
         }
     }, [data, isLoading, error]);
+
+    if (error) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
+                Something went wrong..
+            </div>
+        );
+    }
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
+                <Spinner />
+            </div>
+        );
+    }
+
+    if (data.students.length == 0)
+        return (
+            <div
+                ref={constraintsRef}
+                className="overflow-x-clip border border-[#E2E8F0] rounded-xl"
+            >
+                <motion.table
+                    drag={"x"}
+                    dragConstraints={constraintsRef}
+                    dragElastic={0}
+                    dragMomentum={false}
+                    className="w-full bg-white rounded-xl"
+                >
+                    <tbody>
+                        <tr>
+                            <td className="p-4 w-full text-center">
+                                <img
+                                    className="mx-auto"
+                                    width={600}
+                                    src={emptyImage}
+                                    alt=""
+                                />
+                                The group is new, and it didn't take place yet
+                            </td>
+                        </tr>
+                    </tbody>
+                </motion.table>
+            </div>
+        );
 
     if (group)
         return (

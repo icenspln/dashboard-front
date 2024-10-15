@@ -12,7 +12,9 @@ import { PricingButton } from "../../../../components/PricingButtonEdit";
 import { GlobalContext } from "../../../../GlobalContext";
 import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
 import { returnGroupLabelWithoutTeacher } from "../../../../handlers/returnInArabic";
+import Spinner from "../../../../components/Spinner";
 // import { Note } from "../../../attendance-register/Attendance-table/core/_models";
+import emptyImage from "../../../../assets/imgs/empty.png";
 
 export function TeacherPresenceListsTable() {
     const globalContext = useContext(GlobalContext);
@@ -44,6 +46,60 @@ export function TeacherPresenceListsTable() {
     }, [groups, teacher]);
 
     //     enum: ["present", "absent", "upcoming", "not joined", "unknown" , "out of group", "changed group" , "teacher absent"],
+
+    if (error) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
+                Something went wrong..
+            </div>
+        );
+    }
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center min-h-full">
+                <Spinner />
+            </div>
+        );
+    }
+
+    const checkStudentsInGroups = (groups: any) => {
+        let c = 0;
+        groups.forEach((grp: any) => {
+            c += grp.students.length;
+        });
+        return c;
+    };
+
+    if (data.groups.length == 0 || checkStudentsInGroups(data.groups) == 0)
+        return (
+            <div
+                ref={constraintsRef}
+                className="overflow-x-clip border border-[#E2E8F0] rounded-xl"
+            >
+                <motion.table
+                    drag={"x"}
+                    dragConstraints={constraintsRef}
+                    dragElastic={0}
+                    dragMomentum={false}
+                    className="w-full bg-white rounded-xl"
+                >
+                    <tbody>
+                        <tr>
+                            <td className="p-4 w-full text-center">
+                                <img
+                                    className="mx-auto"
+                                    width={600}
+                                    src={emptyImage}
+                                    alt=""
+                                />
+                                Teacher did not attende any classes yet
+                            </td>
+                        </tr>
+                    </tbody>
+                </motion.table>
+            </div>
+        );
 
     if (data && !isLoading && !error)
         return (
@@ -120,7 +176,7 @@ export function TeacherPresenceListsTable() {
                                                         <span className="relative">
                                                             <NoteSvg />
                                                         </span>
-                                                        <div className="w-[629px] max-h-[200px] overflow-auto flex hidden group-hover:block absolute bg-white p-2 border rounded shadow-md ">
+                                                        <div className="w-[629px] max-h-[200px] overflow-auto flex   group-hover:block absolute bg-white p-2 border rounded shadow-md ">
                                                             {std.notes.map(
                                                                 (note) => (
                                                                     <div
