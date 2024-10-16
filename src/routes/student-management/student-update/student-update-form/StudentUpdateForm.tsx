@@ -55,7 +55,7 @@ export default function StudentUpdateForm() {
     return (
         <>
             <form action="" onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex items-center gap-7 mb-3">
+                <div className="flex flex-col md:flex-row items-center gap-7 mb-3">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label htmlFor="firstName" className="text-blueDark">
                             First Name
@@ -101,8 +101,7 @@ export default function StudentUpdateForm() {
                         )}
                     </article>
                 </div>
-
-                <div className="flex items-center gap-7 mb-3">
+                <div className="flex flex-col md:flex-row  items-center gap-7 mb-3">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label htmlFor="phoneNumber" className="text-blueDark">
                             Phone Number
@@ -151,8 +150,7 @@ export default function StudentUpdateForm() {
                         )}
                     </article>
                 </div>
-
-                <div className="flex items-center gap-7 mb-3">
+                <div className="flex flex-col md:flex-row items-center gap-7 mb-3">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label htmlFor="birthDate" className="text-blueDark">
                             Birth Date
@@ -203,8 +201,7 @@ export default function StudentUpdateForm() {
                         )}
                     </article>
                 </div>
-
-                <div className="flex items-center gap-7 mb-3 ">
+                <div className="flex  flex-col md:flex-row items-center gap-7 mb-3 ">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label className="text-blueDark" htmlFor="level">
                             Level
@@ -225,7 +222,6 @@ export default function StudentUpdateForm() {
                         )}
                     </article>
                 </div>
-
                 <div className="flex items-center justify-start gap-7 w-[140px] ">
                     <FormSubmitButton disabled={mutation.isPending} />
                 </div>

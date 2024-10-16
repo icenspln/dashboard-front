@@ -34,7 +34,7 @@ function StudentRegisterContent({
     setStudentId,
 }: studentRegisterContentProps) {
     return (
-        <div>
+        <div className="w-full">
             <StudentRegisterForm setStudentId={setStudentId} />
             <StudentCard studentId={studentId} />
             <StudentGroupModal studentId={studentId} />

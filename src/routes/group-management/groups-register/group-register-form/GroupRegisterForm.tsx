@@ -129,7 +129,7 @@ export default function GroupRegisterForm() {
     return (
         <>
             <form action="" onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex items-center gap-7 mb-7">
+                <div className="flex items-center flex-col md:flex-row  gap-7 mb-7">
                     <article className="flex flex-col gap-2 w-full">
                         <label htmlFor="dayOfWeek" className="text-blueDark">
                             Day - repeated each week
@@ -178,7 +178,7 @@ export default function GroupRegisterForm() {
                     </article>
                 </div>
 
-                <div className="flex items-center gap-7 mb-7">
+                <div className="flex items-center flex-col md:flex-row  gap-7 mb-7">
                     <article className="flex flex-col gap-2 w-full">
                         <label htmlFor="teacher" className="text-blueDark">
                             Teacher
@@ -230,7 +230,7 @@ export default function GroupRegisterForm() {
                     </article>
                 </div>
 
-                <div className="flex items-center gap-7 mb-7">
+                <div className="flex items-center  flex-col md:flex-row gap-7 mb-7">
                     <article className="flex flex-col gap-2 w-full">
                         <label className="text-blueDark" htmlFor="level">
                             Level
@@ -281,7 +281,7 @@ export default function GroupRegisterForm() {
                     </article>
                 </div>
 
-                <div className="flex items-center gap-7 mb-7 ">
+                <div className="flex items-center flex-col md:flex-row  gap-7 mb-7 ">
                     <article className="flex flex-col gap-2 w-full">
                         <label className="text-blueDark" htmlFor="pricing">
                             Price
@@ -328,7 +328,7 @@ export default function GroupRegisterForm() {
                     </article>
                 </div>
 
-                <div className="flex items-center gap-7 mb-7 ">
+                <div className="flex items-center flex-col md:flex-row  gap-7 mb-7 ">
                     <article className="flex flex-col gap-2 w-full">
                         <label
                             className="text-blueDark"

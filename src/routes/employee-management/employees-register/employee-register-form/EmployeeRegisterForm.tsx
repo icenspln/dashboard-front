@@ -45,7 +45,7 @@ export default function EmployeeRegisterForm({
     return (
         <>
             <form action="" onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex items-center gap-7 mb-3">
+                <div className="flex items-center flex-col md:flex-row gap-7 mb-3">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label htmlFor="firstName" className="text-blueDark">
                             First Name
@@ -92,7 +92,7 @@ export default function EmployeeRegisterForm({
                     </article>
                 </div>
 
-                <div className="flex items-center gap-7 mb-3">
+                <div className="flex items-center flex-col md:flex-row gap-7 mb-3">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label htmlFor="phoneNumber" className="text-blueDark">
                             Phone Number

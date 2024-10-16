@@ -37,7 +37,7 @@ export default function TeacherRegisterForm() {
     return (
         <>
             <form action="" onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex items-center gap-7 mb-3">
+                <div className="flex flex-col md:flex-row  items-center gap-7 mb-3">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label htmlFor="firstName" className="text-blueDark">
                             First Name
@@ -84,7 +84,7 @@ export default function TeacherRegisterForm() {
                     </article>
                 </div>
 
-                <div className="flex items-center gap-7 mb-3">
+                <div className="flex flex-col md:flex-row items-center gap-7 mb-3">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label htmlFor="phoneNumber" className="text-blueDark">
                             Phone Number
@@ -130,7 +130,7 @@ export default function TeacherRegisterForm() {
                     </article>
                 </div>
 
-                <div className="flex items-center gap-7 mb-3">
+                <div className="flex flex-col md:flex-row items-center gap-7 mb-3">
                     <article className="flex flex-col gap-2 w-full min-h-[96px]">
                         <label htmlFor="modules" className="text-blueDark">
                             Subject

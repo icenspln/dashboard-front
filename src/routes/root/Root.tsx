@@ -167,7 +167,7 @@ export default function Root() {
                         </NavLink>
                     </section>
                 </div>
-                <section className="ml-16 md:ml-[240px] outlet">
+                <section className="ml-16 md:ml-[240px] w-full outlet">
                     <Outlet />
                 </section>
             </main>

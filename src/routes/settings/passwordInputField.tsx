@@ -21,7 +21,7 @@ export default function PasswordInput({
     };
 
     return (
-        <div className="relative w-full">
+        <div className="relative max-w-full">
             <input
                 type={isTextInput ? "text" : showPassword ? "text" : "password"}
                 value={value}

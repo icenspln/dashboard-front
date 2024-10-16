@@ -325,7 +325,7 @@ function SettingScreen() {
                             change primary password
                         </h1>
                         <div className="flex flex-col w-full gap-[12px] justify-between pt-3">
-                            <div className="flex flex-col w-[525px] gap-[12px]">
+                            <div className="flex flex-col  w-[525px] max-w-full gap-[12px]">
                                 <h1>old password</h1>
                                 <PasswordInput
                                     placeHolder="Enter old password"
@@ -335,7 +335,7 @@ function SettingScreen() {
                                     }
                                 />
                             </div>
-                            <div className="flex flex-col w-[525px] gap-[12px]">
+                            <div className="flex flex-col w-[525px] max-w-full gap-[12px]">
                                 <h1>New password</h1>
                                 <PasswordInput
                                     placeHolder="Enter new password"
@@ -345,7 +345,7 @@ function SettingScreen() {
                                     }
                                 />
                             </div>
-                            <div className="flex flex-col w-[525px] gap-[12px]">
+                            <div className="flex flex-col w-[525px] max-w-full gap-[12px]">
                                 <h1>Confirm new password</h1>
                                 <PasswordInput
                                     placeHolder="confirm new password"
@@ -364,7 +364,7 @@ function SettingScreen() {
                                 <p className="text-red-500 mt-2">{error}</p>
                             )}
 
-                            <div className="flex flex-col w-[525px] gap-[12px]">
+                            <div className="flex flex-col w-[525px] max-w-full gap-[12px]">
                                 <h1>App Name</h1>
                                 <PasswordInput
                                     placeHolder={appName}
