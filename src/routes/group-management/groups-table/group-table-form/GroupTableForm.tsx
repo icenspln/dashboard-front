@@ -54,26 +54,30 @@ export function GroupTableForm() {
             {/* <InstitutionFilter /> */}
             {/* <LevelFilter /> */}
             <div className="flex  gap-3 flex-col md:flex-row items-start md:items-center">
-                <FilterButton
-                    label="Level"
-                    options={levelFilterOptions}
-                    setFilterState={updateLevelFilter}
-                />
-                <FilterButton
-                    label="Institution"
-                    options={institutionFilterOptions}
-                    setFilterState={updateInstitutionFilter}
-                />
-                <FilterButton
-                    label="Subject"
-                    options={modules}
-                    setFilterState={updateModulesFilter}
-                />
-                <FilterButton
-                    label="Day"
-                    options={dayOfWeekFilterOptions}
-                    setFilterState={updateDayFilter}
-                />
+                <div className="flex gap-3">
+                    <FilterButton
+                        label="Level"
+                        options={levelFilterOptions}
+                        setFilterState={updateLevelFilter}
+                    />
+                    <FilterButton
+                        label="Institution"
+                        options={institutionFilterOptions}
+                        setFilterState={updateInstitutionFilter}
+                    />
+                </div>
+                <div className="flex gap-3">
+                    <FilterButton
+                        label="Subject"
+                        options={modules}
+                        setFilterState={updateModulesFilter}
+                    />
+                    <FilterButton
+                        label="Day"
+                        options={dayOfWeekFilterOptions}
+                        setFilterState={updateDayFilter}
+                    />
+                </div>
             </div>
         </div>
     );

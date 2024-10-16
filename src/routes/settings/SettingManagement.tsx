@@ -7,6 +7,7 @@ import { useSettings, SettingsProvider } from "./core/SettingsContext";
 import CustomOverlay from "../../components/CustomOverlay";
 import { useNavigate } from "react-router-dom";
 import WrongCardSvg from "../../assets/icons/WrongCardSvg";
+import toast from "react-hot-toast";
 
 export default function SettingManagment() {
     return (
@@ -92,6 +93,10 @@ function SettingScreen() {
         }
     };
     const handleOverlayClose = async () => {
+        if (!password) {
+            navigate("/");
+            return;
+        }
         try {
             const isValid = await checkPassword(password);
             if (isValid) {
@@ -100,6 +105,8 @@ function SettingScreen() {
                 setOverlayVisible(false);
             } else {
                 setError("wrong password");
+                toast.error("Wrong Password");
+                navigate("/");
             }
         } catch {
             setError("something went wrong, try again.");
@@ -170,8 +177,8 @@ function SettingScreen() {
     return (
         <div className="w-full min-h-screen p-4 bg-mainBg">
             {overlayVisible && (
-                <Overlay onClose={handleOverlayClose}>
-                    <div className="flex flex-col items-center w-[511px]">
+                <Overlay onClose={handleOverlayClose} isVisible>
+                    <div className="flex flex-col items-center max-w-full ">
                         <span className="text-center">
                             <h1 className="text-lg font-bold">
                                 Enter Password
@@ -185,7 +192,7 @@ function SettingScreen() {
                             )}{" "}
                             {/* Display error message */}
                         </span>
-                        <span className="flex items-center w-[525px] gap-[12px] mt-3">
+                        <span className="flex items-center  gap-[12px] mt-3">
                             <PasswordInput
                                 placeHolder="password"
                                 value={password}
@@ -396,7 +403,7 @@ function SettingScreen() {
                         <h1 className="text-xl font-bold mt-10">
                             Backup and Restore database versions
                         </h1>
-                        <div className="flex justify-between gap-[12px] mt-3">
+                        <div className="flex flex-col md:flex-row justify-between gap-[12px] mt-3">
                             <div className="flex flex-col justify-center text-sm items-center w-full min-h-[182px] gap-[12px] border-2 rounded-md shadow-sm ">
                                 <h1 className="text-xl font-bold">
                                     Backup Database

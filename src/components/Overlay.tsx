@@ -22,7 +22,7 @@ interface OverlayProps {
 export function Overlay({ children, onClose, isVisible }: OverlayProps) {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
-            <div className="relative bg-white p-6 rounded-lg shadow-lg">
+            <div className="relative bg-white p-6 rounded-lg shadow-lg max-w-full mx-3">
                 {isVisible && onClose && (
                     <button
                         className="absolute -top-5 -right-5 text-gray-700"
