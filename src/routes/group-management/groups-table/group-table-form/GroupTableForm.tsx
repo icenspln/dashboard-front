@@ -36,8 +36,8 @@ export function GroupTableForm() {
         }));
     };
     return (
-        <>
-            <div className="flex items-center rounded border-2 border-gray bg-white  min-w-[241px] h-[32px]">
+        <div className="flex flex-col gap-3 md:flex-row items-start md:items-center">
+            <div className="flex  items-center rounded border-2 border-gray bg-white min-w-[100px] lg:min-w-[241px] h-[32px]">
                 <input
                     onChange={(e: any) =>
                         setFilterState((prev: any) => ({
@@ -53,26 +53,28 @@ export function GroupTableForm() {
             </div>
             {/* <InstitutionFilter /> */}
             {/* <LevelFilter /> */}
-            <FilterButton
-                label="Level"
-                options={levelFilterOptions}
-                setFilterState={updateLevelFilter}
-            />
-            <FilterButton
-                label="Institution"
-                options={institutionFilterOptions}
-                setFilterState={updateInstitutionFilter}
-            />
-            <FilterButton
-                label="Subject"
-                options={modules}
-                setFilterState={updateModulesFilter}
-            />
-            <FilterButton
-                label="Day of the week"
-                options={dayOfWeekFilterOptions}
-                setFilterState={updateDayFilter}
-            />
-        </>
+            <div className="flex  gap-3 flex-col md:flex-row items-start md:items-center">
+                <FilterButton
+                    label="Level"
+                    options={levelFilterOptions}
+                    setFilterState={updateLevelFilter}
+                />
+                <FilterButton
+                    label="Institution"
+                    options={institutionFilterOptions}
+                    setFilterState={updateInstitutionFilter}
+                />
+                <FilterButton
+                    label="Subject"
+                    options={modules}
+                    setFilterState={updateModulesFilter}
+                />
+                <FilterButton
+                    label="Day"
+                    options={dayOfWeekFilterOptions}
+                    setFilterState={updateDayFilter}
+                />
+            </div>
+        </div>
     );
 }

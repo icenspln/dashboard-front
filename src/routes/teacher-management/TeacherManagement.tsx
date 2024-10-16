@@ -9,10 +9,9 @@ export default function TeacherManagement() {
     return (
         <TeachersTableContextProvider>
             <section className="w-full min-h-screen p-4 bg-mainBg">
-                <div className="flex justify-between items-center mb-4">
-                    <div className=" flex gap-[12px]">
+                <div className="flex flex-col md:flex-row gap-3 justify-between items-start md:items-center mb-4">
+                    <div className="flex  gap-[12px]">
                         <TeacherTableForm />
-                        {/* <ColumnSelection options={ColumnSelectionOptions} /> */}
                     </div>
                     <nav className="flex items-center gap-[12px]">
                         <Link to={`/teachers-management/new`}>

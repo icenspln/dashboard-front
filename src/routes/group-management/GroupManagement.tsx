@@ -8,7 +8,7 @@ export default function GroupManagement() {
     return (
         <GroupsTableContextProvider>
             <section className="w-full min-h-screen p-4 bg-mainBg">
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex flex-col lg:flex-row gap-3 justify-between items-start lg:items-center mb-4">
                     <div className=" flex gap-[12px]">
                         <GroupTableForm />
                     </div>
