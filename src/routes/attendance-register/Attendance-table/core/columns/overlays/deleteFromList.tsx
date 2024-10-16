@@ -39,8 +39,8 @@ const DeleteFromListOverlay: React.FC<DeleteFromListOverlayProps> = ({
         return (
             <Overlay onClose={onClose} isVisible>
                 <>
-                    <div className=" bg-white w-[379px] h-[158px] rounded  gap-[10px]  flex flex-col text-center">
-                        <h1 className="text-xl ">
+                    <div className=" bg-white max-w-[200px]  rounded  gap-[10px]  flex flex-col text-center">
+                        <h1 className=" md:text-xl ">
                             Are you sure you want to remove student from the
                             group?
                         </h1>

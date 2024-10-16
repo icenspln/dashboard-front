@@ -127,7 +127,7 @@ export default function StudentControlPanel() {
         );
     } else if (studentInfo && !error) {
         return (
-            <div className="flex  gap-[25px] p-4 py-8 min-h-screen">
+            <div className="flex flex-col lg:flex-row  gap-[25px] p-4 py-8 min-h-screen">
                 <div className="w-full min-h-full flex flex-col gap-3 items-stretch justify-start">
                     <StudentInfoTable student={studentInfo.student} />
                     <StudentPaymentTable studentInfo={studentInfo} />

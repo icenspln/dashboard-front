@@ -3,12 +3,12 @@ import CardlessRegister from "./overlays/cardlessRegisterLink";
 
 export function NavigateToRegister() {
     return (
-        <div className="h-screen flex flex-col justify-center items-center text-center text-2xl gap-[12px]">
+        <div className="w-full h-screen flex flex-col justify-center items-center text-center">
             <span>
-                <h1 className="">Scan RFID Card</h1>
+                <h1 className="text-xl md:text-4xl">Scan RFID Card</h1>
             </span>
             <span>
-                <p className="text-gray-500">
+                <p className="text-gray-500 max-w-full">
                     please scan the RFID card to mark presence
                 </p>
             </span>

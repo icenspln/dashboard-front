@@ -34,26 +34,32 @@ export function StudentInfoTable({
                 <div className="bg-gray-100 p-4  text-center text-blue text-2xl border-b rounded-t-xl ">
                     {student.firstName} {student.lastName}
                 </div>
-                <div className="flex justify-between gap-3 p-3">
-                    <div className="p-2">
-                        <h3 className="text-textGray">Institution</h3>
-                        <p className="text-lg">{student.institution}</p>
+                <div className="flex flex-col md:flex-row justify-start gap-3 p-3">
+                    <div className="flex">
+                        <div className="p-2">
+                            <h3 className="text-textGray">Institution</h3>
+                            <p className="text-lg">{student.institution}</p>
+                        </div>
+                        <div className="p-2">
+                            <h3 className="text-textGray">Level</h3>
+                            <p className="text-lg">
+                                {digitToStringLevel(student.level)}
+                            </p>
+                        </div>
                     </div>
-                    <div className="p-2">
-                        <h3 className="text-textGray">Level</h3>
-                        <p className="text-lg">
-                            {digitToStringLevel(student.level)}
-                        </p>
-                    </div>
-                    <div className="p-2">
-                        <h3 className="text-textGray">Phone</h3>
-                        <p className="text-lg">{student.phoneNumber}</p>
-                    </div>
-                    <div className="p-2">
-                        <h3 className="text-textGray">Birth</h3>
-                        <p className="text-lg">
-                            {new Date(student.birthDate).toLocaleDateString()}
-                        </p>
+                    <div className="flex ">
+                        <div className="p-2">
+                            <h3 className="text-textGray">Phone</h3>
+                            <p className="text-lg">{student.phoneNumber}</p>
+                        </div>
+                        <div className="p-2">
+                            <h3 className="text-textGray">Birth</h3>
+                            <p className="text-lg">
+                                {new Date(
+                                    student.birthDate
+                                ).toLocaleDateString()}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

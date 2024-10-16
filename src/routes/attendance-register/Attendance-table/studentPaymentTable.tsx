@@ -134,7 +134,7 @@ export function StudentPaymentTable({
     return (
         <div className="  border border-[#E2E8F0] rounded-xl ">
             <div className=" rounded-xl  overflow-hidden">
-                <div className="bg-mainBg flex justify-between gap-3 text-center">
+                <div className="bg-mainBg flex flex-col md:flex-row justify-between gap-3 md:text-center">
                     <div className="bg-mainBg p-4 flex flex-col gap-3 ">
                         <h3 className="text-lg text-textGray">
                             Total paid this month

@@ -75,7 +75,7 @@ const SelectStudent: React.FC<SelectStudentProps> = ({ onClose }) => {
 
     return (
         <Overlay onClose={onClose} isVisible>
-            <div className="flex flex-col items-center w-[517px] min-h-[206px] gap-[15px]">
+            <div className="flex flex-col items-center max-w-full md:w-[517px] min-h-[206px] gap-[15px]">
                 <h1 className="text-xl font-bold">
                     Search by name for the student
                 </h1>
