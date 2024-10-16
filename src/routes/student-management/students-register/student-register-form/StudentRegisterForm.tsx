@@ -15,7 +15,7 @@ import {
     LEVELS,
     SPECIALITIES,
 } from "../../../../handlers/appGlobalVARS";
-import SpinnerWhite from "../../../../components/SpinnerWhite";
+import FormSubmitButton from "../../../../components/FormSubmitButton";
 
 interface StudentRegisterFormProps {
     setStudentId: (id: string) => void;
@@ -30,7 +30,7 @@ export default function StudentRegisterForm({
         register,
         watch,
         handleSubmit,
-        formState: { errors, isSubmitting },
+        formState: { errors },
     } = useForm<StudentRegisterFormType>({
         resolver: yupResolver(StudentRegisterSchema),
     });
@@ -272,20 +272,7 @@ export default function StudentRegisterForm({
                 </div>
 
                 <div className="flex items-center justify-start gap-7 w-[140px] ">
-                    <button
-                        disabled={isSubmitting}
-                        type="submit"
-                        className={`min-w-[140px] bg-blue transition hover:bg-blueHovered font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2 w-full`}
-                    >
-                        <h2
-                            className={`text-xl  text-white text-center mx-auto`}
-                        >
-                            <div className="flex justify-between items-center gap-3">
-                                <span>Submit</span>
-                                {isSubmitting ? <SpinnerWhite /> : null}
-                            </div>
-                        </h2>
-                    </button>
+                    <FormSubmitButton disabled={mutation.isPending} />
                 </div>
             </form>
         </>

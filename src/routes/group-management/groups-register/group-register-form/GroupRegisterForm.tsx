@@ -1,4 +1,3 @@
-import ButtonPrimary from "../../../../components/ButtonPrimary";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { GroupRegisterFormType, TypeRegisterSchema } from "../core/_models";
 import { useContext, useEffect, useState } from "react";
@@ -15,6 +14,7 @@ import {
     LEVELS,
     modules,
 } from "../../../../handlers/appGlobalVARS";
+import FormSubmitButton from "../../../../components/FormSubmitButton";
 
 export default function GroupRegisterForm() {
     const [teacherModules, setTeacherModules] = useState(modules);
@@ -28,7 +28,7 @@ export default function GroupRegisterForm() {
         register,
         handleSubmit,
         setValue,
-        formState: { errors, isSubmitting },
+        formState: { errors },
     } = useForm<GroupRegisterFormType>({
         resolver: yupResolver(TypeRegisterSchema),
     });
@@ -356,12 +356,7 @@ export default function GroupRegisterForm() {
                     </article>
                 </div>
                 <div className="flex items-center justify-start gap-7 mb-7 w-[140px] ">
-                    <ButtonPrimary
-                        text="Submit"
-                        active
-                        disabled={isSubmitting}
-                        type="submit"
-                    />
+                    <FormSubmitButton disabled={mutation.isPending} />
                 </div>
             </form>
         </>

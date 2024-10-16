@@ -9,7 +9,7 @@ import queryString from "query-string";
 import { UpdateContext } from "../core/UpdateContext";
 import { useContext } from "react";
 import { INSTITUTIONS, LEVELS } from "../../../../handlers/appGlobalVARS";
-import SpinnerWhite from "../../../../components/SpinnerWhite";
+import FormSubmitButton from "../../../../components/FormSubmitButton";
 
 export default function StudentUpdateForm() {
     const { setSuccessModal } = useContext(UpdateContext);
@@ -21,7 +21,7 @@ export default function StudentUpdateForm() {
     const {
         register,
         handleSubmit,
-        formState: { errors, isSubmitting },
+        formState: { errors },
     } = useForm<StudentUpdateFormType>({
         resolver: yupResolver(StudentUpdateSchema),
         defaultValues: {
@@ -227,20 +227,7 @@ export default function StudentUpdateForm() {
                 </div>
 
                 <div className="flex items-center justify-start gap-7 w-[140px] ">
-                    <button
-                        disabled={isSubmitting}
-                        type="submit"
-                        className={`min-w-[140px] bg-blue transition hover:bg-blueHovered font-medium flex flex-row items-center rounded-lg gap-3 px-3 py-2 w-full`}
-                    >
-                        <h2
-                            className={`text-xl  text-white text-center mx-auto`}
-                        >
-                            <div className="flex justify-between items-center gap-3">
-                                <span>Submit</span>
-                                {isSubmitting ? <SpinnerWhite /> : null}
-                            </div>
-                        </h2>
-                    </button>
+                    <FormSubmitButton disabled={mutation.isPending} />
                 </div>
             </form>
         </>

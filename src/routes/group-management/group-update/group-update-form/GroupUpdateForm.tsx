@@ -10,13 +10,13 @@ import { UpdateContext } from "../core/UpdateContext";
 import { useContext, useEffect, useState } from "react";
 import Select from "react-select";
 import { Teacher } from "../../../teacher-management/teacher-table/core/_models";
-import ButtonPrimary from "../../../../components/ButtonPrimary";
 import {
     dayOfWeekFilterOptions,
     INSTITUTIONS,
     LEVELS,
     modules,
 } from "../../../../handlers/appGlobalVARS";
+import FormSubmitButton from "../../../../components/FormSubmitButton";
 
 export default function GroupUpdateForm() {
     const [reactSelectOptions, setReactSelectOptions] = useState();
@@ -30,7 +30,7 @@ export default function GroupUpdateForm() {
         register,
         handleSubmit,
         setValue,
-        formState: { errors, isSubmitting },
+        formState: { errors },
     } = useForm<GroupUpdateFormType>({
         resolver: yupResolver(GroupUpdateSchema),
         defaultValues: {
@@ -334,12 +334,7 @@ export default function GroupUpdateForm() {
                     </article>
                 </div>
                 <div className="flex items-center justify-start gap-7 mb-7 w-[140px] ">
-                    <ButtonPrimary
-                        text="Submit"
-                        active
-                        disabled={isSubmitting}
-                        type="submit"
-                    />
+                    <FormSubmitButton disabled={mutation.isPending} />
                 </div>
             </form>
         </>
