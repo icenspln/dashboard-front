@@ -24,8 +24,8 @@ export function StudentTableForm() {
     };
 
     return (
-        <>
-            <div className="flex items-center rounded border-2 border-gray bg-white  min-w-[241px] h-[32px]">
+        <div className="flex flex-col gap-3 md:flex-row ">
+            <div className="flex items-center rounded border-2 border-gray bg-white min-w-full md:min-w-[241px] h-[32px]">
                 <input
                     onChange={(e: any) =>
                         setFilterState((prev: any) => ({
@@ -39,17 +39,19 @@ export function StudentTableForm() {
                     placeholder="Search The List"
                 />
             </div>
-            <FilterButton
-                label="Level"
-                options={levelFilterOptions}
-                setFilterState={updateLevelFilter}
-            />
-            <FilterButton
-                label="Institution"
-                options={institutionFilterOptions}
-                setFilterState={updateInstitutionFilter}
-            />
-        </>
+            <div className="flex gap-3">
+                <FilterButton
+                    label="Level"
+                    options={levelFilterOptions}
+                    setFilterState={updateLevelFilter}
+                />
+                <FilterButton
+                    label="Institution"
+                    options={institutionFilterOptions}
+                    setFilterState={updateInstitutionFilter}
+                />
+            </div>
+        </div>
     );
 }
 

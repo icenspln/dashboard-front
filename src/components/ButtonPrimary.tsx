@@ -34,7 +34,7 @@ export default function ButtonPrimary({
                     </div>
                 )}
                 <h2
-                    className={`hidden md:block text-xl  text-white  ${!children ? "w-full text-center" : "text-center"}`}
+                    className={`${children ? "hidden md:block" : ""} text-xl  text-white  ${!children ? "w-full text-center" : "text-center"}`}
                 >
                     {text}
                 </h2>
