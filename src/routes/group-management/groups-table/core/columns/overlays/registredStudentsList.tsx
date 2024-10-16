@@ -137,13 +137,13 @@ export const RegistredStudentsOverlay: React.FC<
     return (
         <Overlay onClose={onClose} isVisible>
             <>
-                <div className=" w-[553px]  flex flex-col items-center gap-[15px]">
+                <div className=" md:w-[553px]  flex flex-col items-center gap-[15px]">
                     <h1 className="text-2xl">List of Enrolled Students</h1>
                     <p className="text-textGray">
                         please choose a student to add to this group
                     </p>
 
-                    <div className="flex w-full h-[250px] overflow-auto flex-col gap-[12px]">
+                    <div className="flex w-full  overflow-auto flex-col gap-[12px]">
                         {selectedGroup && (
                             <>
                                 {selectedGroup.students.map((student, i) => (
@@ -172,7 +172,7 @@ export const RegistredStudentsOverlay: React.FC<
                         <AsyncSelect
                             isClearable
                             defaultOptions={reactSelectOptions}
-                            className="max-w-[553px]"
+                            className="md:max-w-[553px]"
                             loadOptions={loadOptions}
                             // defaultValue={SelectedOption}
                             onChange={setSelectedOption as any}

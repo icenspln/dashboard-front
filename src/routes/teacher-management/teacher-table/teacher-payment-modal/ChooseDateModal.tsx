@@ -57,7 +57,7 @@ export const ChooseDateModal = ({
     return (
         <Overlay onClose={onClose} isVisible>
             <>
-                <div className="w-[511px] flex flex-col items-center gap-[15px]">
+                <div className="md:w-[511px] flex flex-col items-center gap-[15px]">
                     {currentView === "checklist" ? (
                         <>
                             <h1 className="text-2xl">
@@ -66,7 +66,7 @@ export const ChooseDateModal = ({
                             <p className="text-textGray">
                                 Please choose the month and year
                             </p>
-                            <div className="flex w-full justify-between items-center gap-[12px]">
+                            <div className="flex flex-col md:flex-row w-full justify-between items-center gap-[12px]">
                                 <div className="flex-1">
                                     <Checklist
                                         items={chooseMonthOption}

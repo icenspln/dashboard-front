@@ -81,7 +81,7 @@ export default function TeacherPresence({
     return (
         <Overlay onClose={onClose} isVisible>
             <>
-                <div className="w-[553px] min-h-[378px] ">
+                <div className="md:w-[553px] min-h-[378px] ">
                     <div className="flex flex-col text-center gap-[8px]">
                         <h1 className="font-bold">
                             Presence / Absence of the teacher

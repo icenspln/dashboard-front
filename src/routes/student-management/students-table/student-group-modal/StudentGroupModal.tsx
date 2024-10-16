@@ -175,7 +175,7 @@ const RegistredStudentsOverlay: React.FC<RegistredStudentsOverlayProps> = ({
     return (
         <Overlay onClose={onClose} isVisible>
             <>
-                <div className=" w-[553px]  flex flex-col items-center gap-[15px]">
+                <div className=" md:w-[553px]  flex flex-col items-center gap-[15px]">
                     <h1 className="text-2xl">Choose The group</h1>
                     <p className="text-textGray">
                         Choose the group you want to enroll the student into

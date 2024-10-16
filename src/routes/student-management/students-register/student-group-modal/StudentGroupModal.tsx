@@ -158,7 +158,7 @@ const RegistredStudentsOverlay = ({
         return (
             <Overlay onClose={onClose} isVisible>
                 <>
-                    <div className=" w-[553px]  flex flex-col items-center gap-[15px]">
+                    <div className=" md:w-[553px]  flex flex-col items-center gap-[15px]">
                         <h1 className="text-2xl">Choose the Group</h1>
                         <p>choose the group you want to add the student to</p>
 
