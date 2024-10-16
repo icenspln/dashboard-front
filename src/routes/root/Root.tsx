@@ -20,8 +20,8 @@ export default function Root() {
     return (
         <>
             <main className="navbar flex">
-                <div className="fixed w-[240px] ps-10">
-                    <div className=" w-full">
+                <div className="fixed w-fit md:w-[240px] ps-10">
+                    <div className="hidden md:block w-full">
                         {logoUrl ? (
                             <img
                                 src={logoUrl}
@@ -35,25 +35,23 @@ export default function Root() {
                             </h1>
                         )}
                     </div>
-                    <section className="navbar--section fixed w-[240px] top-0 left-0 min-h-dvh max-w-md  min-w-md flex flex-col justify-between  p-3 ">
+                    <section className="navbar--section fixed w-auto md:w-[240px] top-0 left-0 min-h-dvh max-w-md  min-w-md flex flex-col justify-between  p-3 ">
                         <ul className="navbar--ul flex flex-col gap-3 mt-[56px] ">
                             <li>
                                 <NavLink to={`/students-management`}>
                                     {({ isActive }) => (
-                                        <>
-                                            <ButtonSecondary
-                                                text="Students"
-                                                isActive={isActive}
-                                            >
-                                                <Student
-                                                    fill={
-                                                        isActive
-                                                            ? BLUE
-                                                            : DISABLEDGRAY
-                                                    }
-                                                />
-                                            </ButtonSecondary>
-                                        </>
+                                        <ButtonSecondary
+                                            text="Students"
+                                            isActive={isActive}
+                                        >
+                                            <Student
+                                                fill={
+                                                    isActive
+                                                        ? BLUE
+                                                        : DISABLEDGRAY
+                                                }
+                                            />
+                                        </ButtonSecondary>
                                     )}
                                 </NavLink>
                             </li>
@@ -169,7 +167,7 @@ export default function Root() {
                         </NavLink>
                     </section>
                 </div>
-                <section className="ml-[240px] outlet">
+                <section className="ml-16 md:ml-[240px] outlet">
                     <Outlet />
                 </section>
             </main>
