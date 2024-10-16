@@ -37,11 +37,9 @@ export default function StudentControlPanel() {
     });
 
     useEffect(() => {
-        console.log("use effect data");
         if (data) {
             setStatus(data.status);
 
-            console.log("refetch");
             if (data.status === 200) {
                 setStudentInfo(data.data);
             }
@@ -61,12 +59,9 @@ export default function StudentControlPanel() {
     }, [scanningCard, queryClient]);
 
     const handleRfidScan = async (scannedRfid: string) => {
-        console.log("inside rfid scan");
         try {
             setRfid(scannedRfid);
             setScanningCard(scannedRfid);
-            console.log(scannedRfid);
-            console.log("scanning");
             // await refetch();
             // queryClient.invalidateQueries({
             //     queryKey: ["getStudentByCardId"],
@@ -81,7 +76,6 @@ export default function StudentControlPanel() {
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.key === "Enter") {
                 if (rfid.length === 10) {
-                    console.log(rfid);
                     handleRfidScan(rfid);
                 }
                 setRfid("");

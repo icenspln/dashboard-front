@@ -31,7 +31,6 @@ export function StudentPaymentTable({
             queryClient.invalidateQueries({
                 queryKey: ["getStudentByCardId"],
             });
-            console.log(data);
             const totalToPay =
                 data.newfinancials.totalOutstandingBalance +
                 data.newfinancials.totalDebts;

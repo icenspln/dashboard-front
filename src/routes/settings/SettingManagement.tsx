@@ -86,8 +86,6 @@ function SettingScreen() {
             } catch (error) {
                 setIsConfirmOverlayVisible(false);
                 setfileErrorOverlay(true);
-                console.log(fileErrorOverlay);
-
                 console.error("Error restoring database:", error);
                 // Optionally, you can set an error state to show an error message to the user
             }

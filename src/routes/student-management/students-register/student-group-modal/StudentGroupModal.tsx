@@ -150,7 +150,6 @@ const RegistredStudentsOverlay = ({
     const loadOptions = (inputValue: string) =>
         new Promise<any>((resolve) => {
             // setTimeout(() => {
-            console.log("called", inputValue);
             resolve(filterStudents(inputValue));
             // }, 1000);
         });

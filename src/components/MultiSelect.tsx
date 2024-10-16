@@ -8,7 +8,6 @@ export default function MultiSelect({
     setValue?: any;
     initValue: string[];
 }) {
-    console.log("INIT", initValue);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedModules, setSelectedModules] = useState<string[]>(initValue);
     const dropdownRef = useRef<any>(null);
@@ -21,11 +20,9 @@ export default function MultiSelect({
         const { value, checked } = event.target;
         setSelectedModules((prev: any) => {
             if (checked) {
-                console.log(prev);
                 setValue("modules", [...prev, value]);
                 return [...prev, value];
             } else {
-                console.log(prev);
                 setValue(
                     "modules",
                     prev.filter((m: any) => m !== value)

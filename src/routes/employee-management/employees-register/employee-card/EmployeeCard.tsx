@@ -33,10 +33,8 @@ export default function EmployeeCard({ employeeId }: EmployeeCardProps) {
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.key === "Enter") {
                 // When Enter is pressed, use the scanned RFID value
-                console.log(rfid);
 
                 if (rfid.length === 10) {
-                    console.log(rfid);
                     handleRfidScan(rfid);
                 }
                 setRfid(""); // Clear the input after processing

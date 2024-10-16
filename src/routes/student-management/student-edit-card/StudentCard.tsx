@@ -19,7 +19,6 @@ export default function StudentCardEdit() {
 
     const handleRfidScan = async (scannedRfid: string) => {
         try {
-            console.log(selectedStudent);
             setRfid(scannedRfid);
             const response = await UpdateCard(
                 selectedStudent!._id,
@@ -29,7 +28,6 @@ export default function StudentCardEdit() {
                 throw new Error("Failed to update card");
             }
 
-            console.log("Card updated successfully");
             setModal(2); // Move to the success modal on success
         } catch (error) {
             console.error("Error updating card:", error);
@@ -42,7 +40,6 @@ export default function StudentCardEdit() {
             if (event.key === "Enter") {
                 // When Enter is pressed, use the scanned RFID value
                 if (rfid.length === 10) {
-                    console.log(rfid);
                     handleRfidScan(rfid);
                 }
                 setRfid(""); // Clear the input after processing

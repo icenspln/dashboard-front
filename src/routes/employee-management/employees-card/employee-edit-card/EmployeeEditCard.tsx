@@ -30,7 +30,6 @@ export default function EmployeeEditCard({ employeeId }: EmployeeCardProps) {
             if (!response.ok) {
                 throw new Error("Failed to update card");
             }
-            console.log("Card updated successfully:", response);
             setModal(2); // Move to the next modal on success
         } catch (error) {
             console.error("Error updating card:", error);
@@ -43,7 +42,6 @@ export default function EmployeeEditCard({ employeeId }: EmployeeCardProps) {
             if (event.key === "Enter") {
                 // When Enter is pressed, use the scanned RFID value
                 if (rfid.length === 10) {
-                    console.log(rfid);
                     handleRfidScan(rfid);
                 }
                 setRfid(""); // Clear the input after processing

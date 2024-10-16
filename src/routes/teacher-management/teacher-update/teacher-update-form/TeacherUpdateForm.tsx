@@ -17,7 +17,6 @@ export default function TeacherUpdateForm() {
     const location = useLocation();
     const id = params.id!;
     const parsedParams = queryString.parse(location.search);
-    console.log(parsedParams);
     const birthDate: any = parsedParams.birthDate;
     const modules: any = parsedParams.modules;
     const {

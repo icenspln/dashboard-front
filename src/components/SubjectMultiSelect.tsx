@@ -20,11 +20,9 @@ export function SubjectMultiSelect({
         const { value, checked } = event.target;
         setSelectedModules((prev: any) => {
             if (checked) {
-                console.log(prev);
                 setValue("modules", [...prev, value]);
                 return [...prev, value];
             } else {
-                console.log(prev);
                 setValue(
                     "modules",
                     prev.filter((m: any) => m !== value)

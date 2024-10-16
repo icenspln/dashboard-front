@@ -5,148 +5,152 @@ import PlusSvg from "../assets/icons/PlusSvg";
 import ColumnsSelectionSvg from "../assets/icons/ColumnsSelectionSvg";
 
 interface FilterOption {
-  id: number;
-  label: string;
+    id: number;
+    label: string;
 }
 
 interface FilterButtonProps {
-  label: string;
-  options: FilterOption[];
-  onSelect?: (option: FilterOption) => void;
+    label: string;
+    options: FilterOption[];
+    onSelect?: (option: FilterOption) => void;
 }
 
 const FilterButton: React.FC<FilterButtonProps> = ({
-  label,
-  options,
-  onSelect,
+    label,
+    options,
+    onSelect,
 }) => {
-  const [selectedOptions, setSelectedOptions] = useState<FilterOption[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
+    const [selectedOptions, setSelectedOptions] = useState<FilterOption[]>([]);
+    const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    console.log(selectedOptions);
-  }, [selectedOptions]);
+    useEffect(() => {}, [selectedOptions]);
 
-  const toggleOpen = () => {
-    setIsOpen((prev) => !prev);
-  };
+    const toggleOpen = () => {
+        setIsOpen((prev) => !prev);
+    };
 
-  const handleOptionClick = (option: FilterOption) => {
-    let updatedOptions = [...selectedOptions];
-    if (updatedOptions.find((opt) => opt.id === option.id)) {
-      updatedOptions = updatedOptions.filter((opt) => opt.id !== option.id);
-    } else {
-      updatedOptions.push(option);
-    }
-    setSelectedOptions(updatedOptions);
-    if (onSelect) {
-      onSelect(option);
-    }
-  };
+    const handleOptionClick = (option: FilterOption) => {
+        let updatedOptions = [...selectedOptions];
+        if (updatedOptions.find((opt) => opt.id === option.id)) {
+            updatedOptions = updatedOptions.filter(
+                (opt) => opt.id !== option.id
+            );
+        } else {
+            updatedOptions.push(option);
+        }
+        setSelectedOptions(updatedOptions);
+        if (onSelect) {
+            onSelect(option);
+        }
+    };
 
-  return (
-    <div className="relative">
-      <button
-        onClick={toggleOpen}
-        className=" bg-white flex items-center gap-[8px] w-[116px] h-[32px] px-4 py-2 border border-dashed border-gray-300 rounded-md shadow-sm hover:bg-gray-100"
-      >
-        <PlusSvg />
-        <span className="text-gray-700">{label}</span>
-      </button>
-
-      {isOpen && (
-        <div className="absolute w-[166px] mt-1 bg-white rounded border border-gray-300 shadow-lg z-10">
-          {options.map((option) => (
-            <label
-              key={option.id}
-              htmlFor="checkbox"
-              className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
-              onClick={() => handleOptionClick(option)}
+    return (
+        <div className="relative">
+            <button
+                onClick={toggleOpen}
+                className=" bg-white flex items-center gap-[8px] w-[116px] h-[32px] px-4 py-2 border border-dashed border-gray-300 rounded-md shadow-sm hover:bg-gray-100"
             >
-              <span>{option.label}</span>
-              <input
-                name="checkbox"
-                type="checkbox"
-                checked={
-                  selectedOptions.find((opt) => opt.id === option.id) !==
-                  undefined
-                }
-                onChange={() => handleOptionClick(option)}
-                className="form-checkbox text-blue-500 mr-2 w-[16px] h-[16px]"
-              />
-            </label>
-          ))}
+                <PlusSvg />
+                <span className="text-gray-700">{label}</span>
+            </button>
+
+            {isOpen && (
+                <div className="absolute w-[166px] mt-1 bg-white rounded border border-gray-300 shadow-lg z-10">
+                    {options.map((option) => (
+                        <label
+                            key={option.id}
+                            htmlFor="checkbox"
+                            className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => handleOptionClick(option)}
+                        >
+                            <span>{option.label}</span>
+                            <input
+                                name="checkbox"
+                                type="checkbox"
+                                checked={
+                                    selectedOptions.find(
+                                        (opt) => opt.id === option.id
+                                    ) !== undefined
+                                }
+                                onChange={() => handleOptionClick(option)}
+                                className="form-checkbox text-blue-500 mr-2 w-[16px] h-[16px]"
+                            />
+                        </label>
+                    ))}
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 };
 //column selection
 interface FilterOption {
-  id: number;
-  label: string;
+    id: number;
+    label: string;
 }
 
 interface ColumnSelectionProps {
-  options: FilterOption[];
-  onSelect?: (selectedOptions: FilterOption[]) => void;
+    options: FilterOption[];
+    onSelect?: (selectedOptions: FilterOption[]) => void;
 }
 
 const ColumnSelection: React.FC<ColumnSelectionProps> = ({
-  options,
-  onSelect,
+    options,
+    onSelect,
 }) => {
-  const [selectedOptions, setSelectedOptions] = useState<FilterOption[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
+    const [selectedOptions, setSelectedOptions] = useState<FilterOption[]>([]);
+    const [isOpen, setIsOpen] = useState(false);
 
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
-  };
+    const toggleOpen = () => {
+        setIsOpen(!isOpen);
+    };
 
-  const handleOptionClick = (option: FilterOption) => {
-    const updatedOptions = selectedOptions.find((opt) => opt.id === option.id)
-      ? selectedOptions.filter((opt) => opt.id !== option.id)
-      : [...selectedOptions, option];
+    const handleOptionClick = (option: FilterOption) => {
+        const updatedOptions = selectedOptions.find(
+            (opt) => opt.id === option.id
+        )
+            ? selectedOptions.filter((opt) => opt.id !== option.id)
+            : [...selectedOptions, option];
 
-    setSelectedOptions(updatedOptions);
-    if (onSelect) {
-      onSelect(updatedOptions);
-    }
-  };
+        setSelectedOptions(updatedOptions);
+        if (onSelect) {
+            onSelect(updatedOptions);
+        }
+    };
 
-  return (
-    <div className="relative">
-      <button onClick={toggleOpen}>
-        <ColumnsSelectionSvg />
-      </button>
+    return (
+        <div className="relative">
+            <button onClick={toggleOpen}>
+                <ColumnsSelectionSvg />
+            </button>
 
-      {isOpen && (
-        <div className="absolute w-[175px] min-h-[320px] mt-1 bg-white rounded border border-gray-300 shadow-lg z-10">
-          {options.map((option) => (
-            <label
-              key={option.id}
-              className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
-              onClick={() => handleOptionClick(option)}
-            >
-              <span>{option.label}</span>
-              <input
-                type="checkbox"
-                checked={
-                  selectedOptions.find((opt) => opt.id === option.id) !==
-                  undefined
-                }
-                onChange={(e) => {
-                  e.stopPropagation();
-                  handleOptionClick(option);
-                }}
-                className="form-checkbox text-blue-500 mr-2 w-[16px] h-[16px]"
-              />
-            </label>
-          ))}
+            {isOpen && (
+                <div className="absolute w-[175px] min-h-[320px] mt-1 bg-white rounded border border-gray-300 shadow-lg z-10">
+                    {options.map((option) => (
+                        <label
+                            key={option.id}
+                            className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => handleOptionClick(option)}
+                        >
+                            <span>{option.label}</span>
+                            <input
+                                type="checkbox"
+                                checked={
+                                    selectedOptions.find(
+                                        (opt) => opt.id === option.id
+                                    ) !== undefined
+                                }
+                                onChange={(e) => {
+                                    e.stopPropagation();
+                                    handleOptionClick(option);
+                                }}
+                                className="form-checkbox text-blue-500 mr-2 w-[16px] h-[16px]"
+                            />
+                        </label>
+                    ))}
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export { ColumnSelection, FilterButton };

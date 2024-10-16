@@ -15,7 +15,6 @@ export function getStudentByCardId(userId: string | null, scanningCardId: string
     requestBody.scanningCardId = scanningCardId;
   }
 
-  console.log("in request ", requestBody);
 
   return AxiosInstance.post("/student/scan", requestBody).then((res) => {
     if (res.status === 200 || res.status ===201) {

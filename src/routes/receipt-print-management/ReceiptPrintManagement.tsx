@@ -15,8 +15,6 @@ export default function ReceiptPrintManagement() {
 
     const { appName, logoUrl } = useSettings();
 
-    console.log(studentInfo, paymentAmount);
-
     const handlePrint = () => {
         const printContent =
             document.getElementById("print-section")?.innerHTML;
