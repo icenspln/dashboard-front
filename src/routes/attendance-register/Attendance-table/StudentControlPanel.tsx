@@ -3,7 +3,7 @@ import { StudentPaymentTable } from "./studentPaymentTable";
 import GroupList from "./groupList";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useState , useRef  } from "react";
 import { getStudentByCardId } from "./core/_requests";
 import { GetStudentByCardIdType } from "./core/_models";
 import Notifications from "./notifications";
@@ -12,7 +12,8 @@ import { motion } from "framer-motion";
 
 export default function StudentControlPanel() {
   const navigate = useNavigate();
-  const [rfid, setRfid] = useState<string>(""); // State to store RFID scan value
+  const [rfid, setRfid] = useState<string>(""); 
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const { id } = useParams();
   const [studentInfo, setStudentInfo] = useState<GetStudentByCardIdType>();
@@ -23,17 +24,20 @@ export default function StudentControlPanel() {
   const userId = isUserId ? id?.replace("user-", "") : null;
   const scanningCardId = isScanningCardId ? id?.replace("card-", "") : null;
   const { data, isPending, error, refetch } = useQuery({
+    
     queryKey: ["getStudentByCardId"],
     queryFn: () => getStudentByCardId(userId, scanningCardId),
     enabled: !!userId || !!scanningCardId,
   });
 
   useEffect(() => {
+    console.log("use effect");
     if (data) {
+      console.log("refetch")
       setStatus(data.status);
       if (data.status === 200) setStudentInfo(data.data);
     }
-  }, [data, isPending, error]);
+  }, [data, isPending, error , refetch]);
 
   if (isPending)
     return (
@@ -56,7 +60,7 @@ export default function StudentControlPanel() {
       console.log(scannedRfid);
       console.log("scanning");
       await refetch();
-      navigate(`/attendancemanagement/card-${scannedRfid}`);
+      // navigate(`/attendancemanagement/card-${scannedRfid}`);
     } catch (error) {
       console.error("Error updating card:", error);
     }
@@ -76,6 +80,9 @@ export default function StudentControlPanel() {
       }
     };
 
+    if (inputRef.current) {
+      inputRef.current.focus(); // Focus the hidden input field
+    }
     if (screen) {
       window.addEventListener("keydown", handleKeyPress);
     }

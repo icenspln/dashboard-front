@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     },
     table: {
         display: "flex",
-        width: "48%",
+        // width: "48%",
         
       
         borderRightWidth: 0,
@@ -36,7 +36,7 @@ console.log(groups.toString)
     groups.forEach((group, index) => {
         // Adjust rowsPerTable based on your requirements
         // const rowsPerTable = 24; 
-        console.log("all days,", group.alldays)
+        console.log("index,", index)
 
         tables.push(
             <View style={styles.table} key={index}>

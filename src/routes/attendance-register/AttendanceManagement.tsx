@@ -1,9 +1,10 @@
 import { NavigateToRegister } from "./Attendance-navigation-page/NavigateToRegister";
-import { useState, useEffect  } from "react";
+import { useState, useEffect , useRef   } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function AttendanceManagement() {
   const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement>(null);
 
 
   const [rfid, setRfid] = useState<string>(""); // State to store RFID scan value
@@ -13,7 +14,9 @@ export default function AttendanceManagement() {
       setRfid(scannedRfid);
       console.log(scannedRfid)
       console.log("scanning")
-      navigate(`/attendancemanagement/card-${scannedRfid}`);
+      setTimeout(() => {
+        navigate(`/attendancemanagement/card-${scannedRfid}`);
+      }, 100); // Adjust delay if necessary
     } catch (error) {
       console.error("Error scanning card:", error);
     }
@@ -32,6 +35,10 @@ export default function AttendanceManagement() {
         setRfid((prevRfid) => prevRfid + event.key);
       }
     };
+    if (inputRef.current) {
+      inputRef.current.focus(); // Focus the hidden input field
+    }
+
 
     if (screen) {
       window.addEventListener("keydown", handleKeyPress);
