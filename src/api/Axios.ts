@@ -6,6 +6,7 @@ export const AxiosInstance = axios.create({
     headers: {
         "Content-Type": "application/json",
         "Cache-Control": "no-cache",
-        "Access-Control-Allow-Origin": import.meta.env.VITE_BASE_URL,
+        "Access-Control-Allow-Origin": "*",
+        Origin: "*",
     },
 });
